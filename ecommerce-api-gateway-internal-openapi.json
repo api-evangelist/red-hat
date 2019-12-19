@@ -1,0 +1,551 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0",
+        "title": "E-Commerce API Gateway internal",
+        "description": "Serving downstream product, sales, billing and fulfillment services",
+        "termsOfService": "http:\/\/exmple.com\/license\/"
+    },
+    "servers": [
+        "http:\/\/fuse-gateway-internal-3scale-apicast-staging.middleware.ocp.cloud.lab.eng.bos.redhat.com:443\/"
+    ],
+    "paths": {
+        "\/billing\/process": {
+            "post": {
+                "summary": "process transaction",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Order": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Persistence ID of order",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "Status of order",
+                        "type": "string"
+                    },
+                    "transactionNumber": {
+                        "description": "Transaction number of order",
+                        "type": "integer"
+                    },
+                    "transactionDate": {
+                        "description": "Date of transaction creation",
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "description": "Persistence ID of customer",
+                        "type": "string"
+                    },
+                    "orderItemIds": {
+                        "description": "Persistence ID's of OrderItems",
+                        "type": "array"
+                    }
+                }
+            },
+            "orderItemIds": {
+                "type": "array"
+            },
+            "Locale": {
+                "type": "object",
+                "properties": {
+                    "language": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "script": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "country": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "variant": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "extensionKeys": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "unicodeLocaleAttributes": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "unicodeLocaleKeys": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "iso3Language": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "iso3Country": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "displayLanguage": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "displayScript": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "displayCountry": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "displayVariant": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "displayName": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "extensionKeys": {
+                "type": "array"
+            },
+            "unicodeLocaleAttributes": {
+                "type": "array"
+            },
+            "unicodeLocaleKeys": {
+                "type": "array"
+            },
+            "Customer": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Persistence ID of order",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Full name of customer",
+                        "type": "string"
+                    },
+                    "address": {
+                        "description": "Full address of customer (123 Somewhere St, Nowhere, AZ 12345)",
+                        "type": "string"
+                    },
+                    "telephone": {
+                        "description": "Primary phone number for customer (+15551234567)",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email address of customer",
+                        "type": "string"
+                    },
+                    "username": {
+                        "description": "Username for customer",
+                        "type": "string"
+                    },
+                    "password": {
+                        "description": "Password for customer",
+                        "type": "string"
+                    }
+                }
+            },
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "sku": {
+                        "description": "Persistence ID of product",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Full name of customer",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of product",
+                        "type": "string"
+                    },
+                    "length": {
+                        "description": "Imperial length dimension of product",
+                        "type": "number"
+                    },
+                    "width": {
+                        "description": "Imperial width dimension of product",
+                        "type": "number"
+                    },
+                    "height": {
+                        "description": "Imperial height dimension of product",
+                        "type": "number"
+                    },
+                    "weight": {
+                        "description": "Imperial weight measurement of product",
+                        "type": "number"
+                    },
+                    "isFeatured": {
+                        "description": "Flag indicating if product is to be specially advertised as featured",
+                        "type": "boolean"
+                    },
+                    "availability": {
+                        "description": "Quantity of product available for purchase",
+                        "type": "integer"
+                    },
+                    "price": {
+                        "description": "Price of a single product unit",
+                        "type": "number"
+                    },
+                    "image": {
+                        "description": "Visual representation identifier for product",
+                        "type": "string"
+                    },
+                    "keywords": {
+                        "description": "Keywords which categorize the product",
+                        "type": "array"
+                    }
+                }
+            },
+            "keywords": {
+                "type": "array"
+            },
+            "Result": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "description": "Status of order",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Full name of customer",
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "description": "Persistence ID of customer",
+                        "type": "string"
+                    },
+                    "orderNumber": {
+                        "description": "Order number of transaction processed",
+                        "type": "string"
+                    },
+                    "transactionDate": {
+                        "description": "Date of transaction",
+                        "type": "integer"
+                    },
+                    "transactionNumber": {
+                        "description": "Transaction number of order",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Response": {
+                "type": "object",
+                "properties": {
+                    "mediaType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "entity": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "length": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Locale": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "language": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "location": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "lastModified": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "date": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "headers": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "allowedMethods": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "cookies": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "metadata": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "entityTag": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "stringHeaders": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "status": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "statusInfo": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "mediaType": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "subtype": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "parameters": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "wildcardType": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "wildcardSubtype": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "entity": {
+                "type": "object"
+            },
+            "headers": {
+                "type": "object"
+            },
+            "allowedMethods": {
+                "type": "array"
+            },
+            "cookies": {
+                "type": "object"
+            },
+            "metadata": {
+                "type": "object"
+            },
+            "entityTag": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "weak": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "links": {
+                "type": "array"
+            },
+            "stringHeaders": {
+                "type": "object"
+            },
+            "statusInfo": {
+                "type": "object"
+            },
+            "Transaction": {
+                "type": "object",
+                "properties": {
+                    "creditCardNumber": {
+                        "description": "Credit card number",
+                        "type": "integer"
+                    },
+                    "expMonth": {
+                        "description": "2-digit month of card expiration",
+                        "type": "integer"
+                    },
+                    "expYear": {
+                        "description": "4-digit year of card expiration",
+                        "type": "integer"
+                    },
+                    "verificationCode": {
+                        "description": "3-digit card verification pin",
+                        "type": "integer"
+                    },
+                    "billingAddress": {
+                        "description": "Card holder's billing address",
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "description": "Persistence ID of customer",
+                        "type": "string"
+                    },
+                    "customerName": {
+                        "description": "Card holder's name",
+                        "type": "string"
+                    },
+                    "orderNumber": {
+                        "description": "Order number of transaction processed",
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Amount of transaction to charge to customer",
+                        "type": "number"
+                    }
+                }
+            },
+            "StatusType": {
+                "type": "object",
+                "properties": {
+                    "family": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "reasonPhrase": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "statusCode": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "OrderItem": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Persistence ID of order",
+                        "type": "string"
+                    },
+                    "sku": {
+                        "description": "Persistence ID of product",
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "description": "Product quantity",
+                        "type": "integer"
+                    }
+                }
+            },
+            "parameters": {
+                "type": "object"
+            },
+            "UriBuilder": {
+                "type": "object"
+            },
+            "Link": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "UriBuilder": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "uriBuilder": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "rel": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "rels": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "params": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "uri": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "rels": {
+                "type": "array"
+            },
+            "params": {
+                "type": "object"
+            },
+            "NewCookie": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "Full name of customer",
+                        "type": "string"
+                    },
+                    "value": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "version": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "path": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "domain": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "comment": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "maxAge": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "expiry": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "secure": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "httpOnly": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}
