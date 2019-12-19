@@ -1,0 +1,128 @@
+{
+    "name": "Red Hat",
+    "description": "Red Hat is the world\u2019s leading provider of open source solutions, including reliable, high-performing cloud, virtualization, storage, Linux, mobile, management, and middleware technologies. We also offer award-winning support, training, and consulting ...",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1356-red-hat.jpg",
+    "tags": [
+        "have api",
+        "have swagger",
+        "paas",
+        "projects"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/red-hat\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Red Hat",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1356-red-hat.jpg",
+            "humanURL": "https:\/\/openshift.redhat.com\/community\/developers",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/red-hat.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/red-hat-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "E-Commerce API Gateway internal",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1356-red-hat.jpg",
+            "humanURL": "https:\/\/openshift.redhat.com\/community\/developers",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/ecommerce-api-gateway-internal.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/ecommerce-api-gateway-internal-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Website",
+            "url": "https:\/\/openshift.redhat.com\/community\/developers"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/www.press.redhat.com"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/www.redhat.com\/magazine\/rss20.xml"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/red-hat"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/red-hat"
+        },
+        {
+            "type": "Email",
+            "url": "apac@redhat.com"
+        },
+        {
+            "type": "Email",
+            "url": "customerservice-apac@redhat.com"
+        },
+        {
+            "type": "Email",
+            "url": "apac-partner-helpdesk@redhat.com"
+        },
+        {
+            "type": "Email",
+            "url": "training-in@redhat.com"
+        },
+        {
+            "type": "Email",
+            "url": "training-apac@redhat.com"
+        },
+        {
+            "type": "Email",
+            "url": "training-jp@redhat.com"
+        },
+        {
+            "type": "Email",
+            "url": "training-kr@redhat.com"
+        },
+        {
+            "type": "Email",
+            "url": "training-cn@redhat.com"
+        },
+        {
+            "type": "Email",
+            "url": "training-anz@redhat.com"
+        },
+        {
+            "type": "Email",
+            "url": "training-sg@redhat.com"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/1356-2019-09-04-08-12-42.json"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/redhatnews"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/RedHat"
+        }
+    ]
+}
