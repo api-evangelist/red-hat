@@ -1,5 +1,5 @@
 {
-    "id": "d0ef3bdd3a9d658c76d0528eeb1faa46",
+    "id": "0ea25eddaa3e57fae324cdd5b74bf859",
     "name": "E-Commerce API Gateway internal",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "180128305793fbce58ad3659d9d743cb",
+            "id": "32af1ea7e1b8314660ff7231a9a754a4",
             "name": "process transaction",
             "url": "http:\/\/fuse-gateway-internal-3scale-apicast-staging.middleware.ocp.cloud.lab.eng.bos.redhat.com:443\/\/billing\/process",
             "description": "",
@@ -29,7 +29,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d0ef3bdd3a9d658c76d0528eeb1faa46",
+            "collectionId": "0ea25eddaa3e57fae324cdd5b74bf859",
             "rawModeData": ""
         }
     ]
