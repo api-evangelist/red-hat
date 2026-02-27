@@ -1,0 +1,130 @@
+name: Red Hat
+description: APIs and developer resources from Red Hat, a leading provider of enterprise open source solutions including Linux, cloud, container, and Kubernetes technologies.
+image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+url: https://www.redhat.com
+created: '2024-01-15'
+modified: '2024-01-15'
+specificationVersion: '0.18'
+tags:
+- Enterprise
+- Open Source
+- Linux
+- Cloud
+- Containers
+- Kubernetes
+- Hybrid Cloud
+apis:
+- name: Red Hat OpenShift API
+  description: RESTful API for managing OpenShift clusters, applications, and resources on Red Hat's enterprise Kubernetes platform.
+  image: https://www.redhat.com/cms/managed-files/openshift-logo.png
+  humanUrl: https://docs.openshift.com/container-platform/latest/rest_api/index.html
+  baseUrl: https://api.openshift.com
+  tags:
+  - Kubernetes
+  - Containers
+  - Platform as a Service
+  - Cloud Native
+  properties:
+  - type: Documentation
+    url: https://docs.openshift.com/container-platform/latest/rest_api/index.html
+  - type: OpenAPI
+    url: https://api.openshift.com/api/clusters_mgmt/v1/openapi
+  - type: Authentication
+    url: https://docs.openshift.com/container-platform/latest/authentication/index.html
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Ansible Automation Platform API
+  description: API for automating IT infrastructure, application deployment, and configuration management through Ansible.
+  humanUrl: https://docs.ansible.com/ansible-tower/latest/html/towerapi/index.html
+  baseUrl: https://ansible-platform.example.com/api/v2
+  tags:
+  - Automation
+  - Configuration Management
+  - DevOps
+  - Infrastructure as Code
+  properties:
+  - type: Documentation
+    url: https://docs.ansible.com/ansible-tower/latest/html/towerapi/index.html
+  - type: API Reference
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
+  - type: Authentication
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Quay API
+  description: Container registry API for storing, distributing, and securing container images.
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_quay/
+  baseUrl: https://quay.io/api/v1
+  tags:
+  - Container Registry
+  - Docker
+  - Security
+  - Image Management
+  properties:
+  - type: Documentation
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/
+  - type: API Reference
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+  - type: Swagger
+    url: https://quay.io/api/v1/discovery
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Insights API
+  description: Predictive analytics and remediation API for proactive identification and resolution of infrastructure issues.
+  humanUrl: https://console.redhat.com/docs/api
+  baseUrl: https://console.redhat.com/api
+  tags:
+  - Analytics
+  - Monitoring
+  - Security
+  - Compliance
+  properties:
+  - type: Documentation
+    url: https://console.redhat.com/docs/api
+  - type: API Console
+    url: https://console.redhat.com/api/api-docs
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Subscription Management API
+  description: API for managing Red Hat subscriptions, entitlements, and system registrations.
+  humanUrl: https://access.redhat.com/management/api
+  baseUrl: https://api.access.redhat.com/management/v1
+  tags:
+  - Subscriptions
+  - Licensing
+  - Entitlements
+  - System Management
+  properties:
+  - type: Documentation
+    url: https://access.redhat.com/management/api
+  - type: API Reference
+    url: https://access.redhat.com/management/api/rhsm
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+common:
+- type: Portal
+  url: https://developers.redhat.com
+- type: Getting Started
+  url: https://developers.redhat.com/get-started
+- type: Blog
+  url: https://developers.redhat.com/blog
+- type: Support
+  url: https://access.redhat.com/support
+- type: Status
+  url: https://status.redhat.com
+- type: Terms of Service
+  url: https://www.redhat.com/en/about/terms-use
+- type: Privacy Policy
+  url: https://www.redhat.com/en/about/privacy-policy
+maintainers:
+- type: Organization
+  name: Red Hat, Inc.
+  email: developers@redhat.com
+  url: https://www.redhat.com
