@@ -1,0 +1,814 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform API
+  description: >-
+    The Red Hat Ansible Automation Platform API provides programmatic access to
+    the automation controller for managing IT infrastructure automation. It
+    supports creating and launching job templates, managing inventories, tracking
+    job execution status, and configuring credentials for connecting to managed
+    hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index
+servers:
+  - url: https://ansible-platform.example.com
+    description: Ansible Automation Platform Server
+tags:
+  - name: Job Templates
+    description: >-
+      Operations for managing job templates that define parameterized playbook
+      runs against inventories of managed hosts.
+  - name: Jobs
+    description: >-
+      Operations for launching, monitoring, and managing automation job
+      executions and their output.
+  - name: Inventories
+    description: >-
+      Operations for managing inventories that define collections of hosts
+      and groups for automation targeting.
+  - name: Projects
+    description: >-
+      Operations for managing projects that represent collections of Ansible
+      playbooks sourced from version control.
+  - name: Credentials
+    description: >-
+      Operations for managing credentials used by automation jobs to
+      authenticate with managed hosts and external services.
+  - name: Workflow Job Templates
+    description: >-
+      Operations for managing workflow job templates that chain multiple
+      job templates into orchestrated automation workflows.
+  - name: Organizations
+    description: >-
+      Operations for managing organizations that provide multi-tenancy
+      and access control boundaries.
+security:
+  - bearerAuth: []
+paths:
+  /api/v2/job_templates/:
+    get:
+      operationId: listJobTemplates
+      summary: List job templates
+      description: >-
+        Retrieves a paginated list of job templates. Job templates define the
+        parameters for running Ansible playbooks against specified inventories,
+        including the project, playbook, credentials, and extra variables.
+      tags:
+        - Job Templates
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PageSizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - $ref: '#/components/parameters/OrderingParam'
+      responses:
+        '200':
+          description: Successfully retrieved job templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobTemplateList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      operationId: createJobTemplate
+      summary: Create a job template
+      description: >-
+        Creates a new job template with the specified configuration. Requires
+        at minimum a name, project, playbook, and inventory reference.
+      tags:
+        - Job Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobTemplate'
+      responses:
+        '201':
+          description: Job template created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobTemplate'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/v2/job_templates/{id}/:
+    get:
+      operationId: getJobTemplate
+      summary: Get a job template
+      description: >-
+        Retrieves the details of a specific job template by its identifier.
+      tags:
+        - Job Templates
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Successfully retrieved job template
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobTemplate'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    patch:
+      operationId: updateJobTemplate
+      summary: Update a job template
+      description: >-
+        Updates an existing job template. Only the fields provided in the
+        request body will be modified.
+      tags:
+        - Job Templates
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobTemplate'
+      responses:
+        '200':
+          description: Job template updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobTemplate'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      operationId: deleteJobTemplate
+      summary: Delete a job template
+      description: >-
+        Deletes a job template. Associated job runs will not be deleted but
+        will no longer be linked to a template.
+      tags:
+        - Job Templates
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '204':
+          description: Job template deleted successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /api/v2/job_templates/{id}/launch/:
+    post:
+      operationId: launchJobTemplate
+      summary: Launch a job template
+      description: >-
+        Launches a job from the specified job template. Optional extra variables,
+        credentials, and inventory overrides can be provided in the request
+        body. Returns the created job record with its identifier for tracking
+        execution progress.
+      tags:
+        - Job Templates
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                extra_vars:
+                  type: object
+                  description: Additional variables to pass to the playbook run.
+                inventory:
+                  type: integer
+                  description: Override inventory for this job launch.
+                credentials:
+                  type: array
+                  description: Override credentials for this job launch.
+                  items:
+                    type: integer
+                limit:
+                  type: string
+                  description: Host pattern to further limit the inventory.
+                tags:
+                  type: string
+                  description: Comma-separated list of playbook tags to run.
+      responses:
+        '201':
+          description: Job launched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/v2/jobs/:
+    get:
+      operationId: listJobs
+      summary: List jobs
+      description: >-
+        Retrieves a paginated list of job executions. Jobs represent individual
+        runs of job templates against inventories.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PageSizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - $ref: '#/components/parameters/OrderingParam'
+      responses:
+        '200':
+          description: Successfully retrieved jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/v2/jobs/{id}/:
+    get:
+      operationId: getJob
+      summary: Get a job
+      description: >-
+        Retrieves the details of a specific job execution, including its
+        status, timing, and associated template information.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Successfully retrieved job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /api/v2/jobs/{id}/cancel/:
+    post:
+      operationId: cancelJob
+      summary: Cancel a job
+      description: >-
+        Cancels a running job. Only jobs that are currently pending or running
+        can be cancelled.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '202':
+          description: Job cancellation accepted
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /api/v2/inventories/:
+    get:
+      operationId: listInventories
+      summary: List inventories
+      description: >-
+        Retrieves a paginated list of inventories. Inventories contain
+        the hosts and groups that automation jobs run against.
+      tags:
+        - Inventories
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PageSizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved inventories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedInventoryList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      operationId: createInventory
+      summary: Create an inventory
+      description: >-
+        Creates a new inventory within the specified organization.
+      tags:
+        - Inventories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+      responses:
+        '201':
+          description: Inventory created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/v2/projects/:
+    get:
+      operationId: listProjects
+      summary: List projects
+      description: >-
+        Retrieves a paginated list of projects. Projects represent collections
+        of Ansible playbooks sourced from a version control system.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PageSizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProjectList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/v2/credentials/:
+    get:
+      operationId: listCredentials
+      summary: List credentials
+      description: >-
+        Retrieves a paginated list of credentials used for authenticating
+        automation jobs with managed hosts and external services.
+      tags:
+        - Credentials
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PageSizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCredentialList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/v2/workflow_job_templates/:
+    get:
+      operationId: listWorkflowJobTemplates
+      summary: List workflow job templates
+      description: >-
+        Retrieves a paginated list of workflow job templates. Workflows chain
+        multiple job templates into orchestrated automation sequences with
+        conditional branching.
+      tags:
+        - Workflow Job Templates
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PageSizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved workflow job templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/v2/organizations/:
+    get:
+      operationId: listOrganizations
+      summary: List organizations
+      description: >-
+        Retrieves a paginated list of organizations that provide multi-tenancy
+        boundaries for access control and resource management.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PageSizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved organizations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 Bearer token for authenticating API requests to the
+        automation controller.
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique numeric identifier of the resource.
+      schema:
+        type: integer
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    OrderingParam:
+      name: ordering
+      in: query
+      description: >-
+        The field to use for ordering results. Prefix with a dash for
+        descending order (e.g., -created).
+      schema:
+        type: string
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request is malformed or contains invalid data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    JobTemplate:
+      type: object
+      description: >-
+        A job template defines the parameters for running an Ansible playbook
+        against an inventory of managed hosts.
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the job template.
+        name:
+          type: string
+          description: The name of the job template.
+        description:
+          type: string
+          description: A description of the job template.
+        job_type:
+          type: string
+          description: The type of job to execute.
+          enum:
+            - run
+            - check
+        inventory:
+          type: integer
+          description: The ID of the inventory to run against.
+        project:
+          type: integer
+          description: The ID of the project containing the playbook.
+        playbook:
+          type: string
+          description: The playbook filename to execute from the project.
+        forks:
+          type: integer
+          description: The number of parallel processes to use for execution.
+          default: 0
+        limit:
+          type: string
+          description: A host pattern to further limit the inventory scope.
+        verbosity:
+          type: integer
+          description: The verbosity level for job output (0-5).
+          enum: [0, 1, 2, 3, 4, 5]
+          default: 0
+        extra_vars:
+          type: string
+          description: Extra variables in YAML or JSON format.
+        ask_variables_on_launch:
+          type: boolean
+          description: Whether to prompt for extra variables on launch.
+        ask_inventory_on_launch:
+          type: boolean
+          description: Whether to prompt for inventory on launch.
+        ask_credential_on_launch:
+          type: boolean
+          description: Whether to prompt for credentials on launch.
+        survey_enabled:
+          type: boolean
+          description: Whether the survey is enabled for this template.
+        created:
+          type: string
+          format: date-time
+          description: The date and time the template was created.
+        modified:
+          type: string
+          format: date-time
+          description: The date and time the template was last modified.
+    Job:
+      type: object
+      description: >-
+        A job represents a single execution of a job template, tracking
+        the playbook run status, timing, and output.
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the job.
+        name:
+          type: string
+          description: The name of the job.
+        status:
+          type: string
+          description: The current execution status of the job.
+          enum:
+            - new
+            - pending
+            - waiting
+            - running
+            - successful
+            - failed
+            - error
+            - canceled
+        failed:
+          type: boolean
+          description: Whether the job execution failed.
+        started:
+          type: string
+          format: date-time
+          description: When the job execution started.
+        finished:
+          type: string
+          format: date-time
+          description: When the job execution finished.
+        elapsed:
+          type: number
+          format: float
+          description: The elapsed time in seconds for job execution.
+        job_template:
+          type: integer
+          description: The ID of the job template that was executed.
+        inventory:
+          type: integer
+          description: The ID of the inventory used for this job.
+        project:
+          type: integer
+          description: The ID of the project used for this job.
+        playbook:
+          type: string
+          description: The playbook that was executed.
+        launch_type:
+          type: string
+          description: How the job was launched.
+          enum:
+            - manual
+            - relaunch
+            - callback
+            - scheduled
+            - dependency
+            - workflow
+            - sync
+            - scm
+        created:
+          type: string
+          format: date-time
+          description: The date and time the job record was created.
+    Inventory:
+      type: object
+      description: >-
+        An inventory defines a collection of hosts and groups that automation
+        jobs target for execution.
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the inventory.
+        name:
+          type: string
+          description: The name of the inventory.
+        description:
+          type: string
+          description: A description of the inventory.
+        organization:
+          type: integer
+          description: The ID of the organization this inventory belongs to.
+        kind:
+          type: string
+          description: The kind of inventory.
+          enum:
+            - ''
+            - smart
+            - constructed
+        host_count:
+          type: integer
+          description: The total number of hosts in this inventory.
+        total_groups:
+          type: integer
+          description: The total number of groups in this inventory.
+        has_inventory_sources:
+          type: boolean
+          description: Whether this inventory has dynamic sources.
+        created:
+          type: string
+          format: date-time
+          description: When the inventory was created.
+        modified:
+          type: string
+          format: date-time
+          description: When the inventory was last modified.
+    PaginatedJobTemplateList:
+      type: object
+      description: A paginated list of job templates.
+      properties:
+        count:
+          type: integer
+          description: The total number of results.
+        next:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the next page of results.
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the previous page of results.
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobTemplate'
+    PaginatedJobList:
+      type: object
+      description: A paginated list of jobs.
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          format: uri
+          nullable: true
+        previous:
+          type: string
+          format: uri
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+    PaginatedInventoryList:
+      type: object
+      description: A paginated list of inventories.
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          format: uri
+          nullable: true
+        previous:
+          type: string
+          format: uri
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Inventory'
+    PaginatedProjectList:
+      type: object
+      description: A paginated list of projects.
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          format: uri
+          nullable: true
+        previous:
+          type: string
+          format: uri
+          nullable: true
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: The unique identifier of the project.
+              name:
+                type: string
+                description: The name of the project.
+              description:
+                type: string
+                description: A description of the project.
+              scm_type:
+                type: string
+                description: The source control type.
+                enum:
+                  - ''
+                  - git
+                  - svn
+                  - insights
+                  - archive
+              scm_url:
+                type: string
+                description: The source control URL.
+              scm_branch:
+                type: string
+                description: The source control branch.
+    PaginatedCredentialList:
+      type: object
+      description: A paginated list of credentials.
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          format: uri
+          nullable: true
+        previous:
+          type: string
+          format: uri
+          nullable: true
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: The unique identifier of the credential.
+              name:
+                type: string
+                description: The name of the credential.
+              description:
+                type: string
+                description: A description of the credential.
+              credential_type:
+                type: integer
+                description: The ID of the credential type.
+              organization:
+                type: integer
+                description: The ID of the owning organization.
+    PaginatedList:
+      type: object
+      description: A generic paginated list response.
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          format: uri
+          nullable: true
+        previous:
+          type: string
+          format: uri
+          nullable: true
+        results:
+          type: array
+          items:
+            type: object
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.

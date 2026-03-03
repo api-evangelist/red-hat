@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.redhat.com/schemas/red-hat/ansible-job.json",
+  "title": "Red Hat Ansible Automation Platform Job",
+  "description": "Schema for a job execution record in the Red Hat Ansible Automation Platform, representing a single run of a job template including its status, timing, and output metadata.",
+  "type": "object",
+  "required": ["id", "name", "status"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The unique numeric identifier of the job execution."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the job, typically inherited from the job template."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the job."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current execution status of the job.",
+      "enum": [
+        "new",
+        "pending",
+        "waiting",
+        "running",
+        "successful",
+        "failed",
+        "error",
+        "canceled"
+      ]
+    },
+    "failed": {
+      "type": "boolean",
+      "description": "Whether the job execution resulted in a failure.",
+      "default": false
+    },
+    "started": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when job execution began."
+    },
+    "finished": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when job execution completed."
+    },
+    "elapsed": {
+      "type": "number",
+      "description": "The elapsed wall-clock time in seconds for the job execution.",
+      "minimum": 0
+    },
+    "job_type": {
+      "type": "string",
+      "description": "The type of job that was executed.",
+      "enum": ["run", "check"]
+    },
+    "launch_type": {
+      "type": "string",
+      "description": "How the job was launched.",
+      "enum": [
+        "manual",
+        "relaunch",
+        "callback",
+        "scheduled",
+        "dependency",
+        "workflow",
+        "sync",
+        "scm"
+      ]
+    },
+    "job_template": {
+      "type": "integer",
+      "description": "The ID of the job template that was executed."
+    },
+    "inventory": {
+      "type": "integer",
+      "description": "The ID of the inventory targeted by this job."
+    },
+    "project": {
+      "type": "integer",
+      "description": "The ID of the project containing the playbook."
+    },
+    "playbook": {
+      "type": "string",
+      "description": "The playbook filename that was executed."
+    },
+    "forks": {
+      "type": "integer",
+      "description": "The number of parallel processes used for execution.",
+      "minimum": 0
+    },
+    "limit": {
+      "type": "string",
+      "description": "The host pattern used to limit the inventory scope."
+    },
+    "verbosity": {
+      "type": "integer",
+      "description": "The verbosity level of the job output (0=normal, 5=maximum debug).",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "extra_vars": {
+      "type": "string",
+      "description": "Extra variables passed to the playbook in YAML or JSON format."
+    },
+    "artifacts": {
+      "type": "object",
+      "description": "Artifacts collected during job execution, such as set_stats data.",
+      "additionalProperties": true
+    },
+    "host_status_counts": {
+      "type": "object",
+      "description": "Summary counts of host statuses from job execution.",
+      "properties": {
+        "ok": {
+          "type": "integer",
+          "description": "Hosts that completed successfully with no changes."
+        },
+        "changed": {
+          "type": "integer",
+          "description": "Hosts where changes were made."
+        },
+        "failed": {
+          "type": "integer",
+          "description": "Hosts where execution failed."
+        },
+        "skipped": {
+          "type": "integer",
+          "description": "Hosts that were skipped."
+        },
+        "unreachable": {
+          "type": "integer",
+          "description": "Hosts that were unreachable."
+        },
+        "dark": {
+          "type": "integer",
+          "description": "Hosts in dark state (unreachable)."
+        }
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the job record was created."
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the job record was last modified."
+    }
+  },
+  "$defs": {
+    "JobTemplate": {
+      "type": "object",
+      "description": "A job template defining the parameters for running an Ansible playbook.",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The unique identifier of the job template."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the job template."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the job template."
+        },
+        "job_type": {
+          "type": "string",
+          "enum": ["run", "check"]
+        },
+        "inventory": {
+          "type": "integer"
+        },
+        "project": {
+          "type": "integer"
+        },
+        "playbook": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": 4567,
+      "name": "Deploy Web Application",
+      "status": "successful",
+      "failed": false,
+      "started": "2024-06-15T10:30:00Z",
+      "finished": "2024-06-15T10:35:42Z",
+      "elapsed": 342.5,
+      "job_type": "run",
+      "launch_type": "manual",
+      "job_template": 123,
+      "inventory": 45,
+      "project": 67,
+      "playbook": "deploy.yml",
+      "forks": 5,
+      "verbosity": 0,
+      "host_status_counts": {
+        "ok": 8,
+        "changed": 5,
+        "failed": 0,
+        "skipped": 2,
+        "unreachable": 0
+      },
+      "created": "2024-06-15T10:29:55Z",
+      "modified": "2024-06-15T10:35:42Z"
+    }
+  ]
+}

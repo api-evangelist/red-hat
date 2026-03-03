@@ -3,7 +3,7 @@ description: APIs and developer resources from Red Hat, a leading provider of en
 image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
 url: https://www.redhat.com
 created: '2024-01-15'
-modified: '2024-01-15'
+modified: '2026-03-03'
 specificationVersion: '0.18'
 tags:
 - Enterprise
@@ -31,6 +31,34 @@ apis:
     url: https://api.openshift.com/api/clusters_mgmt/v1/openapi
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
+  - type: Getting Started
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+  - type: Change Log
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat OpenShift Cluster Manager API
+  description: API for provisioning, managing, and monitoring OpenShift clusters across cloud providers through the Red Hat Hybrid Cloud Console. Supports cluster lifecycle operations including creation, scaling, and upgrades.
+  image: https://www.redhat.com/cms/managed-files/openshift-logo.png
+  humanUrl: https://api.openshift.com/
+  baseUrl: https://api.openshift.com
+  tags:
+  - Kubernetes
+  - Cluster Management
+  - Hybrid Cloud
+  - Provisioning
+  properties:
+  - type: Documentation
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+  - type: OpenAPI
+    url: https://api.openshift.com/api/clusters_mgmt/v1/openapi
+  - type: OpenAPI
+    url: openapi/red-hat-openshift-cluster-manager-openapi.yml
+  - type: Getting Started
+    url: https://access.redhat.com/articles/6114701
+  - type: GitHubRepository
+    url: https://github.com/openshift-online/ocm-api-model
   contact:
   - type: Support
     url: https://access.redhat.com/support
@@ -50,6 +78,10 @@ apis:
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+  - type: Getting Started
+    url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
+  - type: OpenAPI
+    url: openapi/red-hat-ansible-automation-platform-openapi.yml
   contact:
   - type: Support
     url: https://access.redhat.com/support
@@ -69,6 +101,8 @@ apis:
     url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: Swagger
     url: https://quay.io/api/v1/discovery
+  - type: OpenAPI
+    url: openapi/red-hat-quay-openapi.yml
   contact:
   - type: Support
     url: https://access.redhat.com/support
@@ -88,6 +122,10 @@ apis:
     url: https://console.redhat.com/api/api-docs
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
+  - type: Getting Started
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+  - type: OpenAPI
+    url: openapi/red-hat-insights-openapi.yml
   contact:
   - type: Support
     url: https://access.redhat.com/support
@@ -105,14 +143,338 @@ apis:
     url: https://access.redhat.com/management/api
   - type: API Reference
     url: https://access.redhat.com/management/api/rhsm
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Satellite API
+  description: REST API for managing Red Hat Satellite infrastructure, including content management, provisioning, configuration, and patch management across large-scale Linux environments.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+  baseUrl: https://satellite.example.com/api/v2
+  tags:
+  - Systems Management
+  - Provisioning
+  - Patch Management
+  - Content Management
+  properties:
+  - type: Documentation
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+  - type: OpenAPI
+    url: openapi/red-hat-satellite-openapi.yml
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Advanced Cluster Management API
+  description: API for managing multiple Kubernetes clusters across hybrid cloud environments, providing cluster lifecycle management, policy-based governance, and application deployment.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15
+  baseUrl: https://multicloud-console.example.com/api
+  tags:
+  - Kubernetes
+  - Cluster Management
+  - Multi-Cluster
+  - Governance
+  properties:
+  - type: Documentation
+    url: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15
+  - type: GitHubRepository
+    url: https://github.com/stolostron/rhacm-docs
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Advanced Cluster Security API
+  description: REST API for managing Kubernetes-native security including vulnerability management, compliance, network segmentation, and risk profiling across OpenShift and Kubernetes clusters.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
+  baseUrl: https://central.example.com/v1
+  tags:
+  - Security
+  - Kubernetes
+  - Compliance
+  - Vulnerability Management
+  properties:
+  - type: Documentation
+    url: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Build of Keycloak Admin REST API
+  description: Admin REST API for managing authentication, authorization, identity brokering, and user federation in the Red Hat build of Keycloak identity and access management platform.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+  baseUrl: https://keycloak.example.com/admin/realms
+  tags:
+  - Identity
+  - Authentication
+  - Authorization
+  - Single Sign-On
+  properties:
+  - type: Documentation
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+  - type: Getting Started
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
+  - type: OpenAPI
+    url: openapi/red-hat-keycloak-admin-openapi.yml
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat 3scale API Management
+  description: API management platform providing access control, rate limiting, analytics, and developer portal capabilities for managing the full lifecycle of APIs.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_3scale_api_management/2.15
+  baseUrl: https://3scale-admin.example.com/admin/api
+  tags:
+  - API Management
+  - API Gateway
+  - Rate Limiting
+  - Developer Portal
+  properties:
+  - type: Documentation
+    url: https://docs.redhat.com/en/documentation/red_hat_3scale_api_management/2.15
+  - type: Getting Started
+    url: https://developers.redhat.com/products/3scale/getting-started
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Cost Management API
+  description: API for tracking and analyzing costs associated with Red Hat OpenShift clusters and cloud infrastructure, providing visibility into resource consumption and spend.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog/api/cost-management
+  baseUrl: https://console.redhat.com/api/cost-management/v1
+  tags:
+  - Cost Management
+  - Analytics
+  - Cloud
+  - FinOps
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog/api/cost-management
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Image Builder API
+  description: API for building customized RHEL system images for deployment across cloud providers, virtualization platforms, and bare metal environments through the Hybrid Cloud Console.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog/api/image-builder
+  baseUrl: https://console.redhat.com/api/image-builder/v1
+  tags:
+  - Image Building
+  - RHEL
+  - Cloud
+  - Provisioning
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog/api/image-builder
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Vulnerability Management API
+  description: API for assessing and monitoring security vulnerabilities across RHEL systems, providing CVE tracking, severity scoring, and remediation guidance.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog/api/vulnerability
+  baseUrl: https://console.redhat.com/api/vulnerability/v1
+  tags:
+  - Security
+  - Vulnerability Management
+  - CVE
+  - Compliance
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog/api/vulnerability
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Patch API
+  description: API for managing and applying patches to RHEL systems, providing advisories, package updates, and system patch status through the Hybrid Cloud Console.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog
+  baseUrl: https://console.redhat.com/api/patch/v3
+  tags:
+  - Patch Management
+  - RHEL
+  - Security
+  - Updates
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Compliance API
+  description: API for managing security policy compliance assessments on RHEL systems using SCAP profiles, providing compliance scoring, reporting, and policy management.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog
+  baseUrl: https://console.redhat.com/api/compliance/v2
+  tags:
+  - Compliance
+  - Security
+  - SCAP
+  - Policy Management
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Build of Apicurio Registry API
+  description: REST API for managing schemas and API design artifacts in a schema registry, supporting formats including Avro, JSON Schema, Protobuf, OpenAPI, and AsyncAPI.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/3.0
+  baseUrl: https://registry.example.com/apis/registry/v2
+  tags:
+  - Schema Registry
+  - API Design
+  - Event-Driven
+  - Data Governance
+  properties:
+  - type: Documentation
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/3.0
+  - type: Getting Started
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/2.5/html-single/apicurio_registry_user_guide/index
+  - type: Website
+    url: https://www.apicur.io/registry/
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Streams for Apache Kafka Bridge API
+  description: HTTP bridge API for producing and consuming messages to Apache Kafka topics without requiring a native Kafka client, deployed as part of Red Hat Streams for Apache Kafka on OpenShift.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_streams_for_apache_kafka/3.1
+  baseUrl: https://kafka-bridge.example.com
+  tags:
+  - Kafka
+  - Event Streaming
+  - Messaging
+  - Data Integration
+  properties:
+  - type: Documentation
+    url: https://docs.redhat.com/en/documentation/red_hat_streams_for_apache_kafka/3.1
+  - type: Getting Started
+    url: https://developers.redhat.com/products/streams-for-apache-kafka/getting-started
+  - type: AsyncAPI
+    url: asyncapi/red-hat-kafka-bridge-asyncapi.yml
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Ansible Lightspeed API
+  description: AI-powered API that provides generative AI assistance for creating Ansible automation content, helping users generate Ansible Playbooks and task recommendations.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog
+  baseUrl: https://console.redhat.com/api/ansible-wisdom
+  tags:
+  - Artificial Intelligence
+  - Automation
+  - Ansible
+  - Generative AI
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Managed Inventory API
+  description: REST API for managing host inventory data within the Hybrid Cloud Console, providing system profile information, tagging, grouping, and host lifecycle management.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog
+  baseUrl: https://console.redhat.com/api/inventory/v1
+  tags:
+  - Inventory
+  - Systems Management
+  - RHEL
+  - Host Management
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Remediations API
+  description: API for creating and managing automated remediation playbooks that address security vulnerabilities, compliance issues, and configuration drift identified by Red Hat Insights services.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog
+  baseUrl: https://console.redhat.com/api/remediations/v1
+  tags:
+  - Remediation
+  - Automation
+  - Security
+  - Compliance
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Notifications API
+  description: API for managing notification preferences, integrations, and event routing within the Hybrid Cloud Console, enabling alerts through email, webhook, and third-party services.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog
+  baseUrl: https://console.redhat.com/api/notifications/v1
+  tags:
+  - Notifications
+  - Alerts
+  - Integrations
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
+  - type: AsyncAPI
+    url: asyncapi/red-hat-notifications-webhooks-asyncapi.yml
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Role-Based Access Control API
+  description: API for managing role-based access control policies within the Hybrid Cloud Console, including user groups, roles, permissions, and access policies.
+  image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
+  humanUrl: https://developers.redhat.com/api-catalog
+  baseUrl: https://console.redhat.com/api/rbac/v1
+  tags:
+  - Access Control
+  - Identity
+  - Security
+  - Authorization
+  properties:
+  - type: Documentation
+    url: https://developers.redhat.com/api-catalog
+  - type: Authentication
+    url: https://access.redhat.com/articles/3626371
   contact:
   - type: Support
     url: https://access.redhat.com/support
 common:
+- type: JSON-LD
+  url: json-ld/red-hat-context.jsonld
+- type: JSONSchema
+  url: json-schema/red-hat-openshift-cluster-schema.json
+- type: JSONSchema
+  url: json-schema/red-hat-ansible-job-schema.json
+- type: JSONSchema
+  url: json-schema/red-hat-insights-advisory-schema.json
+- type: JSONSchema
+  url: json-schema/red-hat-quay-repository-schema.json
 - type: Portal
   url: https://developers.redhat.com
 - type: Getting Started
   url: https://developers.redhat.com/get-started
+- type: Documentation
+  url: https://docs.redhat.com/en/products
 - type: Blog
   url: https://developers.redhat.com/blog
 - type: Support
@@ -123,8 +485,29 @@ common:
   url: https://www.redhat.com/en/about/terms-use
 - type: Privacy Policy
   url: https://www.redhat.com/en/about/privacy-policy
-maintainers:
-- type: Organization
-  name: Red Hat, Inc.
-  email: developers@redhat.com
+- type: Authentication
+  url: https://access.redhat.com/articles/3626371
+- type: Console
+  url: https://console.redhat.com
+- type: Website
   url: https://www.redhat.com
+- type: Sign Up
+  url: https://developers.redhat.com/register
+- type: Login
+  url: https://sso.redhat.com
+- type: GitHub Organization
+  url: https://github.com/redhatofficial
+- type: GitHubRepository
+  url: https://github.com/redhat-developer
+- type: Community
+  url: https://access.redhat.com/discussions
+- type: Stack Overflow
+  url: https://developers.redhat.com/stack-overflow
+- type: YouTube
+  url: https://developers.redhat.com/videos
+- type: Security
+  url: https://access.redhat.com/security/vulnerabilities
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com

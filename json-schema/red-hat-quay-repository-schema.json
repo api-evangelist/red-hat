@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quay.io/schemas/red-hat/quay-repository.json",
+  "title": "Red Hat Quay Repository",
+  "description": "Schema for a container image repository in the Red Hat Quay registry, including its tags, visibility settings, and security scan information.",
+  "type": "object",
+  "required": ["namespace", "name"],
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "description": "The namespace (organization or user) that owns the repository."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the repository within the namespace.",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "A text description of the repository and its contents."
+    },
+    "is_public": {
+      "type": "boolean",
+      "description": "Whether the repository is publicly accessible without authentication.",
+      "default": false
+    },
+    "kind": {
+      "type": "string",
+      "description": "The type of repository.",
+      "enum": ["image", "application"],
+      "default": "image"
+    },
+    "is_starred": {
+      "type": "boolean",
+      "description": "Whether the repository is starred by the authenticated user."
+    },
+    "tag_count": {
+      "type": "integer",
+      "description": "The total number of tags in the repository.",
+      "minimum": 0
+    },
+    "tags": {
+      "type": "object",
+      "description": "A map of tag names to tag details for the repository.",
+      "additionalProperties": {
+        "$ref": "#/$defs/Tag"
+      }
+    },
+    "trust_enabled": {
+      "type": "boolean",
+      "description": "Whether content trust (image signing) is enabled for the repository."
+    },
+    "status_token": {
+      "type": "string",
+      "description": "The token used for build status notifications."
+    },
+    "can_write": {
+      "type": "boolean",
+      "description": "Whether the authenticated user has write access to the repository."
+    },
+    "can_admin": {
+      "type": "boolean",
+      "description": "Whether the authenticated user has admin access to the repository."
+    }
+  },
+  "$defs": {
+    "Tag": {
+      "type": "object",
+      "description": "A tag pointing to a specific image manifest in the repository.",
+      "required": ["name", "manifest_digest"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The tag name."
+        },
+        "manifest_digest": {
+          "type": "string",
+          "description": "The SHA256 digest of the manifest the tag points to.",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "size": {
+          "type": "integer",
+          "description": "The compressed size of the image in bytes.",
+          "minimum": 0
+        },
+        "last_modified": {
+          "type": "string",
+          "description": "The date and time the tag was last modified."
+        },
+        "is_manifest_list": {
+          "type": "boolean",
+          "description": "Whether this tag points to a multi-architecture manifest list."
+        },
+        "reversion": {
+          "type": "boolean",
+          "description": "Whether this tag was created by reverting to a previous image."
+        }
+      }
+    },
+    "SecurityScan": {
+      "type": "object",
+      "description": "Security scan results for a container image.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "The scan status.",
+          "enum": ["queued", "scanned", "unsupported", "failed"]
+        },
+        "vulnerability_counts": {
+          "type": "object",
+          "description": "Counts of vulnerabilities by severity level.",
+          "properties": {
+            "Critical": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "High": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "Medium": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "Low": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "Negligible": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "Unknown": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "namespace": "myorg",
+      "name": "webapp",
+      "description": "Production web application container image",
+      "is_public": false,
+      "kind": "image",
+      "is_starred": true,
+      "tag_count": 5,
+      "tags": {
+        "latest": {
+          "name": "latest",
+          "manifest_digest": "sha256:abc123def456789012345678901234567890123456789012345678901234abcd",
+          "size": 52428800,
+          "last_modified": "Thu, 15 Jun 2024 10:30:00 -0000",
+          "is_manifest_list": false
+        },
+        "v2.1.0": {
+          "name": "v2.1.0",
+          "manifest_digest": "sha256:abc123def456789012345678901234567890123456789012345678901234abcd",
+          "size": 52428800,
+          "last_modified": "Thu, 15 Jun 2024 10:30:00 -0000",
+          "is_manifest_list": false
+        }
+      },
+      "can_write": true,
+      "can_admin": true
+    }
+  ]
+}

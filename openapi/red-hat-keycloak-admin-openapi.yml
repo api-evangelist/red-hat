@@ -1,0 +1,720 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Build of Keycloak Admin REST API
+  description: >-
+    The Red Hat Build of Keycloak Admin REST API provides programmatic access
+    to manage identity and access management functions, including realm
+    configuration, user management, client registration, role assignments,
+    identity provider configuration, and session management. It serves as the
+    administrative interface for the Red Hat build of Keycloak identity
+    platform.
+  version: '26.0'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+externalDocs:
+  description: Red Hat Build of Keycloak Admin REST API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+servers:
+  - url: https://keycloak.example.com
+    description: Keycloak Server
+tags:
+  - name: Realms
+    description: >-
+      Operations for managing Keycloak realms that serve as tenants for
+      isolating identity configurations.
+  - name: Users
+    description: >-
+      Operations for managing user accounts, credentials, and profile
+      attributes within a realm.
+  - name: Clients
+    description: >-
+      Operations for managing client applications registered in a realm
+      for authentication and authorization.
+  - name: Roles
+    description: >-
+      Operations for managing realm-level and client-level roles for
+      authorization.
+  - name: Groups
+    description: >-
+      Operations for managing user groups that enable bulk role and
+      attribute assignment.
+  - name: Identity Providers
+    description: >-
+      Operations for managing external identity providers for federated
+      authentication such as SAML and OIDC.
+  - name: Sessions
+    description: >-
+      Operations for viewing and managing active user sessions across
+      a realm.
+security:
+  - bearerAuth: []
+paths:
+  /admin/realms:
+    get:
+      operationId: listRealms
+      summary: List realms
+      description: >-
+        Retrieves the list of all realms accessible to the authenticated
+        admin user.
+      tags:
+        - Realms
+      responses:
+        '200':
+          description: Successfully retrieved realms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Realm'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /admin/realms/{realm}:
+    get:
+      operationId: getRealm
+      summary: Get a realm
+      description: >-
+        Retrieves the configuration of a specific realm, including its
+        login settings, token policies, and enabled features.
+      tags:
+        - Realms
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+      responses:
+        '200':
+          description: Successfully retrieved realm
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    put:
+      operationId: updateRealm
+      summary: Update a realm
+      description: >-
+        Updates the configuration of a specific realm. All writable fields
+        can be modified.
+      tags:
+        - Realms
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realm'
+      responses:
+        '204':
+          description: Realm updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /admin/realms/{realm}/users:
+    get:
+      operationId: listUsers
+      summary: List users
+      description: >-
+        Retrieves a paginated list of users in the specified realm. Results
+        can be filtered by username, email, first name, or last name.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+        - name: username
+          in: query
+          description: Filter by username.
+          schema:
+            type: string
+        - name: email
+          in: query
+          description: Filter by email address.
+          schema:
+            type: string
+        - name: firstName
+          in: query
+          description: Filter by first name.
+          schema:
+            type: string
+        - name: lastName
+          in: query
+          description: Filter by last name.
+          schema:
+            type: string
+        - name: enabled
+          in: query
+          description: Filter by enabled status.
+          schema:
+            type: boolean
+        - name: first
+          in: query
+          description: The index of the first result to return (pagination offset).
+          schema:
+            type: integer
+        - name: max
+          in: query
+          description: The maximum number of results to return.
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: Successfully retrieved users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      operationId: createUser
+      summary: Create a user
+      description: >-
+        Creates a new user in the specified realm with the provided profile
+        attributes and optional initial credentials.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '409':
+          description: A user with the same username or email already exists.
+  /admin/realms/{realm}/users/{user_id}:
+    get:
+      operationId: getUser
+      summary: Get a user
+      description: >-
+        Retrieves the details of a specific user in the realm.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          description: Successfully retrieved user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    put:
+      operationId: updateUser
+      summary: Update a user
+      description: >-
+        Updates the profile attributes of an existing user in the realm.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+        - $ref: '#/components/parameters/UserIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '204':
+          description: User updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      operationId: deleteUser
+      summary: Delete a user
+      description: >-
+        Deletes a user from the realm along with all associated sessions,
+        consents, and federated identity links.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '204':
+          description: User deleted successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /admin/realms/{realm}/clients:
+    get:
+      operationId: listClients
+      summary: List clients
+      description: >-
+        Retrieves the list of client applications registered in the realm.
+      tags:
+        - Clients
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+        - name: clientId
+          in: query
+          description: Filter by the client identifier.
+          schema:
+            type: string
+        - name: first
+          in: query
+          description: Pagination offset.
+          schema:
+            type: integer
+        - name: max
+          in: query
+          description: Maximum number of results.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved clients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      operationId: createClient
+      summary: Create a client
+      description: >-
+        Registers a new client application in the realm with the specified
+        protocol and configuration settings.
+      tags:
+        - Clients
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '201':
+          description: Client created successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /admin/realms/{realm}/roles:
+    get:
+      operationId: listRealmRoles
+      summary: List realm roles
+      description: >-
+        Retrieves the list of realm-level roles that can be assigned to
+        users and groups.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+        - name: first
+          in: query
+          description: Pagination offset.
+          schema:
+            type: integer
+        - name: max
+          in: query
+          description: Maximum number of results.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved roles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      operationId: createRealmRole
+      summary: Create a realm role
+      description: >-
+        Creates a new realm-level role.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '201':
+          description: Role created successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '409':
+          description: A role with the same name already exists.
+  /admin/realms/{realm}/groups:
+    get:
+      operationId: listGroups
+      summary: List groups
+      description: >-
+        Retrieves the list of groups in the realm, optionally filtered by
+        name. Groups enable bulk role and attribute assignment to users.
+      tags:
+        - Groups
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+        - name: search
+          in: query
+          description: Filter groups by name.
+          schema:
+            type: string
+        - name: first
+          in: query
+          description: Pagination offset.
+          schema:
+            type: integer
+        - name: max
+          in: query
+          description: Maximum number of results.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /admin/realms/{realm}/identity-provider/instances:
+    get:
+      operationId: listIdentityProviders
+      summary: List identity providers
+      description: >-
+        Retrieves the list of external identity providers configured for
+        the realm, including SAML, OIDC, and social providers.
+      tags:
+        - Identity Providers
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+      responses:
+        '200':
+          description: Successfully retrieved identity providers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IdentityProviderRepresentation'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /admin/realms/{realm}/sessions/{session_id}:
+    delete:
+      operationId: deleteSession
+      summary: Remove a session
+      description: >-
+        Terminates a specific user session, logging the user out of the
+        associated client application.
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/RealmParam'
+        - name: session_id
+          in: path
+          required: true
+          description: The unique identifier of the session.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Session terminated successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Access token obtained via direct access grant or authorization code
+        flow from the Keycloak master realm or configured realm.
+  parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
+    UserIdParam:
+      name: user_id
+      in: path
+      required: true
+      description: The unique identifier of the user.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+    NotFoundError:
+      description: The requested resource was not found.
+  schemas:
+    Realm:
+      type: object
+      description: >-
+        A Keycloak realm representing an isolated tenant for identity management.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the realm.
+        realm:
+          type: string
+          description: The name of the realm.
+        displayName:
+          type: string
+          description: The display name of the realm.
+        enabled:
+          type: boolean
+          description: Whether the realm is enabled.
+        registrationAllowed:
+          type: boolean
+          description: Whether user self-registration is allowed.
+        loginWithEmailAllowed:
+          type: boolean
+          description: Whether users can log in with their email address.
+        duplicateEmailsAllowed:
+          type: boolean
+          description: Whether duplicate emails are allowed.
+        resetPasswordAllowed:
+          type: boolean
+          description: Whether password reset is enabled.
+        sslRequired:
+          type: string
+          description: The SSL requirement policy.
+          enum:
+            - all
+            - external
+            - none
+        accessTokenLifespan:
+          type: integer
+          description: The access token lifespan in seconds.
+        ssoSessionIdleTimeout:
+          type: integer
+          description: The SSO session idle timeout in seconds.
+        ssoSessionMaxLifespan:
+          type: integer
+          description: The maximum SSO session lifespan in seconds.
+    User:
+      type: object
+      description: A user account within a Keycloak realm.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the user.
+        username:
+          type: string
+          description: The username.
+        firstName:
+          type: string
+          description: The user's first name.
+        lastName:
+          type: string
+          description: The user's last name.
+        email:
+          type: string
+          format: email
+          description: The user's email address.
+        emailVerified:
+          type: boolean
+          description: Whether the email has been verified.
+        enabled:
+          type: boolean
+          description: Whether the user account is enabled.
+        createdTimestamp:
+          type: integer
+          format: int64
+          description: The creation timestamp in milliseconds.
+        attributes:
+          type: object
+          description: Custom user attributes.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        credentials:
+          type: array
+          description: User credentials configuration.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: The credential type.
+              value:
+                type: string
+                description: The credential value.
+              temporary:
+                type: boolean
+                description: Whether the credential is temporary.
+        requiredActions:
+          type: array
+          description: Actions required on next login.
+          items:
+            type: string
+    Client:
+      type: object
+      description: >-
+        A client application registered in a Keycloak realm for authentication.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the client.
+        clientId:
+          type: string
+          description: The client identifier used in authentication flows.
+        name:
+          type: string
+          description: The display name of the client.
+        description:
+          type: string
+          description: A description of the client.
+        enabled:
+          type: boolean
+          description: Whether the client is enabled.
+        protocol:
+          type: string
+          description: The authentication protocol.
+          enum:
+            - openid-connect
+            - saml
+        publicClient:
+          type: boolean
+          description: Whether the client is public (no client secret).
+        rootUrl:
+          type: string
+          format: uri
+          description: The root URL of the client application.
+        redirectUris:
+          type: array
+          description: Allowed redirect URIs after authentication.
+          items:
+            type: string
+        webOrigins:
+          type: array
+          description: Allowed web origins for CORS.
+          items:
+            type: string
+        serviceAccountsEnabled:
+          type: boolean
+          description: Whether service accounts are enabled.
+        authorizationServicesEnabled:
+          type: boolean
+          description: Whether authorization services are enabled.
+    Role:
+      type: object
+      description: A role that can be assigned to users or groups for authorization.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the role.
+        name:
+          type: string
+          description: The name of the role.
+        description:
+          type: string
+          description: A description of the role.
+        composite:
+          type: boolean
+          description: Whether this is a composite role containing other roles.
+        clientRole:
+          type: boolean
+          description: Whether this is a client-level role.
+    Group:
+      type: object
+      description: >-
+        A group that enables bulk role and attribute assignment to users.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the group.
+        name:
+          type: string
+          description: The name of the group.
+        path:
+          type: string
+          description: The full path of the group in the hierarchy.
+        subGroups:
+          type: array
+          description: Child groups.
+          items:
+            $ref: '#/components/schemas/Group'
+    IdentityProviderRepresentation:
+      type: object
+      description: >-
+        An external identity provider configured for federated authentication.
+      properties:
+        alias:
+          type: string
+          description: The unique alias for the identity provider.
+        displayName:
+          type: string
+          description: The display name of the identity provider.
+        providerId:
+          type: string
+          description: The provider type identifier.
+          enum:
+            - saml
+            - oidc
+            - google
+            - github
+            - facebook
+            - microsoft
+            - linkedin
+        enabled:
+          type: boolean
+          description: Whether the identity provider is enabled.
+        config:
+          type: object
+          description: Provider-specific configuration.
+          additionalProperties:
+            type: string

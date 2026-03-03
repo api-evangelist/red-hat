@@ -1,0 +1,250 @@
+asyncapi: 2.6.0
+info:
+  title: Red Hat Streams for Apache Kafka Bridge Events
+  description: >-
+    The Red Hat Streams for Apache Kafka Bridge provides an HTTP-based interface
+    for producing and consuming messages to and from Apache Kafka topics without
+    requiring a native Kafka client. Deployed on OpenShift as part of Red Hat
+    Streams for Apache Kafka, the bridge enables REST clients to participate
+    in event streaming by sending and receiving messages through standard
+    HTTP requests.
+  version: '3.1'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  license:
+    name: Red Hat Terms of Use
+    url: https://www.redhat.com/en/about/terms-use
+servers:
+  kafkaBridge:
+    url: '{bridge_url}'
+    protocol: https
+    description: >-
+      The Kafka Bridge HTTP endpoint deployed on OpenShift. The bridge accepts
+      HTTP requests and translates them to Kafka protocol operations for
+      producing and consuming messages.
+    variables:
+      bridge_url:
+        description: The URL of the deployed Kafka Bridge instance.
+        default: https://kafka-bridge.example.com
+    security:
+      - bearerAuth: []
+defaultContentType: application/json
+channels:
+  topics.{topic}.messages:
+    description: >-
+      Channel representing messages produced to and consumed from a specific
+      Kafka topic through the HTTP bridge. Producers send messages via HTTP
+      POST and consumers receive messages by polling the bridge endpoint.
+    parameters:
+      topic:
+        description: The name of the Kafka topic.
+        schema:
+          type: string
+    publish:
+      operationId: produceMessage
+      summary: Produce message to topic
+      description: >-
+        Produces one or more messages to the specified Kafka topic through
+        the HTTP bridge. Messages can include optional keys, partition
+        assignments, and headers.
+      tags:
+        - name: Producing
+      message:
+        oneOf:
+          - $ref: '#/components/messages/ProducerRecord'
+          - $ref: '#/components/messages/ProducerRecordBatch'
+    subscribe:
+      operationId: consumeMessage
+      summary: Consume message from topic
+      description: >-
+        Receives messages consumed from the specified Kafka topic through
+        the HTTP bridge consumer. Messages include the topic, partition,
+        offset, and optional key and headers.
+      tags:
+        - name: Consuming
+      message:
+        $ref: '#/components/messages/ConsumerRecord'
+  consumers.{group_id}.offsets:
+    description: >-
+      Channel representing offset management for a consumer group. Consumers
+      can commit offsets to track their progress and seek to specific offsets
+      for replay or recovery.
+    parameters:
+      group_id:
+        description: The consumer group identifier.
+        schema:
+          type: string
+    publish:
+      operationId: commitOffsets
+      summary: Commit consumer offsets
+      description: >-
+        Commits the current offsets for the consumer group, marking messages
+        as processed. This enables at-least-once delivery semantics.
+      tags:
+        - name: Consumer Management
+      message:
+        $ref: '#/components/messages/OffsetCommit'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        OAuth 2.0 Bearer token for authenticating with the Kafka Bridge
+        when deployed with authentication enabled.
+  messages:
+    ProducerRecord:
+      name: ProducerRecord
+      title: Producer Record
+      summary: A single message to be produced to a Kafka topic.
+      description: >-
+        A message record containing the value to produce to a Kafka topic,
+        with optional key, partition, and headers for controlling message
+        routing and metadata.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ProducerRecordPayload'
+      examples:
+        - name: SimpleStringMessage
+          payload:
+            records:
+              - key: order-123
+                value: '{"orderId": "123", "status": "created"}'
+                partition: 0
+                headers:
+                  - key: source
+                    value: order-service
+    ProducerRecordBatch:
+      name: ProducerRecordBatch
+      title: Producer Record Batch
+      summary: A batch of messages to be produced to a Kafka topic.
+      description: >-
+        A batch of message records to produce to a Kafka topic in a single
+        HTTP request for improved throughput.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ProducerRecordPayload'
+    ConsumerRecord:
+      name: ConsumerRecord
+      title: Consumer Record
+      summary: A message consumed from a Kafka topic.
+      description: >-
+        A message record received from a Kafka topic through the bridge
+        consumer, including the topic, partition, offset, and the message
+        key and value.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ConsumerRecordPayload'
+      examples:
+        - name: ConsumedMessage
+          payload:
+            topic: orders
+            key: order-123
+            value: '{"orderId": "123", "status": "created"}'
+            partition: 0
+            offset: 42
+            headers:
+              - key: source
+                value: order-service
+    OffsetCommit:
+      name: OffsetCommit
+      title: Offset Commit
+      summary: Offset commit request for a consumer group.
+      description: >-
+        A request to commit offsets for specific topic partitions, marking
+        the consumer's progress in processing messages.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/OffsetCommitPayload'
+  schemas:
+    ProducerRecordPayload:
+      type: object
+      description: >-
+        The payload for producing messages to a Kafka topic through the
+        HTTP bridge.
+      required:
+        - records
+      properties:
+        records:
+          type: array
+          description: The list of records to produce.
+          items:
+            type: object
+            required:
+              - value
+            properties:
+              key:
+                description: The message key for partitioning.
+              value:
+                description: The message value payload.
+              partition:
+                type: integer
+                description: The target partition number.
+              headers:
+                type: array
+                description: Optional message headers.
+                items:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                      description: The header key.
+                    value:
+                      type: string
+                      description: The header value encoded as a string.
+    ConsumerRecordPayload:
+      type: object
+      description: >-
+        The payload of a message consumed from a Kafka topic through the
+        HTTP bridge.
+      properties:
+        topic:
+          type: string
+          description: The topic the message was consumed from.
+        key:
+          description: The message key.
+        value:
+          description: The message value payload.
+        partition:
+          type: integer
+          description: The partition the message was consumed from.
+        offset:
+          type: integer
+          format: int64
+          description: The offset of the message within the partition.
+        headers:
+          type: array
+          description: Message headers.
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+    OffsetCommitPayload:
+      type: object
+      description: >-
+        The payload for committing consumer offsets.
+      properties:
+        offsets:
+          type: array
+          description: The list of offsets to commit.
+          items:
+            type: object
+            required:
+              - topic
+              - partition
+              - offset
+            properties:
+              topic:
+                type: string
+                description: The topic name.
+              partition:
+                type: integer
+                description: The partition number.
+              offset:
+                type: integer
+                format: int64
+                description: The offset to commit.

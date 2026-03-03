@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.openshift.com/schemas/red-hat/openshift-cluster.json",
+  "title": "Red Hat OpenShift Cluster",
+  "description": "Schema for an OpenShift cluster managed through the Red Hat OpenShift Cluster Manager, representing a Kubernetes cluster deployed on a cloud provider.",
+  "type": "object",
+  "required": ["id", "name", "state"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the cluster assigned by the Cluster Manager."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the cluster, used as a human-readable identifier.",
+      "minLength": 1,
+      "maxLength": 54,
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "The display name of the cluster shown in the Hybrid Cloud Console."
+    },
+    "state": {
+      "type": "string",
+      "description": "The current lifecycle state of the cluster.",
+      "enum": [
+        "error",
+        "hibernating",
+        "installing",
+        "pending",
+        "powering_down",
+        "ready",
+        "resuming",
+        "uninstalling",
+        "unknown",
+        "validating",
+        "waiting"
+      ]
+    },
+    "cloud_provider": {
+      "type": "object",
+      "description": "The cloud provider where the cluster is deployed.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The cloud provider identifier.",
+          "enum": ["aws", "gcp", "azure"]
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The display name of the cloud provider."
+        }
+      },
+      "required": ["id"]
+    },
+    "region": {
+      "type": "object",
+      "description": "The cloud provider region where the cluster is deployed.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The region identifier (e.g., us-east-1, europe-west1)."
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The human-readable region name."
+        }
+      },
+      "required": ["id"]
+    },
+    "multi_az": {
+      "type": "boolean",
+      "description": "Whether the cluster spans multiple availability zones for high availability.",
+      "default": false
+    },
+    "openshift_version": {
+      "type": "string",
+      "description": "The OpenShift version running on the cluster.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "nodes": {
+      "type": "object",
+      "description": "The node configuration of the cluster.",
+      "properties": {
+        "master": {
+          "type": "integer",
+          "description": "The number of master nodes.",
+          "minimum": 1
+        },
+        "compute": {
+          "type": "integer",
+          "description": "The number of compute (worker) nodes.",
+          "minimum": 0
+        },
+        "infra": {
+          "type": "integer",
+          "description": "The number of infrastructure nodes.",
+          "minimum": 0
+        },
+        "compute_machine_type": {
+          "type": "object",
+          "description": "The instance type for compute nodes.",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The machine type identifier."
+            }
+          }
+        }
+      }
+    },
+    "api": {
+      "type": "object",
+      "description": "The cluster API server configuration.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the cluster API server."
+        },
+        "listening": {
+          "type": "string",
+          "description": "The API server listening mode.",
+          "enum": ["external", "internal"]
+        }
+      }
+    },
+    "console": {
+      "type": "object",
+      "description": "The OpenShift web console configuration.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the OpenShift web console."
+        }
+      }
+    },
+    "network": {
+      "type": "object",
+      "description": "The network configuration of the cluster.",
+      "properties": {
+        "machine_cidr": {
+          "type": "string",
+          "description": "The CIDR block for machine network.",
+          "pattern": "^\\d+\\.\\d+\\.\\d+\\.\\d+/\\d+$"
+        },
+        "service_cidr": {
+          "type": "string",
+          "description": "The CIDR block for Kubernetes services."
+        },
+        "pod_cidr": {
+          "type": "string",
+          "description": "The CIDR block for Kubernetes pods."
+        },
+        "host_prefix": {
+          "type": "integer",
+          "description": "The prefix length for per-node pod CIDR allocation."
+        },
+        "type": {
+          "type": "string",
+          "description": "The network plugin type.",
+          "enum": ["OpenShiftSDN", "OVNKubernetes"]
+        }
+      }
+    },
+    "subscription": {
+      "type": "object",
+      "description": "The subscription associated with this cluster.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The subscription identifier."
+        },
+        "status": {
+          "type": "string",
+          "description": "The subscription status."
+        }
+      }
+    },
+    "creation_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the cluster was created in ISO 8601 format."
+    },
+    "expiration_timestamp": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "The date and time when the cluster is set to expire, if applicable."
+    }
+  },
+  "$defs": {
+    "MachinePool": {
+      "type": "object",
+      "description": "A machine pool defining a group of compute nodes with shared configuration.",
+      "required": ["id", "instance_type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the machine pool."
+        },
+        "instance_type": {
+          "type": "string",
+          "description": "The cloud provider instance type for nodes in this pool."
+        },
+        "replicas": {
+          "type": "integer",
+          "description": "The fixed number of nodes.",
+          "minimum": 0
+        },
+        "autoscaling": {
+          "type": "object",
+          "description": "Autoscaling configuration.",
+          "properties": {
+            "min_replicas": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max_replicas": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "availability_zones": {
+          "type": "array",
+          "description": "The availability zones for node placement.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "type": "object",
+          "description": "Kubernetes labels applied to nodes.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": "1n2j3b4k5l6m7n8o9p0q",
+      "name": "production-cluster",
+      "display_name": "Production Cluster",
+      "state": "ready",
+      "cloud_provider": {
+        "id": "aws",
+        "display_name": "Amazon Web Services"
+      },
+      "region": {
+        "id": "us-east-1",
+        "display_name": "US East (N. Virginia)"
+      },
+      "multi_az": true,
+      "openshift_version": "4.15.2",
+      "nodes": {
+        "master": 3,
+        "compute": 6,
+        "infra": 3,
+        "compute_machine_type": {
+          "id": "m5.2xlarge"
+        }
+      },
+      "api": {
+        "url": "https://api.production-cluster.example.com:6443",
+        "listening": "external"
+      },
+      "console": {
+        "url": "https://console-openshift-console.apps.production-cluster.example.com"
+      },
+      "creation_timestamp": "2024-01-15T10:30:00Z",
+      "expiration_timestamp": null
+    }
+  ]
+}

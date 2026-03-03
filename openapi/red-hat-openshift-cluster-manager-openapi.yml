@@ -1,0 +1,927 @@
+openapi: 3.1.0
+info:
+  title: Red Hat OpenShift Cluster Manager API
+  description: >-
+    The Red Hat OpenShift Cluster Manager API provides programmatic access to
+    provisioning, managing, and monitoring OpenShift clusters across cloud
+    providers through the Red Hat Hybrid Cloud Console. It supports cluster
+    lifecycle operations including creation, scaling, upgrades, and deletion
+    of OpenShift Dedicated and ROSA clusters.
+  version: '1.0'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+externalDocs:
+  description: OpenShift Cluster Manager API Documentation
+  url: https://api.openshift.com/
+servers:
+  - url: https://api.openshift.com
+    description: OpenShift Cluster Manager Production Server
+tags:
+  - name: Clusters
+    description: >-
+      Operations for provisioning, managing, and retrieving OpenShift clusters
+      across cloud providers.
+  - name: Cloud Providers
+    description: >-
+      Operations for listing available cloud providers and their regions for
+      cluster deployment.
+  - name: Flavours
+    description: >-
+      Operations for listing available cluster flavours that define the default
+      configuration for new clusters.
+  - name: Versions
+    description: >-
+      Operations for listing available OpenShift versions for cluster
+      provisioning and upgrades.
+  - name: Add-ons
+    description: >-
+      Operations for managing cluster add-ons that extend OpenShift cluster
+      functionality.
+  - name: Machine Pools
+    description: >-
+      Operations for managing machine pools that define groups of compute nodes
+      within a cluster.
+  - name: Identity Providers
+    description: >-
+      Operations for configuring identity providers used to authenticate users
+      to a cluster.
+  - name: Subscriptions
+    description: >-
+      Operations for managing OpenShift cluster subscriptions and entitlements.
+security:
+  - bearerAuth: []
+paths:
+  /api/clusters_mgmt/v1/clusters:
+    get:
+      operationId: listClusters
+      summary: List clusters
+      description: >-
+        Retrieves a list of OpenShift clusters managed by the authenticated
+        account. Results can be filtered by various criteria and paginated
+        using the page and size parameters.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - $ref: '#/components/parameters/OrderParam'
+      responses:
+        '200':
+          description: Successfully retrieved list of clusters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      operationId: createCluster
+      summary: Create a cluster
+      description: >-
+        Provisions a new OpenShift cluster. The request body must include the
+        cluster name, cloud provider, region, and desired node configuration.
+        The cluster creation process is asynchronous and the cluster status
+        will transition through several states before becoming ready.
+      tags:
+        - Clusters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+      responses:
+        '201':
+          description: Cluster creation initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/clusters_mgmt/v1/clusters/{cluster_id}:
+    get:
+      operationId: getCluster
+      summary: Get a cluster
+      description: >-
+        Retrieves the details of a specific OpenShift cluster by its unique
+        identifier, including its current status, configuration, and metadata.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterIdParam'
+      responses:
+        '200':
+          description: Successfully retrieved cluster details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    patch:
+      operationId: updateCluster
+      summary: Update a cluster
+      description: >-
+        Updates the configuration of an existing OpenShift cluster. Only the
+        fields provided in the request body will be modified. Some changes
+        may trigger asynchronous operations such as node scaling.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+      responses:
+        '200':
+          description: Cluster updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    delete:
+      operationId: deleteCluster
+      summary: Delete a cluster
+      description: >-
+        Initiates the deletion of an OpenShift cluster. The cluster will be
+        deprovisioned asynchronously and all associated resources in the cloud
+        provider will be cleaned up.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterIdParam'
+      responses:
+        '204':
+          description: Cluster deletion initiated successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools:
+    get:
+      operationId: listMachinePools
+      summary: List machine pools
+      description: >-
+        Retrieves the list of machine pools configured for a specific cluster.
+        Machine pools define groups of compute nodes with shared instance type
+        and scaling configuration.
+      tags:
+        - Machine Pools
+      parameters:
+        - $ref: '#/components/parameters/ClusterIdParam'
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: Successfully retrieved machine pools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachinePoolList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    post:
+      operationId: createMachinePool
+      summary: Create a machine pool
+      description: >-
+        Creates a new machine pool for a cluster, defining a group of compute
+        nodes with specified instance type, replica count, and optional
+        autoscaling configuration.
+      tags:
+        - Machine Pools
+      parameters:
+        - $ref: '#/components/parameters/ClusterIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachinePool'
+      responses:
+        '201':
+          description: Machine pool created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachinePool'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers:
+    get:
+      operationId: listIdentityProviders
+      summary: List identity providers
+      description: >-
+        Retrieves the list of identity providers configured for a specific
+        cluster. Identity providers define how users authenticate to the
+        OpenShift cluster.
+      tags:
+        - Identity Providers
+      parameters:
+        - $ref: '#/components/parameters/ClusterIdParam'
+      responses:
+        '200':
+          description: Successfully retrieved identity providers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityProviderList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+    post:
+      operationId: createIdentityProvider
+      summary: Create an identity provider
+      description: >-
+        Configures a new identity provider for a cluster, enabling user
+        authentication through the specified provider type such as LDAP,
+        GitHub, Google, or OpenID Connect.
+      tags:
+        - Identity Providers
+      parameters:
+        - $ref: '#/components/parameters/ClusterIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentityProvider'
+      responses:
+        '201':
+          description: Identity provider created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityProvider'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /api/clusters_mgmt/v1/cloud_providers:
+    get:
+      operationId: listCloudProviders
+      summary: List cloud providers
+      description: >-
+        Retrieves the list of cloud providers available for deploying OpenShift
+        clusters, including AWS, Google Cloud, and Microsoft Azure.
+      tags:
+        - Cloud Providers
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: Successfully retrieved cloud providers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudProviderList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/clusters_mgmt/v1/cloud_providers/{cloud_provider_id}/regions:
+    get:
+      operationId: listCloudProviderRegions
+      summary: List cloud provider regions
+      description: >-
+        Retrieves the list of regions available for a specific cloud provider
+        where OpenShift clusters can be deployed.
+      tags:
+        - Cloud Providers
+      parameters:
+        - name: cloud_provider_id
+          in: path
+          required: true
+          description: The unique identifier of the cloud provider.
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: Successfully retrieved cloud provider regions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudRegionList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+  /api/clusters_mgmt/v1/versions:
+    get:
+      operationId: listVersions
+      summary: List OpenShift versions
+      description: >-
+        Retrieves the list of available OpenShift versions that can be used
+        for provisioning new clusters or upgrading existing clusters.
+      tags:
+        - Versions
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - $ref: '#/components/parameters/OrderParam'
+      responses:
+        '200':
+          description: Successfully retrieved OpenShift versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/clusters_mgmt/v1/addons:
+    get:
+      operationId: listAddons
+      summary: List add-ons
+      description: >-
+        Retrieves the list of available add-ons that can be installed on
+        OpenShift clusters to extend functionality.
+      tags:
+        - Add-ons
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved add-ons
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddonList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+  /api/accounts_mgmt/v1/subscriptions:
+    get:
+      operationId: listSubscriptions
+      summary: List subscriptions
+      description: >-
+        Retrieves the list of OpenShift subscriptions associated with the
+        authenticated account, including cluster entitlements and usage data.
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+        - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved subscriptions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionList'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 Bearer token obtained from Red Hat Single Sign-On (SSO).
+        Tokens can be acquired using an offline token from
+        https://sso.redhat.com/auth/realms/redhat-external.
+  parameters:
+    ClusterIdParam:
+      name: cluster_id
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: >-
+        The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    SizeParam:
+      name: size
+      in: query
+      description: >-
+        The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    SearchParam:
+      name: search
+      in: query
+      description: >-
+        A search filter expression to narrow results. Supports field
+        comparisons using operators such as =, <>, LIKE, IN.
+      schema:
+        type: string
+    OrderParam:
+      name: order
+      in: query
+      description: >-
+        The ordering criteria for results. Specify a field name followed
+        by asc or desc for the sort direction.
+      schema:
+        type: string
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Cluster:
+      type: object
+      description: >-
+        Represents an OpenShift cluster managed through the Cluster Manager.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the cluster.
+        name:
+          type: string
+          description: The name of the cluster.
+        display_name:
+          type: string
+          description: The display name of the cluster.
+        state:
+          type: string
+          description: The current state of the cluster.
+          enum:
+            - error
+            - hibernating
+            - installing
+            - pending
+            - powering_down
+            - ready
+            - resuming
+            - uninstalling
+            - unknown
+            - validating
+            - waiting
+        cloud_provider:
+          type: object
+          description: The cloud provider where the cluster is deployed.
+          properties:
+            id:
+              type: string
+              description: The cloud provider identifier (e.g., aws, gcp, azure).
+        region:
+          type: object
+          description: The cloud region where the cluster is deployed.
+          properties:
+            id:
+              type: string
+              description: The region identifier.
+        multi_az:
+          type: boolean
+          description: >-
+            Whether the cluster spans multiple availability zones for
+            high availability.
+        nodes:
+          type: object
+          description: Node configuration for the cluster.
+          properties:
+            compute:
+              type: integer
+              description: The number of compute nodes.
+            compute_machine_type:
+              type: object
+              description: The instance type for compute nodes.
+              properties:
+                id:
+                  type: string
+                  description: The machine type identifier.
+        api:
+          type: object
+          description: API server endpoint configuration.
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The URL of the cluster API server.
+            listening:
+              type: string
+              description: >-
+                The listening mode for the API server, either external
+                or internal.
+              enum:
+                - external
+                - internal
+        console:
+          type: object
+          description: Web console configuration.
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The URL of the OpenShift web console.
+        version:
+          type: object
+          description: The OpenShift version of the cluster.
+          properties:
+            id:
+              type: string
+              description: The OpenShift version identifier.
+            raw_id:
+              type: string
+              description: The raw OpenShift version string.
+        creation_timestamp:
+          type: string
+          format: date-time
+          description: The date and time when the cluster was created.
+        expiration_timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the cluster is set to expire, if applicable.
+    ClusterList:
+      type: object
+      description: A paginated list of clusters.
+      properties:
+        kind:
+          type: string
+          description: The resource kind.
+        page:
+          type: integer
+          description: The current page number.
+        size:
+          type: integer
+          description: The number of items in this page.
+        total:
+          type: integer
+          description: The total number of items across all pages.
+        items:
+          type: array
+          description: The list of clusters.
+          items:
+            $ref: '#/components/schemas/Cluster'
+    MachinePool:
+      type: object
+      description: >-
+        Represents a machine pool within a cluster, defining a group of
+        compute nodes with shared configuration.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the machine pool.
+        instance_type:
+          type: string
+          description: The cloud provider instance type for nodes in this pool.
+        replicas:
+          type: integer
+          description: The fixed number of nodes in this machine pool.
+        autoscaling:
+          type: object
+          description: Autoscaling configuration for the machine pool.
+          properties:
+            min_replicas:
+              type: integer
+              description: The minimum number of nodes when autoscaling is enabled.
+            max_replicas:
+              type: integer
+              description: The maximum number of nodes when autoscaling is enabled.
+        availability_zones:
+          type: array
+          description: The availability zones where nodes will be placed.
+          items:
+            type: string
+        labels:
+          type: object
+          description: Kubernetes labels applied to nodes in this pool.
+          additionalProperties:
+            type: string
+        taints:
+          type: array
+          description: Kubernetes taints applied to nodes in this pool.
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+              effect:
+                type: string
+                enum:
+                  - NoSchedule
+                  - PreferNoSchedule
+                  - NoExecute
+    MachinePoolList:
+      type: object
+      description: A paginated list of machine pools.
+      properties:
+        kind:
+          type: string
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachinePool'
+    IdentityProvider:
+      type: object
+      description: >-
+        Represents an identity provider configured for cluster authentication.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the identity provider.
+        name:
+          type: string
+          description: The display name of the identity provider.
+        type:
+          type: string
+          description: The type of identity provider.
+          enum:
+            - github
+            - gitlab
+            - google
+            - htpasswd
+            - ldap
+            - openid
+        mapping_method:
+          type: string
+          description: The method used to map identities to users.
+          enum:
+            - add
+            - claim
+            - generate
+            - lookup
+        github:
+          type: object
+          description: GitHub-specific identity provider configuration.
+          properties:
+            client_id:
+              type: string
+            organizations:
+              type: array
+              items:
+                type: string
+        ldap:
+          type: object
+          description: LDAP-specific identity provider configuration.
+          properties:
+            url:
+              type: string
+              format: uri
+            bind_dn:
+              type: string
+            insecure:
+              type: boolean
+        openid:
+          type: object
+          description: OpenID Connect identity provider configuration.
+          properties:
+            client_id:
+              type: string
+            issuer:
+              type: string
+              format: uri
+            claims:
+              type: object
+              properties:
+                email:
+                  type: array
+                  items:
+                    type: string
+                name:
+                  type: array
+                  items:
+                    type: string
+    IdentityProviderList:
+      type: object
+      description: A paginated list of identity providers.
+      properties:
+        kind:
+          type: string
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityProvider'
+    CloudProviderList:
+      type: object
+      description: A paginated list of cloud providers.
+      properties:
+        kind:
+          type: string
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The cloud provider identifier.
+              name:
+                type: string
+                description: The display name of the cloud provider.
+              display_name:
+                type: string
+                description: The human-readable display name.
+    CloudRegionList:
+      type: object
+      description: A paginated list of cloud regions.
+      properties:
+        kind:
+          type: string
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The region identifier.
+              name:
+                type: string
+                description: The display name of the region.
+              display_name:
+                type: string
+                description: The human-readable region name.
+              enabled:
+                type: boolean
+                description: Whether the region is enabled for cluster creation.
+    VersionList:
+      type: object
+      description: A paginated list of available OpenShift versions.
+      properties:
+        kind:
+          type: string
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The version identifier.
+              raw_id:
+                type: string
+                description: The raw version string.
+              enabled:
+                type: boolean
+                description: Whether this version is available for new clusters.
+              default:
+                type: boolean
+                description: Whether this is the default version for new clusters.
+              channel_group:
+                type: string
+                description: The channel group for the version (stable, fast, candidate).
+    AddonList:
+      type: object
+      description: A paginated list of available cluster add-ons.
+      properties:
+        kind:
+          type: string
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The add-on identifier.
+              name:
+                type: string
+                description: The display name of the add-on.
+              description:
+                type: string
+                description: A description of the add-on.
+              enabled:
+                type: boolean
+                description: Whether the add-on is available for installation.
+    SubscriptionList:
+      type: object
+      description: A paginated list of subscriptions.
+      properties:
+        kind:
+          type: string
+        page:
+          type: integer
+        size:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The subscription identifier.
+              cluster_id:
+                type: string
+                description: The associated cluster identifier.
+              status:
+                type: string
+                description: The subscription status.
+              plan:
+                type: object
+                description: The subscription plan details.
+                properties:
+                  id:
+                    type: string
+                  type:
+                    type: string
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+        id:
+          type: string
+          description: The numeric error identifier.
+        href:
+          type: string
+          description: A link to the error documentation.
+        code:
+          type: string
+          description: The error code.
+        reason:
+          type: string
+          description: A human-readable description of the error.
+      required:
+        - kind
+        - id
+        - code
+        - reason

@@ -1,0 +1,496 @@
+asyncapi: 2.6.0
+info:
+  title: Red Hat Hybrid Cloud Console Notifications Events
+  description: >-
+    The Red Hat Hybrid Cloud Console notifications service delivers event-driven
+    notifications when significant events occur across Insights services,
+    including advisor recommendations, vulnerability alerts, compliance changes,
+    patch advisories, and inventory updates. Events can be forwarded via
+    webhook integrations to third-party applications, email notifications,
+    or integration endpoints such as Splunk, ServiceNow, and PagerDuty.
+  version: '1.0'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  license:
+    name: Red Hat Terms of Use
+    url: https://www.redhat.com/en/about/terms-use
+servers:
+  hybridCloudConsole:
+    url: https://console.redhat.com
+    protocol: https
+    description: >-
+      Red Hat Hybrid Cloud Console notifications service. Events are delivered
+      as HTTP POST requests to configured webhook endpoints when subscribed
+      events occur across Insights services.
+    security:
+      - bearerAuth: []
+defaultContentType: application/json
+channels:
+  advisor.newRecommendation:
+    description: >-
+      Triggered when the Advisor service identifies a new recommendation for
+      one or more registered RHEL systems based on rule evaluation.
+    subscribe:
+      operationId: onAdvisorNewRecommendation
+      summary: New advisor recommendation
+      description: >-
+        Receives a notification when a new Advisor recommendation becomes active
+        for registered systems, indicating a configuration risk, security
+        issue, or performance concern.
+      tags:
+        - name: Advisor
+        - name: Insights Events
+      message:
+        $ref: '#/components/messages/AdvisorRecommendationEvent'
+  advisor.resolvedRecommendation:
+    description: >-
+      Triggered when an Advisor recommendation is resolved on systems, either
+      through remediation or configuration change.
+    subscribe:
+      operationId: onAdvisorResolvedRecommendation
+      summary: Advisor recommendation resolved
+      description: >-
+        Receives a notification when a previously active Advisor recommendation
+        is resolved on one or more systems.
+      tags:
+        - name: Advisor
+        - name: Insights Events
+      message:
+        $ref: '#/components/messages/AdvisorResolvedEvent'
+  vulnerability.newCve:
+    description: >-
+      Triggered when a new CVE is detected affecting registered systems
+      through the Vulnerability service.
+    subscribe:
+      operationId: onVulnerabilityNewCve
+      summary: New CVE detected
+      description: >-
+        Receives a notification when the Vulnerability service identifies a
+        new CVE affecting one or more registered RHEL systems.
+      tags:
+        - name: Vulnerability
+        - name: Insights Events
+      message:
+        $ref: '#/components/messages/VulnerabilityNewCveEvent'
+  vulnerability.cveSeverityChange:
+    description: >-
+      Triggered when the severity rating of a CVE affecting registered
+      systems changes.
+    subscribe:
+      operationId: onVulnerabilityCveSeverityChange
+      summary: CVE severity changed
+      description: >-
+        Receives a notification when the severity of an existing CVE is
+        updated by Red Hat security.
+      tags:
+        - name: Vulnerability
+        - name: Insights Events
+      message:
+        $ref: '#/components/messages/VulnerabilitySeverityChangeEvent'
+  compliance.policyViolation:
+    description: >-
+      Triggered when a system fails compliance against an assigned SCAP
+      policy profile.
+    subscribe:
+      operationId: onCompliancePolicyViolation
+      summary: Compliance policy violation
+      description: >-
+        Receives a notification when a system's compliance scan results
+        indicate a policy violation against an assigned SCAP profile.
+      tags:
+        - name: Compliance
+        - name: Insights Events
+      message:
+        $ref: '#/components/messages/CompliancePolicyViolationEvent'
+  patch.newAdvisory:
+    description: >-
+      Triggered when new errata advisories become applicable to registered
+      systems through the Patch service.
+    subscribe:
+      operationId: onPatchNewAdvisory
+      summary: New patch advisory
+      description: >-
+        Receives a notification when new security, bugfix, or enhancement
+        advisories become applicable to registered systems.
+      tags:
+        - name: Patch
+        - name: Insights Events
+      message:
+        $ref: '#/components/messages/PatchNewAdvisoryEvent'
+  inventory.systemRegistered:
+    description: >-
+      Triggered when a new system is registered with Red Hat Insights through
+      the Inventory service.
+    subscribe:
+      operationId: onInventorySystemRegistered
+      summary: System registered
+      description: >-
+        Receives a notification when a new RHEL system registers with
+        Red Hat Insights.
+      tags:
+        - name: Inventory
+        - name: Insights Events
+      message:
+        $ref: '#/components/messages/InventorySystemRegisteredEvent'
+  inventory.systemBecameStale:
+    description: >-
+      Triggered when a registered system becomes stale after failing to
+      check in within the configured stale period.
+    subscribe:
+      operationId: onInventorySystemBecameStale
+      summary: System became stale
+      description: >-
+        Receives a notification when a registered system has not checked
+        in and is now considered stale.
+      tags:
+        - name: Inventory
+        - name: Insights Events
+      message:
+        $ref: '#/components/messages/InventorySystemStaleEvent'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        OAuth 2.0 Bearer token for managing notification preferences and
+        integration configurations through the Hybrid Cloud Console API.
+  messages:
+    AdvisorRecommendationEvent:
+      name: AdvisorRecommendationEvent
+      title: Advisor New Recommendation Event
+      summary: A new Advisor recommendation was identified for systems.
+      description: >-
+        Payload delivered when the Advisor service identifies a new
+        recommendation for one or more registered RHEL systems.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AdvisorRecommendationPayload'
+      examples:
+        - name: NewRecommendation
+          payload:
+            id: evt-abc123
+            bundle: rhel
+            application: advisor
+            event_type: new-recommendation
+            timestamp: '2024-06-15T10:30:00Z'
+            org_id: '12345'
+            events:
+              - metadata: {}
+                payload:
+                  rule_id: network_tcp_keepalive|NETWORK_TCP_KEEPALIVE
+                  rule_description: TCP keepalive not configured optimally
+                  total_risk: 3
+                  affected_systems: 5
+    AdvisorResolvedEvent:
+      name: AdvisorResolvedEvent
+      title: Advisor Recommendation Resolved Event
+      summary: An Advisor recommendation was resolved.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/AdvisorResolvedPayload'
+    VulnerabilityNewCveEvent:
+      name: VulnerabilityNewCveEvent
+      title: New CVE Detected Event
+      summary: A new CVE was detected affecting systems.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/VulnerabilityNewCvePayload'
+      examples:
+        - name: NewCveDetected
+          payload:
+            id: evt-def456
+            bundle: rhel
+            application: vulnerability
+            event_type: new-cve
+            timestamp: '2024-06-15T14:00:00Z'
+            org_id: '12345'
+            events:
+              - metadata: {}
+                payload:
+                  cve_id: CVE-2024-1234
+                  severity: Important
+                  affected_systems: 12
+                  synopsis: Buffer overflow in kernel module
+    VulnerabilitySeverityChangeEvent:
+      name: VulnerabilitySeverityChangeEvent
+      title: CVE Severity Change Event
+      summary: A CVE severity rating was changed.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/VulnerabilitySeverityChangePayload'
+    CompliancePolicyViolationEvent:
+      name: CompliancePolicyViolationEvent
+      title: Compliance Policy Violation Event
+      summary: A compliance policy violation was detected.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CompliancePolicyViolationPayload'
+    PatchNewAdvisoryEvent:
+      name: PatchNewAdvisoryEvent
+      title: New Patch Advisory Event
+      summary: New patch advisories are available for systems.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/PatchNewAdvisoryPayload'
+    InventorySystemRegisteredEvent:
+      name: InventorySystemRegisteredEvent
+      title: System Registered Event
+      summary: A new system was registered with Insights.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/InventorySystemRegisteredPayload'
+    InventorySystemStaleEvent:
+      name: InventorySystemStaleEvent
+      title: System Became Stale Event
+      summary: A system became stale after missing check-ins.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/InventorySystemStalePayload'
+  schemas:
+    NotificationEventBase:
+      type: object
+      description: >-
+        Base structure shared by all Hybrid Cloud Console notification
+        event payloads.
+      required:
+        - id
+        - bundle
+        - application
+        - event_type
+        - timestamp
+        - org_id
+        - events
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this notification event.
+        bundle:
+          type: string
+          description: The product bundle that generated the event.
+          example: rhel
+        application:
+          type: string
+          description: The Insights application that generated the event.
+          example: advisor
+        event_type:
+          type: string
+          description: The specific event type identifier.
+        timestamp:
+          type: string
+          format: date-time
+          description: The ISO 8601 timestamp when the event occurred.
+        org_id:
+          type: string
+          description: The Red Hat organization ID associated with the event.
+        context:
+          type: object
+          description: Additional context metadata for the event.
+          additionalProperties: true
+        events:
+          type: array
+          description: The list of sub-events in this notification.
+          items:
+            type: object
+            properties:
+              metadata:
+                type: object
+                additionalProperties: true
+              payload:
+                type: object
+                additionalProperties: true
+    AdvisorRecommendationPayload:
+      allOf:
+        - $ref: '#/components/schemas/NotificationEventBase'
+        - type: object
+          description: Payload for new Advisor recommendation events.
+          properties:
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  payload:
+                    type: object
+                    properties:
+                      rule_id:
+                        type: string
+                        description: The Advisor rule identifier.
+                      rule_description:
+                        type: string
+                        description: A description of what the rule detects.
+                      total_risk:
+                        type: integer
+                        description: The total risk score (1-4).
+                      affected_systems:
+                        type: integer
+                        description: The number of affected systems.
+    AdvisorResolvedPayload:
+      allOf:
+        - $ref: '#/components/schemas/NotificationEventBase'
+        - type: object
+          description: Payload for resolved Advisor recommendation events.
+          properties:
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  payload:
+                    type: object
+                    properties:
+                      rule_id:
+                        type: string
+                      resolved_systems:
+                        type: integer
+    VulnerabilityNewCvePayload:
+      allOf:
+        - $ref: '#/components/schemas/NotificationEventBase'
+        - type: object
+          description: Payload for new CVE detection events.
+          properties:
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  payload:
+                    type: object
+                    properties:
+                      cve_id:
+                        type: string
+                        description: The CVE identifier.
+                      severity:
+                        type: string
+                        description: The severity rating.
+                        enum:
+                          - Critical
+                          - Important
+                          - Moderate
+                          - Low
+                      affected_systems:
+                        type: integer
+                      synopsis:
+                        type: string
+                        description: A brief description of the vulnerability.
+    VulnerabilitySeverityChangePayload:
+      allOf:
+        - $ref: '#/components/schemas/NotificationEventBase'
+        - type: object
+          description: Payload for CVE severity change events.
+          properties:
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  payload:
+                    type: object
+                    properties:
+                      cve_id:
+                        type: string
+                      previous_severity:
+                        type: string
+                      new_severity:
+                        type: string
+    CompliancePolicyViolationPayload:
+      allOf:
+        - $ref: '#/components/schemas/NotificationEventBase'
+        - type: object
+          description: Payload for compliance policy violation events.
+          properties:
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  payload:
+                    type: object
+                    properties:
+                      policy_name:
+                        type: string
+                        description: The name of the compliance policy.
+                      policy_id:
+                        type: string
+                      system_id:
+                        type: string
+                        format: uuid
+                      compliance_score:
+                        type: number
+                        description: The compliance score as a percentage.
+    PatchNewAdvisoryPayload:
+      allOf:
+        - $ref: '#/components/schemas/NotificationEventBase'
+        - type: object
+          description: Payload for new patch advisory events.
+          properties:
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  payload:
+                    type: object
+                    properties:
+                      advisory_id:
+                        type: string
+                        description: The advisory identifier (e.g., RHSA-2024:1234).
+                      advisory_type:
+                        type: string
+                        enum:
+                          - security
+                          - bugfix
+                          - enhancement
+                      severity:
+                        type: string
+                      affected_systems:
+                        type: integer
+                      synopsis:
+                        type: string
+    InventorySystemRegisteredPayload:
+      allOf:
+        - $ref: '#/components/schemas/NotificationEventBase'
+        - type: object
+          description: Payload for system registration events.
+          properties:
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  payload:
+                    type: object
+                    properties:
+                      system_id:
+                        type: string
+                        format: uuid
+                      display_name:
+                        type: string
+                      rhel_version:
+                        type: string
+    InventorySystemStalePayload:
+      allOf:
+        - $ref: '#/components/schemas/NotificationEventBase'
+        - type: object
+          description: Payload for system stale events.
+          properties:
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  payload:
+                    type: object
+                    properties:
+                      system_id:
+                        type: string
+                        format: uuid
+                      display_name:
+                        type: string
+                      last_seen:
+                        type: string
+                        format: date-time
+                      stale_since:
+                        type: string
+                        format: date-time

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://console.redhat.com/schemas/red-hat/insights-advisory.json",
+  "title": "Red Hat Insights Advisory",
+  "description": "Schema for a Red Hat advisory (erratum) representing a security fix, bug fix, or enhancement update applicable to registered RHEL systems through the Insights Patch service.",
+  "type": "object",
+  "required": ["id", "type", "synopsis"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The advisory identifier in Red Hat format (e.g., RHSA-2024:1234, RHBA-2024:5678).",
+      "pattern": "^RH[SBEA]A-\\d{4}:\\d+$"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of advisory indicating the nature of the update.",
+      "enum": ["security", "bugfix", "enhancement"]
+    },
+    "synopsis": {
+      "type": "string",
+      "description": "A brief summary of the advisory content."
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of the advisory including affected components and changes."
+    },
+    "severity": {
+      "type": ["string", "null"],
+      "description": "The severity rating for security advisories, null for non-security advisories.",
+      "enum": ["Critical", "Important", "Moderate", "Low", null]
+    },
+    "public_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the advisory was publicly released."
+    },
+    "modified_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the advisory was last modified."
+    },
+    "applicable_systems": {
+      "type": "integer",
+      "description": "The number of registered systems to which this advisory is applicable.",
+      "minimum": 0
+    },
+    "cves": {
+      "type": "array",
+      "description": "The list of CVE identifiers addressed by this advisory.",
+      "items": {
+        "type": "string",
+        "pattern": "^CVE-\\d{4}-\\d+$",
+        "description": "A CVE identifier."
+      }
+    },
+    "packages": {
+      "type": "array",
+      "description": "The list of updated package names included in the advisory.",
+      "items": {
+        "$ref": "#/$defs/Package"
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "External references related to the advisory.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The reference type.",
+            "enum": ["bugzilla", "cve", "self", "other"]
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "description": "The URL of the reference."
+          },
+          "id": {
+            "type": "string",
+            "description": "The reference identifier."
+          }
+        }
+      }
+    },
+    "reboot_required": {
+      "type": "boolean",
+      "description": "Whether applying this advisory requires a system reboot.",
+      "default": false
+    },
+    "release_versions": {
+      "type": "array",
+      "description": "The RHEL release versions this advisory applies to.",
+      "items": {
+        "type": "string",
+        "description": "A RHEL release version string."
+      }
+    }
+  },
+  "$defs": {
+    "Package": {
+      "type": "object",
+      "description": "An RPM package included in the advisory update.",
+      "required": ["name", "evra"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The package name."
+        },
+        "evra": {
+          "type": "string",
+          "description": "The epoch:version-release.arch string of the updated package."
+        },
+        "summary": {
+          "type": "string",
+          "description": "A brief summary of the package."
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": "RHSA-2024:1234",
+      "type": "security",
+      "synopsis": "Important: kernel security and bug fix update",
+      "description": "An update for kernel is now available for Red Hat Enterprise Linux 9. Red Hat Product Security has rated this update as having a security impact of Important.",
+      "severity": "Important",
+      "public_date": "2024-06-15T14:00:00Z",
+      "modified_date": "2024-06-16T10:00:00Z",
+      "applicable_systems": 42,
+      "cves": [
+        "CVE-2024-1234",
+        "CVE-2024-5678"
+      ],
+      "packages": [
+        {
+          "name": "kernel",
+          "evra": "0:5.14.0-362.18.1.el9_3.x86_64",
+          "summary": "The Linux kernel"
+        }
+      ],
+      "reboot_required": true,
+      "release_versions": ["9.3"]
+    }
+  ]
+}

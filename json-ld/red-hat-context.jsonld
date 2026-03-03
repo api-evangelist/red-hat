@@ -1,0 +1,269 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "redhat": "https://developers.redhat.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+
+    "Cluster": {
+      "@id": "redhat:Cluster",
+      "@type": "rdfs:Class",
+      "rdfs:subClassOf": { "@id": "schema:SoftwareApplication" },
+      "rdfs:label": "Red Hat OpenShift Cluster",
+      "rdfs:comment": "An OpenShift Kubernetes cluster managed through the Red Hat Cluster Manager."
+    },
+    "Host": {
+      "@id": "redhat:Host",
+      "@type": "rdfs:Class",
+      "rdfs:subClassOf": { "@id": "schema:DigitalDocument" },
+      "rdfs:label": "Red Hat Managed Host",
+      "rdfs:comment": "A RHEL system registered with Red Hat Satellite or Insights for management and monitoring."
+    },
+    "Advisory": {
+      "@id": "redhat:Advisory",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Red Hat Advisory",
+      "rdfs:comment": "An erratum advisory published by Red Hat containing security fixes, bug fixes, or enhancements."
+    },
+    "JobTemplate": {
+      "@id": "redhat:JobTemplate",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Ansible Job Template",
+      "rdfs:comment": "A parameterized template for running Ansible playbooks against inventories of managed hosts."
+    },
+    "Job": {
+      "@id": "redhat:Job",
+      "@type": "rdfs:Class",
+      "rdfs:subClassOf": { "@id": "schema:Action" },
+      "rdfs:label": "Ansible Job",
+      "rdfs:comment": "A single execution of an Ansible job template against an inventory of managed hosts."
+    },
+    "Inventory": {
+      "@id": "redhat:Inventory",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Ansible Inventory",
+      "rdfs:comment": "A collection of hosts and groups that automation jobs target for execution."
+    },
+    "Repository": {
+      "@id": "redhat:Repository",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Quay Repository",
+      "rdfs:comment": "A container image repository in the Red Hat Quay registry."
+    },
+    "ContainerImage": {
+      "@id": "redhat:ContainerImage",
+      "@type": "rdfs:Class",
+      "rdfs:subClassOf": { "@id": "schema:SoftwareApplication" },
+      "rdfs:label": "Container Image",
+      "rdfs:comment": "A container image stored in a Quay registry repository."
+    },
+    "Realm": {
+      "@id": "redhat:Realm",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Keycloak Realm",
+      "rdfs:comment": "A Keycloak realm providing isolated identity and access management configuration."
+    },
+    "ContentView": {
+      "@id": "redhat:ContentView",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Satellite Content View",
+      "rdfs:comment": "A curated snapshot of software repositories for controlled content delivery in Red Hat Satellite."
+    },
+    "InsightsRule": {
+      "@id": "redhat:InsightsRule",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Insights Advisor Rule",
+      "rdfs:comment": "A detection rule in Red Hat Insights that identifies configuration risks, security issues, or performance problems."
+    },
+    "NotificationEvent": {
+      "@id": "redhat:NotificationEvent",
+      "@type": "rdfs:Class",
+      "rdfs:subClassOf": { "@id": "schema:Event" },
+      "rdfs:label": "Hybrid Cloud Console Notification Event",
+      "rdfs:comment": "An event notification from the Red Hat Hybrid Cloud Console notifications service."
+    },
+
+    "id": "@id",
+
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "schema:softwareVersion",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "redhat:status",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "redhat:state",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "redhat:enabled",
+      "@type": "xsd:boolean"
+    },
+
+    "cloudProvider": {
+      "@id": "redhat:cloudProvider",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "redhat:region",
+      "@type": "xsd:string"
+    },
+    "openshiftVersion": {
+      "@id": "schema:softwareVersion",
+      "@type": "xsd:string"
+    },
+    "multiAz": {
+      "@id": "redhat:multiAz",
+      "@type": "xsd:boolean"
+    },
+    "nodeCount": {
+      "@id": "redhat:nodeCount",
+      "@type": "xsd:integer"
+    },
+
+    "hostname": {
+      "@id": "schema:url",
+      "@type": "xsd:string"
+    },
+    "ipAddress": {
+      "@id": "redhat:ipAddress",
+      "@type": "xsd:string"
+    },
+    "operatingSystem": {
+      "@id": "schema:operatingSystem",
+      "@type": "xsd:string"
+    },
+    "rhelVersion": {
+      "@id": "redhat:rhelVersion",
+      "@type": "xsd:string"
+    },
+
+    "severity": {
+      "@id": "redhat:severity",
+      "@type": "xsd:string"
+    },
+    "cveId": {
+      "@id": "redhat:cveId",
+      "@type": "xsd:string"
+    },
+    "advisoryId": {
+      "@id": "redhat:advisoryId",
+      "@type": "xsd:string"
+    },
+    "advisoryType": {
+      "@id": "redhat:advisoryType",
+      "@type": "xsd:string"
+    },
+    "rebootRequired": {
+      "@id": "redhat:rebootRequired",
+      "@type": "xsd:boolean"
+    },
+
+    "playbook": {
+      "@id": "redhat:playbook",
+      "@type": "xsd:string"
+    },
+    "inventory": {
+      "@id": "redhat:inventory"
+    },
+    "jobTemplate": {
+      "@id": "redhat:jobTemplate"
+    },
+    "elapsed": {
+      "@id": "redhat:elapsed",
+      "@type": "xsd:decimal"
+    },
+
+    "namespace": {
+      "@id": "redhat:namespace",
+      "@type": "xsd:string"
+    },
+    "manifestDigest": {
+      "@id": "redhat:manifestDigest",
+      "@type": "xsd:string"
+    },
+    "isPublic": {
+      "@id": "redhat:isPublic",
+      "@type": "xsd:boolean"
+    },
+    "tagCount": {
+      "@id": "redhat:tagCount",
+      "@type": "xsd:integer"
+    },
+
+    "realm": {
+      "@id": "redhat:realm",
+      "@type": "xsd:string"
+    },
+    "clientId": {
+      "@id": "redhat:clientId",
+      "@type": "xsd:string"
+    },
+    "protocol": {
+      "@id": "redhat:protocol",
+      "@type": "xsd:string"
+    },
+
+    "organizationId": {
+      "@id": "redhat:organizationId",
+      "@type": "xsd:string"
+    },
+    "eventType": {
+      "@id": "redhat:eventType",
+      "@type": "xsd:string"
+    },
+    "bundle": {
+      "@id": "redhat:bundle",
+      "@type": "xsd:string"
+    },
+    "application": {
+      "@id": "redhat:application",
+      "@type": "xsd:string"
+    },
+
+    "createdAt": {
+      "@id": "dcterms:created",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "dcterms:modified",
+      "@type": "xsd:dateTime"
+    },
+    "publishedAt": {
+      "@id": "dcterms:issued",
+      "@type": "xsd:dateTime"
+    },
+    "lastSeen": {
+      "@id": "redhat:lastSeen",
+      "@type": "xsd:dateTime"
+    },
+    "timestamp": {
+      "@id": "dcterms:date",
+      "@type": "xsd:dateTime"
+    }
+  }
+}
