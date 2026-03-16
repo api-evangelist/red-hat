@@ -1,10 +1,12 @@
+aid: red-hat
 name: Red Hat
 description: APIs and developer resources from Red Hat, a leading provider of enterprise open source solutions including Linux, cloud, container, and Kubernetes technologies.
+type: Index
 image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
-url: https://www.redhat.com
+url: https://raw.githubusercontent.com/api-evangelist/red-hat/refs/heads/main/apis.yml
 created: '2024-01-15'
-modified: '2026-03-03'
-specificationVersion: '0.18'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 tags:
 - Enterprise
 - Open Source
@@ -1002,6 +1004,5 @@ common:
 - type: Customer Portal
   url: https://access.redhat.com
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
