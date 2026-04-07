@@ -56,7 +56,7 @@ paths:
   /api/clusters_mgmt/v1/clusters:
     get:
       operationId: listClusters
-      summary: List clusters
+      summary: Red Hat List clusters
       description: >-
         Retrieves a list of OpenShift clusters managed by the authenticated
         account. Results can be filtered by various criteria and paginated
@@ -79,7 +79,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
     post:
       operationId: createCluster
-      summary: Create a cluster
+      summary: Red Hat Create a cluster
       description: >-
         Provisions a new OpenShift cluster. The request body must include the
         cluster name, cloud provider, region, and desired node configuration.
@@ -107,7 +107,7 @@ paths:
   /api/clusters_mgmt/v1/clusters/{cluster_id}:
     get:
       operationId: getCluster
-      summary: Get a cluster
+      summary: Red Hat Get a cluster
       description: >-
         Retrieves the details of a specific OpenShift cluster by its unique
         identifier, including its current status, configuration, and metadata.
@@ -128,7 +128,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     patch:
       operationId: updateCluster
-      summary: Update a cluster
+      summary: Red Hat Update a cluster
       description: >-
         Updates the configuration of an existing OpenShift cluster. Only the
         fields provided in the request body will be modified. Some changes
@@ -158,7 +158,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     delete:
       operationId: deleteCluster
-      summary: Delete a cluster
+      summary: Red Hat Delete a cluster
       description: >-
         Initiates the deletion of an OpenShift cluster. The cluster will be
         deprovisioned asynchronously and all associated resources in the cloud
@@ -177,7 +177,7 @@ paths:
   /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools:
     get:
       operationId: listMachinePools
-      summary: List machine pools
+      summary: Red Hat List machine pools
       description: >-
         Retrieves the list of machine pools configured for a specific cluster.
         Machine pools define groups of compute nodes with shared instance type
@@ -201,7 +201,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     post:
       operationId: createMachinePool
-      summary: Create a machine pool
+      summary: Red Hat Create a machine pool
       description: >-
         Creates a new machine pool for a cluster, defining a group of compute
         nodes with specified instance type, replica count, and optional
@@ -232,7 +232,7 @@ paths:
   /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers:
     get:
       operationId: listIdentityProviders
-      summary: List identity providers
+      summary: Red Hat List identity providers
       description: >-
         Retrieves the list of identity providers configured for a specific
         cluster. Identity providers define how users authenticate to the
@@ -254,7 +254,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     post:
       operationId: createIdentityProvider
-      summary: Create an identity provider
+      summary: Red Hat Create an identity provider
       description: >-
         Configures a new identity provider for a cluster, enabling user
         authentication through the specified provider type such as LDAP,
@@ -285,7 +285,7 @@ paths:
   /api/clusters_mgmt/v1/cloud_providers:
     get:
       operationId: listCloudProviders
-      summary: List cloud providers
+      summary: Red Hat List cloud providers
       description: >-
         Retrieves the list of cloud providers available for deploying OpenShift
         clusters, including AWS, Google Cloud, and Microsoft Azure.
@@ -306,7 +306,7 @@ paths:
   /api/clusters_mgmt/v1/cloud_providers/{cloud_provider_id}/regions:
     get:
       operationId: listCloudProviderRegions
-      summary: List cloud provider regions
+      summary: Red Hat List cloud provider regions
       description: >-
         Retrieves the list of regions available for a specific cloud provider
         where OpenShift clusters can be deployed.
@@ -335,7 +335,7 @@ paths:
   /api/clusters_mgmt/v1/versions:
     get:
       operationId: listVersions
-      summary: List OpenShift versions
+      summary: Red Hat List OpenShift versions
       description: >-
         Retrieves the list of available OpenShift versions that can be used
         for provisioning new clusters or upgrading existing clusters.
@@ -358,7 +358,7 @@ paths:
   /api/clusters_mgmt/v1/addons:
     get:
       operationId: listAddons
-      summary: List add-ons
+      summary: Red Hat List add-ons
       description: >-
         Retrieves the list of available add-ons that can be installed on
         OpenShift clusters to extend functionality.
@@ -380,7 +380,7 @@ paths:
   /api/accounts_mgmt/v1/subscriptions:
     get:
       operationId: listSubscriptions
-      summary: List subscriptions
+      summary: Red Hat List subscriptions
       description: >-
         Retrieves the list of OpenShift subscriptions associated with the
         authenticated account, including cluster entitlements and usage data.

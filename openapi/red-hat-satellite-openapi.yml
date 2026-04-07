@@ -53,7 +53,7 @@ paths:
   /api/v2/hosts:
     get:
       operationId: listHosts
-      summary: List hosts
+      summary: Red Hat List hosts
       description: >-
         Retrieves a paginated list of all hosts managed by Satellite, including
         their reported status, operating system, and organization membership.
@@ -76,7 +76,7 @@ paths:
   /api/v2/hosts/{id}:
     get:
       operationId: getHost
-      summary: Get a host
+      summary: Red Hat Get a host
       description: >-
         Retrieves the details of a specific host, including its network
         interfaces, operating system, and content view assignment.
@@ -97,7 +97,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     put:
       operationId: updateHost
-      summary: Update a host
+      summary: Red Hat Update a host
       description: >-
         Updates the configuration of an existing host managed by Satellite.
       tags:
@@ -126,7 +126,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     delete:
       operationId: deleteHost
-      summary: Delete a host
+      summary: Red Hat Delete a host
       description: >-
         Deletes a host from Satellite. This removes the host record but does
         not affect the actual system.
@@ -144,7 +144,7 @@ paths:
   /api/v2/hosts/{id}/errata:
     get:
       operationId: listHostErrata
-      summary: List errata for a host
+      summary: Red Hat List errata for a host
       description: >-
         Retrieves the list of applicable errata for a specific host, including
         security advisories, bug fixes, and enhancements.
@@ -168,7 +168,7 @@ paths:
   /katello/api/v2/content_views:
     get:
       operationId: listContentViews
-      summary: List content views
+      summary: Red Hat List content views
       description: >-
         Retrieves the list of content views that define curated snapshots of
         software repositories used for controlled content delivery to hosts.
@@ -198,7 +198,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
     post:
       operationId: createContentView
-      summary: Create a content view
+      summary: Red Hat Create a content view
       description: >-
         Creates a new content view that can include selected repositories
         and filters for curating content delivery.
@@ -236,7 +236,7 @@ paths:
   /katello/api/v2/organizations/{organization_id}/environments:
     get:
       operationId: listEnvironments
-      summary: List lifecycle environments
+      summary: Red Hat List lifecycle environments
       description: >-
         Retrieves the list of lifecycle environments for an organization,
         defining the promotion path for content views from development
@@ -264,7 +264,7 @@ paths:
   /katello/api/v2/repositories:
     get:
       operationId: listRepositories
-      summary: List repositories
+      summary: Red Hat List repositories
       description: >-
         Retrieves the list of repositories managed by Satellite, including
         those synced from Red Hat CDN and custom repositories.
@@ -301,7 +301,7 @@ paths:
   /api/v2/organizations:
     get:
       operationId: listOrganizations
-      summary: List organizations
+      summary: Red Hat List organizations
       description: >-
         Retrieves the list of organizations in Satellite that provide
         multi-tenancy isolation.
@@ -323,7 +323,7 @@ paths:
   /api/v2/hostgroups:
     get:
       operationId: listHostGroups
-      summary: List host groups
+      summary: Red Hat List host groups
       description: >-
         Retrieves the list of host groups that provide shared configuration
         templates for host provisioning and management.
@@ -345,7 +345,7 @@ paths:
   /katello/api/v2/errata:
     get:
       operationId: listErrata
-      summary: List errata
+      summary: Red Hat List errata
       description: >-
         Retrieves a paginated list of available errata including security
         advisories, bug fixes, and enhancement updates.

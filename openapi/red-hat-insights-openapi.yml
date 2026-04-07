@@ -45,7 +45,7 @@ paths:
   /insights/v1/system/:
     get:
       operationId: listSystems
-      summary: List systems
+      summary: Red Hat List systems
       description: >-
         Retrieves a paginated list of RHEL systems registered with Red Hat
         Insights, including their stale status and last check-in time.
@@ -85,7 +85,7 @@ paths:
   /insights/v1/system/{system_id}/:
     get:
       operationId: getSystem
-      summary: Get a system
+      summary: Red Hat Get a system
       description: >-
         Retrieves the details of a specific registered system, including its
         display name, last check-in time, and total number of active
@@ -108,7 +108,7 @@ paths:
   /insights/v1/rule/:
     get:
       operationId: listRules
-      summary: List advisor rules
+      summary: Red Hat List advisor rules
       description: >-
         Retrieves a paginated list of Advisor rules that detect configuration
         issues, security risks, and performance problems on RHEL systems.
@@ -155,7 +155,7 @@ paths:
   /insights/v1/rule/{rule_id}/:
     get:
       operationId: getRule
-      summary: Get an advisor rule
+      summary: Red Hat Get an advisor rule
       description: >-
         Retrieves the details of a specific Advisor rule, including its
         description, resolution steps, affected system count, and whether
@@ -183,7 +183,7 @@ paths:
   /insights/v1/rule/{rule_id}/systems/:
     get:
       operationId: listRuleSystems
-      summary: List systems affected by a rule
+      summary: Red Hat List systems affected by a rule
       description: >-
         Retrieves the list of systems that are affected by a specific Advisor
         rule and where the recommendation is currently active.
@@ -212,7 +212,7 @@ paths:
   /insights/v1/topic/:
     get:
       operationId: listTopics
-      summary: List topics
+      summary: Red Hat List topics
       description: >-
         Retrieves the list of curated Advisor topics that group related rules
         and recommendations by technology area, risk category, or common
@@ -233,7 +233,7 @@ paths:
   /insights/v1/stats/systems/:
     get:
       operationId: getSystemStats
-      summary: Get system statistics
+      summary: Red Hat Get system statistics
       description: >-
         Retrieves aggregate statistics about registered systems, including
         total system count, stale systems, and systems with active
@@ -252,7 +252,7 @@ paths:
   /insights/v1/stats/rules/:
     get:
       operationId: getRuleStats
-      summary: Get rule statistics
+      summary: Red Hat Get rule statistics
       description: >-
         Retrieves aggregate statistics about Advisor rules, including total
         rule count, rules by category, and rules by severity.

@@ -54,7 +54,7 @@ paths:
   /admin/realms:
     get:
       operationId: listRealms
-      summary: List realms
+      summary: Red Hat List realms
       description: >-
         Retrieves the list of all realms accessible to the authenticated
         admin user.
@@ -74,7 +74,7 @@ paths:
   /admin/realms/{realm}:
     get:
       operationId: getRealm
-      summary: Get a realm
+      summary: Red Hat Get a realm
       description: >-
         Retrieves the configuration of a specific realm, including its
         login settings, token policies, and enabled features.
@@ -95,7 +95,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     put:
       operationId: updateRealm
-      summary: Update a realm
+      summary: Red Hat Update a realm
       description: >-
         Updates the configuration of a specific realm. All writable fields
         can be modified.
@@ -121,7 +121,7 @@ paths:
   /admin/realms/{realm}/users:
     get:
       operationId: listUsers
-      summary: List users
+      summary: Red Hat List users
       description: >-
         Retrieves a paginated list of users in the specified realm. Results
         can be filtered by username, email, first name, or last name.
@@ -178,7 +178,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
     post:
       operationId: createUser
-      summary: Create a user
+      summary: Red Hat Create a user
       description: >-
         Creates a new user in the specified realm with the provided profile
         attributes and optional initial credentials.
@@ -204,7 +204,7 @@ paths:
   /admin/realms/{realm}/users/{user_id}:
     get:
       operationId: getUser
-      summary: Get a user
+      summary: Red Hat Get a user
       description: >-
         Retrieves the details of a specific user in the realm.
       tags:
@@ -225,7 +225,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     put:
       operationId: updateUser
-      summary: Update a user
+      summary: Red Hat Update a user
       description: >-
         Updates the profile attributes of an existing user in the realm.
       tags:
@@ -250,7 +250,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     delete:
       operationId: deleteUser
-      summary: Delete a user
+      summary: Red Hat Delete a user
       description: >-
         Deletes a user from the realm along with all associated sessions,
         consents, and federated identity links.
@@ -269,7 +269,7 @@ paths:
   /admin/realms/{realm}/clients:
     get:
       operationId: listClients
-      summary: List clients
+      summary: Red Hat List clients
       description: >-
         Retrieves the list of client applications registered in the realm.
       tags:
@@ -304,7 +304,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
     post:
       operationId: createClient
-      summary: Create a client
+      summary: Red Hat Create a client
       description: >-
         Registers a new client application in the realm with the specified
         protocol and configuration settings.
@@ -328,7 +328,7 @@ paths:
   /admin/realms/{realm}/roles:
     get:
       operationId: listRealmRoles
-      summary: List realm roles
+      summary: Red Hat List realm roles
       description: >-
         Retrieves the list of realm-level roles that can be assigned to
         users and groups.
@@ -359,7 +359,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
     post:
       operationId: createRealmRole
-      summary: Create a realm role
+      summary: Red Hat Create a realm role
       description: >-
         Creates a new realm-level role.
       tags:
@@ -382,7 +382,7 @@ paths:
   /admin/realms/{realm}/groups:
     get:
       operationId: listGroups
-      summary: List groups
+      summary: Red Hat List groups
       description: >-
         Retrieves the list of groups in the realm, optionally filtered by
         name. Groups enable bulk role and attribute assignment to users.
@@ -419,7 +419,7 @@ paths:
   /admin/realms/{realm}/identity-provider/instances:
     get:
       operationId: listIdentityProviders
-      summary: List identity providers
+      summary: Red Hat List identity providers
       description: >-
         Retrieves the list of external identity providers configured for
         the realm, including SAML, OIDC, and social providers.
@@ -441,7 +441,7 @@ paths:
   /admin/realms/{realm}/sessions/{session_id}:
     delete:
       operationId: deleteSession
-      summary: Remove a session
+      summary: Red Hat Remove a session
       description: >-
         Terminates a specific user session, logging the user out of the
         associated client application.

@@ -53,7 +53,7 @@ paths:
   /api/v2/job_templates/:
     get:
       operationId: listJobTemplates
-      summary: List job templates
+      summary: Red Hat List job templates
       description: >-
         Retrieves a paginated list of job templates. Job templates define the
         parameters for running Ansible playbooks against specified inventories,
@@ -76,7 +76,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
     post:
       operationId: createJobTemplate
-      summary: Create a job template
+      summary: Red Hat Create a job template
       description: >-
         Creates a new job template with the specified configuration. Requires
         at minimum a name, project, playbook, and inventory reference.
@@ -102,7 +102,7 @@ paths:
   /api/v2/job_templates/{id}/:
     get:
       operationId: getJobTemplate
-      summary: Get a job template
+      summary: Red Hat Get a job template
       description: >-
         Retrieves the details of a specific job template by its identifier.
       tags:
@@ -122,7 +122,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     patch:
       operationId: updateJobTemplate
-      summary: Update a job template
+      summary: Red Hat Update a job template
       description: >-
         Updates an existing job template. Only the fields provided in the
         request body will be modified.
@@ -151,7 +151,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     delete:
       operationId: deleteJobTemplate
-      summary: Delete a job template
+      summary: Red Hat Delete a job template
       description: >-
         Deletes a job template. Associated job runs will not be deleted but
         will no longer be linked to a template.
@@ -169,7 +169,7 @@ paths:
   /api/v2/job_templates/{id}/launch/:
     post:
       operationId: launchJobTemplate
-      summary: Launch a job template
+      summary: Red Hat Launch a job template
       description: >-
         Launches a job from the specified job template. Optional extra variables,
         credentials, and inventory overrides can be provided in the request
@@ -216,7 +216,7 @@ paths:
   /api/v2/jobs/:
     get:
       operationId: listJobs
-      summary: List jobs
+      summary: Red Hat List jobs
       description: >-
         Retrieves a paginated list of job executions. Jobs represent individual
         runs of job templates against inventories.
@@ -239,7 +239,7 @@ paths:
   /api/v2/jobs/{id}/:
     get:
       operationId: getJob
-      summary: Get a job
+      summary: Red Hat Get a job
       description: >-
         Retrieves the details of a specific job execution, including its
         status, timing, and associated template information.
@@ -261,7 +261,7 @@ paths:
   /api/v2/jobs/{id}/cancel/:
     post:
       operationId: cancelJob
-      summary: Cancel a job
+      summary: Red Hat Cancel a job
       description: >-
         Cancels a running job. Only jobs that are currently pending or running
         can be cancelled.
@@ -279,7 +279,7 @@ paths:
   /api/v2/inventories/:
     get:
       operationId: listInventories
-      summary: List inventories
+      summary: Red Hat List inventories
       description: >-
         Retrieves a paginated list of inventories. Inventories contain
         the hosts and groups that automation jobs run against.
@@ -300,7 +300,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
     post:
       operationId: createInventory
-      summary: Create an inventory
+      summary: Red Hat Create an inventory
       description: >-
         Creates a new inventory within the specified organization.
       tags:
@@ -325,7 +325,7 @@ paths:
   /api/v2/projects/:
     get:
       operationId: listProjects
-      summary: List projects
+      summary: Red Hat List projects
       description: >-
         Retrieves a paginated list of projects. Projects represent collections
         of Ansible playbooks sourced from a version control system.
@@ -347,7 +347,7 @@ paths:
   /api/v2/credentials/:
     get:
       operationId: listCredentials
-      summary: List credentials
+      summary: Red Hat List credentials
       description: >-
         Retrieves a paginated list of credentials used for authenticating
         automation jobs with managed hosts and external services.
@@ -369,7 +369,7 @@ paths:
   /api/v2/workflow_job_templates/:
     get:
       operationId: listWorkflowJobTemplates
-      summary: List workflow job templates
+      summary: Red Hat List workflow job templates
       description: >-
         Retrieves a paginated list of workflow job templates. Workflows chain
         multiple job templates into orchestrated automation sequences with
@@ -392,7 +392,7 @@ paths:
   /api/v2/organizations/:
     get:
       operationId: listOrganizations
-      summary: List organizations
+      summary: Red Hat List organizations
       description: >-
         Retrieves a paginated list of organizations that provide multi-tenancy
         boundaries for access control and resource management.

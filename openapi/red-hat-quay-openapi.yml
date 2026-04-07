@@ -59,7 +59,7 @@ paths:
   /repository:
     get:
       operationId: listRepositories
-      summary: List repositories
+      summary: Red Hat List repositories
       description: >-
         Retrieves a paginated list of repositories visible to the authenticated
         user, optionally filtered by namespace, popularity, or last modified
@@ -104,7 +104,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
     post:
       operationId: createRepository
-      summary: Create a repository
+      summary: Red Hat Create a repository
       description: >-
         Creates a new container image repository in the specified namespace
         with the given visibility and optional description.
@@ -146,7 +146,7 @@ paths:
   /repository/{repository}:
     get:
       operationId: getRepository
-      summary: Get a repository
+      summary: Red Hat Get a repository
       description: >-
         Retrieves the details of a specific repository including its tags,
         description, and visibility settings.
@@ -167,7 +167,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     delete:
       operationId: deleteRepository
-      summary: Delete a repository
+      summary: Red Hat Delete a repository
       description: >-
         Deletes a repository and all associated images, tags, and build history.
         This action is irreversible.
@@ -185,7 +185,7 @@ paths:
   /repository/{repository}/tag/:
     get:
       operationId: listRepositoryTags
-      summary: List repository tags
+      summary: Red Hat List repository tags
       description: >-
         Retrieves a paginated list of tags for the specified repository,
         including each tag's manifest digest and last modified date.
@@ -222,7 +222,7 @@ paths:
   /repository/{repository}/tag/{tag}:
     put:
       operationId: changeTag
-      summary: Create or move a tag
+      summary: Red Hat Create or move a tag
       description: >-
         Creates a new tag or moves an existing tag to point to a different
         image manifest digest.
@@ -259,7 +259,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     delete:
       operationId: deleteTag
-      summary: Delete a tag
+      summary: Red Hat Delete a tag
       description: >-
         Deletes a specific tag from a repository. The underlying image manifest
         is not deleted unless it becomes untagged.
@@ -283,7 +283,7 @@ paths:
   /repository/{repository}/manifest/{manifestref}/security:
     get:
       operationId: getManifestSecurity
-      summary: Get manifest security information
+      summary: Red Hat Get manifest security information
       description: >-
         Retrieves the security scan results for a specific image manifest,
         including detected vulnerabilities and their severity levels.
@@ -317,7 +317,7 @@ paths:
   /organization/{orgname}:
     get:
       operationId: getOrganization
-      summary: Get an organization
+      summary: Red Hat Get an organization
       description: >-
         Retrieves the details of a specific organization, including its
         member count and settings.
@@ -339,7 +339,7 @@ paths:
   /organization/{orgname}/team/{teamname}:
     put:
       operationId: createOrUpdateTeam
-      summary: Create or update a team
+      summary: Red Hat Create or update a team
       description: >-
         Creates a new team or updates an existing team within an organization,
         including the team role and description.
@@ -384,7 +384,7 @@ paths:
   /organization/{orgname}/robots/{robot_shortname}:
     get:
       operationId: getOrgRobot
-      summary: Get an organization robot account
+      summary: Red Hat Get an organization robot account
       description: >-
         Retrieves the details of a specific robot account within an
         organization, including its token for automated registry access.
@@ -411,7 +411,7 @@ paths:
           $ref: '#/components/responses/NotFoundError'
     put:
       operationId: createOrgRobot
-      summary: Create an organization robot account
+      summary: Red Hat Create an organization robot account
       description: >-
         Creates a new robot account within an organization for automated
         access to container repositories.
@@ -448,7 +448,7 @@ paths:
   /user/:
     get:
       operationId: getLoggedInUser
-      summary: Get logged-in user
+      summary: Red Hat Get logged-in user
       description: >-
         Retrieves the information for the currently authenticated user.
       tags:
