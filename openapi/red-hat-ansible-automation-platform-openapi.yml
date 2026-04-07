@@ -19,6 +19,14 @@ servers:
   - url: https://ansible-platform.example.com
     description: Ansible Automation Platform Server
 tags:
+  - name: Credentials
+    description: >-
+      Operations for managing credentials used by automation jobs to
+      authenticate with managed hosts and external services.
+  - name: Inventories
+    description: >-
+      Operations for managing inventories that define collections of hosts
+      and groups for automation targeting.
   - name: Job Templates
     description: >-
       Operations for managing job templates that define parameterized playbook
@@ -27,26 +35,18 @@ tags:
     description: >-
       Operations for launching, monitoring, and managing automation job
       executions and their output.
-  - name: Inventories
-    description: >-
-      Operations for managing inventories that define collections of hosts
-      and groups for automation targeting.
-  - name: Projects
-    description: >-
-      Operations for managing projects that represent collections of Ansible
-      playbooks sourced from version control.
-  - name: Credentials
-    description: >-
-      Operations for managing credentials used by automation jobs to
-      authenticate with managed hosts and external services.
-  - name: Workflow Job Templates
-    description: >-
-      Operations for managing workflow job templates that chain multiple
-      job templates into orchestrated automation workflows.
   - name: Organizations
     description: >-
       Operations for managing organizations that provide multi-tenancy
       and access control boundaries.
+  - name: Projects
+    description: >-
+      Operations for managing projects that represent collections of Ansible
+      playbooks sourced from version control.
+  - name: Workflow Job Templates
+    description: >-
+      Operations for managing workflow job templates that chain multiple
+      job templates into orchestrated automation workflows.
 security:
   - bearerAuth: []
 paths:

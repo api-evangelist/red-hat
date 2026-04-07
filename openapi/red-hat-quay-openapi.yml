@@ -19,14 +19,6 @@ servers:
   - url: https://quay.io/api/v1
     description: Quay.io Production API Server
 tags:
-  - name: Repositories
-    description: >-
-      Operations for managing container image repositories, including creation,
-      listing, and deletion.
-  - name: Tags
-    description: >-
-      Operations for managing image tags within repositories, including listing,
-      creating, and deleting tags.
   - name: Manifests
     description: >-
       Operations for retrieving manifest information and security scan results
@@ -35,6 +27,14 @@ tags:
     description: >-
       Operations for managing organizations that provide team-based access
       control for repositories.
+  - name: Repositories
+    description: >-
+      Operations for managing container image repositories, including creation,
+      listing, and deletion.
+  - name: Robot Accounts
+    description: >-
+      Operations for managing robot accounts that provide automated access
+      to repositories.
   - name: Teams
     description: >-
       Operations for managing teams within organizations and their repository
@@ -42,17 +42,6 @@ tags:
   - name: Users
     description: >-
       Operations for managing user accounts and retrieving user information.
-  - name: Robot Accounts
-    description: >-
-      Operations for managing robot accounts that provide automated access
-      to repositories.
-  - name: Builds
-    description: >-
-      Operations for managing container image builds triggered from source
-      repositories.
-  - name: Permissions
-    description: >-
-      Operations for managing user and team permissions on repositories.
 security:
   - bearerAuth: []
 paths:
@@ -189,8 +178,7 @@ paths:
       description: >-
         Retrieves a paginated list of tags for the specified repository,
         including each tag's manifest digest and last modified date.
-      tags:
-        - Tags
+      tags: []
       parameters:
         - $ref: '#/components/parameters/RepositoryParam'
         - name: page
@@ -226,8 +214,7 @@ paths:
       description: >-
         Creates a new tag or moves an existing tag to point to a different
         image manifest digest.
-      tags:
-        - Tags
+      tags: []
       parameters:
         - $ref: '#/components/parameters/RepositoryParam'
         - name: tag
@@ -263,8 +250,7 @@ paths:
       description: >-
         Deletes a specific tag from a repository. The underlying image manifest
         is not deleted unless it becomes untagged.
-      tags:
-        - Tags
+      tags: []
       parameters:
         - $ref: '#/components/parameters/RepositoryParam'
         - name: tag

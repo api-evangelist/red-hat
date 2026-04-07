@@ -19,26 +19,14 @@ servers:
   - url: https://satellite.example.com
     description: Red Hat Satellite Server
 tags:
-  - name: Hosts
-    description: >-
-      Operations for managing hosts registered with Satellite, including
-      provisioning, facts, and power management.
   - name: Content Views
     description: >-
       Operations for managing content views that define curated snapshots
       of software repositories for controlled content delivery.
-  - name: Organizations
-    description: >-
-      Operations for managing organizations that provide multi-tenancy
-      isolation for content and infrastructure resources.
   - name: Environments
     description: >-
       Operations for managing lifecycle environments that define the
       promotion path for content from development to production.
-  - name: Repositories
-    description: >-
-      Operations for managing software repositories synced from Red Hat CDN
-      or custom sources.
   - name: Errata
     description: >-
       Operations for listing and managing errata (security advisories, bug
@@ -47,6 +35,18 @@ tags:
     description: >-
       Operations for managing host groups that provide shared configuration
       templates for provisioning and management.
+  - name: Hosts
+    description: >-
+      Operations for managing hosts registered with Satellite, including
+      provisioning, facts, and power management.
+  - name: Organizations
+    description: >-
+      Operations for managing organizations that provide multi-tenancy
+      isolation for content and infrastructure resources.
+  - name: Repositories
+    description: >-
+      Operations for managing software repositories synced from Red Hat CDN
+      or custom sources.
 security:
   - basicAuth: []
 paths:

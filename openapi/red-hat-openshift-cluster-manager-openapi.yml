@@ -19,37 +19,33 @@ servers:
   - url: https://api.openshift.com
     description: OpenShift Cluster Manager Production Server
 tags:
-  - name: Clusters
+  - name: Add-Ons
     description: >-
-      Operations for provisioning, managing, and retrieving OpenShift clusters
-      across cloud providers.
+      Operations for managing cluster add-ons that extend OpenShift cluster
+      functionality.
   - name: Cloud Providers
     description: >-
       Operations for listing available cloud providers and their regions for
       cluster deployment.
-  - name: Flavours
+  - name: Clusters
     description: >-
-      Operations for listing available cluster flavours that define the default
-      configuration for new clusters.
-  - name: Versions
-    description: >-
-      Operations for listing available OpenShift versions for cluster
-      provisioning and upgrades.
-  - name: Add-ons
-    description: >-
-      Operations for managing cluster add-ons that extend OpenShift cluster
-      functionality.
-  - name: Machine Pools
-    description: >-
-      Operations for managing machine pools that define groups of compute nodes
-      within a cluster.
+      Operations for provisioning, managing, and retrieving OpenShift clusters
+      across cloud providers.
   - name: Identity Providers
     description: >-
       Operations for configuring identity providers used to authenticate users
       to a cluster.
+  - name: Machine Pools
+    description: >-
+      Operations for managing machine pools that define groups of compute nodes
+      within a cluster.
   - name: Subscriptions
     description: >-
       Operations for managing OpenShift cluster subscriptions and entitlements.
+  - name: Versions
+    description: >-
+      Operations for listing available OpenShift versions for cluster
+      provisioning and upgrades.
 security:
   - bearerAuth: []
 paths:
@@ -363,7 +359,7 @@ paths:
         Retrieves the list of available add-ons that can be installed on
         OpenShift clusters to extend functionality.
       tags:
-        - Add-ons
+        - Add-Ons
       parameters:
         - $ref: '#/components/parameters/PageParam'
         - $ref: '#/components/parameters/SizeParam'

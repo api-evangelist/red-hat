@@ -20,22 +20,10 @@ servers:
   - url: https://keycloak.example.com
     description: Keycloak Server
 tags:
-  - name: Realms
-    description: >-
-      Operations for managing Keycloak realms that serve as tenants for
-      isolating identity configurations.
-  - name: Users
-    description: >-
-      Operations for managing user accounts, credentials, and profile
-      attributes within a realm.
   - name: Clients
     description: >-
       Operations for managing client applications registered in a realm
       for authentication and authorization.
-  - name: Roles
-    description: >-
-      Operations for managing realm-level and client-level roles for
-      authorization.
   - name: Groups
     description: >-
       Operations for managing user groups that enable bulk role and
@@ -44,10 +32,22 @@ tags:
     description: >-
       Operations for managing external identity providers for federated
       authentication such as SAML and OIDC.
+  - name: Realms
+    description: >-
+      Operations for managing Keycloak realms that serve as tenants for
+      isolating identity configurations.
+  - name: Roles
+    description: >-
+      Operations for managing realm-level and client-level roles for
+      authorization.
   - name: Sessions
     description: >-
       Operations for viewing and managing active user sessions across
       a realm.
+  - name: Users
+    description: >-
+      Operations for managing user accounts, credentials, and profile
+      attributes within a realm.
 security:
   - bearerAuth: []
 paths:

@@ -20,17 +20,6 @@ servers:
   - url: https://console.redhat.com/api
     description: Red Hat Hybrid Cloud Console Production Server
 tags:
-  - name: Advisor
-    description: >-
-      Operations for retrieving and managing Advisor recommendations that
-      identify configuration risks and performance issues across RHEL systems.
-  - name: Systems
-    description: >-
-      Operations for retrieving registered systems and their Insights status.
-  - name: Topics
-    description: >-
-      Operations for retrieving curated topics that group related
-      recommendations by technology area or risk category.
   - name: Rules
     description: >-
       Operations for listing and retrieving Advisor rules that define the
@@ -39,6 +28,13 @@ tags:
     description: >-
       Operations for retrieving aggregate statistics about system health
       and recommendation coverage.
+  - name: Systems
+    description: >-
+      Operations for retrieving registered systems and their Insights status.
+  - name: Topics
+    description: >-
+      Operations for retrieving curated topics that group related
+      recommendations by technology area or risk category.
 security:
   - bearerAuth: []
 paths:
