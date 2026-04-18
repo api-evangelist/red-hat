@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TagList",
+  "type": "object",
+  "description": "A paginated list of image tags.",
+  "properties": {
+    "tags": {
+      "type": "array"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "has_additional": {
+      "type": "boolean"
+    }
+  }
+}

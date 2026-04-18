@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Group",
+  "type": "object",
+  "description": "A group that enables bulk role and attribute assignment to users.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the group."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the group."
+    },
+    "path": {
+      "type": "string",
+      "description": "The full path of the group in the hierarchy."
+    },
+    "subGroups": {
+      "type": "array",
+      "description": "Child groups."
+    }
+  }
+}

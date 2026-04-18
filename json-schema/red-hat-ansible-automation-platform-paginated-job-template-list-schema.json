@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaginatedJobTemplateList",
+  "type": "object",
+  "description": "A paginated list of job templates.",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "The total number of results."
+    },
+    "next": {
+      "type": "string",
+      "description": "URL to the next page of results."
+    },
+    "previous": {
+      "type": "string",
+      "description": "URL to the previous page of results."
+    },
+    "results": {
+      "type": "array"
+    }
+  }
+}

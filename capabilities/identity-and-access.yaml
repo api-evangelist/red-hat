@@ -1,0 +1,262 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Red Hat Identity and Access"
+  description: "Identity and access management workflow using Keycloak for managing realms, users, clients, roles, groups, and identity federation. Used by platform admins and security teams."
+  tags:
+    - Red Hat
+    - Keycloak
+    - Identity
+    - Access Management
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      KEYCLOAK_BEARER_TOKEN: KEYCLOAK_BEARER_TOKEN
+
+capability:
+  consumes:
+    - import: keycloak-admin
+      location: ./shared/keycloak-admin.yaml
+
+  exposes:
+    - type: rest
+      port: 8082
+      namespace: identity-and-access-api
+      description: "Unified REST API for identity and access management."
+      resources:
+        - path: /v1/realms
+          name: realms
+          description: "Keycloak realms."
+          operations:
+            - method: GET
+              name: list-realms
+              description: "List all realms."
+              call: "keycloak-admin.list-realms"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/realms/{realm}
+          name: realm-detail
+          description: "Specific realm."
+          operations:
+            - method: GET
+              name: get-realm
+              description: "Get realm details."
+              call: "keycloak-admin.get-realm"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/realms/{realm}/users
+          name: users
+          description: "Realm users."
+          operations:
+            - method: GET
+              name: list-users
+              description: "List users."
+              call: "keycloak-admin.list-users"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-user
+              description: "Create a user."
+              call: "keycloak-admin.create-user"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/realms/{realm}/clients
+          name: clients
+          description: "Realm clients."
+          operations:
+            - method: GET
+              name: list-clients
+              description: "List clients."
+              call: "keycloak-admin.list-clients"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/realms/{realm}/roles
+          name: roles
+          description: "Realm roles."
+          operations:
+            - method: GET
+              name: list-roles
+              description: "List roles."
+              call: "keycloak-admin.list-realm-roles"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/realms/{realm}/groups
+          name: groups
+          description: "Realm groups."
+          operations:
+            - method: GET
+              name: list-groups
+              description: "List groups."
+              call: "keycloak-admin.list-groups"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/realms/{realm}/identity-providers
+          name: identity-providers
+          description: "Identity providers."
+          operations:
+            - method: GET
+              name: list-identity-providers
+              description: "List identity providers."
+              call: "keycloak-admin.list-identity-providers"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9082
+      namespace: identity-and-access-mcp
+      transport: http
+      description: "MCP server for AI-assisted identity and access management."
+      tools:
+        - name: list-realms
+          description: "List all Keycloak realms."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-realms"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-realm
+          description: "Get realm configuration details."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "keycloak-admin.get-realm"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-users
+          description: "List users in a realm."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-users"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-user
+          description: "Create a new user in a realm."
+          hints:
+            readOnly: false
+          call: "keycloak-admin.create-user"
+          with:
+            realm: "tools.realm"
+            username: "tools.username"
+            email: "tools.email"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-user
+          description: "Get user details."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "keycloak-admin.get-user"
+          with:
+            realm: "tools.realm"
+            user_id: "tools.user_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-user
+          description: "Delete a user from a realm."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "keycloak-admin.delete-user"
+          with:
+            realm: "tools.realm"
+            user_id: "tools.user_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-clients
+          description: "List client applications in a realm."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-clients"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-client
+          description: "Register a new client application."
+          hints:
+            readOnly: false
+          call: "keycloak-admin.create-client"
+          with:
+            realm: "tools.realm"
+            clientId: "tools.clientId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-realm-roles
+          description: "List roles in a realm."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-realm-roles"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-groups
+          description: "List groups in a realm."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-groups"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-identity-providers
+          description: "List external identity providers."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-identity-providers"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-session
+          description: "Terminate a user session."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "keycloak-admin.delete-session"
+          with:
+            realm: "tools.realm"
+            session_id: "tools.session_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

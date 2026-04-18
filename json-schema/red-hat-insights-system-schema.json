@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "System",
+  "type": "object",
+  "description": "A RHEL system registered with Red Hat Insights for monitoring and recommendations.",
+  "properties": {
+    "system_uuid": {
+      "type": "string",
+      "description": "The unique identifier of the system."
+    },
+    "display_name": {
+      "type": "string",
+      "description": "The display name of the system."
+    },
+    "last_seen": {
+      "type": "string",
+      "description": "The last time the system checked in with Insights."
+    },
+    "stale_at": {
+      "type": "string",
+      "description": "The date when the system will be considered stale."
+    },
+    "hits": {
+      "type": "integer",
+      "description": "The number of active Advisor recommendations."
+    },
+    "critical_hits": {
+      "type": "integer",
+      "description": "The number of critical severity recommendations."
+    },
+    "important_hits": {
+      "type": "integer",
+      "description": "The number of important severity recommendations."
+    },
+    "moderate_hits": {
+      "type": "integer",
+      "description": "The number of moderate severity recommendations."
+    },
+    "low_hits": {
+      "type": "integer",
+      "description": "The number of low severity recommendations."
+    },
+    "rhel_version": {
+      "type": "string",
+      "description": "The RHEL version running on the system."
+    }
+  }
+}

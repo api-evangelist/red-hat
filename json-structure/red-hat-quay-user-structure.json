@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean"
+    },
+    "organizations": {
+      "type": "array"
+    }
+  }
+}

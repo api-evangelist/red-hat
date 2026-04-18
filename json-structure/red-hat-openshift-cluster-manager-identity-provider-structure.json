@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "IdentityProvider",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "mapping_method": {
+      "type": "string"
+    },
+    "github": {
+      "type": "object"
+    },
+    "ldap": {
+      "type": "object"
+    },
+    "openid": {
+      "type": "object"
+    }
+  }
+}

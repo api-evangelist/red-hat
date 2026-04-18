@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "MachinePool",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "instance_type": {
+      "type": "string"
+    },
+    "replicas": {
+      "type": "integer"
+    },
+    "autoscaling": {
+      "type": "object"
+    },
+    "availability_zones": {
+      "type": "array"
+    },
+    "labels": {
+      "type": "object"
+    },
+    "taints": {
+      "type": "array"
+    }
+  }
+}

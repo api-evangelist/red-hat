@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Topic",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tag": {
+      "type": "string"
+    },
+    "featured": {
+      "type": "boolean"
+    },
+    "impacted_systems_count": {
+      "type": "integer"
+    }
+  }
+}

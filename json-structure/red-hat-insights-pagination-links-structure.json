@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PaginationLinks",
+  "type": "object",
+  "properties": {
+    "first": {
+      "type": "string"
+    },
+    "last": {
+      "type": "string"
+    },
+    "next": {
+      "type": "string"
+    },
+    "previous": {
+      "type": "string"
+    }
+  }
+}

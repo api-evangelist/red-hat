@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Rule",
+  "type": "object",
+  "properties": {
+    "rule_id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "category": {
+      "type": "object"
+    },
+    "impact": {
+      "type": "object"
+    },
+    "likelihood": {
+      "type": "integer"
+    },
+    "total_risk": {
+      "type": "integer"
+    },
+    "risk_of_change": {
+      "type": "integer"
+    },
+    "has_playbook": {
+      "type": "boolean"
+    },
+    "publish_date": {
+      "type": "string"
+    },
+    "systems_affected": {
+      "type": "integer"
+    },
+    "resolution_set": {
+      "type": "array"
+    }
+  }
+}

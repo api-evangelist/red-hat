@@ -1,0 +1,423 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Red Hat OpenShift Cluster Manager API"
+  description: "Provisioning, managing, and monitoring OpenShift clusters across cloud providers including lifecycle operations, machine pools, identity providers, and subscriptions."
+  tags:
+    - Red Hat
+    - OpenShift
+    - Kubernetes
+    - Cluster Management
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      RED_HAT_BEARER_TOKEN: RED_HAT_BEARER_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: openshift-cluster-manager
+      baseUri: https://api.openshift.com
+      description: "OpenShift Cluster Manager API for cluster lifecycle management."
+      authentication:
+        type: bearer
+        token: "{{RED_HAT_BEARER_TOKEN}}"
+      resources:
+        - name: clusters
+          path: /api/clusters_mgmt/v1/clusters
+          description: "Manage OpenShift clusters."
+          operations:
+            - name: list-clusters
+              method: GET
+              description: "List all managed clusters."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+                - name: size
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page size"
+                - name: search
+                  in: query
+                  type: string
+                  required: false
+                  description: "Search filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-cluster
+              method: POST
+              description: "Create a new OpenShift cluster."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  cloud_provider: "{{tools.cloud_provider}}"
+                  region: "{{tools.region}}"
+
+            - name: get-cluster
+              method: GET
+              description: "Get a specific cluster."
+              inputParameters:
+                - name: cluster_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: update-cluster
+              method: PATCH
+              description: "Update a cluster configuration."
+              inputParameters:
+                - name: cluster_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+
+            - name: delete-cluster
+              method: DELETE
+              description: "Delete a cluster."
+              inputParameters:
+                - name: cluster_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: machine-pools
+          path: /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools
+          description: "Manage compute node machine pools."
+          operations:
+            - name: list-machine-pools
+              method: GET
+              description: "List machine pools for a cluster."
+              inputParameters:
+                - name: cluster_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-machine-pool
+              method: POST
+              description: "Create a machine pool."
+              inputParameters:
+                - name: cluster_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  id: "{{tools.id}}"
+                  instance_type: "{{tools.instance_type}}"
+                  replicas: "{{tools.replicas}}"
+
+        - name: identity-providers
+          path: /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers
+          description: "Configure cluster identity providers."
+          operations:
+            - name: list-cluster-identity-providers
+              method: GET
+              description: "List identity providers for a cluster."
+              inputParameters:
+                - name: cluster_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-cluster-identity-provider
+              method: POST
+              description: "Add an identity provider to a cluster."
+              inputParameters:
+                - name: cluster_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  type: "{{tools.type}}"
+
+        - name: cloud-providers
+          path: /api/clusters_mgmt/v1/cloud_providers
+          description: "Available cloud providers and regions."
+          operations:
+            - name: list-cloud-providers
+              method: GET
+              description: "List available cloud providers."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: list-cloud-provider-regions
+              method: GET
+              description: "List regions for a cloud provider."
+              inputParameters:
+                - name: cloud_provider_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Cloud provider ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: versions
+          path: /api/clusters_mgmt/v1/versions
+          description: "Available OpenShift versions."
+          operations:
+            - name: list-versions
+              method: GET
+              description: "List available OpenShift versions."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: addons
+          path: /api/clusters_mgmt/v1/addons
+          description: "Cluster add-ons."
+          operations:
+            - name: list-addons
+              method: GET
+              description: "List available cluster add-ons."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: subscriptions
+          path: /api/accounts_mgmt/v1/subscriptions
+          description: "Cluster subscriptions."
+          operations:
+            - name: list-subscriptions
+              method: GET
+              description: "List cluster subscriptions."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8103
+      namespace: openshift-cluster-manager-api
+      resources:
+        - path: /v1/clusters
+          name: clusters
+          description: "Manage OpenShift clusters."
+          operations:
+            - method: GET
+              name: list-clusters
+              description: "List clusters."
+              call: "openshift-cluster-manager.list-clusters"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/cloud-providers
+          name: cloud-providers
+          description: "Cloud providers."
+          operations:
+            - method: GET
+              name: list-cloud-providers
+              description: "List cloud providers."
+              call: "openshift-cluster-manager.list-cloud-providers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/versions
+          name: versions
+          description: "OpenShift versions."
+          operations:
+            - method: GET
+              name: list-versions
+              description: "List versions."
+              call: "openshift-cluster-manager.list-versions"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9103
+      namespace: openshift-cluster-manager-mcp
+      transport: http
+      tools:
+        - name: list-clusters
+          description: "List all managed OpenShift clusters."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "openshift-cluster-manager.list-clusters"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-cluster
+          description: "Get details of a specific cluster."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "openshift-cluster-manager.get-cluster"
+          with:
+            cluster_id: "tools.cluster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-cluster
+          description: "Create a new OpenShift cluster."
+          hints:
+            readOnly: false
+          call: "openshift-cluster-manager.create-cluster"
+          with:
+            name: "tools.name"
+            cloud_provider: "tools.cloud_provider"
+            region: "tools.region"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-cluster
+          description: "Delete an OpenShift cluster."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "openshift-cluster-manager.delete-cluster"
+          with:
+            cluster_id: "tools.cluster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-machine-pools
+          description: "List machine pools for a cluster."
+          hints:
+            readOnly: true
+          call: "openshift-cluster-manager.list-machine-pools"
+          with:
+            cluster_id: "tools.cluster_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-machine-pool
+          description: "Create a machine pool for a cluster."
+          hints:
+            readOnly: false
+          call: "openshift-cluster-manager.create-machine-pool"
+          with:
+            cluster_id: "tools.cluster_id"
+            instance_type: "tools.instance_type"
+            replicas: "tools.replicas"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-cloud-providers
+          description: "List available cloud providers."
+          hints:
+            readOnly: true
+          call: "openshift-cluster-manager.list-cloud-providers"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-cloud-provider-regions
+          description: "List regions for a cloud provider."
+          hints:
+            readOnly: true
+          call: "openshift-cluster-manager.list-cloud-provider-regions"
+          with:
+            cloud_provider_id: "tools.cloud_provider_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-versions
+          description: "List available OpenShift versions."
+          hints:
+            readOnly: true
+          call: "openshift-cluster-manager.list-versions"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-addons
+          description: "List available cluster add-ons."
+          hints:
+            readOnly: true
+          call: "openshift-cluster-manager.list-addons"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-subscriptions
+          description: "List cluster subscriptions."
+          hints:
+            readOnly: true
+          call: "openshift-cluster-manager.list-subscriptions"
+          outputParameters:
+            - type: object
+              mapping: "$."

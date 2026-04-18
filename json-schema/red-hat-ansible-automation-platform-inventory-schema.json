@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inventory",
+  "type": "object",
+  "description": "An inventory defines a collection of hosts and groups that automation jobs target for execution.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The unique identifier of the inventory."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the inventory."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the inventory."
+    },
+    "organization": {
+      "type": "integer",
+      "description": "The ID of the organization this inventory belongs to."
+    },
+    "kind": {
+      "type": "string",
+      "description": "The kind of inventory."
+    },
+    "host_count": {
+      "type": "integer",
+      "description": "The total number of hosts in this inventory."
+    },
+    "total_groups": {
+      "type": "integer",
+      "description": "The total number of groups in this inventory."
+    },
+    "has_inventory_sources": {
+      "type": "boolean",
+      "description": "Whether this inventory has dynamic sources."
+    },
+    "created": {
+      "type": "string",
+      "description": "When the inventory was created."
+    },
+    "modified": {
+      "type": "string",
+      "description": "When the inventory was last modified."
+    }
+  }
+}

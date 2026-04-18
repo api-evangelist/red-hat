@@ -1,0 +1,14 @@
+{
+  "id": "abc123",
+  "realm": "example_value",
+  "displayName": "example_value",
+  "enabled": true,
+  "registrationAllowed": true,
+  "loginWithEmailAllowed": "user@example.com",
+  "duplicateEmailsAllowed": "user@example.com",
+  "resetPasswordAllowed": true,
+  "sslRequired": "example_value",
+  "accessTokenLifespan": 10,
+  "ssoSessionIdleTimeout": 10,
+  "ssoSessionMaxLifespan": 10
+}

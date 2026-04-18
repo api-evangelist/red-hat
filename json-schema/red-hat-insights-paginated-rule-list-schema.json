@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaginatedRuleList",
+  "type": "object",
+  "description": "A paginated list of rules.",
+  "properties": {
+    "data": {
+      "type": "array"
+    }
+  }
+}

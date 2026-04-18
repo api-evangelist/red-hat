@@ -1,0 +1,9 @@
+{
+  "id": "abc123",
+  "instance_type": "example_value",
+  "replicas": 10,
+  "autoscaling": "example_value",
+  "availability_zones": [],
+  "labels": "example_value",
+  "taints": []
+}

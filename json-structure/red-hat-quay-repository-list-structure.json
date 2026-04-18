@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "RepositoryList",
+  "type": "object",
+  "properties": {
+    "repositories": {
+      "type": "array"
+    },
+    "next_page": {
+      "type": "string"
+    }
+  }
+}

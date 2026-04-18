@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Realm",
+  "type": "object",
+  "description": "A Keycloak realm representing an isolated tenant for identity management.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the realm."
+    },
+    "realm": {
+      "type": "string",
+      "description": "The name of the realm."
+    },
+    "displayName": {
+      "type": "string",
+      "description": "The display name of the realm."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the realm is enabled."
+    },
+    "registrationAllowed": {
+      "type": "boolean",
+      "description": "Whether user self-registration is allowed."
+    },
+    "loginWithEmailAllowed": {
+      "type": "boolean",
+      "description": "Whether users can log in with their email address."
+    },
+    "duplicateEmailsAllowed": {
+      "type": "boolean",
+      "description": "Whether duplicate emails are allowed."
+    },
+    "resetPasswordAllowed": {
+      "type": "boolean",
+      "description": "Whether password reset is enabled."
+    },
+    "sslRequired": {
+      "type": "string",
+      "description": "The SSL requirement policy."
+    },
+    "accessTokenLifespan": {
+      "type": "integer",
+      "description": "The access token lifespan in seconds."
+    },
+    "ssoSessionIdleTimeout": {
+      "type": "integer",
+      "description": "The SSO session idle timeout in seconds."
+    },
+    "ssoSessionMaxLifespan": {
+      "type": "integer",
+      "description": "The maximum SSO session lifespan in seconds."
+    }
+  }
+}

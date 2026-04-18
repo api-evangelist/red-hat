@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IdentityProvider",
+  "type": "object",
+  "description": "Represents an identity provider configured for cluster authentication.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the identity provider."
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the identity provider."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of identity provider."
+    },
+    "mapping_method": {
+      "type": "string",
+      "description": "The method used to map identities to users."
+    },
+    "github": {
+      "type": "object",
+      "description": "GitHub-specific identity provider configuration."
+    },
+    "ldap": {
+      "type": "object",
+      "description": "LDAP-specific identity provider configuration."
+    },
+    "openid": {
+      "type": "object",
+      "description": "OpenID Connect identity provider configuration."
+    }
+  }
+}

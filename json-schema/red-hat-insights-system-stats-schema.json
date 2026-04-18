@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SystemStats",
+  "type": "object",
+  "description": "Aggregate statistics about registered systems.",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "The total number of registered systems."
+    },
+    "stale": {
+      "type": "integer",
+      "description": "The number of stale systems."
+    },
+    "with_hits": {
+      "type": "integer",
+      "description": "Systems with at least one active recommendation."
+    }
+  }
+}

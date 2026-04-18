@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Role",
+  "type": "object",
+  "description": "A role that can be assigned to users or groups for authorization.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the role."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the role."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the role."
+    },
+    "composite": {
+      "type": "boolean",
+      "description": "Whether this is a composite role containing other roles."
+    },
+    "clientRole": {
+      "type": "boolean",
+      "description": "Whether this is a client-level role."
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Organization",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "invoice_email": {
+      "type": "boolean"
+    },
+    "is_admin": {
+      "type": "boolean"
+    },
+    "is_member": {
+      "type": "boolean"
+    }
+  }
+}

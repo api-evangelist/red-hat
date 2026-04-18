@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PaginatedJobList",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": "string"
+    },
+    "previous": {
+      "type": "string"
+    },
+    "results": {
+      "type": "array"
+    }
+  }
+}

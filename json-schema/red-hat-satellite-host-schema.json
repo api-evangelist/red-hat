@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Host",
+  "type": "object",
+  "description": "A host managed by Red Hat Satellite.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The unique identifier of the host."
+    },
+    "name": {
+      "type": "string",
+      "description": "The fully qualified domain name of the host."
+    },
+    "ip": {
+      "type": "string",
+      "description": "The IP address of the host."
+    },
+    "mac": {
+      "type": "string",
+      "description": "The MAC address of the primary interface."
+    },
+    "operatingsystem_name": {
+      "type": "string",
+      "description": "The operating system name and version."
+    },
+    "environment_name": {
+      "type": "string",
+      "description": "The Puppet environment name."
+    },
+    "hostgroup_name": {
+      "type": "string",
+      "description": "The host group name."
+    },
+    "organization_name": {
+      "type": "string",
+      "description": "The organization name."
+    },
+    "location_name": {
+      "type": "string",
+      "description": "The location name."
+    },
+    "global_status": {
+      "type": "integer",
+      "description": "The global host status (0=OK, 1=Warning, 2=Error)."
+    },
+    "content_facet_attributes": {
+      "type": "object",
+      "description": "Content-related attributes of the host."
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

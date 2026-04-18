@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "JobTemplate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "job_type": {
+      "type": "string"
+    },
+    "inventory": {
+      "type": "integer"
+    },
+    "project": {
+      "type": "integer"
+    },
+    "playbook": {
+      "type": "string"
+    },
+    "forks": {
+      "type": "integer"
+    },
+    "limit": {
+      "type": "string"
+    },
+    "verbosity": {
+      "type": "integer"
+    },
+    "extra_vars": {
+      "type": "string"
+    },
+    "ask_variables_on_launch": {
+      "type": "boolean"
+    },
+    "ask_inventory_on_launch": {
+      "type": "boolean"
+    },
+    "ask_credential_on_launch": {
+      "type": "boolean"
+    },
+    "survey_enabled": {
+      "type": "boolean"
+    },
+    "created": {
+      "type": "string"
+    },
+    "modified": {
+      "type": "string"
+    }
+  }
+}

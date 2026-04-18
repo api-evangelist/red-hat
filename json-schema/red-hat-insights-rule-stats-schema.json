@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RuleStats",
+  "type": "object",
+  "description": "Aggregate statistics about Advisor rules.",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "The total number of active rules."
+    },
+    "by_category": {
+      "type": "object",
+      "description": "Rule counts by category."
+    },
+    "by_severity": {
+      "type": "object",
+      "description": "Rule counts by total risk severity."
+    }
+  }
+}

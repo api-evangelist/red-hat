@@ -1,0 +1,312 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Red Hat Infrastructure Automation"
+  description: "Unified workflow combining Ansible automation, Satellite content management, and Insights analytics for infrastructure operations teams managing RHEL environments at scale."
+  tags:
+    - Red Hat
+    - Ansible
+    - Satellite
+    - Insights
+    - Automation
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      RED_HAT_BEARER_TOKEN: RED_HAT_BEARER_TOKEN
+      SATELLITE_USERNAME: SATELLITE_USERNAME
+      SATELLITE_PASSWORD: SATELLITE_PASSWORD
+
+capability:
+  consumes:
+    - import: ansible-automation
+      location: ./shared/ansible-automation.yaml
+    - import: satellite
+      location: ./shared/satellite.yaml
+    - import: insights
+      location: ./shared/insights.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: infrastructure-automation-api
+      description: "Unified REST API for RHEL infrastructure automation, content management, and analytics."
+      resources:
+        - path: /v1/job-templates
+          name: job-templates
+          description: "Ansible job templates."
+          operations:
+            - method: GET
+              name: list-job-templates
+              description: "List job templates."
+              call: "ansible-automation.list-job-templates"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/job-templates/{id}/launch
+          name: launch-job
+          description: "Launch automation jobs."
+          operations:
+            - method: POST
+              name: launch-job-template
+              description: "Launch a job template."
+              call: "ansible-automation.launch-job-template"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/jobs
+          name: jobs
+          description: "Automation jobs."
+          operations:
+            - method: GET
+              name: list-jobs
+              description: "List jobs."
+              call: "ansible-automation.list-jobs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/hosts
+          name: hosts
+          description: "Managed hosts from Satellite."
+          operations:
+            - method: GET
+              name: list-hosts
+              description: "List managed hosts."
+              call: "satellite.list-hosts"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/hosts/{id}/errata
+          name: host-errata
+          description: "Host-level errata."
+          operations:
+            - method: GET
+              name: list-host-errata
+              description: "List errata for a host."
+              call: "satellite.list-host-errata"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/content-views
+          name: content-views
+          description: "Content views."
+          operations:
+            - method: GET
+              name: list-content-views
+              description: "List content views."
+              call: "satellite.list-content-views"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/errata
+          name: errata
+          description: "Errata advisories."
+          operations:
+            - method: GET
+              name: list-errata
+              description: "List errata."
+              call: "satellite.list-errata"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/systems
+          name: systems
+          description: "Insights-registered systems."
+          operations:
+            - method: GET
+              name: list-systems
+              description: "List registered systems."
+              call: "insights.list-systems"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/rules
+          name: rules
+          description: "Advisor rules."
+          operations:
+            - method: GET
+              name: list-rules
+              description: "List advisor rules."
+              call: "insights.list-rules"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9081
+      namespace: infrastructure-automation-mcp
+      transport: http
+      description: "MCP server for AI-assisted RHEL infrastructure automation."
+      tools:
+        - name: ansible-list-job-templates
+          description: "List Ansible job templates."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ansible-automation.list-job-templates"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: ansible-get-job-template
+          description: "Get details of an Ansible job template."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ansible-automation.get-job-template"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: ansible-launch-job-template
+          description: "Launch an Ansible job template."
+          hints:
+            readOnly: false
+          call: "ansible-automation.launch-job-template"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: ansible-list-jobs
+          description: "List automation job executions."
+          hints:
+            readOnly: true
+          call: "ansible-automation.list-jobs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: ansible-get-job
+          description: "Get details of a job execution."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ansible-automation.get-job"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: ansible-cancel-job
+          description: "Cancel a running job."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "ansible-automation.cancel-job"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: ansible-list-inventories
+          description: "List Ansible inventories."
+          hints:
+            readOnly: true
+          call: "ansible-automation.list-inventories"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: satellite-list-hosts
+          description: "List hosts managed by Satellite."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "satellite.list-hosts"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: satellite-get-host
+          description: "Get a specific Satellite host."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "satellite.get-host"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: satellite-list-host-errata
+          description: "List errata applicable to a host."
+          hints:
+            readOnly: true
+          call: "satellite.list-host-errata"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: satellite-list-content-views
+          description: "List content views."
+          hints:
+            readOnly: true
+          call: "satellite.list-content-views"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: satellite-list-errata
+          description: "List all available errata."
+          hints:
+            readOnly: true
+          call: "satellite.list-errata"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: satellite-list-repositories
+          description: "List software repositories."
+          hints:
+            readOnly: true
+          call: "satellite.list-repositories"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: insights-list-systems
+          description: "List systems registered with Insights."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "insights.list-systems"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: insights-get-system
+          description: "Get details for a system in Insights."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "insights.get-system"
+          with:
+            system_id: "tools.system_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: insights-list-rules
+          description: "List Advisor detection rules."
+          hints:
+            readOnly: true
+          call: "insights.list-rules"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: insights-get-system-stats
+          description: "Get aggregate system health statistics."
+          hints:
+            readOnly: true
+          call: "insights.get-system-stats"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: insights-list-topics
+          description: "List recommendation topics."
+          hints:
+            readOnly: true
+          call: "insights.list-topics"
+          outputParameters:
+            - type: object
+              mapping: "$."

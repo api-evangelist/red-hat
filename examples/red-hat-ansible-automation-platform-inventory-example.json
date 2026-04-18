@@ -1,0 +1,12 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "organization": 10,
+  "kind": "example_value",
+  "host_count": 10,
+  "total_groups": 10,
+  "has_inventory_sources": true,
+  "created": "example_value",
+  "modified": "example_value"
+}

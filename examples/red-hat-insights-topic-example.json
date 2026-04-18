@@ -1,0 +1,8 @@
+{
+  "name": "Example Title",
+  "slug": "example_value",
+  "description": "A sample description.",
+  "tag": "example_value",
+  "featured": true,
+  "impacted_systems_count": 10
+}

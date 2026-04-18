@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VersionList",
+  "type": "object",
+  "description": "A paginated list of available OpenShift versions.",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array"
+    }
+  }
+}

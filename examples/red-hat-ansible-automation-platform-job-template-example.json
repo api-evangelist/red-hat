@@ -1,0 +1,19 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "job_type": "example_value",
+  "inventory": 10,
+  "project": 10,
+  "playbook": "example_value",
+  "forks": 10,
+  "limit": "example_value",
+  "verbosity": 10,
+  "extra_vars": "example_value",
+  "ask_variables_on_launch": true,
+  "ask_inventory_on_launch": true,
+  "ask_credential_on_launch": true,
+  "survey_enabled": true,
+  "created": "example_value",
+  "modified": "example_value"
+}

@@ -1,0 +1,12 @@
+{
+  "system_uuid": "500123",
+  "display_name": "example_value",
+  "last_seen": "example_value",
+  "stale_at": "2026-01-15T10:30:00Z",
+  "hits": 10,
+  "critical_hits": 10,
+  "important_hits": 10,
+  "moderate_hits": 10,
+  "low_hits": 10,
+  "rhel_version": "example_value"
+}

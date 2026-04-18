@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Job",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "failed": {
+      "type": "boolean"
+    },
+    "started": {
+      "type": "string"
+    },
+    "finished": {
+      "type": "string"
+    },
+    "elapsed": {
+      "type": "number"
+    },
+    "job_template": {
+      "type": "integer"
+    },
+    "inventory": {
+      "type": "integer"
+    },
+    "project": {
+      "type": "integer"
+    },
+    "playbook": {
+      "type": "string"
+    },
+    "launch_type": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string"
+    }
+  }
+}

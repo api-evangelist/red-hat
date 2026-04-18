@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaginationLinks",
+  "type": "object",
+  "description": "Pagination links for navigating result sets.",
+  "properties": {
+    "first": {
+      "type": "string",
+      "description": "URL to the first page."
+    },
+    "last": {
+      "type": "string",
+      "description": "URL to the last page."
+    },
+    "next": {
+      "type": "string",
+      "description": "URL to the next page."
+    },
+    "previous": {
+      "type": "string",
+      "description": "URL to the previous page."
+    }
+  }
+}

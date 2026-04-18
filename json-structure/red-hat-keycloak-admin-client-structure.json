@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Client",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "clientId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "publicClient": {
+      "type": "boolean"
+    },
+    "rootUrl": {
+      "type": "string"
+    },
+    "redirectUris": {
+      "type": "array"
+    },
+    "webOrigins": {
+      "type": "array"
+    },
+    "serviceAccountsEnabled": {
+      "type": "boolean"
+    },
+    "authorizationServicesEnabled": {
+      "type": "boolean"
+    }
+  }
+}

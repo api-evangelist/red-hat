@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobTemplate",
+  "type": "object",
+  "description": "A job template defines the parameters for running an Ansible playbook against an inventory of managed hosts.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The unique identifier of the job template."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the job template."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the job template."
+    },
+    "job_type": {
+      "type": "string",
+      "description": "The type of job to execute."
+    },
+    "inventory": {
+      "type": "integer",
+      "description": "The ID of the inventory to run against."
+    },
+    "project": {
+      "type": "integer",
+      "description": "The ID of the project containing the playbook."
+    },
+    "playbook": {
+      "type": "string",
+      "description": "The playbook filename to execute from the project."
+    },
+    "forks": {
+      "type": "integer",
+      "description": "The number of parallel processes to use for execution."
+    },
+    "limit": {
+      "type": "string",
+      "description": "A host pattern to further limit the inventory scope."
+    },
+    "verbosity": {
+      "type": "integer",
+      "description": "The verbosity level for job output (0-5)."
+    },
+    "extra_vars": {
+      "type": "string",
+      "description": "Extra variables in YAML or JSON format."
+    },
+    "ask_variables_on_launch": {
+      "type": "boolean",
+      "description": "Whether to prompt for extra variables on launch."
+    },
+    "ask_inventory_on_launch": {
+      "type": "boolean",
+      "description": "Whether to prompt for inventory on launch."
+    },
+    "ask_credential_on_launch": {
+      "type": "boolean",
+      "description": "Whether to prompt for credentials on launch."
+    },
+    "survey_enabled": {
+      "type": "boolean",
+      "description": "Whether the survey is enabled for this template."
+    },
+    "created": {
+      "type": "string",
+      "description": "The date and time the template was created."
+    },
+    "modified": {
+      "type": "string",
+      "description": "The date and time the template was last modified."
+    }
+  }
+}

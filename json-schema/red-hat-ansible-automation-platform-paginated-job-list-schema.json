@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaginatedJobList",
+  "type": "object",
+  "description": "A paginated list of jobs.",
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": "string"
+    },
+    "previous": {
+      "type": "string"
+    },
+    "results": {
+      "type": "array"
+    }
+  }
+}

@@ -17,58 +17,60 @@ externalDocs:
   description: Red Hat Insights API Documentation
   url: https://console.redhat.com/docs/api
 servers:
-  - url: https://console.redhat.com/api
-    description: Red Hat Hybrid Cloud Console Production Server
+- url: https://console.redhat.com/api
+  description: Red Hat Hybrid Cloud Console Production Server
 tags:
-  - name: Rules
-    description: >-
-      Operations for listing and retrieving Advisor rules that define the
-      detection logic for system issues.
-  - name: Stats
-    description: >-
-      Operations for retrieving aggregate statistics about system health
-      and recommendation coverage.
-  - name: Systems
-    description: >-
-      Operations for retrieving registered systems and their Insights status.
-  - name: Topics
-    description: >-
-      Operations for retrieving curated topics that group related
-      recommendations by technology area or risk category.
+- name: Rules
+  description: >-
+    Operations for listing and retrieving Advisor rules that define the
+    detection logic for system issues.
+- name: Stats
+  description: >-
+    Operations for retrieving aggregate statistics about system health
+    and recommendation coverage.
+- name: Systems
+  description: >-
+    Operations for retrieving registered systems and their Insights status.
+- name: Topics
+  description: >-
+    Operations for retrieving curated topics that group related
+    recommendations by technology area or risk category.
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /insights/v1/system/:
     get:
       operationId: listSystems
-      summary: Red Hat List systems
+      summary: Red Hat List Systems
       description: >-
         Retrieves a paginated list of RHEL systems registered with Red Hat
         Insights, including their stale status and last check-in time.
       tags:
-        - Systems
+      - Systems
       parameters:
-        - $ref: '#/components/parameters/LimitParam'
-        - $ref: '#/components/parameters/OffsetParam'
-        - name: display_name
-          in: query
-          description: Filter systems by display name.
-          schema:
-            type: string
-        - name: sort
-          in: query
-          description: >-
-            The field to sort results by. Prefix with a dash for descending
-            order.
-          schema:
-            type: string
-            enum:
-              - display_name
-              - -display_name
-              - last_seen
-              - -last_seen
-              - hits
-              - -hits
+      - $ref: '#/components/parameters/LimitParam'
+      - $ref: '#/components/parameters/OffsetParam'
+      - name: display_name
+        in: query
+        description: Filter systems by display name.
+        schema:
+          type: string
+        example: example_value
+      - name: sort
+        in: query
+        description: >-
+          The field to sort results by. Prefix with a dash for descending
+          order.
+        schema:
+          type: string
+          enum:
+          - display_name
+          - -display_name
+          - last_seen
+          - -last_seen
+          - hits
+          - -hits
+        example: display_name
       responses:
         '200':
           description: Successfully retrieved systems
@@ -76,20 +78,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedSystemList'
+              examples:
+                Listsystems200Example:
+                  summary: Default listSystems 200 response
+                  x-microcks-default: true
+                  value:
+                    meta:
+                      count: 10
+                    links:
+                      first: https://www.example.com
+                      last: https://www.example.com
+                      next: https://www.example.com
+                      previous: https://www.example.com
+                    data:
+                    - system_uuid: '500123'
+                      display_name: example_value
+                      last_seen: '2026-01-15T10:30:00Z'
+                      stale_at: '2026-01-15T10:30:00Z'
+                      hits: 10
+                      critical_hits: 10
+                      important_hits: 10
+                      moderate_hits: 10
+                      low_hits: 10
+                      rhel_version: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /insights/v1/system/{system_id}/:
     get:
       operationId: getSystem
-      summary: Red Hat Get a system
+      summary: Red Hat Get a System
       description: >-
         Retrieves the details of a specific registered system, including its
         display name, last check-in time, and total number of active
         recommendations.
       tags:
-        - Systems
+      - Systems
       parameters:
-        - $ref: '#/components/parameters/SystemIdParam'
+      - $ref: '#/components/parameters/SystemIdParam'
       responses:
         '200':
           description: Successfully retrieved system details
@@ -97,48 +125,71 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/System'
+              examples:
+                Getsystem200Example:
+                  summary: Default getSystem 200 response
+                  x-microcks-default: true
+                  value:
+                    system_uuid: '500123'
+                    display_name: example_value
+                    last_seen: '2026-01-15T10:30:00Z'
+                    stale_at: '2026-01-15T10:30:00Z'
+                    hits: 10
+                    critical_hits: 10
+                    important_hits: 10
+                    moderate_hits: 10
+                    low_hits: 10
+                    rhel_version: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /insights/v1/rule/:
     get:
       operationId: listRules
-      summary: Red Hat List advisor rules
+      summary: Red Hat List Advisor Rules
       description: >-
         Retrieves a paginated list of Advisor rules that detect configuration
         issues, security risks, and performance problems on RHEL systems.
       tags:
-        - Rules
+      - Rules
       parameters:
-        - $ref: '#/components/parameters/LimitParam'
-        - $ref: '#/components/parameters/OffsetParam'
-        - name: category
-          in: query
-          description: Filter rules by category.
-          schema:
-            type: integer
-            enum: [1, 2, 3, 4]
-        - name: impact
-          in: query
-          description: Filter rules by impact level.
-          schema:
-            type: string
-        - name: likelihood
-          in: query
-          description: Filter rules by likelihood level.
-          schema:
-            type: string
-        - name: has_playbook
-          in: query
-          description: Filter to rules that have remediation playbooks.
-          schema:
-            type: boolean
-        - name: sort
-          in: query
-          description: The field to sort results by.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/LimitParam'
+      - $ref: '#/components/parameters/OffsetParam'
+      - name: category
+        in: query
+        description: Filter rules by category.
+        schema:
+          type: integer
+          enum: [1, 2, 3, 4]
+        example: 1
+      - name: impact
+        in: query
+        description: Filter rules by impact level.
+        schema:
+          type: string
+        example: example_value
+      - name: likelihood
+        in: query
+        description: Filter rules by likelihood level.
+        schema:
+          type: string
+        example: example_value
+      - name: has_playbook
+        in: query
+        description: Filter to rules that have remediation playbooks.
+        schema:
+          type: boolean
+        example: true
+      - name: sort
+        in: query
+        description: The field to sort results by.
+        schema:
+          type: string
+        example: example_value
       responses:
         '200':
           description: Successfully retrieved rules
@@ -146,25 +197,54 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedRuleList'
+              examples:
+                Listrules200Example:
+                  summary: Default listRules 200 response
+                  x-microcks-default: true
+                  value:
+                    meta:
+                      count: 10
+                    links:
+                      first: https://www.example.com
+                      last: https://www.example.com
+                      next: https://www.example.com
+                      previous: https://www.example.com
+                    data:
+                    - rule_id: '500123'
+                      description: A sample description.
+                      active: true
+                      category: {}
+                      impact: {}
+                      likelihood: 10
+                      total_risk: 10
+                      risk_of_change: 10
+                      has_playbook: true
+                      publish_date: '2026-01-15T10:30:00Z'
+                      systems_affected: 10
+                      resolution_set: {}
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /insights/v1/rule/{rule_id}/:
     get:
       operationId: getRule
-      summary: Red Hat Get an advisor rule
+      summary: Red Hat Get an Advisor Rule
       description: >-
         Retrieves the details of a specific Advisor rule, including its
         description, resolution steps, affected system count, and whether
         an Ansible remediation playbook is available.
       tags:
-        - Rules
+      - Rules
       parameters:
-        - name: rule_id
-          in: path
-          required: true
-          description: The unique identifier of the rule.
-          schema:
-            type: string
+      - name: rule_id
+        in: path
+        required: true
+        description: The unique identifier of the rule.
+        schema:
+          type: string
+        example: '500123'
       responses:
         '200':
           description: Successfully retrieved rule details
@@ -172,28 +252,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rule'
+              examples:
+                Getrule200Example:
+                  summary: Default getRule 200 response
+                  x-microcks-default: true
+                  value:
+                    rule_id: '500123'
+                    description: A sample description.
+                    active: true
+                    category:
+                      id: abc123
+                      name: Availability
+                    impact:
+                      name: Example Title
+                      value: 10
+                    likelihood: 10
+                    total_risk: 10
+                    risk_of_change: 10
+                    has_playbook: true
+                    publish_date: '2026-01-15T10:30:00Z'
+                    systems_affected: 10
+                    resolution_set:
+                    - system_type: 10
+                      resolution: example_value
+                      has_playbook: true
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /insights/v1/rule/{rule_id}/systems/:
     get:
       operationId: listRuleSystems
-      summary: Red Hat List systems affected by a rule
+      summary: Red Hat List Systems Affected by a Rule
       description: >-
         Retrieves the list of systems that are affected by a specific Advisor
         rule and where the recommendation is currently active.
       tags:
-        - Rules
+      - Rules
       parameters:
-        - name: rule_id
-          in: path
-          required: true
-          description: The unique identifier of the rule.
-          schema:
-            type: string
-        - $ref: '#/components/parameters/LimitParam'
-        - $ref: '#/components/parameters/OffsetParam'
+      - name: rule_id
+        in: path
+        required: true
+        description: The unique identifier of the rule.
+        schema:
+          type: string
+        example: '500123'
+      - $ref: '#/components/parameters/LimitParam'
+      - $ref: '#/components/parameters/OffsetParam'
       responses:
         '200':
           description: Successfully retrieved affected systems
@@ -201,20 +309,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedSystemList'
+              examples:
+                Listrulesystems200Example:
+                  summary: Default listRuleSystems 200 response
+                  x-microcks-default: true
+                  value:
+                    meta:
+                      count: 10
+                    links:
+                      first: https://www.example.com
+                      last: https://www.example.com
+                      next: https://www.example.com
+                      previous: https://www.example.com
+                    data:
+                    - system_uuid: '500123'
+                      display_name: example_value
+                      last_seen: '2026-01-15T10:30:00Z'
+                      stale_at: '2026-01-15T10:30:00Z'
+                      hits: 10
+                      critical_hits: 10
+                      important_hits: 10
+                      moderate_hits: 10
+                      low_hits: 10
+                      rhel_version: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /insights/v1/topic/:
     get:
       operationId: listTopics
-      summary: Red Hat List topics
+      summary: Red Hat List Topics
       description: >-
         Retrieves the list of curated Advisor topics that group related rules
         and recommendations by technology area, risk category, or common
         concern.
       tags:
-        - Topics
+      - Topics
       responses:
         '200':
           description: Successfully retrieved topics
@@ -224,18 +358,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Topic'
+              examples:
+                Listtopics200Example:
+                  summary: Default listTopics 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    slug: example_value
+                    description: A sample description.
+                    tag: example_value
+                    featured: true
+                    impacted_systems_count: 10
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /insights/v1/stats/systems/:
     get:
       operationId: getSystemStats
-      summary: Red Hat Get system statistics
+      summary: Red Hat Get System Statistics
       description: >-
         Retrieves aggregate statistics about registered systems, including
         total system count, stale systems, and systems with active
         recommendations.
       tags:
-        - Stats
+      - Stats
       responses:
         '200':
           description: Successfully retrieved system statistics
@@ -243,17 +391,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SystemStats'
+              examples:
+                Getsystemstats200Example:
+                  summary: Default getSystemStats 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    stale: 10
+                    with_hits: 10
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /insights/v1/stats/rules/:
     get:
       operationId: getRuleStats
-      summary: Red Hat Get rule statistics
+      summary: Red Hat Get Rule Statistics
       description: >-
         Retrieves aggregate statistics about Advisor rules, including total
         rule count, rules by category, and rules by severity.
       tags:
-        - Stats
+      - Stats
       responses:
         '200':
           description: Successfully retrieved rule statistics
@@ -261,8 +420,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RuleStats'
+              examples:
+                Getrulestats200Example:
+                  summary: Default getRuleStats 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    by_category: example_value
+                    by_severity: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     bearerAuth:
@@ -314,35 +484,45 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the system.
+          example: '500123'
         display_name:
           type: string
           description: The display name of the system.
+          example: example_value
         last_seen:
           type: string
           format: date-time
           description: The last time the system checked in with Insights.
+          example: '2026-01-15T10:30:00Z'
         stale_at:
           type: string
           format: date-time
           description: The date when the system will be considered stale.
+          example: '2026-01-15T10:30:00Z'
         hits:
           type: integer
           description: The number of active Advisor recommendations.
+          example: 10
         critical_hits:
           type: integer
           description: The number of critical severity recommendations.
+          example: 10
         important_hits:
           type: integer
           description: The number of important severity recommendations.
+          example: 10
         moderate_hits:
           type: integer
           description: The number of moderate severity recommendations.
+          example: 10
         low_hits:
           type: integer
           description: The number of low severity recommendations.
+          example: 10
         rhel_version:
           type: string
           description: The RHEL version running on the system.
+          example: example_value
     PaginatedSystemList:
       type: object
       description: A paginated list of systems.
@@ -355,6 +535,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/System'
+          example: []
     Rule:
       type: object
       description: >-
@@ -364,12 +545,15 @@ components:
         rule_id:
           type: string
           description: The unique identifier of the rule.
+          example: '500123'
         description:
           type: string
           description: A description of what the rule detects.
+          example: A sample description.
         active:
           type: boolean
           description: Whether the rule is currently active.
+          example: true
         category:
           type: object
           description: The category the rule belongs to.
@@ -381,10 +565,11 @@ components:
               type: string
               description: The category name.
               enum:
-                - Availability
-                - Security
-                - Stability
-                - Performance
+              - Availability
+              - Security
+              - Stability
+              - Performance
+          example: example_value
         impact:
           type: object
           description: The impact level of the rule.
@@ -393,25 +578,32 @@ components:
               type: string
             value:
               type: integer
+          example: example_value
         likelihood:
           type: integer
           description: The likelihood value (1-4).
+          example: 10
         total_risk:
           type: integer
           description: The calculated total risk score.
+          example: 10
         risk_of_change:
           type: integer
           description: The risk associated with applying the remediation.
+          example: 10
         has_playbook:
           type: boolean
           description: Whether an Ansible remediation playbook is available.
+          example: true
         publish_date:
           type: string
           format: date-time
           description: When the rule was published.
+          example: '2026-01-15T10:30:00Z'
         systems_affected:
           type: integer
           description: The number of systems currently affected by this rule.
+          example: 10
         resolution_set:
           type: array
           description: Available resolution options for the rule.
@@ -427,6 +619,7 @@ components:
               has_playbook:
                 type: boolean
                 description: Whether this resolution has a playbook.
+          example: []
     PaginatedRuleList:
       type: object
       description: A paginated list of rules.
@@ -439,6 +632,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rule'
+          example: []
     Topic:
       type: object
       description: >-
@@ -447,21 +641,27 @@ components:
         name:
           type: string
           description: The name of the topic.
+          example: Example Title
         slug:
           type: string
           description: The URL-friendly slug for the topic.
+          example: example_value
         description:
           type: string
           description: A description of the topic.
+          example: A sample description.
         tag:
           type: string
           description: The tag associated with the topic.
+          example: example_value
         featured:
           type: boolean
           description: Whether the topic is featured.
+          example: true
         impacted_systems_count:
           type: integer
           description: The number of systems impacted by rules in this topic.
+          example: 10
     SystemStats:
       type: object
       description: Aggregate statistics about registered systems.
@@ -469,12 +669,15 @@ components:
         total:
           type: integer
           description: The total number of registered systems.
+          example: 10
         stale:
           type: integer
           description: The number of stale systems.
+          example: 10
         with_hits:
           type: integer
           description: Systems with at least one active recommendation.
+          example: 10
     RuleStats:
       type: object
       description: Aggregate statistics about Advisor rules.
@@ -482,16 +685,19 @@ components:
         total:
           type: integer
           description: The total number of active rules.
+          example: 10
         by_category:
           type: object
           description: Rule counts by category.
           additionalProperties:
             type: integer
+          example: example_value
         by_severity:
           type: object
           description: Rule counts by total risk severity.
           additionalProperties:
             type: integer
+          example: example_value
     PaginationMeta:
       type: object
       description: Pagination metadata for list responses.
@@ -499,6 +705,7 @@ components:
         count:
           type: integer
           description: The total number of results.
+          example: 10
     PaginationLinks:
       type: object
       description: Pagination links for navigating result sets.
@@ -507,17 +714,21 @@ components:
           type: string
           format: uri
           description: URL to the first page.
+          example: https://www.example.com
         last:
           type: string
           format: uri
           description: URL to the last page.
+          example: https://www.example.com
         next:
           type: string
           format: uri
           nullable: true
           description: URL to the next page.
+          example: https://www.example.com
         previous:
           type: string
           format: uri
           nullable: true
           description: URL to the previous page.
+          example: https://www.example.com

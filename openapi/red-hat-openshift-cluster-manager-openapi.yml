@@ -16,54 +16,54 @@ externalDocs:
   description: OpenShift Cluster Manager API Documentation
   url: https://api.openshift.com/
 servers:
-  - url: https://api.openshift.com
-    description: OpenShift Cluster Manager Production Server
+- url: https://api.openshift.com
+  description: OpenShift Cluster Manager Production Server
 tags:
-  - name: Add-Ons
-    description: >-
-      Operations for managing cluster add-ons that extend OpenShift cluster
-      functionality.
-  - name: Cloud Providers
-    description: >-
-      Operations for listing available cloud providers and their regions for
-      cluster deployment.
-  - name: Clusters
-    description: >-
-      Operations for provisioning, managing, and retrieving OpenShift clusters
-      across cloud providers.
-  - name: Identity Providers
-    description: >-
-      Operations for configuring identity providers used to authenticate users
-      to a cluster.
-  - name: Machine Pools
-    description: >-
-      Operations for managing machine pools that define groups of compute nodes
-      within a cluster.
-  - name: Subscriptions
-    description: >-
-      Operations for managing OpenShift cluster subscriptions and entitlements.
-  - name: Versions
-    description: >-
-      Operations for listing available OpenShift versions for cluster
-      provisioning and upgrades.
+- name: Add-Ons
+  description: >-
+    Operations for managing cluster add-ons that extend OpenShift cluster
+    functionality.
+- name: Cloud Providers
+  description: >-
+    Operations for listing available cloud providers and their regions for
+    cluster deployment.
+- name: Clusters
+  description: >-
+    Operations for provisioning, managing, and retrieving OpenShift clusters
+    across cloud providers.
+- name: Identity Providers
+  description: >-
+    Operations for configuring identity providers used to authenticate users
+    to a cluster.
+- name: Machine Pools
+  description: >-
+    Operations for managing machine pools that define groups of compute nodes
+    within a cluster.
+- name: Subscriptions
+  description: >-
+    Operations for managing OpenShift cluster subscriptions and entitlements.
+- name: Versions
+  description: >-
+    Operations for listing available OpenShift versions for cluster
+    provisioning and upgrades.
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /api/clusters_mgmt/v1/clusters:
     get:
       operationId: listClusters
-      summary: Red Hat List clusters
+      summary: Red Hat List Clusters
       description: >-
         Retrieves a list of OpenShift clusters managed by the authenticated
         account. Results can be filtered by various criteria and paginated
         using the page and size parameters.
       tags:
-        - Clusters
+      - Clusters
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/SizeParam'
-        - $ref: '#/components/parameters/SearchParam'
-        - $ref: '#/components/parameters/OrderParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/OrderParam'
       responses:
         '200':
           description: Successfully retrieved list of clusters
@@ -71,24 +71,78 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClusterList'
+              examples:
+                Listclusters200Example:
+                  summary: Default listClusters 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      display_name: example_value
+                      state: error
+                      cloud_provider: {}
+                      region: {}
+                      multi_az: true
+                      nodes: {}
+                      api: {}
+                      console: {}
+                      version: {}
+                      creation_timestamp: '2026-01-15T10:30:00Z'
+                      expiration_timestamp: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createCluster
-      summary: Red Hat Create a cluster
+      summary: Red Hat Create a Cluster
       description: >-
         Provisions a new OpenShift cluster. The request body must include the
         cluster name, cloud provider, region, and desired node configuration.
         The cluster creation process is asynchronous and the cluster status
         will transition through several states before becoming ready.
       tags:
-        - Clusters
+      - Clusters
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Cluster'
+            examples:
+              CreateclusterRequestExample:
+                summary: Default createCluster request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  name: Example Title
+                  display_name: example_value
+                  state: error
+                  cloud_provider:
+                    id: abc123
+                  region:
+                    id: abc123
+                  multi_az: true
+                  nodes:
+                    compute: 10
+                    compute_machine_type:
+                      id: abc123
+                  api:
+                    url: https://www.example.com
+                    listening: external
+                  console:
+                    url: https://www.example.com
+                  version:
+                    id: abc123
+                    raw_id: '500123'
+                  creation_timestamp: '2026-01-15T10:30:00Z'
+                  expiration_timestamp: '2026-01-15T10:30:00Z'
       responses:
         '201':
           description: Cluster creation initiated successfully
@@ -96,21 +150,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Cluster'
+              examples:
+                Createcluster201Example:
+                  summary: Default createCluster 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    display_name: example_value
+                    state: error
+                    cloud_provider:
+                      id: abc123
+                    region:
+                      id: abc123
+                    multi_az: true
+                    nodes:
+                      compute: 10
+                      compute_machine_type:
+                        id: abc123
+                    api:
+                      url: https://www.example.com
+                      listening: external
+                    console:
+                      url: https://www.example.com
+                    version:
+                      id: abc123
+                      raw_id: '500123'
+                    creation_timestamp: '2026-01-15T10:30:00Z'
+                    expiration_timestamp: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/BadRequestError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/clusters_mgmt/v1/clusters/{cluster_id}:
     get:
       operationId: getCluster
-      summary: Red Hat Get a cluster
+      summary: Red Hat Get a Cluster
       description: >-
         Retrieves the details of a specific OpenShift cluster by its unique
         identifier, including its current status, configuration, and metadata.
       tags:
-        - Clusters
+      - Clusters
       parameters:
-        - $ref: '#/components/parameters/ClusterIdParam'
+      - $ref: '#/components/parameters/ClusterIdParam'
       responses:
         '200':
           description: Successfully retrieved cluster details
@@ -118,27 +203,86 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Cluster'
+              examples:
+                Getcluster200Example:
+                  summary: Default getCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    display_name: example_value
+                    state: error
+                    cloud_provider:
+                      id: abc123
+                    region:
+                      id: abc123
+                    multi_az: true
+                    nodes:
+                      compute: 10
+                      compute_machine_type:
+                        id: abc123
+                    api:
+                      url: https://www.example.com
+                      listening: external
+                    console:
+                      url: https://www.example.com
+                    version:
+                      id: abc123
+                      raw_id: '500123'
+                    creation_timestamp: '2026-01-15T10:30:00Z'
+                    expiration_timestamp: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: updateCluster
-      summary: Red Hat Update a cluster
+      summary: Red Hat Update a Cluster
       description: >-
         Updates the configuration of an existing OpenShift cluster. Only the
         fields provided in the request body will be modified. Some changes
         may trigger asynchronous operations such as node scaling.
       tags:
-        - Clusters
+      - Clusters
       parameters:
-        - $ref: '#/components/parameters/ClusterIdParam'
+      - $ref: '#/components/parameters/ClusterIdParam'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Cluster'
+            examples:
+              UpdateclusterRequestExample:
+                summary: Default updateCluster request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  name: Example Title
+                  display_name: example_value
+                  state: error
+                  cloud_provider:
+                    id: abc123
+                  region:
+                    id: abc123
+                  multi_az: true
+                  nodes:
+                    compute: 10
+                    compute_machine_type:
+                      id: abc123
+                  api:
+                    url: https://www.example.com
+                    listening: external
+                  console:
+                    url: https://www.example.com
+                  version:
+                    id: abc123
+                    raw_id: '500123'
+                  creation_timestamp: '2026-01-15T10:30:00Z'
+                  expiration_timestamp: '2026-01-15T10:30:00Z'
       responses:
         '200':
           description: Cluster updated successfully
@@ -146,23 +290,54 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Cluster'
+              examples:
+                Updatecluster200Example:
+                  summary: Default updateCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    display_name: example_value
+                    state: error
+                    cloud_provider:
+                      id: abc123
+                    region:
+                      id: abc123
+                    multi_az: true
+                    nodes:
+                      compute: 10
+                      compute_machine_type:
+                        id: abc123
+                    api:
+                      url: https://www.example.com
+                      listening: external
+                    console:
+                      url: https://www.example.com
+                    version:
+                      id: abc123
+                      raw_id: '500123'
+                    creation_timestamp: '2026-01-15T10:30:00Z'
+                    expiration_timestamp: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/BadRequestError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteCluster
-      summary: Red Hat Delete a cluster
+      summary: Red Hat Delete a Cluster
       description: >-
         Initiates the deletion of an OpenShift cluster. The cluster will be
         deprovisioned asynchronously and all associated resources in the cloud
         provider will be cleaned up.
       tags:
-        - Clusters
+      - Clusters
       parameters:
-        - $ref: '#/components/parameters/ClusterIdParam'
+      - $ref: '#/components/parameters/ClusterIdParam'
       responses:
         '204':
           description: Cluster deletion initiated successfully
@@ -170,20 +345,23 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools:
     get:
       operationId: listMachinePools
-      summary: Red Hat List machine pools
+      summary: Red Hat List Machine Pools
       description: >-
         Retrieves the list of machine pools configured for a specific cluster.
         Machine pools define groups of compute nodes with shared instance type
         and scaling configuration.
       tags:
-        - Machine Pools
+      - Machine Pools
       parameters:
-        - $ref: '#/components/parameters/ClusterIdParam'
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/SizeParam'
+      - $ref: '#/components/parameters/ClusterIdParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
       responses:
         '200':
           description: Successfully retrieved machine pools
@@ -191,27 +369,65 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MachinePoolList'
+              examples:
+                Listmachinepools200Example:
+                  summary: Default listMachinePools 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      instance_type: example_value
+                      replicas: 10
+                      autoscaling: {}
+                      availability_zones: {}
+                      labels: example_value
+                      taints: {}
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createMachinePool
-      summary: Red Hat Create a machine pool
+      summary: Red Hat Create a Machine Pool
       description: >-
         Creates a new machine pool for a cluster, defining a group of compute
         nodes with specified instance type, replica count, and optional
         autoscaling configuration.
       tags:
-        - Machine Pools
+      - Machine Pools
       parameters:
-        - $ref: '#/components/parameters/ClusterIdParam'
+      - $ref: '#/components/parameters/ClusterIdParam'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/MachinePool'
+            examples:
+              CreatemachinepoolRequestExample:
+                summary: Default createMachinePool request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  instance_type: example_value
+                  replicas: 10
+                  autoscaling:
+                    min_replicas: 10
+                    max_replicas: 10
+                  availability_zones:
+                  - example_value
+                  labels: example_value
+                  taints:
+                  - key: example_value
+                    value: example_value
+                    effect: NoSchedule
       responses:
         '201':
           description: Machine pool created successfully
@@ -219,24 +435,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MachinePool'
+              examples:
+                Createmachinepool201Example:
+                  summary: Default createMachinePool 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    instance_type: example_value
+                    replicas: 10
+                    autoscaling:
+                      min_replicas: 10
+                      max_replicas: 10
+                    availability_zones:
+                    - example_value
+                    labels: example_value
+                    taints:
+                    - key: example_value
+                      value: example_value
+                      effect: NoSchedule
         '400':
           $ref: '#/components/responses/BadRequestError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers:
     get:
       operationId: listIdentityProviders
-      summary: Red Hat List identity providers
+      summary: Red Hat List Identity Providers
       description: >-
         Retrieves the list of identity providers configured for a specific
         cluster. Identity providers define how users authenticate to the
         OpenShift cluster.
       tags:
-        - Identity Providers
+      - Identity Providers
       parameters:
-        - $ref: '#/components/parameters/ClusterIdParam'
+      - $ref: '#/components/parameters/ClusterIdParam'
       responses:
         '200':
           description: Successfully retrieved identity providers
@@ -244,27 +481,72 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdentityProviderList'
+              examples:
+                Listidentityproviders200Example:
+                  summary: Default listIdentityProviders 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      type: github
+                      mapping_method: add
+                      github: {}
+                      ldap: {}
+                      openid: {}
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createIdentityProvider
-      summary: Red Hat Create an identity provider
+      summary: Red Hat Create an Identity Provider
       description: >-
         Configures a new identity provider for a cluster, enabling user
         authentication through the specified provider type such as LDAP,
         GitHub, Google, or OpenID Connect.
       tags:
-        - Identity Providers
+      - Identity Providers
       parameters:
-        - $ref: '#/components/parameters/ClusterIdParam'
+      - $ref: '#/components/parameters/ClusterIdParam'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/IdentityProvider'
+            examples:
+              CreateidentityproviderRequestExample:
+                summary: Default createIdentityProvider request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  name: Example Title
+                  type: github
+                  mapping_method: add
+                  github:
+                    client_id: '500123'
+                    organizations:
+                    - example_value
+                  ldap:
+                    url: https://www.example.com
+                    bind_dn: example_value
+                    insecure: true
+                  openid:
+                    client_id: '500123'
+                    issuer: https://www.example.com
+                    claims:
+                      email:
+                      - {}
+                      name:
+                      - {}
       responses:
         '201':
           description: Identity provider created successfully
@@ -272,24 +554,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IdentityProvider'
+              examples:
+                Createidentityprovider201Example:
+                  summary: Default createIdentityProvider 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    type: github
+                    mapping_method: add
+                    github:
+                      client_id: '500123'
+                      organizations:
+                      - example_value
+                    ldap:
+                      url: https://www.example.com
+                      bind_dn: example_value
+                      insecure: true
+                    openid:
+                      client_id: '500123'
+                      issuer: https://www.example.com
+                      claims:
+                        email:
+                        - {}
+                        name:
+                        - {}
         '400':
           $ref: '#/components/responses/BadRequestError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/clusters_mgmt/v1/cloud_providers:
     get:
       operationId: listCloudProviders
-      summary: Red Hat List cloud providers
+      summary: Red Hat List Cloud Providers
       description: >-
         Retrieves the list of cloud providers available for deploying OpenShift
         clusters, including AWS, Google Cloud, and Microsoft Azure.
       tags:
-        - Cloud Providers
+      - Cloud Providers
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/SizeParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
       responses:
         '200':
           description: Successfully retrieved cloud providers
@@ -297,26 +607,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudProviderList'
+              examples:
+                Listcloudproviders200Example:
+                  summary: Default listCloudProviders 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      display_name: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/clusters_mgmt/v1/cloud_providers/{cloud_provider_id}/regions:
     get:
       operationId: listCloudProviderRegions
-      summary: Red Hat List cloud provider regions
+      summary: Red Hat List Cloud Provider Regions
       description: >-
         Retrieves the list of regions available for a specific cloud provider
         where OpenShift clusters can be deployed.
       tags:
-        - Cloud Providers
+      - Cloud Providers
       parameters:
-        - name: cloud_provider_id
-          in: path
-          required: true
-          description: The unique identifier of the cloud provider.
-          schema:
-            type: string
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/SizeParam'
+      - name: cloud_provider_id
+        in: path
+        required: true
+        description: The unique identifier of the cloud provider.
+        schema:
+          type: string
+        example: '500123'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
       responses:
         '200':
           description: Successfully retrieved cloud provider regions
@@ -324,24 +651,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudRegionList'
+              examples:
+                Listcloudproviderregions200Example:
+                  summary: Default listCloudProviderRegions 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      display_name: example_value
+                      enabled: true
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/clusters_mgmt/v1/versions:
     get:
       operationId: listVersions
-      summary: Red Hat List OpenShift versions
+      summary: Red Hat List Openshift Versions
       description: >-
         Retrieves the list of available OpenShift versions that can be used
         for provisioning new clusters or upgrading existing clusters.
       tags:
-        - Versions
+      - Versions
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/SizeParam'
-        - $ref: '#/components/parameters/SearchParam'
-        - $ref: '#/components/parameters/OrderParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/OrderParam'
       responses:
         '200':
           description: Successfully retrieved OpenShift versions
@@ -349,21 +693,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/VersionList'
+              examples:
+                Listversions200Example:
+                  summary: Default listVersions 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      raw_id: '500123'
+                      enabled: true
+                      default: true
+                      channel_group: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/clusters_mgmt/v1/addons:
     get:
       operationId: listAddons
-      summary: Red Hat List add-ons
+      summary: Red Hat List Add-ons
       description: >-
         Retrieves the list of available add-ons that can be installed on
         OpenShift clusters to extend functionality.
       tags:
-        - Add-Ons
+      - Add-Ons
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/SizeParam'
-        - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      - $ref: '#/components/parameters/SearchParam'
       responses:
         '200':
           description: Successfully retrieved add-ons
@@ -371,21 +733,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddonList'
+              examples:
+                Listaddons200Example:
+                  summary: Default listAddons 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      enabled: true
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/accounts_mgmt/v1/subscriptions:
     get:
       operationId: listSubscriptions
-      summary: Red Hat List subscriptions
+      summary: Red Hat List Subscriptions
       description: >-
         Retrieves the list of OpenShift subscriptions associated with the
         authenticated account, including cluster entitlements and usage data.
       tags:
-        - Subscriptions
+      - Subscriptions
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/SizeParam'
-        - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      - $ref: '#/components/parameters/SearchParam'
       responses:
         '200':
           description: Successfully retrieved subscriptions
@@ -393,8 +772,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubscriptionList'
+              examples:
+                Listsubscriptions200Example:
+                  summary: Default listSubscriptions 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      cluster_id: '500123'
+                      status: example_value
+                      plan:
+                        id: abc123
+                        type: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     bearerAuth:
@@ -476,27 +874,31 @@ components:
         id:
           type: string
           description: The unique identifier of the cluster.
+          example: abc123
         name:
           type: string
           description: The name of the cluster.
+          example: Example Title
         display_name:
           type: string
           description: The display name of the cluster.
+          example: example_value
         state:
           type: string
           description: The current state of the cluster.
           enum:
-            - error
-            - hibernating
-            - installing
-            - pending
-            - powering_down
-            - ready
-            - resuming
-            - uninstalling
-            - unknown
-            - validating
-            - waiting
+          - error
+          - hibernating
+          - installing
+          - pending
+          - powering_down
+          - ready
+          - resuming
+          - uninstalling
+          - unknown
+          - validating
+          - waiting
+          example: error
         cloud_provider:
           type: object
           description: The cloud provider where the cluster is deployed.
@@ -504,6 +906,7 @@ components:
             id:
               type: string
               description: The cloud provider identifier (e.g., aws, gcp, azure).
+          example: example_value
         region:
           type: object
           description: The cloud region where the cluster is deployed.
@@ -511,11 +914,13 @@ components:
             id:
               type: string
               description: The region identifier.
+          example: example_value
         multi_az:
           type: boolean
           description: >-
             Whether the cluster spans multiple availability zones for
             high availability.
+          example: true
         nodes:
           type: object
           description: Node configuration for the cluster.
@@ -530,6 +935,7 @@ components:
                 id:
                   type: string
                   description: The machine type identifier.
+          example: example_value
         api:
           type: object
           description: API server endpoint configuration.
@@ -544,8 +950,9 @@ components:
                 The listening mode for the API server, either external
                 or internal.
               enum:
-                - external
-                - internal
+              - external
+              - internal
+          example: example_value
         console:
           type: object
           description: Web console configuration.
@@ -554,6 +961,7 @@ components:
               type: string
               format: uri
               description: The URL of the OpenShift web console.
+          example: example_value
         version:
           type: object
           description: The OpenShift version of the cluster.
@@ -564,15 +972,18 @@ components:
             raw_id:
               type: string
               description: The raw OpenShift version string.
+          example: example_value
         creation_timestamp:
           type: string
           format: date-time
           description: The date and time when the cluster was created.
+          example: '2026-01-15T10:30:00Z'
         expiration_timestamp:
           type: string
           format: date-time
           description: >-
             The date and time when the cluster is set to expire, if applicable.
+          example: '2026-01-15T10:30:00Z'
     ClusterList:
       type: object
       description: A paginated list of clusters.
@@ -580,20 +991,25 @@ components:
         kind:
           type: string
           description: The resource kind.
+          example: example_value
         page:
           type: integer
           description: The current page number.
+          example: 10
         size:
           type: integer
           description: The number of items in this page.
+          example: 10
         total:
           type: integer
           description: The total number of items across all pages.
+          example: 10
         items:
           type: array
           description: The list of clusters.
           items:
             $ref: '#/components/schemas/Cluster'
+          example: []
     MachinePool:
       type: object
       description: >-
@@ -603,12 +1019,15 @@ components:
         id:
           type: string
           description: The unique identifier of the machine pool.
+          example: abc123
         instance_type:
           type: string
           description: The cloud provider instance type for nodes in this pool.
+          example: example_value
         replicas:
           type: integer
           description: The fixed number of nodes in this machine pool.
+          example: 10
         autoscaling:
           type: object
           description: Autoscaling configuration for the machine pool.
@@ -619,16 +1038,19 @@ components:
             max_replicas:
               type: integer
               description: The maximum number of nodes when autoscaling is enabled.
+          example: example_value
         availability_zones:
           type: array
           description: The availability zones where nodes will be placed.
           items:
             type: string
+          example: []
         labels:
           type: object
           description: Kubernetes labels applied to nodes in this pool.
           additionalProperties:
             type: string
+          example: example_value
         taints:
           type: array
           description: Kubernetes taints applied to nodes in this pool.
@@ -642,25 +1064,31 @@ components:
               effect:
                 type: string
                 enum:
-                  - NoSchedule
-                  - PreferNoSchedule
-                  - NoExecute
+                - NoSchedule
+                - PreferNoSchedule
+                - NoExecute
+          example: []
     MachinePoolList:
       type: object
       description: A paginated list of machine pools.
       properties:
         kind:
           type: string
+          example: example_value
         page:
           type: integer
+          example: 10
         size:
           type: integer
+          example: 10
         total:
           type: integer
+          example: 10
         items:
           type: array
           items:
             $ref: '#/components/schemas/MachinePool'
+          example: []
     IdentityProvider:
       type: object
       description: >-
@@ -669,27 +1097,31 @@ components:
         id:
           type: string
           description: The unique identifier of the identity provider.
+          example: abc123
         name:
           type: string
           description: The display name of the identity provider.
+          example: Example Title
         type:
           type: string
           description: The type of identity provider.
           enum:
-            - github
-            - gitlab
-            - google
-            - htpasswd
-            - ldap
-            - openid
+          - github
+          - gitlab
+          - google
+          - htpasswd
+          - ldap
+          - openid
+          example: github
         mapping_method:
           type: string
           description: The method used to map identities to users.
           enum:
-            - add
-            - claim
-            - generate
-            - lookup
+          - add
+          - claim
+          - generate
+          - lookup
+          example: add
         github:
           type: object
           description: GitHub-specific identity provider configuration.
@@ -700,6 +1132,7 @@ components:
               type: array
               items:
                 type: string
+          example: example_value
         ldap:
           type: object
           description: LDAP-specific identity provider configuration.
@@ -711,6 +1144,7 @@ components:
               type: string
             insecure:
               type: boolean
+          example: example_value
         openid:
           type: object
           description: OpenID Connect identity provider configuration.
@@ -731,34 +1165,44 @@ components:
                   type: array
                   items:
                     type: string
+          example: '500123'
     IdentityProviderList:
       type: object
       description: A paginated list of identity providers.
       properties:
         kind:
           type: string
+          example: example_value
         page:
           type: integer
+          example: 10
         size:
           type: integer
+          example: 10
         total:
           type: integer
+          example: 10
         items:
           type: array
           items:
             $ref: '#/components/schemas/IdentityProvider'
+          example: []
     CloudProviderList:
       type: object
       description: A paginated list of cloud providers.
       properties:
         kind:
           type: string
+          example: example_value
         page:
           type: integer
+          example: 10
         size:
           type: integer
+          example: 10
         total:
           type: integer
+          example: 10
         items:
           type: array
           items:
@@ -773,18 +1217,23 @@ components:
               display_name:
                 type: string
                 description: The human-readable display name.
+          example: []
     CloudRegionList:
       type: object
       description: A paginated list of cloud regions.
       properties:
         kind:
           type: string
+          example: example_value
         page:
           type: integer
+          example: 10
         size:
           type: integer
+          example: 10
         total:
           type: integer
+          example: 10
         items:
           type: array
           items:
@@ -802,18 +1251,23 @@ components:
               enabled:
                 type: boolean
                 description: Whether the region is enabled for cluster creation.
+          example: []
     VersionList:
       type: object
       description: A paginated list of available OpenShift versions.
       properties:
         kind:
           type: string
+          example: example_value
         page:
           type: integer
+          example: 10
         size:
           type: integer
+          example: 10
         total:
           type: integer
+          example: 10
         items:
           type: array
           items:
@@ -834,18 +1288,23 @@ components:
               channel_group:
                 type: string
                 description: The channel group for the version (stable, fast, candidate).
+          example: []
     AddonList:
       type: object
       description: A paginated list of available cluster add-ons.
       properties:
         kind:
           type: string
+          example: example_value
         page:
           type: integer
+          example: 10
         size:
           type: integer
+          example: 10
         total:
           type: integer
+          example: 10
         items:
           type: array
           items:
@@ -863,18 +1322,23 @@ components:
               enabled:
                 type: boolean
                 description: Whether the add-on is available for installation.
+          example: []
     SubscriptionList:
       type: object
       description: A paginated list of subscriptions.
       properties:
         kind:
           type: string
+          example: example_value
         page:
           type: integer
+          example: 10
         size:
           type: integer
+          example: 10
         total:
           type: integer
+          example: 10
         items:
           type: array
           items:
@@ -897,6 +1361,7 @@ components:
                     type: string
                   type:
                     type: string
+          example: []
     Error:
       type: object
       description: An error response from the API.
@@ -904,20 +1369,25 @@ components:
         kind:
           type: string
           description: The error kind identifier.
+          example: example_value
         id:
           type: string
           description: The numeric error identifier.
+          example: abc123
         href:
           type: string
           description: A link to the error documentation.
+          example: example_value
         code:
           type: string
           description: The error code.
+          example: example_value
         reason:
           type: string
           description: A human-readable description of the error.
+          example: example_value
       required:
-        - kind
-        - id
-        - code
-        - reason
+      - kind
+      - id
+      - code
+      - reason

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Topic",
+  "type": "object",
+  "description": "A curated Advisor topic that groups related rules and recommendations.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the topic."
+    },
+    "slug": {
+      "type": "string",
+      "description": "The URL-friendly slug for the topic."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the topic."
+    },
+    "tag": {
+      "type": "string",
+      "description": "The tag associated with the topic."
+    },
+    "featured": {
+      "type": "boolean",
+      "description": "Whether the topic is featured."
+    },
+    "impacted_systems_count": {
+      "type": "integer",
+      "description": "The number of systems impacted by rules in this topic."
+    }
+  }
+}

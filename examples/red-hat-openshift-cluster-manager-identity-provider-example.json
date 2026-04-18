@@ -1,0 +1,9 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "type": "example_value",
+  "mapping_method": "example_value",
+  "github": "example_value",
+  "ldap": "example_value",
+  "openid": "500123"
+}

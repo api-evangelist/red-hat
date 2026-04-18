@@ -1,0 +1,290 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Red Hat Insights API"
+  description: "Predictive analytics and remediation services for RHEL systems, providing rules, system health stats, and topic-based recommendations."
+  tags:
+    - Red Hat
+    - Insights
+    - Analytics
+    - Security
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      RED_HAT_BEARER_TOKEN: RED_HAT_BEARER_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: insights
+      baseUri: https://console.redhat.com/api
+      description: "Red Hat Insights API for predictive analytics and remediation."
+      authentication:
+        type: bearer
+        token: "{{RED_HAT_BEARER_TOKEN}}"
+      resources:
+        - name: systems
+          path: /insights/v1/system
+          description: "Manage registered RHEL systems."
+          operations:
+            - name: list-systems
+              method: GET
+              description: "List all registered RHEL systems."
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of results to return"
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pagination offset"
+                - name: display_name
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by display name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-system
+              method: GET
+              description: "Retrieve a specific system by ID."
+              inputParameters:
+                - name: system_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "System UUID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: rules
+          path: /insights/v1/rule
+          description: "Manage Advisor rules for issue detection."
+          operations:
+            - name: list-rules
+              method: GET
+              description: "List all Advisor rules."
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of results to return"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-rule
+              method: GET
+              description: "Retrieve a specific rule."
+              inputParameters:
+                - name: rule_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Rule ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: list-rule-systems
+              method: GET
+              description: "List systems affected by a specific rule."
+              inputParameters:
+                - name: rule_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Rule ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: topics
+          path: /insights/v1/topic
+          description: "Curated topics grouping related recommendations."
+          operations:
+            - name: list-topics
+              method: GET
+              description: "List all curated topics."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: stats
+          path: /insights/v1/stats
+          description: "Aggregate statistics about system health."
+          operations:
+            - name: get-system-stats
+              method: GET
+              description: "Get aggregate system statistics."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-rule-stats
+              method: GET
+              description: "Get aggregate rule statistics."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: insights-api
+      resources:
+        - path: /v1/systems
+          name: systems
+          description: "RHEL systems registered with Insights."
+          operations:
+            - method: GET
+              name: list-systems
+              description: "List registered systems."
+              call: "insights.list-systems"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/systems/{system_id}
+          name: system-detail
+          description: "Get a specific system."
+          operations:
+            - method: GET
+              name: get-system
+              description: "Get system by ID."
+              call: "insights.get-system"
+              with:
+                system_id: "rest.system_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/rules
+          name: rules
+          description: "Advisor rules."
+          operations:
+            - method: GET
+              name: list-rules
+              description: "List all rules."
+              call: "insights.list-rules"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/topics
+          name: topics
+          description: "Curated topics."
+          operations:
+            - method: GET
+              name: list-topics
+              description: "List topics."
+              call: "insights.list-topics"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: insights-mcp
+      transport: http
+      tools:
+        - name: list-systems
+          description: "List all RHEL systems registered with Insights."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "insights.list-systems"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-system
+          description: "Get details for a specific registered system."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "insights.get-system"
+          with:
+            system_id: "tools.system_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-rules
+          description: "List all Advisor detection rules."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "insights.list-rules"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-rule
+          description: "Get a specific Advisor rule."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "insights.get-rule"
+          with:
+            rule_id: "tools.rule_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-rule-systems
+          description: "List systems affected by a rule."
+          hints:
+            readOnly: true
+          call: "insights.list-rule-systems"
+          with:
+            rule_id: "tools.rule_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-topics
+          description: "List curated recommendation topics."
+          hints:
+            readOnly: true
+          call: "insights.list-topics"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-system-stats
+          description: "Get aggregate system health statistics."
+          hints:
+            readOnly: true
+          call: "insights.get-system-stats"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-rule-stats
+          description: "Get aggregate rule statistics."
+          hints:
+            readOnly: true
+          call: "insights.get-rule-stats"
+          outputParameters:
+            - type: object
+              mapping: "$."

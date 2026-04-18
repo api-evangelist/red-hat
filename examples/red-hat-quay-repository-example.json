@@ -1,0 +1,9 @@
+{
+  "namespace": "example_value",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "is_public": true,
+  "kind": "example_value",
+  "tag_count": 10,
+  "status_token": "example_value"
+}

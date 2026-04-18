@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Error",
+  "type": "object",
+  "description": "An error response from the API.",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "description": "The error kind identifier."
+    },
+    "id": {
+      "type": "string",
+      "description": "The numeric error identifier."
+    },
+    "href": {
+      "type": "string",
+      "description": "A link to the error documentation."
+    },
+    "code": {
+      "type": "string",
+      "description": "The error code."
+    },
+    "reason": {
+      "type": "string",
+      "description": "A human-readable description of the error."
+    }
+  }
+}

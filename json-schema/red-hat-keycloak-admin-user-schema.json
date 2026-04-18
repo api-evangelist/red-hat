@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User",
+  "type": "object",
+  "description": "A user account within a Keycloak realm.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the user."
+    },
+    "username": {
+      "type": "string",
+      "description": "The username."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "The user's first name."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "The user's last name."
+    },
+    "email": {
+      "type": "string",
+      "description": "The user's email address."
+    },
+    "emailVerified": {
+      "type": "boolean",
+      "description": "Whether the email has been verified."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the user account is enabled."
+    },
+    "createdTimestamp": {
+      "type": "integer",
+      "description": "The creation timestamp in milliseconds."
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Custom user attributes."
+    },
+    "credentials": {
+      "type": "array",
+      "description": "User credentials configuration."
+    },
+    "requiredActions": {
+      "type": "array",
+      "description": "Actions required on next login."
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User",
+  "type": "object",
+  "description": "A Quay user account.",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "The username."
+    },
+    "email": {
+      "type": "string",
+      "description": "The user's email address."
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Whether the user's email has been verified."
+    },
+    "organizations": {
+      "type": "array",
+      "description": "Organizations the user belongs to."
+    }
+  }
+}

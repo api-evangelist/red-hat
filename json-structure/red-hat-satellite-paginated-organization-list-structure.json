@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PaginatedOrganizationList",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "subtotal": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "per_page": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array"
+    }
+  }
+}

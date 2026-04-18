@@ -1,0 +1,40 @@
+name: red-hat API Vocabulary
+provider: red-hat
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 77
+schemas: 52
+tags:
+- Add-Ons
+- Clients
+- Cloud Providers
+- Clusters
+- Content Views
+- Credentials
+- Environments
+- Errata
+- Groups
+- Host Groups
+- Hosts
+- Identity Providers
+- Inventories
+- Job Templates
+- Jobs
+- Machine Pools
+- Manifests
+- Organizations
+- Projects
+- Realms
+- Repositories
+- Robot Accounts
+- Roles
+- Rules
+- Sessions
+- Stats
+- Subscriptions
+- Systems
+- Teams
+- Topics
+- Users
+- Versions
+- Workflow Job Templates

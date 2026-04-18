@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MachinePool",
+  "type": "object",
+  "description": "Represents a machine pool within a cluster, defining a group of compute nodes with shared configuration.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the machine pool."
+    },
+    "instance_type": {
+      "type": "string",
+      "description": "The cloud provider instance type for nodes in this pool."
+    },
+    "replicas": {
+      "type": "integer",
+      "description": "The fixed number of nodes in this machine pool."
+    },
+    "autoscaling": {
+      "type": "object",
+      "description": "Autoscaling configuration for the machine pool."
+    },
+    "availability_zones": {
+      "type": "array",
+      "description": "The availability zones where nodes will be placed."
+    },
+    "labels": {
+      "type": "object",
+      "description": "Kubernetes labels applied to nodes in this pool."
+    },
+    "taints": {
+      "type": "array",
+      "description": "Kubernetes taints applied to nodes in this pool."
+    }
+  }
+}

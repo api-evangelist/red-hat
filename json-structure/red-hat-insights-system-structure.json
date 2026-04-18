@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "System",
+  "type": "object",
+  "properties": {
+    "system_uuid": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "last_seen": {
+      "type": "string"
+    },
+    "stale_at": {
+      "type": "string"
+    },
+    "hits": {
+      "type": "integer"
+    },
+    "critical_hits": {
+      "type": "integer"
+    },
+    "important_hits": {
+      "type": "integer"
+    },
+    "moderate_hits": {
+      "type": "integer"
+    },
+    "low_hits": {
+      "type": "integer"
+    },
+    "rhel_version": {
+      "type": "string"
+    }
+  }
+}

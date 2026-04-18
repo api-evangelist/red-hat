@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Job",
+  "type": "object",
+  "description": "A job represents a single execution of a job template, tracking the playbook run status, timing, and output.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The unique identifier of the job."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the job."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current execution status of the job."
+    },
+    "failed": {
+      "type": "boolean",
+      "description": "Whether the job execution failed."
+    },
+    "started": {
+      "type": "string",
+      "description": "When the job execution started."
+    },
+    "finished": {
+      "type": "string",
+      "description": "When the job execution finished."
+    },
+    "elapsed": {
+      "type": "number",
+      "description": "The elapsed time in seconds for job execution."
+    },
+    "job_template": {
+      "type": "integer",
+      "description": "The ID of the job template that was executed."
+    },
+    "inventory": {
+      "type": "integer",
+      "description": "The ID of the inventory used for this job."
+    },
+    "project": {
+      "type": "integer",
+      "description": "The ID of the project used for this job."
+    },
+    "playbook": {
+      "type": "string",
+      "description": "The playbook that was executed."
+    },
+    "launch_type": {
+      "type": "string",
+      "description": "How the job was launched."
+    },
+    "created": {
+      "type": "string",
+      "description": "The date and time the job record was created."
+    }
+  }
+}

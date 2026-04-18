@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecurityScanResult",
+  "type": "object",
+  "description": "Security scan results for a container image manifest, including detected vulnerabilities.",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The scan status."
+    },
+    "data": {
+      "type": "object",
+      "description": "The scan result data."
+    }
+  }
+}

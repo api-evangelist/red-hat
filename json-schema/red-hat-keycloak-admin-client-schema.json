@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Client",
+  "type": "object",
+  "description": "A client application registered in a Keycloak realm for authentication.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the client."
+    },
+    "clientId": {
+      "type": "string",
+      "description": "The client identifier used in authentication flows."
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the client."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the client."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the client is enabled."
+    },
+    "protocol": {
+      "type": "string",
+      "description": "The authentication protocol."
+    },
+    "publicClient": {
+      "type": "boolean",
+      "description": "Whether the client is public (no client secret)."
+    },
+    "rootUrl": {
+      "type": "string",
+      "description": "The root URL of the client application."
+    },
+    "redirectUris": {
+      "type": "array",
+      "description": "Allowed redirect URIs after authentication."
+    },
+    "webOrigins": {
+      "type": "array",
+      "description": "Allowed web origins for CORS."
+    },
+    "serviceAccountsEnabled": {
+      "type": "boolean",
+      "description": "Whether service accounts are enabled."
+    },
+    "authorizationServicesEnabled": {
+      "type": "boolean",
+      "description": "Whether authorization services are enabled."
+    }
+  }
+}

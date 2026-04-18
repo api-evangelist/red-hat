@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RobotAccount",
+  "type": "object",
+  "description": "A robot account for automated registry access.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The fully qualified name of the robot account."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the robot account."
+    },
+    "token": {
+      "type": "string",
+      "description": "The authentication token for the robot account."
+    },
+    "created": {
+      "type": "string",
+      "description": "When the robot account was created."
+    }
+  }
+}

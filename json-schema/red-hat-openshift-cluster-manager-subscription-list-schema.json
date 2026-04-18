@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SubscriptionList",
+  "type": "object",
+  "description": "A paginated list of subscriptions.",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array"
+    }
+  }
+}

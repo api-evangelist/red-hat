@@ -5,7 +5,7 @@ type: Index
 image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
 url: https://raw.githubusercontent.com/api-evangelist/red-hat/refs/heads/main/apis.yml
 created: '2024-01-15'
-modified: '2026-03-16'
+modified: '2026-04-18'
 specificationVersion: '0.19'
 tags:
   - Cloud
@@ -33,9 +33,9 @@ apis:
         url: https://api.openshift.com/api/clusters_mgmt/v1/openapi
       - type: Authentication
         url: https://docs.openshift.com/container-platform/latest/authentication/index.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
-      - type: Change Log
+      - type: ChangeLog
         url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
     contact:
       - type: Support
@@ -57,7 +57,7 @@ apis:
         url: https://api.openshift.com/api/clusters_mgmt/v1/openapi
       - type: OpenAPI
         url: openapi/red-hat-openshift-cluster-manager-openapi.yml
-      - type: Getting Started
+      - type: GettingStarted
         url: https://access.redhat.com/articles/6114701
       - type: GitHubRepository
         url: https://github.com/openshift-online/ocm-api-model
@@ -76,11 +76,11 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.ansible.com/ansible-tower/latest/html/towerapi/index.html
-      - type: API Reference
+      - type: APIReference
         url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
       - type: Authentication
         url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
       - type: OpenAPI
         url: openapi/red-hat-ansible-automation-platform-openapi.yml
@@ -99,9 +99,9 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.redhat.com/en/documentation/red_hat_quay/
-      - type: API Reference
+      - type: APIReference
         url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
-      - type: Swagger
+      - type: OpenAPI
         url: https://quay.io/api/v1/discovery
       - type: OpenAPI
         url: openapi/red-hat-quay-openapi.yml
@@ -122,11 +122,11 @@ apis:
     properties:
       - type: Documentation
         url: https://console.redhat.com/docs/api
-      - type: API Console
+      - type: Console
         url: https://console.redhat.com/api/api-docs
       - type: Authentication
         url: https://access.redhat.com/articles/3626371
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
       - type: OpenAPI
         url: openapi/red-hat-insights-openapi.yml
@@ -145,7 +145,7 @@ apis:
     properties:
       - type: Documentation
         url: https://access.redhat.com/management/api
-      - type: API Reference
+      - type: APIReference
         url: https://access.redhat.com/management/api/rhsm
       - type: Authentication
         url: https://access.redhat.com/articles/3626371
@@ -201,7 +201,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
-      - type: API Reference
+      - type: APIReference
         url: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
       - type: GitHubRepository
         url: https://github.com/stackrox/stackrox
@@ -221,7 +221,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
       - type: OpenAPI
         url: openapi/red-hat-keycloak-admin-openapi.yml
@@ -243,7 +243,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.redhat.com/en/documentation/red_hat_3scale_api_management/2.15
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.redhat.com/products/3scale/getting-started
     contact:
       - type: Support
@@ -351,7 +351,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/3.0
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/2.5/html-single/apicurio_registry_user_guide/index
       - type: Website
         url: https://www.apicur.io/registry/
@@ -373,7 +373,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.redhat.com/en/documentation/red_hat_streams_for_apache_kafka/3.1
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.redhat.com/products/streams-for-apache-kafka/getting-started
       - type: AsyncAPI
         url: asyncapi/red-hat-kafka-bridge-asyncapi.yml
@@ -765,7 +765,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.redhat.com/api-catalog
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.4/html-single/getting_started_with_automation_hub/index
       - type: Authentication
         url: https://access.redhat.com/articles/3626371
@@ -933,7 +933,7 @@ apis:
       - type: Support
         url: https://access.redhat.com/support
 common:
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/red-hat-context.jsonld
   - type: JSONSchema
     url: json-schema/red-hat-openshift-cluster-schema.json
@@ -943,9 +943,15 @@ common:
     url: json-schema/red-hat-insights-advisory-schema.json
   - type: JSONSchema
     url: json-schema/red-hat-quay-repository-schema.json
+  - type: Features
+    url: https://www.redhat.com/en/technologies
+  - type: UseCases
+    url: https://www.redhat.com/en/solutions
+  - type: Integrations
+    url: https://catalog.redhat.com
   - type: Portal
     url: https://developers.redhat.com
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developers.redhat.com/get-started
   - type: Documentation
     url: https://docs.redhat.com/en/products
@@ -953,11 +959,11 @@ common:
     url: https://developers.redhat.com/blog
   - type: Support
     url: https://access.redhat.com/support
-  - type: Status
+  - type: StatusPage
     url: https://status.redhat.com
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.redhat.com/en/about/terms-use
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.redhat.com/en/about/privacy-policy
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
@@ -965,17 +971,21 @@ common:
     url: https://console.redhat.com
   - type: Website
     url: https://www.redhat.com
-  - type: Sign Up
+  - type: SignUp
     url: https://developers.redhat.com/register
   - type: Login
     url: https://sso.redhat.com
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/redhatofficial
+  - type: SDK
+    url: https://github.com/openshift/client-go
+  - type: CLI
+    url: https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html
   - type: GitHubRepository
     url: https://github.com/redhat-developer
   - type: Community
     url: https://access.redhat.com/discussions
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://developers.redhat.com/stack-overflow
   - type: YouTube
     url: https://developers.redhat.com/videos
@@ -983,13 +993,13 @@ common:
     url: https://access.redhat.com/security/vulnerabilities
   - type: API Catalog
     url: https://developers.redhat.com/api-catalog
-  - type: Knowledge Base
+  - type: KnowledgeCenter
     url: https://access.redhat.com/knowledgebase
   - type: Training
     url: https://www.redhat.com/en/services/training-and-certification
   - type: Events
     url: https://www.redhat.com/en/events
-  - type: Twitter
+  - type: X
     url: https://twitter.com/RedHat
   - type: LinkedIn
     url: https://www.linkedin.com/company/red-hat

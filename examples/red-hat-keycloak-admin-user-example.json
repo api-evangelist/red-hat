@@ -1,0 +1,13 @@
+{
+  "id": "abc123",
+  "username": "example_value",
+  "firstName": "example_value",
+  "lastName": "example_value",
+  "email": "user@example.com",
+  "emailVerified": "user@example.com",
+  "enabled": true,
+  "createdTimestamp": 10,
+  "attributes": "example_value",
+  "credentials": [],
+  "requiredActions": []
+}

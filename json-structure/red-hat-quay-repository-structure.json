@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Repository",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "is_public": {
+      "type": "boolean"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "tag_count": {
+      "type": "integer"
+    },
+    "status_token": {
+      "type": "string"
+    }
+  }
+}

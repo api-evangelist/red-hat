@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaginationMeta",
+  "type": "object",
+  "description": "Pagination metadata for list responses.",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "The total number of results."
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaginatedSystemList",
+  "type": "object",
+  "description": "A paginated list of systems.",
+  "properties": {
+    "data": {
+      "type": "array"
+    }
+  }
+}

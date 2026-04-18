@@ -1,0 +1,7 @@
+{
+  "name": "Example Title",
+  "email": "user@example.com",
+  "invoice_email": "user@example.com",
+  "is_admin": true,
+  "is_member": true
+}

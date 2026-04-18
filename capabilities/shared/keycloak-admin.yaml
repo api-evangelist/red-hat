@@ -1,0 +1,495 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Red Hat Build of Keycloak Admin REST API"
+  description: "Admin REST API for managing realms, users, clients, roles, groups, identity providers, and sessions in the Keycloak identity platform."
+  tags:
+    - Red Hat
+    - Keycloak
+    - Identity
+    - Authentication
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      KEYCLOAK_BEARER_TOKEN: KEYCLOAK_BEARER_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: keycloak-admin
+      baseUri: https://keycloak.example.com
+      description: "Keycloak Admin REST API for identity and access management."
+      authentication:
+        type: bearer
+        token: "{{KEYCLOAK_BEARER_TOKEN}}"
+      resources:
+        - name: realms
+          path: /admin/realms
+          description: "Manage Keycloak realms."
+          operations:
+            - name: list-realms
+              method: GET
+              description: "List all realms."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-realm
+              method: GET
+              description: "Get a specific realm."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: update-realm
+              method: PUT
+              description: "Update a realm configuration."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  displayName: "{{tools.displayName}}"
+
+        - name: users
+          path: /admin/realms/{realm}/users
+          description: "Manage users within a realm."
+          operations:
+            - name: list-users
+              method: GET
+              description: "List all users in a realm."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-user
+              method: POST
+              description: "Create a new user in a realm."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  username: "{{tools.username}}"
+                  email: "{{tools.email}}"
+                  enabled: "{{tools.enabled}}"
+
+            - name: get-user
+              method: GET
+              description: "Get a specific user."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+                - name: user_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "User ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: update-user
+              method: PUT
+              description: "Update a user."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+                - name: user_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "User ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  email: "{{tools.email}}"
+
+            - name: delete-user
+              method: DELETE
+              description: "Delete a user."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+                - name: user_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "User ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: clients
+          path: /admin/realms/{realm}/clients
+          description: "Manage client applications."
+          operations:
+            - name: list-clients
+              method: GET
+              description: "List all clients in a realm."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-client
+              method: POST
+              description: "Register a new client application."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  clientId: "{{tools.clientId}}"
+                  protocol: "{{tools.protocol}}"
+
+        - name: roles
+          path: /admin/realms/{realm}/roles
+          description: "Manage realm-level roles."
+          operations:
+            - name: list-realm-roles
+              method: GET
+              description: "List all realm roles."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-realm-role
+              method: POST
+              description: "Create a new realm role."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+
+        - name: groups
+          path: /admin/realms/{realm}/groups
+          description: "Manage user groups."
+          operations:
+            - name: list-groups
+              method: GET
+              description: "List all groups in a realm."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: identity-providers
+          path: /admin/realms/{realm}/identity-provider/instances
+          description: "Manage external identity providers."
+          operations:
+            - name: list-identity-providers
+              method: GET
+              description: "List all identity providers."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: sessions
+          path: /admin/realms/{realm}/sessions
+          description: "Manage active user sessions."
+          operations:
+            - name: delete-session
+              method: DELETE
+              description: "Delete a specific session."
+              inputParameters:
+                - name: realm
+                  in: path
+                  type: string
+                  required: true
+                  description: "Realm name"
+                - name: session_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Session ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8102
+      namespace: keycloak-admin-api
+      resources:
+        - path: /v1/realms
+          name: realms
+          description: "Manage Keycloak realms."
+          operations:
+            - method: GET
+              name: list-realms
+              description: "List all realms."
+              call: "keycloak-admin.list-realms"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/realms/{realm}/users
+          name: users
+          description: "Manage users."
+          operations:
+            - method: GET
+              name: list-users
+              description: "List users in a realm."
+              call: "keycloak-admin.list-users"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/realms/{realm}/clients
+          name: clients
+          description: "Manage clients."
+          operations:
+            - method: GET
+              name: list-clients
+              description: "List clients in a realm."
+              call: "keycloak-admin.list-clients"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9102
+      namespace: keycloak-admin-mcp
+      transport: http
+      tools:
+        - name: list-realms
+          description: "List all Keycloak realms."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-realms"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-realm
+          description: "Get a specific realm."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "keycloak-admin.get-realm"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-users
+          description: "List users in a realm."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-users"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-user
+          description: "Create a new user in a realm."
+          hints:
+            readOnly: false
+          call: "keycloak-admin.create-user"
+          with:
+            realm: "tools.realm"
+            username: "tools.username"
+            email: "tools.email"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-user
+          description: "Get a specific user."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "keycloak-admin.get-user"
+          with:
+            realm: "tools.realm"
+            user_id: "tools.user_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-user
+          description: "Delete a user from a realm."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "keycloak-admin.delete-user"
+          with:
+            realm: "tools.realm"
+            user_id: "tools.user_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-clients
+          description: "List clients in a realm."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-clients"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-client
+          description: "Register a new client application."
+          hints:
+            readOnly: false
+          call: "keycloak-admin.create-client"
+          with:
+            realm: "tools.realm"
+            clientId: "tools.clientId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-realm-roles
+          description: "List roles in a realm."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-realm-roles"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-groups
+          description: "List groups in a realm."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-groups"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-identity-providers
+          description: "List identity providers in a realm."
+          hints:
+            readOnly: true
+          call: "keycloak-admin.list-identity-providers"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-session
+          description: "Terminate a user session."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "keycloak-admin.delete-session"
+          with:
+            realm: "tools.realm"
+            session_id: "tools.session_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

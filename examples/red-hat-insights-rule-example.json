@@ -1,0 +1,14 @@
+{
+  "rule_id": "500123",
+  "description": "A sample description.",
+  "active": true,
+  "category": "example_value",
+  "impact": "example_value",
+  "likelihood": 10,
+  "total_risk": 10,
+  "risk_of_change": 10,
+  "has_playbook": true,
+  "publish_date": "example_value",
+  "systems_affected": 10,
+  "resolution_set": []
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ClusterList",
+  "type": "object",
+  "description": "A paginated list of clusters.",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "description": "The resource kind."
+    },
+    "page": {
+      "type": "integer",
+      "description": "The current page number."
+    },
+    "size": {
+      "type": "integer",
+      "description": "The number of items in this page."
+    },
+    "total": {
+      "type": "integer",
+      "description": "The total number of items across all pages."
+    },
+    "items": {
+      "type": "array",
+      "description": "The list of clusters."
+    }
+  }
+}

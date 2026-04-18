@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Realm",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "realm": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "registrationAllowed": {
+      "type": "boolean"
+    },
+    "loginWithEmailAllowed": {
+      "type": "boolean"
+    },
+    "duplicateEmailsAllowed": {
+      "type": "boolean"
+    },
+    "resetPasswordAllowed": {
+      "type": "boolean"
+    },
+    "sslRequired": {
+      "type": "string"
+    },
+    "accessTokenLifespan": {
+      "type": "integer"
+    },
+    "ssoSessionIdleTimeout": {
+      "type": "integer"
+    },
+    "ssoSessionMaxLifespan": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cluster",
+  "type": "object",
+  "description": "Represents an OpenShift cluster managed through the Cluster Manager.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the cluster."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the cluster."
+    },
+    "display_name": {
+      "type": "string",
+      "description": "The display name of the cluster."
+    },
+    "state": {
+      "type": "string",
+      "description": "The current state of the cluster."
+    },
+    "cloud_provider": {
+      "type": "object",
+      "description": "The cloud provider where the cluster is deployed."
+    },
+    "region": {
+      "type": "object",
+      "description": "The cloud region where the cluster is deployed."
+    },
+    "multi_az": {
+      "type": "boolean",
+      "description": "Whether the cluster spans multiple availability zones for high availability."
+    },
+    "nodes": {
+      "type": "object",
+      "description": "Node configuration for the cluster."
+    },
+    "api": {
+      "type": "object",
+      "description": "API server endpoint configuration."
+    },
+    "console": {
+      "type": "object",
+      "description": "Web console configuration."
+    },
+    "version": {
+      "type": "object",
+      "description": "The OpenShift version of the cluster."
+    },
+    "creation_timestamp": {
+      "type": "string",
+      "description": "The date and time when the cluster was created."
+    },
+    "expiration_timestamp": {
+      "type": "string",
+      "description": "The date and time when the cluster is set to expire, if applicable."
+    }
+  }
+}

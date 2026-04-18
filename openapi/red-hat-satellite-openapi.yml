@@ -16,54 +16,54 @@ externalDocs:
   description: Red Hat Satellite REST API Documentation
   url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
 servers:
-  - url: https://satellite.example.com
-    description: Red Hat Satellite Server
+- url: https://satellite.example.com
+  description: Red Hat Satellite Server
 tags:
-  - name: Content Views
-    description: >-
-      Operations for managing content views that define curated snapshots
-      of software repositories for controlled content delivery.
-  - name: Environments
-    description: >-
-      Operations for managing lifecycle environments that define the
-      promotion path for content from development to production.
-  - name: Errata
-    description: >-
-      Operations for listing and managing errata (security advisories, bug
-      fixes, and enhancements) applicable to registered hosts.
-  - name: Host Groups
-    description: >-
-      Operations for managing host groups that provide shared configuration
-      templates for provisioning and management.
-  - name: Hosts
-    description: >-
-      Operations for managing hosts registered with Satellite, including
-      provisioning, facts, and power management.
-  - name: Organizations
-    description: >-
-      Operations for managing organizations that provide multi-tenancy
-      isolation for content and infrastructure resources.
-  - name: Repositories
-    description: >-
-      Operations for managing software repositories synced from Red Hat CDN
-      or custom sources.
+- name: Content Views
+  description: >-
+    Operations for managing content views that define curated snapshots
+    of software repositories for controlled content delivery.
+- name: Environments
+  description: >-
+    Operations for managing lifecycle environments that define the
+    promotion path for content from development to production.
+- name: Errata
+  description: >-
+    Operations for listing and managing errata (security advisories, bug
+    fixes, and enhancements) applicable to registered hosts.
+- name: Host Groups
+  description: >-
+    Operations for managing host groups that provide shared configuration
+    templates for provisioning and management.
+- name: Hosts
+  description: >-
+    Operations for managing hosts registered with Satellite, including
+    provisioning, facts, and power management.
+- name: Organizations
+  description: >-
+    Operations for managing organizations that provide multi-tenancy
+    isolation for content and infrastructure resources.
+- name: Repositories
+  description: >-
+    Operations for managing software repositories synced from Red Hat CDN
+    or custom sources.
 security:
-  - basicAuth: []
+- basicAuth: []
 paths:
   /api/v2/hosts:
     get:
       operationId: listHosts
-      summary: Red Hat List hosts
+      summary: Red Hat List Hosts
       description: >-
         Retrieves a paginated list of all hosts managed by Satellite, including
         their reported status, operating system, and organization membership.
       tags:
-        - Hosts
+      - Hosts
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/PerPageParam'
-        - $ref: '#/components/parameters/SearchParam'
-        - $ref: '#/components/parameters/OrderParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/OrderParam'
       responses:
         '200':
           description: Successfully retrieved hosts
@@ -71,19 +71,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedHostList'
+              examples:
+                Listhosts200Example:
+                  summary: Default listHosts 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      ip: example_value
+                      mac: example_value
+                      operatingsystem_name: example_value
+                      environment_name: example_value
+                      hostgroup_name: example_value
+                      organization_name: example_value
+                      location_name: example_value
+                      global_status: 10
+                      content_facet_attributes: {}
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/hosts/{id}:
     get:
       operationId: getHost
-      summary: Red Hat Get a host
+      summary: Red Hat Get a Host
       description: >-
         Retrieves the details of a specific host, including its network
         interfaces, operating system, and content view assignment.
       tags:
-        - Hosts
+      - Hosts
       parameters:
-        - $ref: '#/components/parameters/IdParam'
+      - $ref: '#/components/parameters/IdParam'
       responses:
         '200':
           description: Successfully retrieved host details
@@ -91,19 +117,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Host'
+              examples:
+                Gethost200Example:
+                  summary: Default getHost 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    ip: example_value
+                    mac: example_value
+                    operatingsystem_name: example_value
+                    environment_name: example_value
+                    hostgroup_name: example_value
+                    organization_name: example_value
+                    location_name: example_value
+                    global_status: 10
+                    content_facet_attributes:
+                      content_view_name: example_value
+                      lifecycle_environment_name: example_value
+                      errata_counts:
+                        security: 10
+                        bugfix: 10
+                        enhancement: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateHost
-      summary: Red Hat Update a host
+      summary: Red Hat Update a Host
       description: >-
         Updates the configuration of an existing host managed by Satellite.
       tags:
-        - Hosts
+      - Hosts
       parameters:
-        - $ref: '#/components/parameters/IdParam'
+      - $ref: '#/components/parameters/IdParam'
       requestBody:
         required: true
         content:
@@ -113,6 +166,31 @@ paths:
               properties:
                 host:
                   $ref: '#/components/schemas/Host'
+            examples:
+              UpdatehostRequestExample:
+                summary: Default updateHost request
+                x-microcks-default: true
+                value:
+                  host:
+                    id: abc123
+                    name: Example Title
+                    ip: example_value
+                    mac: example_value
+                    operatingsystem_name: example_value
+                    environment_name: example_value
+                    hostgroup_name: example_value
+                    organization_name: example_value
+                    location_name: example_value
+                    global_status: 10
+                    content_facet_attributes:
+                      content_view_name: example_value
+                      lifecycle_environment_name: example_value
+                      errata_counts:
+                        security: 10
+                        bugfix: 10
+                        enhancement: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
       responses:
         '200':
           description: Host updated successfully
@@ -120,20 +198,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Host'
+              examples:
+                Updatehost200Example:
+                  summary: Default updateHost 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    ip: example_value
+                    mac: example_value
+                    operatingsystem_name: example_value
+                    environment_name: example_value
+                    hostgroup_name: example_value
+                    organization_name: example_value
+                    location_name: example_value
+                    global_status: 10
+                    content_facet_attributes:
+                      content_view_name: example_value
+                      lifecycle_environment_name: example_value
+                      errata_counts:
+                        security: 10
+                        bugfix: 10
+                        enhancement: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteHost
-      summary: Red Hat Delete a host
+      summary: Red Hat Delete a Host
       description: >-
         Deletes a host from Satellite. This removes the host record but does
         not affect the actual system.
       tags:
-        - Hosts
+      - Hosts
       parameters:
-        - $ref: '#/components/parameters/IdParam'
+      - $ref: '#/components/parameters/IdParam'
       responses:
         '200':
           description: Host deleted successfully
@@ -141,19 +246,22 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/hosts/{id}/errata:
     get:
       operationId: listHostErrata
-      summary: Red Hat List errata for a host
+      summary: Red Hat List Errata for a Host
       description: >-
         Retrieves the list of applicable errata for a specific host, including
         security advisories, bug fixes, and enhancements.
       tags:
-        - Errata
+      - Errata
       parameters:
-        - $ref: '#/components/parameters/IdParam'
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/PerPageParam'
+      - $ref: '#/components/parameters/IdParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
       responses:
         '200':
           description: Successfully retrieved host errata
@@ -161,32 +269,60 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedErrataList'
+              examples:
+                Listhosterrata200Example:
+                  summary: Default listHostErrata 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      errata_id: '500123'
+                      title: Example Title
+                      type: security
+                      severity: Critical
+                      issued: '2026-01-15'
+                      updated: '2026-01-15'
+                      hosts_available_count: 10
+                      hosts_applicable_count: 10
+                      cves:
+                      - {}
+                      packages:
+                      - {}
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /katello/api/v2/content_views:
     get:
       operationId: listContentViews
-      summary: Red Hat List content views
+      summary: Red Hat List Content Views
       description: >-
         Retrieves the list of content views that define curated snapshots of
         software repositories used for controlled content delivery to hosts.
       tags:
-        - Content Views
+      - Content Views
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/PerPageParam'
-        - name: organization_id
-          in: query
-          description: Filter by organization identifier.
-          schema:
-            type: integer
-        - name: name
-          in: query
-          description: Filter by content view name.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      - name: organization_id
+        in: query
+        description: Filter by organization identifier.
+        schema:
+          type: integer
+        example: '500123'
+      - name: name
+        in: query
+        description: Filter by content view name.
+        schema:
+          type: string
+        example: Example Title
       responses:
         '200':
           description: Successfully retrieved content views
@@ -194,16 +330,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedContentViewList'
+              examples:
+                Listcontentviews200Example:
+                  summary: Default listContentViews 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                      description: A sample description.
+                      composite: true
+                      organization_id: '500123'
+                      repository_ids:
+                      - {}
+                      last_published: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createContentView
-      summary: Red Hat Create a content view
+      summary: Red Hat Create a Content View
       description: >-
         Creates a new content view that can include selected repositories
         and filters for curating content delivery.
       tags:
-        - Content Views
+      - Content Views
       requestBody:
         required: true
         content:
@@ -211,8 +369,8 @@ paths:
             schema:
               type: object
               required:
-                - name
-                - organization_id
+              - name
+              - organization_id
               properties:
                 name:
                   type: string
@@ -228,30 +386,44 @@ paths:
                   description: IDs of repositories to include.
                   items:
                     type: integer
+            examples:
+              CreatecontentviewRequestExample:
+                summary: Default createContentView request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  description: A sample description.
+                  organization_id: '500123'
+                  repository_ids:
+                  - 10
       responses:
         '201':
           description: Content view created successfully
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /katello/api/v2/organizations/{organization_id}/environments:
     get:
       operationId: listEnvironments
-      summary: Red Hat List lifecycle environments
+      summary: Red Hat List Lifecycle Environments
       description: >-
         Retrieves the list of lifecycle environments for an organization,
         defining the promotion path for content views from development
         through to production.
       tags:
-        - Environments
+      - Environments
       parameters:
-        - name: organization_id
-          in: path
-          required: true
-          description: The organization identifier.
-          schema:
-            type: integer
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/PerPageParam'
+      - name: organization_id
+        in: path
+        required: true
+        description: The organization identifier.
+        schema:
+          type: integer
+        example: '500123'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
       responses:
         '200':
           description: Successfully retrieved lifecycle environments
@@ -259,36 +431,58 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedEnvironmentList'
+              examples:
+                Listenvironments200Example:
+                  summary: Default listEnvironments 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                      description: A sample description.
+                      prior:
+                        id: abc123
+                        name: Example Title
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /katello/api/v2/repositories:
     get:
       operationId: listRepositories
-      summary: Red Hat List repositories
+      summary: Red Hat List Repositories
       description: >-
         Retrieves the list of repositories managed by Satellite, including
         those synced from Red Hat CDN and custom repositories.
       tags:
-        - Repositories
+      - Repositories
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/PerPageParam'
-        - name: organization_id
-          in: query
-          description: Filter by organization.
-          schema:
-            type: integer
-        - name: content_type
-          in: query
-          description: Filter by content type.
-          schema:
-            type: string
-            enum:
-              - yum
-              - deb
-              - docker
-              - file
-              - ostree
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      - name: organization_id
+        in: query
+        description: Filter by organization.
+        schema:
+          type: integer
+        example: '500123'
+      - name: content_type
+        in: query
+        description: Filter by content type.
+        schema:
+          type: string
+          enum:
+          - yum
+          - deb
+          - docker
+          - file
+          - ostree
+        example: yum
       responses:
         '200':
           description: Successfully retrieved repositories
@@ -296,21 +490,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedRepositoryList'
+              examples:
+                Listrepositories200Example:
+                  summary: Default listRepositories 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                      content_type: example_value
+                      url: https://www.example.com
+                      last_sync:
+                        id: abc123
+                        state: example_value
+                        started_at: '2026-01-15T10:30:00Z'
+                        ended_at: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/organizations:
     get:
       operationId: listOrganizations
-      summary: Red Hat List organizations
+      summary: Red Hat List Organizations
       description: >-
         Retrieves the list of organizations in Satellite that provide
         multi-tenancy isolation.
       tags:
-        - Organizations
+      - Organizations
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/PerPageParam'
-        - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      - $ref: '#/components/parameters/SearchParam'
       responses:
         '200':
           description: Successfully retrieved organizations
@@ -318,21 +535,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedOrganizationList'
+              examples:
+                Listorganizations200Example:
+                  summary: Default listOrganizations 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                      description: A sample description.
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/hostgroups:
     get:
       operationId: listHostGroups
-      summary: Red Hat List host groups
+      summary: Red Hat List Host Groups
       description: >-
         Retrieves the list of host groups that provide shared configuration
         templates for host provisioning and management.
       tags:
-        - Host Groups
+      - Host Groups
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/PerPageParam'
-        - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      - $ref: '#/components/parameters/SearchParam'
       responses:
         '200':
           description: Successfully retrieved host groups
@@ -340,39 +574,60 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedHostGroupList'
+              examples:
+                Listhostgroups200Example:
+                  summary: Default listHostGroups 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      title: Example Title
+                      description: A sample description.
+                      environment_name: example_value
+                      operatingsystem_name: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /katello/api/v2/errata:
     get:
       operationId: listErrata
-      summary: Red Hat List errata
+      summary: Red Hat List Errata
       description: >-
         Retrieves a paginated list of available errata including security
         advisories, bug fixes, and enhancement updates.
       tags:
-        - Errata
+      - Errata
       parameters:
-        - $ref: '#/components/parameters/PageParam'
-        - $ref: '#/components/parameters/PerPageParam'
-        - name: type
-          in: query
-          description: Filter errata by type.
-          schema:
-            type: string
-            enum:
-              - security
-              - bugfix
-              - enhancement
-        - name: severity
-          in: query
-          description: Filter security errata by severity.
-          schema:
-            type: string
-            enum:
-              - Critical
-              - Important
-              - Moderate
-              - Low
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      - name: type
+        in: query
+        description: Filter errata by type.
+        schema:
+          type: string
+          enum:
+          - security
+          - bugfix
+          - enhancement
+        example: security
+      - name: severity
+        in: query
+        description: Filter security errata by severity.
+        schema:
+          type: string
+          enum:
+          - Critical
+          - Important
+          - Moderate
+          - Low
+        example: Critical
       responses:
         '200':
           description: Successfully retrieved errata
@@ -380,8 +635,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedErrataList'
+              examples:
+                Listerrata200Example:
+                  summary: Default listErrata 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      errata_id: '500123'
+                      title: Example Title
+                      type: security
+                      severity: Critical
+                      issued: '2026-01-15'
+                      updated: '2026-01-15'
+                      hosts_available_count: 10
+                      hosts_applicable_count: 10
+                      cves:
+                      - {}
+                      packages:
+                      - {}
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     basicAuth:
@@ -440,33 +721,43 @@ components:
         id:
           type: integer
           description: The unique identifier of the host.
+          example: abc123
         name:
           type: string
           description: The fully qualified domain name of the host.
+          example: Example Title
         ip:
           type: string
           description: The IP address of the host.
+          example: example_value
         mac:
           type: string
           description: The MAC address of the primary interface.
+          example: example_value
         operatingsystem_name:
           type: string
           description: The operating system name and version.
+          example: example_value
         environment_name:
           type: string
           description: The Puppet environment name.
+          example: example_value
         hostgroup_name:
           type: string
           description: The host group name.
+          example: example_value
         organization_name:
           type: string
           description: The organization name.
+          example: example_value
         location_name:
           type: string
           description: The location name.
+          example: example_value
         global_status:
           type: integer
           description: The global host status (0=OK, 1=Warning, 2=Error).
+          example: 10
         content_facet_attributes:
           type: object
           description: Content-related attributes of the host.
@@ -484,38 +775,50 @@ components:
                   type: integer
                 enhancement:
                   type: integer
+          example: example_value
         created_at:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         updated_at:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
     PaginatedHostList:
       type: object
       properties:
         total:
           type: integer
+          example: 10
         subtotal:
           type: integer
+          example: 10
         page:
           type: integer
+          example: 10
         per_page:
           type: integer
+          example: 10
         results:
           type: array
           items:
             $ref: '#/components/schemas/Host'
+          example: []
     PaginatedContentViewList:
       type: object
       properties:
         total:
           type: integer
+          example: 10
         subtotal:
           type: integer
+          example: 10
         page:
           type: integer
+          example: 10
         per_page:
           type: integer
+          example: 10
         results:
           type: array
           items:
@@ -540,17 +843,22 @@ components:
               last_published:
                 type: string
                 format: date-time
+          example: []
     PaginatedEnvironmentList:
       type: object
       properties:
         total:
           type: integer
+          example: 10
         subtotal:
           type: integer
+          example: 10
         page:
           type: integer
+          example: 10
         per_page:
           type: integer
+          example: 10
         results:
           type: array
           items:
@@ -571,17 +879,22 @@ components:
                     type: integer
                   name:
                     type: string
+          example: []
     PaginatedRepositoryList:
       type: object
       properties:
         total:
           type: integer
+          example: 10
         subtotal:
           type: integer
+          example: 10
         page:
           type: integer
+          example: 10
         per_page:
           type: integer
+          example: 10
         results:
           type: array
           items:
@@ -611,17 +924,22 @@ components:
                   ended_at:
                     type: string
                     format: date-time
+          example: []
     PaginatedOrganizationList:
       type: object
       properties:
         total:
           type: integer
+          example: 10
         subtotal:
           type: integer
+          example: 10
         page:
           type: integer
+          example: 10
         per_page:
           type: integer
+          example: 10
         results:
           type: array
           items:
@@ -635,17 +953,22 @@ components:
                 type: string
               description:
                 type: string
+          example: []
     PaginatedHostGroupList:
       type: object
       properties:
         total:
           type: integer
+          example: 10
         subtotal:
           type: integer
+          example: 10
         page:
           type: integer
+          example: 10
         per_page:
           type: integer
+          example: 10
         results:
           type: array
           items:
@@ -663,17 +986,22 @@ components:
                 type: string
               operatingsystem_name:
                 type: string
+          example: []
     PaginatedErrataList:
       type: object
       properties:
         total:
           type: integer
+          example: 10
         subtotal:
           type: integer
+          example: 10
         page:
           type: integer
+          example: 10
         per_page:
           type: integer
+          example: 10
         results:
           type: array
           items:
@@ -689,17 +1017,17 @@ components:
               type:
                 type: string
                 enum:
-                  - security
-                  - bugfix
-                  - enhancement
+                - security
+                - bugfix
+                - enhancement
               severity:
                 type: string
                 enum:
-                  - Critical
-                  - Important
-                  - Moderate
-                  - Low
-                  - N/A
+                - Critical
+                - Important
+                - Moderate
+                - Low
+                - N/A
               issued:
                 type: string
                 format: date
@@ -718,3 +1046,4 @@ components:
                 type: array
                 items:
                   type: string
+          example: []

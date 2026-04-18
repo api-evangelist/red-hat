@@ -17,49 +17,49 @@ externalDocs:
   description: Red Hat Build of Keycloak Admin REST API Documentation
   url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
 servers:
-  - url: https://keycloak.example.com
-    description: Keycloak Server
+- url: https://keycloak.example.com
+  description: Keycloak Server
 tags:
-  - name: Clients
-    description: >-
-      Operations for managing client applications registered in a realm
-      for authentication and authorization.
-  - name: Groups
-    description: >-
-      Operations for managing user groups that enable bulk role and
-      attribute assignment.
-  - name: Identity Providers
-    description: >-
-      Operations for managing external identity providers for federated
-      authentication such as SAML and OIDC.
-  - name: Realms
-    description: >-
-      Operations for managing Keycloak realms that serve as tenants for
-      isolating identity configurations.
-  - name: Roles
-    description: >-
-      Operations for managing realm-level and client-level roles for
-      authorization.
-  - name: Sessions
-    description: >-
-      Operations for viewing and managing active user sessions across
-      a realm.
-  - name: Users
-    description: >-
-      Operations for managing user accounts, credentials, and profile
-      attributes within a realm.
+- name: Clients
+  description: >-
+    Operations for managing client applications registered in a realm
+    for authentication and authorization.
+- name: Groups
+  description: >-
+    Operations for managing user groups that enable bulk role and
+    attribute assignment.
+- name: Identity Providers
+  description: >-
+    Operations for managing external identity providers for federated
+    authentication such as SAML and OIDC.
+- name: Realms
+  description: >-
+    Operations for managing Keycloak realms that serve as tenants for
+    isolating identity configurations.
+- name: Roles
+  description: >-
+    Operations for managing realm-level and client-level roles for
+    authorization.
+- name: Sessions
+  description: >-
+    Operations for viewing and managing active user sessions across
+    a realm.
+- name: Users
+  description: >-
+    Operations for managing user accounts, credentials, and profile
+    attributes within a realm.
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /admin/realms:
     get:
       operationId: listRealms
-      summary: Red Hat List realms
+      summary: Red Hat List Realms
       description: >-
         Retrieves the list of all realms accessible to the authenticated
         admin user.
       tags:
-        - Realms
+      - Realms
       responses:
         '200':
           description: Successfully retrieved realms
@@ -69,19 +69,39 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Realm'
+              examples:
+                Listrealms200Example:
+                  summary: Default listRealms 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    realm: example_value
+                    displayName: example_value
+                    enabled: true
+                    registrationAllowed: true
+                    loginWithEmailAllowed: user@example.com
+                    duplicateEmailsAllowed: user@example.com
+                    resetPasswordAllowed: true
+                    sslRequired: all
+                    accessTokenLifespan: 10
+                    ssoSessionIdleTimeout: 10
+                    ssoSessionMaxLifespan: 10
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/realms/{realm}:
     get:
       operationId: getRealm
-      summary: Red Hat Get a realm
+      summary: Red Hat Get a Realm
       description: >-
         Retrieves the configuration of a specific realm, including its
         login settings, token policies, and enabled features.
       tags:
-        - Realms
+      - Realms
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/RealmParam'
       responses:
         '200':
           description: Successfully retrieved realm
@@ -89,26 +109,63 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Realm'
+              examples:
+                Getrealm200Example:
+                  summary: Default getRealm 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    realm: example_value
+                    displayName: example_value
+                    enabled: true
+                    registrationAllowed: true
+                    loginWithEmailAllowed: user@example.com
+                    duplicateEmailsAllowed: user@example.com
+                    resetPasswordAllowed: true
+                    sslRequired: all
+                    accessTokenLifespan: 10
+                    ssoSessionIdleTimeout: 10
+                    ssoSessionMaxLifespan: 10
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateRealm
-      summary: Red Hat Update a realm
+      summary: Red Hat Update a Realm
       description: >-
         Updates the configuration of a specific realm. All writable fields
         can be modified.
       tags:
-        - Realms
+      - Realms
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/RealmParam'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Realm'
+            examples:
+              UpdaterealmRequestExample:
+                summary: Default updateRealm request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  realm: example_value
+                  displayName: example_value
+                  enabled: true
+                  registrationAllowed: true
+                  loginWithEmailAllowed: user@example.com
+                  duplicateEmailsAllowed: user@example.com
+                  resetPasswordAllowed: true
+                  sslRequired: all
+                  accessTokenLifespan: 10
+                  ssoSessionIdleTimeout: 10
+                  ssoSessionMaxLifespan: 10
       responses:
         '204':
           description: Realm updated successfully
@@ -118,53 +175,63 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/realms/{realm}/users:
     get:
       operationId: listUsers
-      summary: Red Hat List users
+      summary: Red Hat List Users
       description: >-
         Retrieves a paginated list of users in the specified realm. Results
         can be filtered by username, email, first name, or last name.
       tags:
-        - Users
+      - Users
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
-        - name: username
-          in: query
-          description: Filter by username.
-          schema:
-            type: string
-        - name: email
-          in: query
-          description: Filter by email address.
-          schema:
-            type: string
-        - name: firstName
-          in: query
-          description: Filter by first name.
-          schema:
-            type: string
-        - name: lastName
-          in: query
-          description: Filter by last name.
-          schema:
-            type: string
-        - name: enabled
-          in: query
-          description: Filter by enabled status.
-          schema:
-            type: boolean
-        - name: first
-          in: query
-          description: The index of the first result to return (pagination offset).
-          schema:
-            type: integer
-        - name: max
-          in: query
-          description: The maximum number of results to return.
-          schema:
-            type: integer
-            default: 100
+      - $ref: '#/components/parameters/RealmParam'
+      - name: username
+        in: query
+        description: Filter by username.
+        schema:
+          type: string
+        example: example_value
+      - name: email
+        in: query
+        description: Filter by email address.
+        schema:
+          type: string
+        example: user@example.com
+      - name: firstName
+        in: query
+        description: Filter by first name.
+        schema:
+          type: string
+        example: example_value
+      - name: lastName
+        in: query
+        description: Filter by last name.
+        schema:
+          type: string
+        example: example_value
+      - name: enabled
+        in: query
+        description: Filter by enabled status.
+        schema:
+          type: boolean
+        example: true
+      - name: first
+        in: query
+        description: The index of the first result to return (pagination offset).
+        schema:
+          type: integer
+        example: 10
+      - name: max
+        in: query
+        description: The maximum number of results to return.
+        schema:
+          type: integer
+          default: 100
+        example: 10
       responses:
         '200':
           description: Successfully retrieved users
@@ -174,24 +241,67 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
+              examples:
+                Listusers200Example:
+                  summary: Default listUsers 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    username: example_value
+                    firstName: example_value
+                    lastName: example_value
+                    email: user@example.com
+                    emailVerified: user@example.com
+                    enabled: true
+                    createdTimestamp: 10
+                    attributes: example_value
+                    credentials:
+                    - type: example_value
+                      value: example_value
+                      temporary: true
+                    requiredActions:
+                    - example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createUser
-      summary: Red Hat Create a user
+      summary: Red Hat Create a User
       description: >-
         Creates a new user in the specified realm with the provided profile
         attributes and optional initial credentials.
       tags:
-        - Users
+      - Users
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/RealmParam'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
+            examples:
+              CreateuserRequestExample:
+                summary: Default createUser request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  username: example_value
+                  firstName: example_value
+                  lastName: example_value
+                  email: user@example.com
+                  emailVerified: user@example.com
+                  enabled: true
+                  createdTimestamp: 10
+                  attributes: example_value
+                  credentials:
+                  - type: example_value
+                    value: example_value
+                    temporary: true
+                  requiredActions:
+                  - example_value
       responses:
         '201':
           description: User created successfully
@@ -201,17 +311,20 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '409':
           description: A user with the same username or email already exists.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/realms/{realm}/users/{user_id}:
     get:
       operationId: getUser
-      summary: Red Hat Get a user
+      summary: Red Hat Get a User
       description: >-
         Retrieves the details of a specific user in the realm.
       tags:
-        - Users
+      - Users
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
-        - $ref: '#/components/parameters/UserIdParam'
+      - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/UserIdParam'
       responses:
         '200':
           description: Successfully retrieved user
@@ -219,26 +332,69 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+              examples:
+                Getuser200Example:
+                  summary: Default getUser 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    username: example_value
+                    firstName: example_value
+                    lastName: example_value
+                    email: user@example.com
+                    emailVerified: user@example.com
+                    enabled: true
+                    createdTimestamp: 10
+                    attributes: example_value
+                    credentials:
+                    - type: example_value
+                      value: example_value
+                      temporary: true
+                    requiredActions:
+                    - example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateUser
-      summary: Red Hat Update a user
+      summary: Red Hat Update a User
       description: >-
         Updates the profile attributes of an existing user in the realm.
       tags:
-        - Users
+      - Users
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
-        - $ref: '#/components/parameters/UserIdParam'
+      - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/UserIdParam'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
+            examples:
+              UpdateuserRequestExample:
+                summary: Default updateUser request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  username: example_value
+                  firstName: example_value
+                  lastName: example_value
+                  email: user@example.com
+                  emailVerified: user@example.com
+                  enabled: true
+                  createdTimestamp: 10
+                  attributes: example_value
+                  credentials:
+                  - type: example_value
+                    value: example_value
+                    temporary: true
+                  requiredActions:
+                  - example_value
       responses:
         '204':
           description: User updated successfully
@@ -248,17 +404,20 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteUser
-      summary: Red Hat Delete a user
+      summary: Red Hat Delete a User
       description: >-
         Deletes a user from the realm along with all associated sessions,
         consents, and federated identity links.
       tags:
-        - Users
+      - Users
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
-        - $ref: '#/components/parameters/UserIdParam'
+      - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/UserIdParam'
       responses:
         '204':
           description: User deleted successfully
@@ -266,31 +425,37 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/realms/{realm}/clients:
     get:
       operationId: listClients
-      summary: Red Hat List clients
+      summary: Red Hat List Clients
       description: >-
         Retrieves the list of client applications registered in the realm.
       tags:
-        - Clients
+      - Clients
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
-        - name: clientId
-          in: query
-          description: Filter by the client identifier.
-          schema:
-            type: string
-        - name: first
-          in: query
-          description: Pagination offset.
-          schema:
-            type: integer
-        - name: max
-          in: query
-          description: Maximum number of results.
-          schema:
-            type: integer
+      - $ref: '#/components/parameters/RealmParam'
+      - name: clientId
+        in: query
+        description: Filter by the client identifier.
+        schema:
+          type: string
+        example: '500123'
+      - name: first
+        in: query
+        description: Pagination offset.
+        schema:
+          type: integer
+        example: 10
+      - name: max
+        in: query
+        description: Maximum number of results.
+        schema:
+          type: integer
+        example: 10
       responses:
         '200':
           description: Successfully retrieved clients
@@ -300,24 +465,65 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Client'
+              examples:
+                Listclients200Example:
+                  summary: Default listClients 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    clientId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    enabled: true
+                    protocol: openid-connect
+                    publicClient: true
+                    rootUrl: https://www.example.com
+                    redirectUris:
+                    - example_value
+                    webOrigins:
+                    - example_value
+                    serviceAccountsEnabled: true
+                    authorizationServicesEnabled: true
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createClient
-      summary: Red Hat Create a client
+      summary: Red Hat Create a Client
       description: >-
         Registers a new client application in the realm with the specified
         protocol and configuration settings.
       tags:
-        - Clients
+      - Clients
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/RealmParam'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Client'
+            examples:
+              CreateclientRequestExample:
+                summary: Default createClient request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  clientId: '500123'
+                  name: Example Title
+                  description: A sample description.
+                  enabled: true
+                  protocol: openid-connect
+                  publicClient: true
+                  rootUrl: https://www.example.com
+                  redirectUris:
+                  - example_value
+                  webOrigins:
+                  - example_value
+                  serviceAccountsEnabled: true
+                  authorizationServicesEnabled: true
       responses:
         '201':
           description: Client created successfully
@@ -325,27 +531,32 @@ paths:
           $ref: '#/components/responses/BadRequestError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/realms/{realm}/roles:
     get:
       operationId: listRealmRoles
-      summary: Red Hat List realm roles
+      summary: Red Hat List Realm Roles
       description: >-
         Retrieves the list of realm-level roles that can be assigned to
         users and groups.
       tags:
-        - Roles
+      - Roles
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
-        - name: first
-          in: query
-          description: Pagination offset.
-          schema:
-            type: integer
-        - name: max
-          in: query
-          description: Maximum number of results.
-          schema:
-            type: integer
+      - $ref: '#/components/parameters/RealmParam'
+      - name: first
+        in: query
+        description: Pagination offset.
+        schema:
+          type: integer
+        example: 10
+      - name: max
+        in: query
+        description: Maximum number of results.
+        schema:
+          type: integer
+        example: 10
       responses:
         '200':
           description: Successfully retrieved roles
@@ -355,23 +566,46 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Role'
+              examples:
+                Listrealmroles200Example:
+                  summary: Default listRealmRoles 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    name: Example Title
+                    description: A sample description.
+                    composite: true
+                    clientRole: true
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createRealmRole
-      summary: Red Hat Create a realm role
+      summary: Red Hat Create a Realm Role
       description: >-
         Creates a new realm-level role.
       tags:
-        - Roles
+      - Roles
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/RealmParam'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Role'
+            examples:
+              CreaterealmroleRequestExample:
+                summary: Default createRealmRole request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  name: Example Title
+                  description: A sample description.
+                  composite: true
+                  clientRole: true
       responses:
         '201':
           description: Role created successfully
@@ -379,32 +613,38 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '409':
           description: A role with the same name already exists.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/realms/{realm}/groups:
     get:
       operationId: listGroups
-      summary: Red Hat List groups
+      summary: Red Hat List Groups
       description: >-
         Retrieves the list of groups in the realm, optionally filtered by
         name. Groups enable bulk role and attribute assignment to users.
       tags:
-        - Groups
+      - Groups
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
-        - name: search
-          in: query
-          description: Filter groups by name.
-          schema:
-            type: string
-        - name: first
-          in: query
-          description: Pagination offset.
-          schema:
-            type: integer
-        - name: max
-          in: query
-          description: Maximum number of results.
-          schema:
-            type: integer
+      - $ref: '#/components/parameters/RealmParam'
+      - name: search
+        in: query
+        description: Filter groups by name.
+        schema:
+          type: string
+        example: example_value
+      - name: first
+        in: query
+        description: Pagination offset.
+        schema:
+          type: integer
+        example: 10
+      - name: max
+        in: query
+        description: Maximum number of results.
+        schema:
+          type: integer
+        example: 10
       responses:
         '200':
           description: Successfully retrieved groups
@@ -414,19 +654,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Group'
+              examples:
+                Listgroups200Example:
+                  summary: Default listGroups 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    name: Example Title
+                    path: example_value
+                    subGroups:
+                    - {}
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/realms/{realm}/identity-provider/instances:
     get:
       operationId: listIdentityProviders
-      summary: Red Hat List identity providers
+      summary: Red Hat List Identity Providers
       description: >-
         Retrieves the list of external identity providers configured for
         the realm, including SAML, OIDC, and social providers.
       tags:
-        - Identity Providers
+      - Identity Providers
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/RealmParam'
       responses:
         '200':
           description: Successfully retrieved identity providers
@@ -436,25 +689,39 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/IdentityProviderRepresentation'
+              examples:
+                Listidentityproviders200Example:
+                  summary: Default listIdentityProviders 200 response
+                  x-microcks-default: true
+                  value:
+                  - alias: example_value
+                    displayName: example_value
+                    providerId: saml
+                    enabled: true
+                    config: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /admin/realms/{realm}/sessions/{session_id}:
     delete:
       operationId: deleteSession
-      summary: Red Hat Remove a session
+      summary: Red Hat Remove a Session
       description: >-
         Terminates a specific user session, logging the user out of the
         associated client application.
       tags:
-        - Sessions
+      - Sessions
       parameters:
-        - $ref: '#/components/parameters/RealmParam'
-        - name: session_id
-          in: path
-          required: true
-          description: The unique identifier of the session.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/RealmParam'
+      - name: session_id
+        in: path
+        required: true
+        description: The unique identifier of the session.
+        schema:
+          type: string
+        example: '500123'
       responses:
         '204':
           description: Session terminated successfully
@@ -462,6 +729,9 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     bearerAuth:
@@ -503,43 +773,55 @@ components:
         id:
           type: string
           description: The unique identifier of the realm.
+          example: abc123
         realm:
           type: string
           description: The name of the realm.
+          example: example_value
         displayName:
           type: string
           description: The display name of the realm.
+          example: example_value
         enabled:
           type: boolean
           description: Whether the realm is enabled.
+          example: true
         registrationAllowed:
           type: boolean
           description: Whether user self-registration is allowed.
+          example: true
         loginWithEmailAllowed:
           type: boolean
           description: Whether users can log in with their email address.
+          example: user@example.com
         duplicateEmailsAllowed:
           type: boolean
           description: Whether duplicate emails are allowed.
+          example: user@example.com
         resetPasswordAllowed:
           type: boolean
           description: Whether password reset is enabled.
+          example: true
         sslRequired:
           type: string
           description: The SSL requirement policy.
           enum:
-            - all
-            - external
-            - none
+          - all
+          - external
+          - none
+          example: all
         accessTokenLifespan:
           type: integer
           description: The access token lifespan in seconds.
+          example: 10
         ssoSessionIdleTimeout:
           type: integer
           description: The SSO session idle timeout in seconds.
+          example: 10
         ssoSessionMaxLifespan:
           type: integer
           description: The maximum SSO session lifespan in seconds.
+          example: 10
     User:
       type: object
       description: A user account within a Keycloak realm.
@@ -548,29 +830,37 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the user.
+          example: abc123
         username:
           type: string
           description: The username.
+          example: example_value
         firstName:
           type: string
           description: The user's first name.
+          example: example_value
         lastName:
           type: string
           description: The user's last name.
+          example: example_value
         email:
           type: string
           format: email
           description: The user's email address.
+          example: user@example.com
         emailVerified:
           type: boolean
           description: Whether the email has been verified.
+          example: user@example.com
         enabled:
           type: boolean
           description: Whether the user account is enabled.
+          example: true
         createdTimestamp:
           type: integer
           format: int64
           description: The creation timestamp in milliseconds.
+          example: 10
         attributes:
           type: object
           description: Custom user attributes.
@@ -578,6 +868,7 @@ components:
             type: array
             items:
               type: string
+          example: example_value
         credentials:
           type: array
           description: User credentials configuration.
@@ -593,11 +884,13 @@ components:
               temporary:
                 type: boolean
                 description: Whether the credential is temporary.
+          example: []
         requiredActions:
           type: array
           description: Actions required on next login.
           items:
             type: string
+          example: []
     Client:
       type: object
       description: >-
@@ -607,47 +900,59 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the client.
+          example: abc123
         clientId:
           type: string
           description: The client identifier used in authentication flows.
+          example: '500123'
         name:
           type: string
           description: The display name of the client.
+          example: Example Title
         description:
           type: string
           description: A description of the client.
+          example: A sample description.
         enabled:
           type: boolean
           description: Whether the client is enabled.
+          example: true
         protocol:
           type: string
           description: The authentication protocol.
           enum:
-            - openid-connect
-            - saml
+          - openid-connect
+          - saml
+          example: openid-connect
         publicClient:
           type: boolean
           description: Whether the client is public (no client secret).
+          example: true
         rootUrl:
           type: string
           format: uri
           description: The root URL of the client application.
+          example: https://www.example.com
         redirectUris:
           type: array
           description: Allowed redirect URIs after authentication.
           items:
             type: string
+          example: []
         webOrigins:
           type: array
           description: Allowed web origins for CORS.
           items:
             type: string
+          example: []
         serviceAccountsEnabled:
           type: boolean
           description: Whether service accounts are enabled.
+          example: true
         authorizationServicesEnabled:
           type: boolean
           description: Whether authorization services are enabled.
+          example: true
     Role:
       type: object
       description: A role that can be assigned to users or groups for authorization.
@@ -656,18 +961,23 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the role.
+          example: abc123
         name:
           type: string
           description: The name of the role.
+          example: Example Title
         description:
           type: string
           description: A description of the role.
+          example: A sample description.
         composite:
           type: boolean
           description: Whether this is a composite role containing other roles.
+          example: true
         clientRole:
           type: boolean
           description: Whether this is a client-level role.
+          example: true
     Group:
       type: object
       description: >-
@@ -677,17 +987,21 @@ components:
           type: string
           format: uuid
           description: The unique identifier of the group.
+          example: abc123
         name:
           type: string
           description: The name of the group.
+          example: Example Title
         path:
           type: string
           description: The full path of the group in the hierarchy.
+          example: example_value
         subGroups:
           type: array
           description: Child groups.
           items:
             $ref: '#/components/schemas/Group'
+          example: []
     IdentityProviderRepresentation:
       type: object
       description: >-
@@ -696,25 +1010,30 @@ components:
         alias:
           type: string
           description: The unique alias for the identity provider.
+          example: example_value
         displayName:
           type: string
           description: The display name of the identity provider.
+          example: example_value
         providerId:
           type: string
           description: The provider type identifier.
           enum:
-            - saml
-            - oidc
-            - google
-            - github
-            - facebook
-            - microsoft
-            - linkedin
+          - saml
+          - oidc
+          - google
+          - github
+          - facebook
+          - microsoft
+          - linkedin
+          example: saml
         enabled:
           type: boolean
           description: Whether the identity provider is enabled.
+          example: true
         config:
           type: object
           description: Provider-specific configuration.
           additionalProperties:
             type: string
+          example: example_value

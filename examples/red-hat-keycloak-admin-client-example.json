@@ -1,0 +1,14 @@
+{
+  "id": "abc123",
+  "clientId": "500123",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "enabled": true,
+  "protocol": "example_value",
+  "publicClient": true,
+  "rootUrl": "https://www.example.com",
+  "redirectUris": [],
+  "webOrigins": [],
+  "serviceAccountsEnabled": true,
+  "authorizationServicesEnabled": true
+}

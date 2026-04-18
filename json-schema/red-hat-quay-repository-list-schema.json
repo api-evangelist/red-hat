@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RepositoryList",
+  "type": "object",
+  "description": "A paginated list of repositories.",
+  "properties": {
+    "repositories": {
+      "type": "array"
+    },
+    "next_page": {
+      "type": "string",
+      "description": "The pagination token for the next page."
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "status": "example_value",
+  "failed": true,
+  "started": "example_value",
+  "finished": "example_value",
+  "elapsed": 42.5,
+  "job_template": 10,
+  "inventory": 10,
+  "project": 10,
+  "playbook": "example_value",
+  "launch_type": "example_value",
+  "created": "example_value"
+}

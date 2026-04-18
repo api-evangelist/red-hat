@@ -1,0 +1,508 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Red Hat Ansible Automation Platform API"
+  description: "Programmatic access to the automation controller for managing job templates, inventories, jobs, projects, credentials, and workflow job templates."
+  tags:
+    - Red Hat
+    - Ansible
+    - Automation
+    - Infrastructure As Code
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      RED_HAT_BEARER_TOKEN: RED_HAT_BEARER_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: ansible-automation
+      baseUri: https://ansible-platform.example.com
+      description: "Red Hat Ansible Automation Platform API for managing automation jobs and infrastructure."
+      authentication:
+        type: bearer
+        token: "{{RED_HAT_BEARER_TOKEN}}"
+      resources:
+        - name: job-templates
+          path: /api/v2/job_templates
+          description: "Manage job templates that define parameterized playbook runs."
+          operations:
+            - name: list-job-templates
+              method: GET
+              description: "List all job templates."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+                - name: page_size
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of results per page"
+                - name: search
+                  in: query
+                  type: string
+                  required: false
+                  description: "Search filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-job-template
+              method: POST
+              description: "Create a new job template."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  project: "{{tools.project}}"
+                  playbook: "{{tools.playbook}}"
+                  inventory: "{{tools.inventory}}"
+
+            - name: get-job-template
+              method: GET
+              description: "Retrieve a specific job template by ID."
+              inputParameters:
+                - name: id
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Job template ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: update-job-template
+              method: PATCH
+              description: "Update an existing job template."
+              inputParameters:
+                - name: id
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Job template ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+
+            - name: delete-job-template
+              method: DELETE
+              description: "Delete a job template."
+              inputParameters:
+                - name: id
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Job template ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: launch-job-template
+              method: POST
+              description: "Launch a job from a job template."
+              inputParameters:
+                - name: id
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Job template ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  extra_vars: "{{tools.extra_vars}}"
+
+        - name: jobs
+          path: /api/v2/jobs
+          description: "Monitor and manage automation job executions."
+          operations:
+            - name: list-jobs
+              method: GET
+              description: "List all jobs."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-job
+              method: GET
+              description: "Retrieve a specific job by ID."
+              inputParameters:
+                - name: id
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Job ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: cancel-job
+              method: POST
+              description: "Cancel a running job."
+              inputParameters:
+                - name: id
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Job ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: inventories
+          path: /api/v2/inventories
+          description: "Manage inventories of hosts for automation targeting."
+          operations:
+            - name: list-inventories
+              method: GET
+              description: "List all inventories."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-inventory
+              method: POST
+              description: "Create a new inventory."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  organization: "{{tools.organization}}"
+
+        - name: projects
+          path: /api/v2/projects
+          description: "Manage projects representing Ansible playbook collections."
+          operations:
+            - name: list-projects
+              method: GET
+              description: "List all projects."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: credentials
+          path: /api/v2/credentials
+          description: "Manage credentials for automation jobs."
+          operations:
+            - name: list-credentials
+              method: GET
+              description: "List all credentials."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: workflow-job-templates
+          path: /api/v2/workflow_job_templates
+          description: "Manage workflow job templates for orchestrated automation."
+          operations:
+            - name: list-workflow-job-templates
+              method: GET
+              description: "List all workflow job templates."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: organizations
+          path: /api/v2/organizations
+          description: "Manage organizations for multi-tenancy."
+          operations:
+            - name: list-organizations
+              method: GET
+              description: "List all organizations."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: ansible-automation-api
+      resources:
+        - path: /v1/job-templates
+          name: job-templates
+          description: "Manage Ansible job templates."
+          operations:
+            - method: GET
+              name: list-job-templates
+              description: "List all job templates."
+              call: "ansible-automation.list-job-templates"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-job-template
+              description: "Create a new job template."
+              call: "ansible-automation.create-job-template"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/job-templates/{id}
+          name: job-template-detail
+          description: "Manage a specific job template."
+          operations:
+            - method: GET
+              name: get-job-template
+              description: "Get a job template by ID."
+              call: "ansible-automation.get-job-template"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/job-templates/{id}/launch
+          name: launch-job
+          description: "Launch a job from a template."
+          operations:
+            - method: POST
+              name: launch-job-template
+              description: "Launch a job template."
+              call: "ansible-automation.launch-job-template"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/jobs
+          name: jobs
+          description: "Monitor automation jobs."
+          operations:
+            - method: GET
+              name: list-jobs
+              description: "List all jobs."
+              call: "ansible-automation.list-jobs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/inventories
+          name: inventories
+          description: "Manage inventories."
+          operations:
+            - method: GET
+              name: list-inventories
+              description: "List all inventories."
+              call: "ansible-automation.list-inventories"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: ansible-automation-mcp
+      transport: http
+      tools:
+        - name: list-job-templates
+          description: "List all Ansible job templates."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ansible-automation.list-job-templates"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-job-template
+          description: "Get a specific job template by ID."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ansible-automation.get-job-template"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-job-template
+          description: "Create a new Ansible job template."
+          hints:
+            readOnly: false
+          call: "ansible-automation.create-job-template"
+          with:
+            name: "tools.name"
+            project: "tools.project"
+            playbook: "tools.playbook"
+            inventory: "tools.inventory"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: launch-job-template
+          description: "Launch a job from a job template."
+          hints:
+            readOnly: false
+          call: "ansible-automation.launch-job-template"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-jobs
+          description: "List all automation jobs."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ansible-automation.list-jobs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-job
+          description: "Get a specific job by ID."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "ansible-automation.get-job"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: cancel-job
+          description: "Cancel a running automation job."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "ansible-automation.cancel-job"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-inventories
+          description: "List all inventories."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ansible-automation.list-inventories"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-inventory
+          description: "Create a new inventory."
+          hints:
+            readOnly: false
+          call: "ansible-automation.create-inventory"
+          with:
+            name: "tools.name"
+            organization: "tools.organization"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-projects
+          description: "List all projects."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ansible-automation.list-projects"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-credentials
+          description: "List all credentials."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ansible-automation.list-credentials"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-workflow-job-templates
+          description: "List all workflow job templates."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ansible-automation.list-workflow-job-templates"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-organizations
+          description: "List all organizations."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ansible-automation.list-organizations"
+          outputParameters:
+            - type: object
+              mapping: "$."

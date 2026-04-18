@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Host",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "ip": {
+      "type": "string"
+    },
+    "mac": {
+      "type": "string"
+    },
+    "operatingsystem_name": {
+      "type": "string"
+    },
+    "environment_name": {
+      "type": "string"
+    },
+    "hostgroup_name": {
+      "type": "string"
+    },
+    "organization_name": {
+      "type": "string"
+    },
+    "location_name": {
+      "type": "string"
+    },
+    "global_status": {
+      "type": "integer"
+    },
+    "content_facet_attributes": {
+      "type": "object"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

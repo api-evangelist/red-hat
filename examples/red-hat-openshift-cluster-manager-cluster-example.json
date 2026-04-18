@@ -1,0 +1,15 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "display_name": "example_value",
+  "state": "example_value",
+  "cloud_provider": "example_value",
+  "region": "example_value",
+  "multi_az": true,
+  "nodes": "example_value",
+  "api": "example_value",
+  "console": "example_value",
+  "version": "example_value",
+  "creation_timestamp": "example_value",
+  "expiration_timestamp": "example_value"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "IdentityProviderRepresentation",
+  "type": "object",
+  "properties": {
+    "alias": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "providerId": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "config": {
+      "type": "object"
+    }
+  }
+}

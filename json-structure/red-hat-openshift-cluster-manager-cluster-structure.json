@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Cluster",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "cloud_provider": {
+      "type": "object"
+    },
+    "region": {
+      "type": "object"
+    },
+    "multi_az": {
+      "type": "boolean"
+    },
+    "nodes": {
+      "type": "object"
+    },
+    "api": {
+      "type": "object"
+    },
+    "console": {
+      "type": "object"
+    },
+    "version": {
+      "type": "object"
+    },
+    "creation_timestamp": {
+      "type": "string"
+    },
+    "expiration_timestamp": {
+      "type": "string"
+    }
+  }
+}

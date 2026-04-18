@@ -1,0 +1,15 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "ip": "example_value",
+  "mac": "example_value",
+  "operatingsystem_name": "example_value",
+  "environment_name": "example_value",
+  "hostgroup_name": "example_value",
+  "organization_name": "example_value",
+  "location_name": "example_value",
+  "global_status": 10,
+  "content_facet_attributes": "example_value",
+  "created_at": "2026-01-15T10:30:00Z",
+  "updated_at": "2026-01-15T10:30:00Z"
+}

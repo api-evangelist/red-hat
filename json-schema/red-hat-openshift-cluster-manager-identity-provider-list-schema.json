@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IdentityProviderList",
+  "type": "object",
+  "description": "A paginated list of identity providers.",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array"
+    }
+  }
+}

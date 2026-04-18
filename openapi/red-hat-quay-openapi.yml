@@ -16,72 +16,77 @@ externalDocs:
   description: Red Hat Quay API Guide
   url: https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index
 servers:
-  - url: https://quay.io/api/v1
-    description: Quay.io Production API Server
+- url: https://quay.io/api/v1
+  description: Quay.io Production API Server
 tags:
-  - name: Manifests
-    description: >-
-      Operations for retrieving manifest information and security scan results
-      for container images.
-  - name: Organizations
-    description: >-
-      Operations for managing organizations that provide team-based access
-      control for repositories.
-  - name: Repositories
-    description: >-
-      Operations for managing container image repositories, including creation,
-      listing, and deletion.
-  - name: Robot Accounts
-    description: >-
-      Operations for managing robot accounts that provide automated access
-      to repositories.
-  - name: Teams
-    description: >-
-      Operations for managing teams within organizations and their repository
-      permissions.
-  - name: Users
-    description: >-
-      Operations for managing user accounts and retrieving user information.
+- name: Manifests
+  description: >-
+    Operations for retrieving manifest information and security scan results
+    for container images.
+- name: Organizations
+  description: >-
+    Operations for managing organizations that provide team-based access
+    control for repositories.
+- name: Repositories
+  description: >-
+    Operations for managing container image repositories, including creation,
+    listing, and deletion.
+- name: Robot Accounts
+  description: >-
+    Operations for managing robot accounts that provide automated access
+    to repositories.
+- name: Teams
+  description: >-
+    Operations for managing teams within organizations and their repository
+    permissions.
+- name: Users
+  description: >-
+    Operations for managing user accounts and retrieving user information.
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /repository:
     get:
       operationId: listRepositories
-      summary: Red Hat List repositories
+      summary: Red Hat List Repositories
       description: >-
         Retrieves a paginated list of repositories visible to the authenticated
         user, optionally filtered by namespace, popularity, or last modified
         date.
       tags:
-        - Repositories
+      - Repositories
       parameters:
-        - name: namespace
-          in: query
-          description: Filter repositories by namespace (organization or user).
-          schema:
-            type: string
-        - name: starred
-          in: query
-          description: Filter to only starred repositories.
-          schema:
-            type: boolean
-        - name: public
-          in: query
-          description: Include public repositories.
-          schema:
-            type: boolean
-        - name: last_modified
-          in: query
-          description: Filter by last modified status.
-          schema:
-            type: boolean
-        - name: popularity
-          in: query
-          description: Filter by popularity.
-          schema:
-            type: boolean
-        - $ref: '#/components/parameters/NextPageParam'
+      - name: namespace
+        in: query
+        description: Filter repositories by namespace (organization or user).
+        schema:
+          type: string
+        example: example_value
+      - name: starred
+        in: query
+        description: Filter to only starred repositories.
+        schema:
+          type: boolean
+        example: true
+      - name: public
+        in: query
+        description: Include public repositories.
+        schema:
+          type: boolean
+        example: true
+      - name: last_modified
+        in: query
+        description: Filter by last modified status.
+        schema:
+          type: boolean
+        example: true
+      - name: popularity
+        in: query
+        description: Filter by popularity.
+        schema:
+          type: boolean
+        example: true
+      - $ref: '#/components/parameters/NextPageParam'
       responses:
         '200':
           description: Successfully retrieved repositories
@@ -89,16 +94,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RepositoryList'
+              examples:
+                Listrepositories200Example:
+                  summary: Default listRepositories 200 response
+                  x-microcks-default: true
+                  value:
+                    repositories:
+                    - namespace: example_value
+                      name: Example Title
+                      description: A sample description.
+                      is_public: true
+                      kind: image
+                      tag_count: 10
+                      status_token: example_value
+                    next_page: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createRepository
-      summary: Red Hat Create a repository
+      summary: Red Hat Create a Repository
       description: >-
         Creates a new container image repository in the specified namespace
         with the given visibility and optional description.
       tags:
-        - Repositories
+      - Repositories
       requestBody:
         required: true
         content:
@@ -106,9 +128,9 @@ paths:
             schema:
               type: object
               required:
-                - repository
-                - namespace
-                - visibility
+              - repository
+              - namespace
+              - visibility
               properties:
                 repository:
                   type: string
@@ -120,11 +142,20 @@ paths:
                   type: string
                   description: The visibility level of the repository.
                   enum:
-                    - public
-                    - private
+                  - public
+                  - private
                 description:
                   type: string
                   description: A description of the repository.
+            examples:
+              CreaterepositoryRequestExample:
+                summary: Default createRepository request
+                x-microcks-default: true
+                value:
+                  repository: example_value
+                  namespace: example_value
+                  visibility: public
+                  description: A sample description.
       responses:
         '201':
           description: Repository created successfully
@@ -132,17 +163,20 @@ paths:
           $ref: '#/components/responses/BadRequestError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /repository/{repository}:
     get:
       operationId: getRepository
-      summary: Red Hat Get a repository
+      summary: Red Hat Get a Repository
       description: >-
         Retrieves the details of a specific repository including its tags,
         description, and visibility settings.
       tags:
-        - Repositories
+      - Repositories
       parameters:
-        - $ref: '#/components/parameters/RepositoryParam'
+      - $ref: '#/components/parameters/RepositoryParam'
       responses:
         '200':
           description: Successfully retrieved repository details
@@ -150,20 +184,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Repository'
+              examples:
+                Getrepository200Example:
+                  summary: Default getRepository 200 response
+                  x-microcks-default: true
+                  value:
+                    namespace: example_value
+                    name: Example Title
+                    description: A sample description.
+                    is_public: true
+                    kind: image
+                    tag_count: 10
+                    status_token: example_value
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteRepository
-      summary: Red Hat Delete a repository
+      summary: Red Hat Delete a Repository
       description: >-
         Deletes a repository and all associated images, tags, and build history.
         This action is irreversible.
       tags:
-        - Repositories
+      - Repositories
       parameters:
-        - $ref: '#/components/parameters/RepositoryParam'
+      - $ref: '#/components/parameters/RepositoryParam'
       responses:
         '204':
           description: Repository deleted successfully
@@ -171,31 +220,37 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /repository/{repository}/tag/:
     get:
       operationId: listRepositoryTags
-      summary: Red Hat List repository tags
+      summary: Red Hat List Repository Tags
       description: >-
         Retrieves a paginated list of tags for the specified repository,
         including each tag's manifest digest and last modified date.
       tags: []
       parameters:
-        - $ref: '#/components/parameters/RepositoryParam'
-        - name: page
-          in: query
-          description: The page number for pagination.
-          schema:
-            type: integer
-        - name: limit
-          in: query
-          description: The maximum number of tags to return.
-          schema:
-            type: integer
-        - name: specificTag
-          in: query
-          description: Filter to a specific tag name.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/RepositoryParam'
+      - name: page
+        in: query
+        description: The page number for pagination.
+        schema:
+          type: integer
+        example: 10
+      - name: limit
+        in: query
+        description: The maximum number of tags to return.
+        schema:
+          type: integer
+        example: 10
+      - name: specificTag
+        in: query
+        description: Filter to a specific tag name.
+        schema:
+          type: string
+        example: example_value
       responses:
         '200':
           description: Successfully retrieved tags
@@ -203,26 +258,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TagList'
+              examples:
+                Listrepositorytags200Example:
+                  summary: Default listRepositoryTags 200 response
+                  x-microcks-default: true
+                  value:
+                    tags:
+                    - name: Example Title
+                      manifest_digest: example_value
+                      size: 10
+                      last_modified: example_value
+                      is_manifest_list: true
+                    page: 10
+                    has_additional: true
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /repository/{repository}/tag/{tag}:
     put:
       operationId: changeTag
-      summary: Red Hat Create or move a tag
+      summary: Red Hat Create or Move a Tag
       description: >-
         Creates a new tag or moves an existing tag to point to a different
         image manifest digest.
       tags: []
       parameters:
-        - $ref: '#/components/parameters/RepositoryParam'
-        - name: tag
-          in: path
-          required: true
-          description: The tag name.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/RepositoryParam'
+      - name: tag
+        in: path
+        required: true
+        description: The tag name.
+        schema:
+          type: string
+        example: example_value
       requestBody:
         required: true
         content:
@@ -230,11 +302,17 @@ paths:
             schema:
               type: object
               required:
-                - manifest_digest
+              - manifest_digest
               properties:
                 manifest_digest:
                   type: string
                   description: The manifest digest to point the tag to.
+            examples:
+              ChangetagRequestExample:
+                summary: Default changeTag request
+                x-microcks-default: true
+                value:
+                  manifest_digest: example_value
       responses:
         '201':
           description: Tag created or moved successfully
@@ -244,21 +322,25 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteTag
-      summary: Red Hat Delete a tag
+      summary: Red Hat Delete a Tag
       description: >-
         Deletes a specific tag from a repository. The underlying image manifest
         is not deleted unless it becomes untagged.
       tags: []
       parameters:
-        - $ref: '#/components/parameters/RepositoryParam'
-        - name: tag
-          in: path
-          required: true
-          description: The tag name to delete.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/RepositoryParam'
+      - name: tag
+        in: path
+        required: true
+        description: The tag name to delete.
+        schema:
+          type: string
+        example: example_value
       responses:
         '204':
           description: Tag deleted successfully
@@ -266,29 +348,34 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /repository/{repository}/manifest/{manifestref}/security:
     get:
       operationId: getManifestSecurity
-      summary: Red Hat Get manifest security information
+      summary: Red Hat Get Manifest Security Information
       description: >-
         Retrieves the security scan results for a specific image manifest,
         including detected vulnerabilities and their severity levels.
       tags:
-        - Manifests
+      - Manifests
       parameters:
-        - $ref: '#/components/parameters/RepositoryParam'
-        - name: manifestref
-          in: path
-          required: true
-          description: The manifest digest reference.
-          schema:
-            type: string
-        - name: vulnerabilities
-          in: query
-          description: Whether to include detailed vulnerability information.
-          schema:
-            type: boolean
-            default: true
+      - $ref: '#/components/parameters/RepositoryParam'
+      - name: manifestref
+        in: path
+        required: true
+        description: The manifest digest reference.
+        schema:
+          type: string
+        example: example_value
+      - name: vulnerabilities
+        in: query
+        description: Whether to include detailed vulnerability information.
+        schema:
+          type: boolean
+          default: true
+        example: true
       responses:
         '200':
           description: Successfully retrieved security scan results
@@ -296,21 +383,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SecurityScanResult'
+              examples:
+                Getmanifestsecurity200Example:
+                  summary: Default getManifestSecurity 200 response
+                  x-microcks-default: true
+                  value:
+                    status: queued
+                    data:
+                      Layer:
+                        Features:
+                        - {}
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /organization/{orgname}:
     get:
       operationId: getOrganization
-      summary: Red Hat Get an organization
+      summary: Red Hat Get an Organization
       description: >-
         Retrieves the details of a specific organization, including its
         member count and settings.
       tags:
-        - Organizations
+      - Organizations
       parameters:
-        - $ref: '#/components/parameters/OrgNameParam'
+      - $ref: '#/components/parameters/OrgNameParam'
       responses:
         '200':
           description: Successfully retrieved organization details
@@ -318,27 +418,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Organization'
+              examples:
+                Getorganization200Example:
+                  summary: Default getOrganization 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    email: user@example.com
+                    invoice_email: user@example.com
+                    is_admin: true
+                    is_member: true
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /organization/{orgname}/team/{teamname}:
     put:
       operationId: createOrUpdateTeam
-      summary: Red Hat Create or update a team
+      summary: Red Hat Create or Update a Team
       description: >-
         Creates a new team or updates an existing team within an organization,
         including the team role and description.
       tags:
-        - Teams
+      - Teams
       parameters:
-        - $ref: '#/components/parameters/OrgNameParam'
-        - name: teamname
-          in: path
-          required: true
-          description: The name of the team.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/OrgNameParam'
+      - name: teamname
+        in: path
+        required: true
+        description: The name of the team.
+        schema:
+          type: string
+        example: example_value
       requestBody:
         required: true
         content:
@@ -346,18 +460,25 @@ paths:
             schema:
               type: object
               required:
-                - role
+              - role
               properties:
                 role:
                   type: string
                   description: The role for the team.
                   enum:
-                    - member
-                    - creator
-                    - admin
+                  - member
+                  - creator
+                  - admin
                 description:
                   type: string
                   description: A description of the team.
+            examples:
+              CreateorupdateteamRequestExample:
+                summary: Default createOrUpdateTeam request
+                x-microcks-default: true
+                value:
+                  role: member
+                  description: A sample description.
       responses:
         '200':
           description: Team updated successfully
@@ -367,23 +488,27 @@ paths:
           $ref: '#/components/responses/BadRequestError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /organization/{orgname}/robots/{robot_shortname}:
     get:
       operationId: getOrgRobot
-      summary: Red Hat Get an organization robot account
+      summary: Red Hat Get an Organization Robot Account
       description: >-
         Retrieves the details of a specific robot account within an
         organization, including its token for automated registry access.
       tags:
-        - Robot Accounts
+      - Robot Accounts
       parameters:
-        - $ref: '#/components/parameters/OrgNameParam'
-        - name: robot_shortname
-          in: path
-          required: true
-          description: The short name of the robot account.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/OrgNameParam'
+      - name: robot_shortname
+        in: path
+        required: true
+        description: The short name of the robot account.
+        schema:
+          type: string
+        example: example_value
       responses:
         '200':
           description: Successfully retrieved robot account
@@ -391,26 +516,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RobotAccount'
+              examples:
+                Getorgrobot200Example:
+                  summary: Default getOrgRobot 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    description: A sample description.
+                    token: example_value
+                    created: '2026-01-15T10:30:00Z'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
         '404':
           $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: createOrgRobot
-      summary: Red Hat Create an organization robot account
+      summary: Red Hat Create an Organization Robot Account
       description: >-
         Creates a new robot account within an organization for automated
         access to container repositories.
       tags:
-        - Robot Accounts
+      - Robot Accounts
       parameters:
-        - $ref: '#/components/parameters/OrgNameParam'
-        - name: robot_shortname
-          in: path
-          required: true
-          description: The short name for the new robot account.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/OrgNameParam'
+      - name: robot_shortname
+        in: path
+        required: true
+        description: The short name for the new robot account.
+        schema:
+          type: string
+        example: example_value
       requestBody:
         content:
           application/json:
@@ -420,6 +558,12 @@ paths:
                 description:
                   type: string
                   description: A description of the robot account.
+            examples:
+              CreateorgrobotRequestExample:
+                summary: Default createOrgRobot request
+                x-microcks-default: true
+                value:
+                  description: A sample description.
       responses:
         '201':
           description: Robot account created successfully
@@ -427,18 +571,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RobotAccount'
+              examples:
+                Createorgrobot201Example:
+                  summary: Default createOrgRobot 201 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    description: A sample description.
+                    token: example_value
+                    created: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/BadRequestError'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /user/:
     get:
       operationId: getLoggedInUser
-      summary: Red Hat Get logged-in user
+      summary: Red Hat Get Logged-in User
       description: >-
         Retrieves the information for the currently authenticated user.
       tags:
-        - Users
+      - Users
       responses:
         '200':
           description: Successfully retrieved user information
@@ -446,8 +602,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+              examples:
+                Getloggedinuser200Example:
+                  summary: Default getLoggedInUser 200 response
+                  x-microcks-default: true
+                  value:
+                    username: example_value
+                    email: user@example.com
+                    verified: true
+                    organizations:
+                    - name: Example Title
+                      is_admin: true
         '401':
           $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     bearerAuth:
@@ -494,27 +664,34 @@ components:
         namespace:
           type: string
           description: The namespace the repository belongs to.
+          example: example_value
         name:
           type: string
           description: The name of the repository.
+          example: Example Title
         description:
           type: string
           description: A description of the repository.
+          example: A sample description.
         is_public:
           type: boolean
           description: Whether the repository is publicly accessible.
+          example: true
         kind:
           type: string
           description: The type of repository.
           enum:
-            - image
-            - application
+          - image
+          - application
+          example: image
         tag_count:
           type: integer
           description: The number of tags in the repository.
+          example: 10
         status_token:
           type: string
           description: The status token for repository notifications.
+          example: example_value
     RepositoryList:
       type: object
       description: A paginated list of repositories.
@@ -523,9 +700,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Repository'
+          example: []
         next_page:
           type: string
           description: The pagination token for the next page.
+          example: example_value
     TagList:
       type: object
       description: A paginated list of image tags.
@@ -550,10 +729,13 @@ components:
               is_manifest_list:
                 type: boolean
                 description: Whether this tag points to a manifest list.
+          example: []
         page:
           type: integer
+          example: 10
         has_additional:
           type: boolean
+          example: true
     SecurityScanResult:
       type: object
       description: >-
@@ -564,10 +746,11 @@ components:
           type: string
           description: The scan status.
           enum:
-            - queued
-            - scanned
-            - unsupported
-            - failed
+          - queued
+          - scanned
+          - unsupported
+          - failed
+          example: queued
         data:
           type: object
           description: The scan result data.
@@ -598,12 +781,12 @@ components:
                               type: string
                               description: The severity level.
                               enum:
-                                - Negligible
-                                - Low
-                                - Medium
-                                - High
-                                - Critical
-                                - Unknown
+                              - Negligible
+                              - Low
+                              - Medium
+                              - High
+                              - Critical
+                              - Unknown
                             FixedBy:
                               type: string
                               description: The version that fixes the vulnerability.
@@ -611,6 +794,7 @@ components:
                               type: string
                               format: uri
                               description: A link to vulnerability details.
+          example: example_value
     Organization:
       type: object
       description: A Quay organization.
@@ -618,19 +802,24 @@ components:
         name:
           type: string
           description: The name of the organization.
+          example: Example Title
         email:
           type: string
           format: email
           description: The organization contact email.
+          example: user@example.com
         invoice_email:
           type: boolean
           description: Whether invoices are sent to the organization email.
+          example: user@example.com
         is_admin:
           type: boolean
           description: Whether the current user is an admin of this organization.
+          example: true
         is_member:
           type: boolean
           description: Whether the current user is a member of this organization.
+          example: true
     RobotAccount:
       type: object
       description: A robot account for automated registry access.
@@ -638,16 +827,20 @@ components:
         name:
           type: string
           description: The fully qualified name of the robot account.
+          example: Example Title
         description:
           type: string
           description: A description of the robot account.
+          example: A sample description.
         token:
           type: string
           description: The authentication token for the robot account.
+          example: example_value
         created:
           type: string
           format: date-time
           description: When the robot account was created.
+          example: '2026-01-15T10:30:00Z'
     User:
       type: object
       description: A Quay user account.
@@ -655,13 +848,16 @@ components:
         username:
           type: string
           description: The username.
+          example: example_value
         email:
           type: string
           format: email
           description: The user's email address.
+          example: user@example.com
         verified:
           type: boolean
           description: Whether the user's email has been verified.
+          example: true
         organizations:
           type: array
           description: Organizations the user belongs to.
@@ -672,3 +868,4 @@ components:
                 type: string
               is_admin:
                 type: boolean
+          example: []

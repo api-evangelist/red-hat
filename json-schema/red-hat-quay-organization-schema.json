@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Organization",
+  "type": "object",
+  "description": "A Quay organization.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the organization."
+    },
+    "email": {
+      "type": "string",
+      "description": "The organization contact email."
+    },
+    "invoice_email": {
+      "type": "boolean",
+      "description": "Whether invoices are sent to the organization email."
+    },
+    "is_admin": {
+      "type": "boolean",
+      "description": "Whether the current user is an admin of this organization."
+    },
+    "is_member": {
+      "type": "boolean",
+      "description": "Whether the current user is a member of this organization."
+    }
+  }
+}
