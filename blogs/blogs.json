@@ -1,0 +1,13 @@
+{
+  "repo": "red-hat",
+  "feeds": [
+    {
+      "source": "https://developers.redhat.com/blog",
+      "feed_url": "https://developers.redhat.com/blog/feed",
+      "saved": 10,
+      "title": "Red Hat Developer"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:34:30Z"
+}
