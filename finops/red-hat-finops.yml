@@ -1,0 +1,567 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: Red Hat
+providerId: red-hat
+publisherName: Red Hat
+serviceCategory: API
+created: '2026-05-04'
+modified: '2026-05-04'
+tags:
+  - Cloud
+  - Containers
+  - Enterprise
+  - Hybrid Cloud
+  - Kubernetes
+  - Linux
+  - Open Source
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: FinOps framework definition for the Red Hat API surface. Provides a FOCUS-aligned mapping
+  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+principles:
+  - name: Visibility
+    description: Make API consumption costs visible to engineering, product, and finance teams in near
+      real-time.
+  - name: Allocation
+    description: Tag every chargeable API call with the consuming team, environment, application, and
+      feature so cost can be allocated.
+  - name: Optimization
+    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
+      cost per useful unit of work.
+  - name: Accountability
+    description: Establish budget owners and chargeback or showback flows for each consuming team.
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Budgeting
+      - Benchmarking
+      - Unit Economics
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Architecting for Cloud
+      - Rate Optimization
+      - Workload Optimization
+      - Cloud Sustainability
+      - Licensing and SaaS
+  - name: Manage the FinOps Practice
+    capabilities:
+      - FinOps Practice Operations
+      - FinOps Education and Enablement
+      - Invoicing and Chargeback
+      - Onboarding Workloads
+      - Intersecting Disciplines
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  chargeFrequency: Recurring
+focusColumns:
+  ServiceName: Red Hat
+  ServiceCategory: Developer Tools / API
+  ProviderName: Red Hat
+  PublisherName: Red Hat
+  InvoiceIssuerName: Red Hat
+  PricingCategory: Usage-Based
+  PricingUnit: request
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: api_requests
+    description: Count of billable API requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+      - region
+      - consumer
+  - name: data_egress
+    description: Bytes returned over the network in API responses
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - api
+      - region
+      - consumer
+  - name: compute_seconds
+    description: Server-side compute consumed by the request, where applicable
+    unit: second
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+apis:
+  - name: Red Hat OpenShift API
+    baseURL: ''
+    tags:
+      - Cloud Native
+      - Containers
+      - Kubernetes
+      - Platform as a Service
+    serviceName: Red Hat OpenShift API
+    serviceCategory: API
+  - name: Red Hat OpenShift Cluster Manager API
+    baseURL: ''
+    tags:
+      - Cluster Management
+      - Hybrid Cloud
+      - Kubernetes
+      - Provisioning
+    serviceName: Red Hat OpenShift Cluster Manager API
+    serviceCategory: API
+  - name: Red Hat Ansible Automation Platform API
+    baseURL: ''
+    tags:
+      - Automation
+      - Configuration Management
+      - DevOps
+      - Infrastructure as Code
+    serviceName: Red Hat Ansible Automation Platform API
+    serviceCategory: API
+  - name: Red Hat Quay API
+    baseURL: ''
+    tags:
+      - Container Registry
+      - Docker
+      - Image Management
+      - Security
+    serviceName: Red Hat Quay API
+    serviceCategory: API
+  - name: Red Hat Insights API
+    baseURL: ''
+    tags:
+      - Analytics
+      - Compliance
+      - Monitoring
+      - Security
+    serviceName: Red Hat Insights API
+    serviceCategory: API
+  - name: Red Hat Subscription Management API
+    baseURL: ''
+    tags:
+      - Entitlements
+      - Licensing
+      - Subscriptions
+      - System Management
+    serviceName: Red Hat Subscription Management API
+    serviceCategory: API
+  - name: Red Hat Satellite API
+    baseURL: ''
+    tags:
+      - Content Management
+      - Patch Management
+      - Provisioning
+      - Systems Management
+    serviceName: Red Hat Satellite API
+    serviceCategory: API
+  - name: Red Hat Advanced Cluster Management API
+    baseURL: ''
+    tags:
+      - Cluster Management
+      - Governance
+      - Kubernetes
+      - Multi-Cluster
+    serviceName: Red Hat Advanced Cluster Management API
+    serviceCategory: API
+  - name: Red Hat Advanced Cluster Security API
+    baseURL: ''
+    tags:
+      - Compliance
+      - Kubernetes
+      - Security
+      - Vulnerability Management
+    serviceName: Red Hat Advanced Cluster Security API
+    serviceCategory: API
+  - name: Red Hat Build of Keycloak Admin REST API
+    baseURL: ''
+    tags:
+      - Authentication
+      - Authorization
+      - Identity
+      - Single Sign-On
+    serviceName: Red Hat Build of Keycloak Admin REST API
+    serviceCategory: API
+  - name: Red Hat 3scale API Management
+    baseURL: ''
+    tags:
+      - API Gateway
+      - API Management
+      - Developer Portal
+      - Rate Limiting
+    serviceName: Red Hat 3scale API Management
+    serviceCategory: API
+  - name: Red Hat Cost Management API
+    baseURL: ''
+    tags:
+      - Analytics
+      - Cloud
+      - Cost Management
+      - FinOps
+    serviceName: Red Hat Cost Management API
+    serviceCategory: API
+  - name: Red Hat Image Builder API
+    baseURL: ''
+    tags:
+      - Cloud
+      - Image Building
+      - Provisioning
+      - RHEL
+    serviceName: Red Hat Image Builder API
+    serviceCategory: API
+  - name: Red Hat Vulnerability Management API
+    baseURL: ''
+    tags:
+      - Compliance
+      - CVE
+      - Security
+      - Vulnerability Management
+    serviceName: Red Hat Vulnerability Management API
+    serviceCategory: API
+  - name: Red Hat Patch API
+    baseURL: ''
+    tags:
+      - Patch Management
+      - RHEL
+      - Security
+      - Updates
+    serviceName: Red Hat Patch API
+    serviceCategory: API
+  - name: Red Hat Compliance API
+    baseURL: ''
+    tags:
+      - Compliance
+      - Policy Management
+      - SCAP
+      - Security
+    serviceName: Red Hat Compliance API
+    serviceCategory: API
+  - name: Red Hat Build of Apicurio Registry API
+    baseURL: ''
+    tags:
+      - API Design
+      - Data Governance
+      - Event-Driven
+      - Schema Registry
+    serviceName: Red Hat Build of Apicurio Registry API
+    serviceCategory: API
+  - name: Red Hat Streams for Apache Kafka Bridge API
+    baseURL: ''
+    tags:
+      - Data Integration
+      - Event Streaming
+      - Kafka
+      - Messaging
+    serviceName: Red Hat Streams for Apache Kafka Bridge API
+    serviceCategory: API
+  - name: Red Hat Ansible Lightspeed API
+    baseURL: ''
+    tags:
+      - Ansible
+      - Artificial Intelligence
+      - Automation
+      - Generative AI
+    serviceName: Red Hat Ansible Lightspeed API
+    serviceCategory: API
+  - name: Red Hat Managed Inventory API
+    baseURL: ''
+    tags:
+      - Host Management
+      - Inventory
+      - RHEL
+      - Systems Management
+    serviceName: Red Hat Managed Inventory API
+    serviceCategory: API
+  - name: Red Hat Remediations API
+    baseURL: ''
+    tags:
+      - Automation
+      - Compliance
+      - Remediation
+      - Security
+    serviceName: Red Hat Remediations API
+    serviceCategory: API
+  - name: Red Hat Notifications API
+    baseURL: ''
+    tags:
+      - Alerts
+      - Integrations
+      - Notifications
+      - Webhooks
+    serviceName: Red Hat Notifications API
+    serviceCategory: API
+  - name: Red Hat Role-Based Access Control API
+    baseURL: ''
+    tags:
+      - Access Control
+      - Authorization
+      - Identity
+      - Security
+    serviceName: Red Hat Role-Based Access Control API
+    serviceCategory: API
+  - name: Red Hat Advisor API
+    baseURL: ''
+    tags:
+      - Analytics
+      - Monitoring
+      - Recommendations
+      - RHEL
+    serviceName: Red Hat Advisor API
+    serviceCategory: API
+  - name: Red Hat Malware Detection API
+    baseURL: ''
+    tags:
+      - Malware
+      - RHEL
+      - Security
+      - Threat Detection
+    serviceName: Red Hat Malware Detection API
+    serviceCategory: API
+  - name: Red Hat Sources API
+    baseURL: ''
+    tags:
+      - Cloud
+      - Configuration
+      - Data Sources
+      - Integrations
+    serviceName: Red Hat Sources API
+    serviceCategory: API
+  - name: Red Hat Integrations API
+    baseURL: ''
+    tags:
+      - Configuration
+      - Integrations
+      - Notifications
+      - Webhooks
+    serviceName: Red Hat Integrations API
+    serviceCategory: API
+  - name: Red Hat Resource Optimization API
+    baseURL: ''
+    tags:
+      - Analytics
+      - FinOps
+      - Resource Optimization
+      - RHEL
+    serviceName: Red Hat Resource Optimization API
+    serviceCategory: API
+  - name: Red Hat Export Service API
+    baseURL: ''
+    tags:
+      - Automation
+      - Data Export
+      - Inventory
+      - Reporting
+    serviceName: Red Hat Export Service API
+    serviceCategory: API
+  - name: Red Hat Playbook Dispatcher API
+    baseURL: ''
+    tags:
+      - Ansible
+      - Automation
+      - Playbooks
+      - Remediation
+    serviceName: Red Hat Playbook Dispatcher API
+    serviceCategory: API
+  - name: Red Hat Content Sources API
+    baseURL: ''
+    tags:
+      - Content Management
+      - Packages
+      - Repositories
+      - RHEL
+    serviceName: Red Hat Content Sources API
+    serviceCategory: API
+  - name: Red Hat Tasks API
+    baseURL: ''
+    tags:
+      - Automation
+      - RHEL
+      - Systems Management
+      - Task Management
+    serviceName: Red Hat Tasks API
+    serviceCategory: API
+  - name: Red Hat Subscriptions Usage API
+    baseURL: ''
+    tags:
+      - Compliance
+      - Reporting
+      - Subscriptions
+      - Usage
+    serviceName: Red Hat Subscriptions Usage API
+    serviceCategory: API
+  - name: Red Hat Assisted Installer API
+    baseURL: ''
+    tags:
+      - Bare Metal
+      - Cluster Provisioning
+      - Installation
+      - OpenShift
+    serviceName: Red Hat Assisted Installer API
+    serviceCategory: API
+  - name: Red Hat Account Management Service API
+    baseURL: ''
+    tags:
+      - Account Management
+      - OpenShift
+      - Organizations
+      - Subscriptions
+    serviceName: Red Hat Account Management Service API
+    serviceCategory: API
+  - name: Red Hat Authorization Service API
+    baseURL: ''
+    tags:
+      - Access Control
+      - Authorization
+      - OpenShift
+      - Security
+    serviceName: Red Hat Authorization Service API
+    serviceCategory: API
+  - name: Red Hat Service Logs API
+    baseURL: ''
+    tags:
+      - Logging
+      - Monitoring
+      - Observability
+      - OpenShift
+    serviceName: Red Hat Service Logs API
+    serviceCategory: API
+  - name: Red Hat Connector Management API
+    baseURL: ''
+    tags:
+      - Connectors
+      - Data Integration
+      - Integrations
+      - OpenShift
+    serviceName: Red Hat Connector Management API
+    serviceCategory: API
+  - name: Red Hat Upgrades Information Service API
+    baseURL: ''
+    tags:
+      - Cluster Management
+      - OpenShift
+      - Upgrades
+      - Version Management
+    serviceName: Red Hat Upgrades Information Service API
+    serviceCategory: API
+  - name: Red Hat Automation Hub API
+    baseURL: ''
+    tags:
+      - Ansible
+      - Automation
+      - Collections
+      - Content Management
+    serviceName: Red Hat Automation Hub API
+    serviceCategory: API
+  - name: Red Hat Operator Gathering Conditions Service API
+    baseURL: ''
+    tags:
+      - Data Collection
+      - Insights
+      - OpenShift
+      - Operators
+    serviceName: Red Hat Operator Gathering Conditions Service API
+    serviceCategory: API
+  - name: Red Hat Payload Ingress Service API
+    baseURL: ''
+    tags:
+      - Data Ingestion
+      - Platform
+      - Systems Management
+      - Upload
+    serviceName: Red Hat Payload Ingress Service API
+    serviceCategory: API
+  - name: Red Hat Lightspeed Advisor for OpenShift API
+    baseURL: ''
+    tags:
+      - Artificial Intelligence
+      - Monitoring
+      - OpenShift
+      - Recommendations
+    serviceName: Red Hat Lightspeed Advisor for OpenShift API
+    serviceCategory: API
+  - name: Red Hat OCP Vulnerability Dashboard API
+    baseURL: ''
+    tags:
+      - CVE
+      - OpenShift
+      - Security
+      - Vulnerability Management
+    serviceName: Red Hat OCP Vulnerability Dashboard API
+    serviceCategory: API
+  - name: Red Hat Web-RCA Service API
+    baseURL: ''
+    tags:
+      - Incident Management
+      - OpenShift
+      - Operations
+      - Root Cause Analysis
+    serviceName: Red Hat Web-RCA Service API
+    serviceCategory: API
+  - name: Red Hat Case Management API
+    baseURL: ''
+    tags:
+      - Case Management
+      - Customer Portal
+      - Incident Management
+      - Support
+    serviceName: Red Hat Case Management API
+    serviceCategory: API
+  - name: Red Hat Security Data API
+    baseURL: ''
+    tags:
+      - CSAF
+      - CVE
+      - Security
+      - Vulnerability Management
+    serviceName: Red Hat Security Data API
+    serviceCategory: API
+  - name: Red Hat Edge Management API
+    baseURL: ''
+    tags:
+      - Device Management
+      - Edge Computing
+      - Fleet Management
+      - IoT
+    serviceName: Red Hat Edge Management API
+    serviceCategory: API
+  - name: Red Hat Lightspeed for RHEL Planning API
+    baseURL: ''
+    tags:
+      - Lifecycle
+      - Planning
+      - Product Roadmap
+      - RHEL
+    serviceName: Red Hat Lightspeed for RHEL Planning API
+    serviceCategory: API
+unitEconomics:
+  - name: Cost per 1K Requests
+    metric: billed_cost / (api_requests / 1000)
+    target: TBD
+  - name: Cost per Active Consumer
+    metric: billed_cost / active_consumers
+    target: TBD
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

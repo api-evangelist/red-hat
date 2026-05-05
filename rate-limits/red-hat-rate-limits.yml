@@ -1,0 +1,331 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Red Hat
+providerId: red-hat
+created: '2026-05-04'
+modified: '2026-05-04'
+tags:
+  - Cloud
+  - Containers
+  - Enterprise
+  - Hybrid Cloud
+  - Kubernetes
+  - Linux
+  - Open Source
+  - Rate Limiting
+  - Quotas
+  - Throttling
+description: Machine-readable rate limit definitions for the Red Hat API surface. Captures per-tier quotas,
+  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
+  with published provider limits.
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+  reset: X-RateLimit-Reset
+  retryAfter: Retry-After
+  policy: RateLimit-Policy
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  serviceUnavailable: 503
+limits:
+  - tier: free
+    name: Free Tier Default
+    scope: api-key
+    metric: requests_per_minute
+    limit: 10
+    burst: 20
+    timeFrame: minute
+    applies:
+      - Red Hat OpenShift API
+      - Red Hat OpenShift Cluster Manager API
+      - Red Hat Ansible Automation Platform API
+      - Red Hat Quay API
+      - Red Hat Insights API
+      - Red Hat Subscription Management API
+      - Red Hat Satellite API
+      - Red Hat Advanced Cluster Management API
+      - Red Hat Advanced Cluster Security API
+      - Red Hat Build of Keycloak Admin REST API
+      - Red Hat 3scale API Management
+      - Red Hat Cost Management API
+      - Red Hat Image Builder API
+      - Red Hat Vulnerability Management API
+      - Red Hat Patch API
+      - Red Hat Compliance API
+      - Red Hat Build of Apicurio Registry API
+      - Red Hat Streams for Apache Kafka Bridge API
+      - Red Hat Ansible Lightspeed API
+      - Red Hat Managed Inventory API
+      - Red Hat Remediations API
+      - Red Hat Notifications API
+      - Red Hat Role-Based Access Control API
+      - Red Hat Advisor API
+      - Red Hat Malware Detection API
+      - Red Hat Sources API
+      - Red Hat Integrations API
+      - Red Hat Resource Optimization API
+      - Red Hat Export Service API
+      - Red Hat Playbook Dispatcher API
+      - Red Hat Content Sources API
+      - Red Hat Tasks API
+      - Red Hat Subscriptions Usage API
+      - Red Hat Assisted Installer API
+      - Red Hat Account Management Service API
+      - Red Hat Authorization Service API
+      - Red Hat Service Logs API
+      - Red Hat Connector Management API
+      - Red Hat Upgrades Information Service API
+      - Red Hat Automation Hub API
+      - Red Hat Operator Gathering Conditions Service API
+      - Red Hat Payload Ingress Service API
+      - Red Hat Lightspeed Advisor for OpenShift API
+      - Red Hat OCP Vulnerability Dashboard API
+      - Red Hat Web-RCA Service API
+      - Red Hat Case Management API
+      - Red Hat Security Data API
+      - Red Hat Edge Management API
+      - Red Hat Lightspeed for RHEL Planning API
+  - tier: free
+    name: Free Tier Monthly Quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 1000
+    timeFrame: month
+    applies:
+      - Red Hat OpenShift API
+      - Red Hat OpenShift Cluster Manager API
+      - Red Hat Ansible Automation Platform API
+      - Red Hat Quay API
+      - Red Hat Insights API
+      - Red Hat Subscription Management API
+      - Red Hat Satellite API
+      - Red Hat Advanced Cluster Management API
+      - Red Hat Advanced Cluster Security API
+      - Red Hat Build of Keycloak Admin REST API
+      - Red Hat 3scale API Management
+      - Red Hat Cost Management API
+      - Red Hat Image Builder API
+      - Red Hat Vulnerability Management API
+      - Red Hat Patch API
+      - Red Hat Compliance API
+      - Red Hat Build of Apicurio Registry API
+      - Red Hat Streams for Apache Kafka Bridge API
+      - Red Hat Ansible Lightspeed API
+      - Red Hat Managed Inventory API
+      - Red Hat Remediations API
+      - Red Hat Notifications API
+      - Red Hat Role-Based Access Control API
+      - Red Hat Advisor API
+      - Red Hat Malware Detection API
+      - Red Hat Sources API
+      - Red Hat Integrations API
+      - Red Hat Resource Optimization API
+      - Red Hat Export Service API
+      - Red Hat Playbook Dispatcher API
+      - Red Hat Content Sources API
+      - Red Hat Tasks API
+      - Red Hat Subscriptions Usage API
+      - Red Hat Assisted Installer API
+      - Red Hat Account Management Service API
+      - Red Hat Authorization Service API
+      - Red Hat Service Logs API
+      - Red Hat Connector Management API
+      - Red Hat Upgrades Information Service API
+      - Red Hat Automation Hub API
+      - Red Hat Operator Gathering Conditions Service API
+      - Red Hat Payload Ingress Service API
+      - Red Hat Lightspeed Advisor for OpenShift API
+      - Red Hat OCP Vulnerability Dashboard API
+      - Red Hat Web-RCA Service API
+      - Red Hat Case Management API
+      - Red Hat Security Data API
+      - Red Hat Edge Management API
+      - Red Hat Lightspeed for RHEL Planning API
+  - tier: professional
+    name: Professional Tier Default
+    scope: api-key
+    metric: requests_per_minute
+    limit: 100
+    burst: 200
+    timeFrame: minute
+    applies:
+      - Red Hat OpenShift API
+      - Red Hat OpenShift Cluster Manager API
+      - Red Hat Ansible Automation Platform API
+      - Red Hat Quay API
+      - Red Hat Insights API
+      - Red Hat Subscription Management API
+      - Red Hat Satellite API
+      - Red Hat Advanced Cluster Management API
+      - Red Hat Advanced Cluster Security API
+      - Red Hat Build of Keycloak Admin REST API
+      - Red Hat 3scale API Management
+      - Red Hat Cost Management API
+      - Red Hat Image Builder API
+      - Red Hat Vulnerability Management API
+      - Red Hat Patch API
+      - Red Hat Compliance API
+      - Red Hat Build of Apicurio Registry API
+      - Red Hat Streams for Apache Kafka Bridge API
+      - Red Hat Ansible Lightspeed API
+      - Red Hat Managed Inventory API
+      - Red Hat Remediations API
+      - Red Hat Notifications API
+      - Red Hat Role-Based Access Control API
+      - Red Hat Advisor API
+      - Red Hat Malware Detection API
+      - Red Hat Sources API
+      - Red Hat Integrations API
+      - Red Hat Resource Optimization API
+      - Red Hat Export Service API
+      - Red Hat Playbook Dispatcher API
+      - Red Hat Content Sources API
+      - Red Hat Tasks API
+      - Red Hat Subscriptions Usage API
+      - Red Hat Assisted Installer API
+      - Red Hat Account Management Service API
+      - Red Hat Authorization Service API
+      - Red Hat Service Logs API
+      - Red Hat Connector Management API
+      - Red Hat Upgrades Information Service API
+      - Red Hat Automation Hub API
+      - Red Hat Operator Gathering Conditions Service API
+      - Red Hat Payload Ingress Service API
+      - Red Hat Lightspeed Advisor for OpenShift API
+      - Red Hat OCP Vulnerability Dashboard API
+      - Red Hat Web-RCA Service API
+      - Red Hat Case Management API
+      - Red Hat Security Data API
+      - Red Hat Edge Management API
+      - Red Hat Lightspeed for RHEL Planning API
+  - tier: professional
+    name: Professional Tier Monthly Quota
+    scope: api-key
+    metric: requests_per_month
+    limit: 100000
+    timeFrame: month
+    applies:
+      - Red Hat OpenShift API
+      - Red Hat OpenShift Cluster Manager API
+      - Red Hat Ansible Automation Platform API
+      - Red Hat Quay API
+      - Red Hat Insights API
+      - Red Hat Subscription Management API
+      - Red Hat Satellite API
+      - Red Hat Advanced Cluster Management API
+      - Red Hat Advanced Cluster Security API
+      - Red Hat Build of Keycloak Admin REST API
+      - Red Hat 3scale API Management
+      - Red Hat Cost Management API
+      - Red Hat Image Builder API
+      - Red Hat Vulnerability Management API
+      - Red Hat Patch API
+      - Red Hat Compliance API
+      - Red Hat Build of Apicurio Registry API
+      - Red Hat Streams for Apache Kafka Bridge API
+      - Red Hat Ansible Lightspeed API
+      - Red Hat Managed Inventory API
+      - Red Hat Remediations API
+      - Red Hat Notifications API
+      - Red Hat Role-Based Access Control API
+      - Red Hat Advisor API
+      - Red Hat Malware Detection API
+      - Red Hat Sources API
+      - Red Hat Integrations API
+      - Red Hat Resource Optimization API
+      - Red Hat Export Service API
+      - Red Hat Playbook Dispatcher API
+      - Red Hat Content Sources API
+      - Red Hat Tasks API
+      - Red Hat Subscriptions Usage API
+      - Red Hat Assisted Installer API
+      - Red Hat Account Management Service API
+      - Red Hat Authorization Service API
+      - Red Hat Service Logs API
+      - Red Hat Connector Management API
+      - Red Hat Upgrades Information Service API
+      - Red Hat Automation Hub API
+      - Red Hat Operator Gathering Conditions Service API
+      - Red Hat Payload Ingress Service API
+      - Red Hat Lightspeed Advisor for OpenShift API
+      - Red Hat OCP Vulnerability Dashboard API
+      - Red Hat Web-RCA Service API
+      - Red Hat Case Management API
+      - Red Hat Security Data API
+      - Red Hat Edge Management API
+      - Red Hat Lightspeed for RHEL Planning API
+  - tier: enterprise
+    name: Enterprise Negotiated Limit
+    scope: contract
+    metric: requests_per_minute
+    limit: 1000
+    burst: 5000
+    timeFrame: minute
+    applies:
+      - Red Hat OpenShift API
+      - Red Hat OpenShift Cluster Manager API
+      - Red Hat Ansible Automation Platform API
+      - Red Hat Quay API
+      - Red Hat Insights API
+      - Red Hat Subscription Management API
+      - Red Hat Satellite API
+      - Red Hat Advanced Cluster Management API
+      - Red Hat Advanced Cluster Security API
+      - Red Hat Build of Keycloak Admin REST API
+      - Red Hat 3scale API Management
+      - Red Hat Cost Management API
+      - Red Hat Image Builder API
+      - Red Hat Vulnerability Management API
+      - Red Hat Patch API
+      - Red Hat Compliance API
+      - Red Hat Build of Apicurio Registry API
+      - Red Hat Streams for Apache Kafka Bridge API
+      - Red Hat Ansible Lightspeed API
+      - Red Hat Managed Inventory API
+      - Red Hat Remediations API
+      - Red Hat Notifications API
+      - Red Hat Role-Based Access Control API
+      - Red Hat Advisor API
+      - Red Hat Malware Detection API
+      - Red Hat Sources API
+      - Red Hat Integrations API
+      - Red Hat Resource Optimization API
+      - Red Hat Export Service API
+      - Red Hat Playbook Dispatcher API
+      - Red Hat Content Sources API
+      - Red Hat Tasks API
+      - Red Hat Subscriptions Usage API
+      - Red Hat Assisted Installer API
+      - Red Hat Account Management Service API
+      - Red Hat Authorization Service API
+      - Red Hat Service Logs API
+      - Red Hat Connector Management API
+      - Red Hat Upgrades Information Service API
+      - Red Hat Automation Hub API
+      - Red Hat Operator Gathering Conditions Service API
+      - Red Hat Payload Ingress Service API
+      - Red Hat Lightspeed Advisor for OpenShift API
+      - Red Hat OCP Vulnerability Dashboard API
+      - Red Hat Web-RCA Service API
+      - Red Hat Case Management API
+      - Red Hat Security Data API
+      - Red Hat Edge Management API
+      - Red Hat Lightspeed for RHEL Planning API
+policies:
+  - name: Backoff Strategy
+    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
+      when present.
+  - name: Burst Handling
+    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
+      before throttling engages.
+  - name: Quota Reset
+    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
+      windows reset on a sliding-window basis.
+  - name: Fair Use
+    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
+      may be subject to fair-use throttling.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

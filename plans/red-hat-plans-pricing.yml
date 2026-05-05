@@ -1,0 +1,246 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Red Hat
+providerId: red-hat
+created: '2026-05-04'
+modified: '2026-05-04'
+tags:
+  - Cloud
+  - Containers
+  - Enterprise
+  - Hybrid Cloud
+  - Kubernetes
+  - Linux
+  - Open Source
+description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
+  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+plans:
+  - id: red-hat-free
+    name: Free
+    type: freemium
+    description: Free entry tier for the Red Hat API surface. Intended for evaluation, prototyping, and
+      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
+      plan documentation.
+    entries:
+      - label: API Requests
+        description: Monthly API request quota across all included endpoints
+        name: api_requests
+        type: quota
+        metric: requests
+        limit: 1000
+        timeFrame: month
+        geo: global
+        domains: []
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Rate Limit
+        description: Maximum requests per minute on the free tier
+        name: rate_limit
+        type: rate
+        metric: requests_per_minute
+        limit: 10
+        timeFrame: minute
+        geo: global
+        domains: []
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Public Documentation
+      - name: Community Support
+      - name: Sandbox Access
+      - name: Red Hat OpenShift API
+      - name: Red Hat OpenShift Cluster Manager API
+      - name: Red Hat Ansible Automation Platform API
+      - name: Red Hat Quay API
+      - name: Red Hat Insights API
+      - name: Red Hat Subscription Management API
+      - name: Red Hat Satellite API
+      - name: Red Hat Advanced Cluster Management API
+  - id: red-hat-pro
+    name: Professional
+    type: paid
+    description: Production tier for Red Hat. Provides higher quotas, priority support, and access to
+      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+    entries:
+      - label: API Requests
+        description: Monthly API request quota
+        name: api_requests
+        type: quota
+        metric: requests
+        limit: 100000
+        timeFrame: month
+        geo: global
+        domains: []
+        unit: 1
+        price: TBD
+        userMultiplied: false
+      - label: Rate Limit
+        description: Maximum requests per minute on the professional tier
+        name: rate_limit
+        type: rate
+        metric: requests_per_minute
+        limit: 100
+        timeFrame: minute
+        geo: global
+        domains: []
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Overage
+        description: Per-request price after monthly quota is exceeded
+        name: overage
+        type: metered
+        metric: requests
+        limit: -1
+        timeFrame: month
+        geo: global
+        domains: []
+        unit: 1000
+        price: TBD
+        userMultiplied: false
+    elements:
+      - name: All Production Endpoints
+      - name: Email Support
+      - name: SLA Targets
+      - name: Webhook Subscriptions
+      - name: Red Hat OpenShift API
+      - name: Red Hat OpenShift Cluster Manager API
+      - name: Red Hat Ansible Automation Platform API
+      - name: Red Hat Quay API
+      - name: Red Hat Insights API
+      - name: Red Hat Subscription Management API
+      - name: Red Hat Satellite API
+      - name: Red Hat Advanced Cluster Management API
+      - name: Red Hat Advanced Cluster Security API
+      - name: Red Hat Build of Keycloak Admin REST API
+      - name: Red Hat 3scale API Management
+      - name: Red Hat Cost Management API
+      - name: Red Hat Image Builder API
+      - name: Red Hat Vulnerability Management API
+      - name: Red Hat Patch API
+      - name: Red Hat Compliance API
+      - name: Red Hat Build of Apicurio Registry API
+      - name: Red Hat Streams for Apache Kafka Bridge API
+      - name: Red Hat Ansible Lightspeed API
+      - name: Red Hat Managed Inventory API
+      - name: Red Hat Remediations API
+      - name: Red Hat Notifications API
+      - name: Red Hat Role-Based Access Control API
+      - name: Red Hat Advisor API
+      - name: Red Hat Malware Detection API
+      - name: Red Hat Sources API
+      - name: Red Hat Integrations API
+      - name: Red Hat Resource Optimization API
+      - name: Red Hat Export Service API
+      - name: Red Hat Playbook Dispatcher API
+      - name: Red Hat Content Sources API
+      - name: Red Hat Tasks API
+      - name: Red Hat Subscriptions Usage API
+      - name: Red Hat Assisted Installer API
+      - name: Red Hat Account Management Service API
+      - name: Red Hat Authorization Service API
+      - name: Red Hat Service Logs API
+      - name: Red Hat Connector Management API
+      - name: Red Hat Upgrades Information Service API
+      - name: Red Hat Automation Hub API
+      - name: Red Hat Operator Gathering Conditions Service API
+      - name: Red Hat Payload Ingress Service API
+      - name: Red Hat Lightspeed Advisor for OpenShift API
+      - name: Red Hat OCP Vulnerability Dashboard API
+      - name: Red Hat Web-RCA Service API
+      - name: Red Hat Case Management API
+      - name: Red Hat Security Data API
+      - name: Red Hat Edge Management API
+      - name: Red Hat Lightspeed for RHEL Planning API
+  - id: red-hat-enterprise
+    name: Enterprise
+    type: enterprise
+    description: Custom-negotiated tier for Red Hat. Includes dedicated capacity, contractual SLAs, security
+      review, data residency options, and named technical account management.
+    entries:
+      - label: API Requests
+        description: Negotiated request volume; -1 indicates uncapped subject to fair use
+        name: api_requests
+        type: quota
+        metric: requests
+        limit: -1
+        timeFrame: month
+        geo: configurable
+        domains: []
+        unit: 1
+        price: custom
+        userMultiplied: false
+      - label: Rate Limit
+        description: Negotiated burst and steady-state rate
+        name: rate_limit
+        type: rate
+        metric: requests_per_minute
+        limit: 1000
+        timeFrame: minute
+        geo: configurable
+        domains: []
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Unlimited / Negotiated Volume
+      - name: 24/7 Dedicated Support
+      - name: Contractual SLA
+      - name: Security & Compliance Review
+      - name: Dedicated Account Manager
+      - name: Custom Data Residency
+      - name: Red Hat OpenShift API
+      - name: Red Hat OpenShift Cluster Manager API
+      - name: Red Hat Ansible Automation Platform API
+      - name: Red Hat Quay API
+      - name: Red Hat Insights API
+      - name: Red Hat Subscription Management API
+      - name: Red Hat Satellite API
+      - name: Red Hat Advanced Cluster Management API
+      - name: Red Hat Advanced Cluster Security API
+      - name: Red Hat Build of Keycloak Admin REST API
+      - name: Red Hat 3scale API Management
+      - name: Red Hat Cost Management API
+      - name: Red Hat Image Builder API
+      - name: Red Hat Vulnerability Management API
+      - name: Red Hat Patch API
+      - name: Red Hat Compliance API
+      - name: Red Hat Build of Apicurio Registry API
+      - name: Red Hat Streams for Apache Kafka Bridge API
+      - name: Red Hat Ansible Lightspeed API
+      - name: Red Hat Managed Inventory API
+      - name: Red Hat Remediations API
+      - name: Red Hat Notifications API
+      - name: Red Hat Role-Based Access Control API
+      - name: Red Hat Advisor API
+      - name: Red Hat Malware Detection API
+      - name: Red Hat Sources API
+      - name: Red Hat Integrations API
+      - name: Red Hat Resource Optimization API
+      - name: Red Hat Export Service API
+      - name: Red Hat Playbook Dispatcher API
+      - name: Red Hat Content Sources API
+      - name: Red Hat Tasks API
+      - name: Red Hat Subscriptions Usage API
+      - name: Red Hat Assisted Installer API
+      - name: Red Hat Account Management Service API
+      - name: Red Hat Authorization Service API
+      - name: Red Hat Service Logs API
+      - name: Red Hat Connector Management API
+      - name: Red Hat Upgrades Information Service API
+      - name: Red Hat Automation Hub API
+      - name: Red Hat Operator Gathering Conditions Service API
+      - name: Red Hat Payload Ingress Service API
+      - name: Red Hat Lightspeed Advisor for OpenShift API
+      - name: Red Hat OCP Vulnerability Dashboard API
+      - name: Red Hat Web-RCA Service API
+      - name: Red Hat Case Management API
+      - name: Red Hat Security Data API
+      - name: Red Hat Edge Management API
+      - name: Red Hat Lightspeed for RHEL Planning API
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
