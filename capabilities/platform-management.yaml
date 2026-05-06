@@ -1,296 +1,757 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Red Hat Platform Management"
-  description: "Unified workflow for managing OpenShift clusters and Quay container registries. Used by platform engineers and DevOps teams to provision clusters, manage machine pools, and maintain container image repositories."
+  label: Red Hat Platform Management
+  description: Unified workflow for managing OpenShift clusters and Quay container registries. Used by platform engineers
+    and DevOps teams to provision clusters, manage machine pools, and maintain container image repositories.
   tags:
-    - Red Hat
-    - OpenShift
-    - Quay
-    - Platform Engineering
-  created: "2026-04-18"
-  modified: "2026-04-18"
-
+  - Red Hat
+  - OpenShift
+  - Quay
+  - Platform Engineering
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      RED_HAT_BEARER_TOKEN: RED_HAT_BEARER_TOKEN
-      QUAY_BEARER_TOKEN: QUAY_BEARER_TOKEN
-
+- namespace: env
+  keys:
+    RED_HAT_BEARER_TOKEN: RED_HAT_BEARER_TOKEN
+    QUAY_BEARER_TOKEN: QUAY_BEARER_TOKEN
 capability:
   consumes:
-    - import: openshift-cluster-manager
-      location: ./shared/openshift-cluster-manager.yaml
-    - import: quay
-      location: ./shared/quay.yaml
-
+  - type: http
+    namespace: openshift-cluster-manager
+    baseUri: https://api.openshift.com
+    description: OpenShift Cluster Manager API for cluster lifecycle management.
+    authentication:
+      type: bearer
+      token: '{{RED_HAT_BEARER_TOKEN}}'
+    resources:
+    - name: clusters
+      path: /api/clusters_mgmt/v1/clusters
+      description: Manage OpenShift clusters.
+      operations:
+      - name: list-clusters
+        method: GET
+        description: List all managed clusters.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number
+        - name: size
+          in: query
+          type: integer
+          required: false
+          description: Page size
+        - name: search
+          in: query
+          type: string
+          required: false
+          description: Search filter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-cluster
+        method: POST
+        description: Create a new OpenShift cluster.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            cloud_provider: '{{tools.cloud_provider}}'
+            region: '{{tools.region}}'
+      - name: get-cluster
+        method: GET
+        description: Get a specific cluster.
+        inputParameters:
+        - name: cluster_id
+          in: path
+          type: string
+          required: true
+          description: Cluster ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-cluster
+        method: PATCH
+        description: Update a cluster configuration.
+        inputParameters:
+        - name: cluster_id
+          in: path
+          type: string
+          required: true
+          description: Cluster ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+      - name: delete-cluster
+        method: DELETE
+        description: Delete a cluster.
+        inputParameters:
+        - name: cluster_id
+          in: path
+          type: string
+          required: true
+          description: Cluster ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: machine-pools
+      path: /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools
+      description: Manage compute node machine pools.
+      operations:
+      - name: list-machine-pools
+        method: GET
+        description: List machine pools for a cluster.
+        inputParameters:
+        - name: cluster_id
+          in: path
+          type: string
+          required: true
+          description: Cluster ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-machine-pool
+        method: POST
+        description: Create a machine pool.
+        inputParameters:
+        - name: cluster_id
+          in: path
+          type: string
+          required: true
+          description: Cluster ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            id: '{{tools.id}}'
+            instance_type: '{{tools.instance_type}}'
+            replicas: '{{tools.replicas}}'
+    - name: identity-providers
+      path: /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers
+      description: Configure cluster identity providers.
+      operations:
+      - name: list-cluster-identity-providers
+        method: GET
+        description: List identity providers for a cluster.
+        inputParameters:
+        - name: cluster_id
+          in: path
+          type: string
+          required: true
+          description: Cluster ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-cluster-identity-provider
+        method: POST
+        description: Add an identity provider to a cluster.
+        inputParameters:
+        - name: cluster_id
+          in: path
+          type: string
+          required: true
+          description: Cluster ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            type: '{{tools.type}}'
+    - name: cloud-providers
+      path: /api/clusters_mgmt/v1/cloud_providers
+      description: Available cloud providers and regions.
+      operations:
+      - name: list-cloud-providers
+        method: GET
+        description: List available cloud providers.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: list-cloud-provider-regions
+        method: GET
+        description: List regions for a cloud provider.
+        inputParameters:
+        - name: cloud_provider_id
+          in: path
+          type: string
+          required: true
+          description: Cloud provider ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: versions
+      path: /api/clusters_mgmt/v1/versions
+      description: Available OpenShift versions.
+      operations:
+      - name: list-versions
+        method: GET
+        description: List available OpenShift versions.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: addons
+      path: /api/clusters_mgmt/v1/addons
+      description: Cluster add-ons.
+      operations:
+      - name: list-addons
+        method: GET
+        description: List available cluster add-ons.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions
+      path: /api/accounts_mgmt/v1/subscriptions
+      description: Cluster subscriptions.
+      operations:
+      - name: list-subscriptions
+        method: GET
+        description: List cluster subscriptions.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: quay
+    baseUri: https://quay.io/api/v1
+    description: Red Hat Quay container registry API.
+    authentication:
+      type: bearer
+      token: '{{QUAY_BEARER_TOKEN}}'
+    resources:
+    - name: repositories
+      path: /repository
+      description: Container image repositories.
+      operations:
+      - name: list-repositories
+        method: GET
+        description: List visible repositories.
+        inputParameters:
+        - name: namespace
+          in: query
+          type: string
+          required: false
+          description: Filter by namespace
+        - name: starred
+          in: query
+          type: boolean
+          required: false
+          description: Filter starred repos
+        - name: public
+          in: query
+          type: boolean
+          required: false
+          description: Include public repos
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-repository
+        method: POST
+        description: Create a new repository.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            namespace: '{{tools.namespace}}'
+            repository: '{{tools.repository}}'
+            visibility: '{{tools.visibility}}'
+      - name: get-repository
+        method: GET
+        description: Get repository details.
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+          description: Repository path (namespace/name)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-repository
+        method: DELETE
+        description: Delete a repository.
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+          description: Repository path
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tags
+      path: /repository/{repository}/tag
+      description: Image tags.
+      operations:
+      - name: list-repository-tags
+        method: GET
+        description: List tags for a repository.
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+          description: Repository path
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: change-tag
+        method: PUT
+        description: Change or create a tag.
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+          description: Repository path
+        - name: tag
+          in: path
+          type: string
+          required: true
+          description: Tag name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-tag
+        method: DELETE
+        description: Delete a tag.
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+          description: Repository path
+        - name: tag
+          in: path
+          type: string
+          required: true
+          description: Tag name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: manifests
+      path: /repository/{repository}/manifest
+      description: Image manifests and security scanning.
+      operations:
+      - name: get-manifest-security
+        method: GET
+        description: Get security scan results for a manifest.
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+          description: Repository path
+        - name: manifestref
+          in: path
+          type: string
+          required: true
+          description: Manifest digest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: organizations
+      path: /organization
+      description: Organization management.
+      operations:
+      - name: get-organization
+        method: GET
+        description: Get organization details.
+        inputParameters:
+        - name: orgname
+          in: path
+          type: string
+          required: true
+          description: Organization name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: robot-accounts
+      path: /organization/{orgname}/robots
+      description: Robot accounts for automated access.
+      operations:
+      - name: get-org-robot
+        method: GET
+        description: Get a robot account.
+        inputParameters:
+        - name: orgname
+          in: path
+          type: string
+          required: true
+          description: Organization name
+        - name: robot_shortname
+          in: path
+          type: string
+          required: true
+          description: Robot short name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-org-robot
+        method: PUT
+        description: Create or update a robot account.
+        inputParameters:
+        - name: orgname
+          in: path
+          type: string
+          required: true
+          description: Organization name
+        - name: robot_shortname
+          in: path
+          type: string
+          required: true
+          description: Robot short name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users
+      path: /user
+      description: User operations.
+      operations:
+      - name: get-logged-in-user
+        method: GET
+        description: Get the currently logged-in user.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: platform-management-api
-      description: "Unified REST API for OpenShift cluster and Quay registry management."
-      resources:
-        - path: /v1/clusters
-          name: clusters
-          description: "OpenShift clusters."
-          operations:
-            - method: GET
-              name: list-clusters
-              description: "List all managed clusters."
-              call: "openshift-cluster-manager.list-clusters"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-cluster
-              description: "Create a new cluster."
-              call: "openshift-cluster-manager.create-cluster"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/clusters/{cluster_id}
-          name: cluster-detail
-          description: "Specific cluster operations."
-          operations:
-            - method: GET
-              name: get-cluster
-              description: "Get cluster details."
-              call: "openshift-cluster-manager.get-cluster"
-              with:
-                cluster_id: "rest.cluster_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-cluster
-              description: "Delete a cluster."
-              call: "openshift-cluster-manager.delete-cluster"
-              with:
-                cluster_id: "rest.cluster_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/clusters/{cluster_id}/machine-pools
-          name: machine-pools
-          description: "Cluster machine pools."
-          operations:
-            - method: GET
-              name: list-machine-pools
-              description: "List machine pools."
-              call: "openshift-cluster-manager.list-machine-pools"
-              with:
-                cluster_id: "rest.cluster_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/cloud-providers
-          name: cloud-providers
-          description: "Available cloud providers."
-          operations:
-            - method: GET
-              name: list-cloud-providers
-              description: "List cloud providers."
-              call: "openshift-cluster-manager.list-cloud-providers"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/versions
-          name: versions
-          description: "OpenShift versions."
-          operations:
-            - method: GET
-              name: list-versions
-              description: "List OpenShift versions."
-              call: "openshift-cluster-manager.list-versions"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/repositories
-          name: repositories
-          description: "Container image repositories."
-          operations:
-            - method: GET
-              name: list-repositories
-              description: "List container repositories."
-              call: "quay.list-repositories"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-repository
-              description: "Create a container repository."
-              call: "quay.create-repository"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/repositories/{repository}/tags
-          name: tags
-          description: "Image tags."
-          operations:
-            - method: GET
-              name: list-repository-tags
-              description: "List image tags."
-              call: "quay.list-repository-tags"
-              with:
-                repository: "rest.repository"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/repositories/{repository}/manifests/{manifestref}/security
-          name: manifest-security
-          description: "Image vulnerability scanning."
-          operations:
-            - method: GET
-              name: get-manifest-security
-              description: "Get vulnerability scan results."
-              call: "quay.get-manifest-security"
-              with:
-                repository: "rest.repository"
-                manifestref: "rest.manifestref"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9080
-      namespace: platform-management-mcp
-      transport: http
-      description: "MCP server for AI-assisted OpenShift and Quay management."
-      tools:
-        - name: list-clusters
-          description: "List all managed OpenShift clusters."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "openshift-cluster-manager.list-clusters"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-cluster
-          description: "Get details of a specific cluster."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "openshift-cluster-manager.get-cluster"
-          with:
-            cluster_id: "tools.cluster_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-cluster
-          description: "Create a new OpenShift cluster."
-          hints:
-            readOnly: false
-          call: "openshift-cluster-manager.create-cluster"
-          with:
-            name: "tools.name"
-            cloud_provider: "tools.cloud_provider"
-            region: "tools.region"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-cluster
-          description: "Delete an OpenShift cluster."
-          hints:
-            readOnly: false
-            destructive: true
-          call: "openshift-cluster-manager.delete-cluster"
-          with:
-            cluster_id: "tools.cluster_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-machine-pools
-          description: "List machine pools for a cluster."
-          hints:
-            readOnly: true
-          call: "openshift-cluster-manager.list-machine-pools"
-          with:
-            cluster_id: "tools.cluster_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-cloud-providers
-          description: "List available cloud providers."
-          hints:
-            readOnly: true
-          call: "openshift-cluster-manager.list-cloud-providers"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-versions
-          description: "List available OpenShift versions."
-          hints:
-            readOnly: true
-          call: "openshift-cluster-manager.list-versions"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-addons
-          description: "List available cluster add-ons."
-          hints:
-            readOnly: true
-          call: "openshift-cluster-manager.list-addons"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-subscriptions
-          description: "List cluster subscriptions."
-          hints:
-            readOnly: true
-          call: "openshift-cluster-manager.list-subscriptions"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-repositories
-          description: "List container image repositories."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "quay.list-repositories"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-repository
-          description: "Get container repository details."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "quay.get-repository"
-          with:
-            repository: "tools.repository"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-repository
-          description: "Create a new container repository."
-          hints:
-            readOnly: false
-          call: "quay.create-repository"
-          with:
-            namespace: "tools.namespace"
-            repository: "tools.repository"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-repository-tags
-          description: "List tags for a container image."
-          hints:
-            readOnly: true
-          call: "quay.list-repository-tags"
-          with:
-            repository: "tools.repository"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-manifest-security
-          description: "Get vulnerability scan results for a container image."
-          hints:
-            readOnly: true
-          call: "quay.get-manifest-security"
-          with:
-            repository: "tools.repository"
-            manifestref: "tools.manifestref"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: platform-management-api
+    description: Unified REST API for OpenShift cluster and Quay registry management.
+    resources:
+    - path: /v1/clusters
+      name: clusters
+      description: OpenShift clusters.
+      operations:
+      - method: GET
+        name: list-clusters
+        description: List all managed clusters.
+        call: openshift-cluster-manager.list-clusters
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-cluster
+        description: Create a new cluster.
+        call: openshift-cluster-manager.create-cluster
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/clusters/{cluster_id}
+      name: cluster-detail
+      description: Specific cluster operations.
+      operations:
+      - method: GET
+        name: get-cluster
+        description: Get cluster details.
+        call: openshift-cluster-manager.get-cluster
+        with:
+          cluster_id: rest.cluster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-cluster
+        description: Delete a cluster.
+        call: openshift-cluster-manager.delete-cluster
+        with:
+          cluster_id: rest.cluster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/clusters/{cluster_id}/machine-pools
+      name: machine-pools
+      description: Cluster machine pools.
+      operations:
+      - method: GET
+        name: list-machine-pools
+        description: List machine pools.
+        call: openshift-cluster-manager.list-machine-pools
+        with:
+          cluster_id: rest.cluster_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cloud-providers
+      name: cloud-providers
+      description: Available cloud providers.
+      operations:
+      - method: GET
+        name: list-cloud-providers
+        description: List cloud providers.
+        call: openshift-cluster-manager.list-cloud-providers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/versions
+      name: versions
+      description: OpenShift versions.
+      operations:
+      - method: GET
+        name: list-versions
+        description: List OpenShift versions.
+        call: openshift-cluster-manager.list-versions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories
+      name: repositories
+      description: Container image repositories.
+      operations:
+      - method: GET
+        name: list-repositories
+        description: List container repositories.
+        call: quay.list-repositories
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-repository
+        description: Create a container repository.
+        call: quay.create-repository
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{repository}/tags
+      name: tags
+      description: Image tags.
+      operations:
+      - method: GET
+        name: list-repository-tags
+        description: List image tags.
+        call: quay.list-repository-tags
+        with:
+          repository: rest.repository
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{repository}/manifests/{manifestref}/security
+      name: manifest-security
+      description: Image vulnerability scanning.
+      operations:
+      - method: GET
+        name: get-manifest-security
+        description: Get vulnerability scan results.
+        call: quay.get-manifest-security
+        with:
+          repository: rest.repository
+          manifestref: rest.manifestref
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9080
+    namespace: platform-management-mcp
+    transport: http
+    description: MCP server for AI-assisted OpenShift and Quay management.
+    tools:
+    - name: list-clusters
+      description: List all managed OpenShift clusters.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: openshift-cluster-manager.list-clusters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-cluster
+      description: Get details of a specific cluster.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: openshift-cluster-manager.get-cluster
+      with:
+        cluster_id: tools.cluster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-cluster
+      description: Create a new OpenShift cluster.
+      hints:
+        readOnly: false
+      call: openshift-cluster-manager.create-cluster
+      with:
+        name: tools.name
+        cloud_provider: tools.cloud_provider
+        region: tools.region
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-cluster
+      description: Delete an OpenShift cluster.
+      hints:
+        readOnly: false
+        destructive: true
+      call: openshift-cluster-manager.delete-cluster
+      with:
+        cluster_id: tools.cluster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-machine-pools
+      description: List machine pools for a cluster.
+      hints:
+        readOnly: true
+      call: openshift-cluster-manager.list-machine-pools
+      with:
+        cluster_id: tools.cluster_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-cloud-providers
+      description: List available cloud providers.
+      hints:
+        readOnly: true
+      call: openshift-cluster-manager.list-cloud-providers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-versions
+      description: List available OpenShift versions.
+      hints:
+        readOnly: true
+      call: openshift-cluster-manager.list-versions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-addons
+      description: List available cluster add-ons.
+      hints:
+        readOnly: true
+      call: openshift-cluster-manager.list-addons
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-subscriptions
+      description: List cluster subscriptions.
+      hints:
+        readOnly: true
+      call: openshift-cluster-manager.list-subscriptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-repositories
+      description: List container image repositories.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: quay.list-repositories
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-repository
+      description: Get container repository details.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: quay.get-repository
+      with:
+        repository: tools.repository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-repository
+      description: Create a new container repository.
+      hints:
+        readOnly: false
+      call: quay.create-repository
+      with:
+        namespace: tools.namespace
+        repository: tools.repository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-repository-tags
+      description: List tags for a container image.
+      hints:
+        readOnly: true
+      call: quay.list-repository-tags
+      with:
+        repository: tools.repository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-manifest-security
+      description: Get vulnerability scan results for a container image.
+      hints:
+        readOnly: true
+      call: quay.get-manifest-security
+      with:
+        repository: tools.repository
+        manifestref: tools.manifestref
+      outputParameters:
+      - type: object
+        mapping: $.
