@@ -3,11 +3,19 @@
   "feeds": [
     {
       "source": "https://developers.redhat.com/blog",
-      "feed_url": "https://developers.redhat.com/blog/feed",
-      "saved": 10,
-      "title": "Red Hat Developer"
+      "feed_url": "",
+      "title": "",
+      "saved": 0,
+      "error": "no_feed"
+    },
+    {
+      "source": "https://developers.redhat.com/blog/feed",
+      "feed_url": "",
+      "title": "",
+      "saved": 0,
+      "error": "no_feed"
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:34:30Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
