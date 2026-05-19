@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Quay API — Teams
+  description: 'Red Hat Quay API — Teams. 1 operations. Lead operation: Red Hat Create or Update a Team. Self-contained Naftiko
+    capability covering one Red Hat business surface.'
+  tags:
+  - Red Hat
+  - Teams
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_API_KEY: RED_HAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: quay-teams
+    baseUri: https://quay.io/api/v1
+    description: Red Hat Quay API — Teams business capability. Self-contained, no shared references.
+    resources:
+    - name: organization-orgname-team-teamname
+      path: /organization/{orgname}/team/{teamname}
+      operations:
+      - name: createorupdateteam
+        method: PUT
+        description: Red Hat Create or Update a Team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teamname
+          in: path
+          type: string
+          description: The name of the team.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RED_HAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: quay-teams-rest
+    port: 8080
+    description: REST adapter for Red Hat Quay API — Teams. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/organization/{orgname}/team/{teamname}
+      name: organization-orgname-team-teamname
+      description: REST surface for organization-orgname-team-teamname.
+      operations:
+      - method: PUT
+        name: createorupdateteam
+        description: Red Hat Create or Update a Team
+        call: quay-teams.createorupdateteam
+        with:
+          teamname: rest.teamname
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: quay-teams-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Quay API — Teams. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: red-hat-create-update-team
+      description: Red Hat Create or Update a Team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: quay-teams.createorupdateteam
+      with:
+        teamname: tools.teamname
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

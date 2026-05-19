@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Insights API — Topics
+  description: 'Red Hat Insights API — Topics. 1 operations. Lead operation: Red Hat List Topics. Self-contained Naftiko capability
+    covering one Red Hat business surface.'
+  tags:
+  - Red Hat
+  - Topics
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_API_KEY: RED_HAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: insights-topics
+    baseUri: https://console.redhat.com/api
+    description: Red Hat Insights API — Topics business capability. Self-contained, no shared references.
+    resources:
+    - name: insights-v1-topic
+      path: /insights/v1/topic/
+      operations:
+      - name: listtopics
+        method: GET
+        description: Red Hat List Topics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.RED_HAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: insights-topics-rest
+    port: 8080
+    description: REST adapter for Red Hat Insights API — Topics. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/insights/v1/topic
+      name: insights-v1-topic
+      description: REST surface for insights-v1-topic.
+      operations:
+      - method: GET
+        name: listtopics
+        description: Red Hat List Topics
+        call: insights-topics.listtopics
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: insights-topics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Insights API — Topics. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: red-hat-list-topics
+      description: Red Hat List Topics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: insights-topics.listtopics
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat OpenShift Cluster Manager API — Subscriptions
+  description: 'Red Hat OpenShift Cluster Manager API — Subscriptions. 1 operations. Lead operation: Red Hat List Subscriptions.
+    Self-contained Naftiko capability covering one Red Hat business surface.'
+  tags:
+  - Red Hat
+  - Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_API_KEY: RED_HAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openshift-cluster-manager-subscriptions
+    baseUri: https://api.openshift.com
+    description: Red Hat OpenShift Cluster Manager API — Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: api-accounts_mgmt-v1-subscriptions
+      path: /api/accounts_mgmt/v1/subscriptions
+      operations:
+      - name: listsubscriptions
+        method: GET
+        description: Red Hat List Subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.RED_HAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: openshift-cluster-manager-subscriptions-rest
+    port: 8080
+    description: REST adapter for Red Hat OpenShift Cluster Manager API — Subscriptions. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/accounts-mgmt/v1/subscriptions
+      name: api-accounts-mgmt-v1-subscriptions
+      description: REST surface for api-accounts_mgmt-v1-subscriptions.
+      operations:
+      - method: GET
+        name: listsubscriptions
+        description: Red Hat List Subscriptions
+        call: openshift-cluster-manager-subscriptions.listsubscriptions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openshift-cluster-manager-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat OpenShift Cluster Manager API — Subscriptions. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: red-hat-list-subscriptions
+      description: Red Hat List Subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openshift-cluster-manager-subscriptions.listsubscriptions
+      outputParameters:
+      - type: object
+        mapping: $.

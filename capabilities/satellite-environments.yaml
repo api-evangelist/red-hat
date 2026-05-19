@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Satellite API — Environments
+  description: 'Red Hat Satellite API — Environments. 1 operations. Lead operation: Red Hat List Lifecycle Environments. Self-contained
+    Naftiko capability covering one Red Hat business surface.'
+  tags:
+  - Red Hat
+  - Environments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_API_KEY: RED_HAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: satellite-environments
+    baseUri: https://satellite.example.com
+    description: Red Hat Satellite API — Environments business capability. Self-contained, no shared references.
+    resources:
+    - name: katello-api-v2-organizations-organization_id-environments
+      path: /katello/api/v2/organizations/{organization_id}/environments
+      operations:
+      - name: listenvironments
+        method: GET
+        description: Red Hat List Lifecycle Environments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_id
+          in: path
+          type: integer
+          description: The organization identifier.
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.RED_HAT_USER}}'
+      password: '{{env.RED_HAT_PASS}}'
+  exposes:
+  - type: rest
+    namespace: satellite-environments-rest
+    port: 8080
+    description: REST adapter for Red Hat Satellite API — Environments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/katello/api/v2/organizations/{organization-id}/environments
+      name: katello-api-v2-organizations-organization-id-environments
+      description: REST surface for katello-api-v2-organizations-organization_id-environments.
+      operations:
+      - method: GET
+        name: listenvironments
+        description: Red Hat List Lifecycle Environments
+        call: satellite-environments.listenvironments
+        with:
+          organization_id: rest.organization_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: satellite-environments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Satellite API — Environments. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: red-hat-list-lifecycle-environments
+      description: Red Hat List Lifecycle Environments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: satellite-environments.listenvironments
+      with:
+        organization_id: tools.organization_id
+      outputParameters:
+      - type: object
+        mapping: $.

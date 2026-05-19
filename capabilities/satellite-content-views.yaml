@@ -1,0 +1,121 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Satellite API — Content Views
+  description: 'Red Hat Satellite API — Content Views. 2 operations. Lead operation: Red Hat List Content Views. Self-contained
+    Naftiko capability covering one Red Hat business surface.'
+  tags:
+  - Red Hat
+  - Content Views
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_API_KEY: RED_HAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: satellite-content-views
+    baseUri: https://satellite.example.com
+    description: Red Hat Satellite API — Content Views business capability. Self-contained, no shared references.
+    resources:
+    - name: katello-api-v2-content_views
+      path: /katello/api/v2/content_views
+      operations:
+      - name: listcontentviews
+        method: GET
+        description: Red Hat List Content Views
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_id
+          in: query
+          type: integer
+          description: Filter by organization identifier.
+        - name: name
+          in: query
+          type: string
+          description: Filter by content view name.
+      - name: createcontentview
+        method: POST
+        description: Red Hat Create a Content View
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.RED_HAT_USER}}'
+      password: '{{env.RED_HAT_PASS}}'
+  exposes:
+  - type: rest
+    namespace: satellite-content-views-rest
+    port: 8080
+    description: REST adapter for Red Hat Satellite API — Content Views. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/katello/api/v2/content-views
+      name: katello-api-v2-content-views
+      description: REST surface for katello-api-v2-content_views.
+      operations:
+      - method: GET
+        name: listcontentviews
+        description: Red Hat List Content Views
+        call: satellite-content-views.listcontentviews
+        with:
+          organization_id: rest.organization_id
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcontentview
+        description: Red Hat Create a Content View
+        call: satellite-content-views.createcontentview
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: satellite-content-views-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Satellite API — Content Views. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: red-hat-list-content-views
+      description: Red Hat List Content Views
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: satellite-content-views.listcontentviews
+      with:
+        organization_id: tools.organization_id
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: red-hat-create-content-view
+      description: Red Hat Create a Content View
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: satellite-content-views.createcontentview
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

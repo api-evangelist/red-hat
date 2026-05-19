@@ -1,0 +1,195 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Quay API — Repositories
+  description: 'Red Hat Quay API — Repositories. 4 operations. Lead operation: Red Hat List Repositories. Self-contained Naftiko
+    capability covering one Red Hat business surface.'
+  tags:
+  - Red Hat
+  - Repositories
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_API_KEY: RED_HAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: quay-repositories
+    baseUri: https://quay.io/api/v1
+    description: Red Hat Quay API — Repositories business capability. Self-contained, no shared references.
+    resources:
+    - name: repository
+      path: /repository
+      operations:
+      - name: listrepositories
+        method: GET
+        description: Red Hat List Repositories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace
+          in: query
+          type: string
+          description: Filter repositories by namespace (organization or user).
+        - name: starred
+          in: query
+          type: boolean
+          description: Filter to only starred repositories.
+        - name: public
+          in: query
+          type: boolean
+          description: Include public repositories.
+        - name: last_modified
+          in: query
+          type: boolean
+          description: Filter by last modified status.
+        - name: popularity
+          in: query
+          type: boolean
+          description: Filter by popularity.
+      - name: createrepository
+        method: POST
+        description: Red Hat Create a Repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: repository-repository
+      path: /repository/{repository}
+      operations:
+      - name: getrepository
+        method: GET
+        description: Red Hat Get a Repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleterepository
+        method: DELETE
+        description: Red Hat Delete a Repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.RED_HAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: quay-repositories-rest
+    port: 8080
+    description: REST adapter for Red Hat Quay API — Repositories. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/repository
+      name: repository
+      description: REST surface for repository.
+      operations:
+      - method: GET
+        name: listrepositories
+        description: Red Hat List Repositories
+        call: quay-repositories.listrepositories
+        with:
+          namespace: rest.namespace
+          starred: rest.starred
+          public: rest.public
+          last_modified: rest.last_modified
+          popularity: rest.popularity
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrepository
+        description: Red Hat Create a Repository
+        call: quay-repositories.createrepository
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repository/{repository}
+      name: repository-repository
+      description: REST surface for repository-repository.
+      operations:
+      - method: GET
+        name: getrepository
+        description: Red Hat Get a Repository
+        call: quay-repositories.getrepository
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterepository
+        description: Red Hat Delete a Repository
+        call: quay-repositories.deleterepository
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: quay-repositories-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Quay API — Repositories. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: red-hat-list-repositories
+      description: Red Hat List Repositories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay-repositories.listrepositories
+      with:
+        namespace: tools.namespace
+        starred: tools.starred
+        public: tools.public
+        last_modified: tools.last_modified
+        popularity: tools.popularity
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: red-hat-create-repository
+      description: Red Hat Create a Repository
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: quay-repositories.createrepository
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: red-hat-get-repository
+      description: Red Hat Get a Repository
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay-repositories.getrepository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: red-hat-delete-repository
+      description: Red Hat Delete a Repository
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: quay-repositories.deleterepository
+      outputParameters:
+      - type: object
+        mapping: $.

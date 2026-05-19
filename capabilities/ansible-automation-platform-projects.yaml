@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Ansible Automation Platform API — Projects
+  description: 'Red Hat Ansible Automation Platform API — Projects. 1 operations. Lead operation: Red Hat List Projects. Self-contained
+    Naftiko capability covering one Red Hat business surface.'
+  tags:
+  - Red Hat
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_API_KEY: RED_HAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ansible-automation-platform-projects
+    baseUri: https://ansible-platform.example.com
+    description: Red Hat Ansible Automation Platform API — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-projects
+      path: /api/v2/projects/
+      operations:
+      - name: listprojects
+        method: GET
+        description: Red Hat List Projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.RED_HAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ansible-automation-platform-projects-rest
+    port: 8080
+    description: REST adapter for Red Hat Ansible Automation Platform API — Projects. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/projects
+      name: api-v2-projects
+      description: REST surface for api-v2-projects.
+      operations:
+      - method: GET
+        name: listprojects
+        description: Red Hat List Projects
+        call: ansible-automation-platform-projects.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ansible-automation-platform-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Ansible Automation Platform API — Projects. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: red-hat-list-projects
+      description: Red Hat List Projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ansible-automation-platform-projects.listprojects
+      outputParameters:
+      - type: object
+        mapping: $.

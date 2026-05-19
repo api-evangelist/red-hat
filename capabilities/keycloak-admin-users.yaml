@@ -1,0 +1,242 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Build of Keycloak Admin REST API — Users
+  description: 'Red Hat Build of Keycloak Admin REST API — Users. 5 operations. Lead operation: Red Hat List Users. Self-contained
+    Naftiko capability covering one Red Hat business surface.'
+  tags:
+  - Red Hat
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_API_KEY: RED_HAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: keycloak-admin-users
+    baseUri: https://keycloak.example.com
+    description: Red Hat Build of Keycloak Admin REST API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: admin-realms-realm-users
+      path: /admin/realms/{realm}/users
+      operations:
+      - name: listusers
+        method: GET
+        description: Red Hat List Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: query
+          type: string
+          description: Filter by username.
+        - name: email
+          in: query
+          type: string
+          description: Filter by email address.
+        - name: firstName
+          in: query
+          type: string
+          description: Filter by first name.
+        - name: lastName
+          in: query
+          type: string
+          description: Filter by last name.
+        - name: enabled
+          in: query
+          type: boolean
+          description: Filter by enabled status.
+        - name: first
+          in: query
+          type: integer
+          description: The index of the first result to return (pagination offset).
+        - name: max
+          in: query
+          type: integer
+          description: The maximum number of results to return.
+      - name: createuser
+        method: POST
+        description: Red Hat Create a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: admin-realms-realm-users-user_id
+      path: /admin/realms/{realm}/users/{user_id}
+      operations:
+      - name: getuser
+        method: GET
+        description: Red Hat Get a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateuser
+        method: PUT
+        description: Red Hat Update a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteuser
+        method: DELETE
+        description: Red Hat Delete a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.RED_HAT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: keycloak-admin-users-rest
+    port: 8080
+    description: REST adapter for Red Hat Build of Keycloak Admin REST API — Users. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/admin/realms/{realm}/users
+      name: admin-realms-realm-users
+      description: REST surface for admin-realms-realm-users.
+      operations:
+      - method: GET
+        name: listusers
+        description: Red Hat List Users
+        call: keycloak-admin-users.listusers
+        with:
+          username: rest.username
+          email: rest.email
+          firstName: rest.firstName
+          lastName: rest.lastName
+          enabled: rest.enabled
+          first: rest.first
+          max: rest.max
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createuser
+        description: Red Hat Create a User
+        call: keycloak-admin-users.createuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/admin/realms/{realm}/users/{user-id}
+      name: admin-realms-realm-users-user-id
+      description: REST surface for admin-realms-realm-users-user_id.
+      operations:
+      - method: GET
+        name: getuser
+        description: Red Hat Get a User
+        call: keycloak-admin-users.getuser
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateuser
+        description: Red Hat Update a User
+        call: keycloak-admin-users.updateuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteuser
+        description: Red Hat Delete a User
+        call: keycloak-admin-users.deleteuser
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: keycloak-admin-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Build of Keycloak Admin REST API — Users. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: red-hat-list-users
+      description: Red Hat List Users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: keycloak-admin-users.listusers
+      with:
+        username: tools.username
+        email: tools.email
+        firstName: tools.firstName
+        lastName: tools.lastName
+        enabled: tools.enabled
+        first: tools.first
+        max: tools.max
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: red-hat-create-user
+      description: Red Hat Create a User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: keycloak-admin-users.createuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: red-hat-get-user
+      description: Red Hat Get a User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: keycloak-admin-users.getuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: red-hat-update-user
+      description: Red Hat Update a User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: keycloak-admin-users.updateuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: red-hat-delete-user
+      description: Red Hat Delete a User
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: keycloak-admin-users.deleteuser
+      outputParameters:
+      - type: object
+        mapping: $.

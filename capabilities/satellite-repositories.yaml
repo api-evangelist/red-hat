@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Satellite API — Repositories
+  description: 'Red Hat Satellite API — Repositories. 1 operations. Lead operation: Red Hat List Repositories. Self-contained
+    Naftiko capability covering one Red Hat business surface.'
+  tags:
+  - Red Hat
+  - Repositories
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_API_KEY: RED_HAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: satellite-repositories
+    baseUri: https://satellite.example.com
+    description: Red Hat Satellite API — Repositories business capability. Self-contained, no shared references.
+    resources:
+    - name: katello-api-v2-repositories
+      path: /katello/api/v2/repositories
+      operations:
+      - name: listrepositories
+        method: GET
+        description: Red Hat List Repositories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_id
+          in: query
+          type: integer
+          description: Filter by organization.
+        - name: content_type
+          in: query
+          type: string
+          description: Filter by content type.
+    authentication:
+      type: basic
+      username: '{{env.RED_HAT_USER}}'
+      password: '{{env.RED_HAT_PASS}}'
+  exposes:
+  - type: rest
+    namespace: satellite-repositories-rest
+    port: 8080
+    description: REST adapter for Red Hat Satellite API — Repositories. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/katello/api/v2/repositories
+      name: katello-api-v2-repositories
+      description: REST surface for katello-api-v2-repositories.
+      operations:
+      - method: GET
+        name: listrepositories
+        description: Red Hat List Repositories
+        call: satellite-repositories.listrepositories
+        with:
+          organization_id: rest.organization_id
+          content_type: rest.content_type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: satellite-repositories-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Satellite API — Repositories. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: red-hat-list-repositories
+      description: Red Hat List Repositories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: satellite-repositories.listrepositories
+      with:
+        organization_id: tools.organization_id
+        content_type: tools.content_type
+      outputParameters:
+      - type: object
+        mapping: $.
