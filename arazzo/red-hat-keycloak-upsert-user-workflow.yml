@@ -1,0 +1,164 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Keycloak Upsert a Realm User
+  summary: Look up a user by username and update it if it exists, otherwise create it.
+  description: >-
+    A common identity provisioning pattern for the Red Hat build of Keycloak
+    (RH-SSO) admin API. The workflow searches a realm for a user with a given
+    username, then branches: when a match is found it updates the existing user,
+    and when no match is found it creates a new user and re-reads the realm to
+    resolve the new user's id. Each step inlines its bearer token, parameters,
+    request body, documented success criteria, and outputs.
+  version: 1.0.0
+sourceDescriptions:
+- name: keycloakAdminApi
+  url: ../openapi/red-hat-keycloak-admin-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-user
+  summary: Upsert a Keycloak realm user keyed on username.
+  description: >-
+    Searches a realm for a user by username and either updates the matched user
+    or creates a new one, resolving the created user's id by re-listing.
+  inputs:
+    type: object
+    required:
+    - token
+    - realm
+    - username
+    - email
+    properties:
+      token:
+        type: string
+        description: Admin bearer token for the Keycloak admin API.
+      realm:
+        type: string
+        description: The realm the user belongs to.
+      username:
+        type: string
+        description: The username used to detect an existing user.
+      email:
+        type: string
+        description: The email address to set on the user.
+      firstName:
+        type: string
+        description: The user's first name.
+      lastName:
+        type: string
+        description: The user's last name.
+      enabled:
+        type: boolean
+        description: Whether the user account is enabled.
+  steps:
+  - stepId: findUser
+    description: >-
+      Search the realm for an exact username match, returning at most one user.
+    operationId: listUsers
+    parameters:
+    - name: realm
+      in: path
+      value: $inputs.realm
+    - name: username
+      in: query
+      value: $inputs.username
+    - name: max
+      in: query
+      value: 1
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedUserId: $response.body#/0/id
+    onSuccess:
+    - name: userExists
+      type: goto
+      stepId: updateExisting
+      criteria:
+      - context: $response.body
+        condition: $.length > 0
+        type: jsonpath
+    - name: userMissing
+      type: goto
+      stepId: createUser
+      criteria:
+      - context: $response.body
+        condition: $.length == 0
+        type: jsonpath
+  - stepId: updateExisting
+    description: >-
+      Update the matched user's profile attributes in place.
+    operationId: updateUser
+    parameters:
+    - name: realm
+      in: path
+      value: $inputs.realm
+    - name: user_id
+      in: path
+      value: $steps.findUser.outputs.matchedUserId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        username: $inputs.username
+        email: $inputs.email
+        firstName: $inputs.firstName
+        lastName: $inputs.lastName
+        enabled: $inputs.enabled
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      userId: $steps.findUser.outputs.matchedUserId
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: createUser
+    description: >-
+      Create a new user in the realm with the supplied profile attributes when
+      no existing user matched the username.
+    operationId: createUser
+    parameters:
+    - name: realm
+      in: path
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        username: $inputs.username
+        email: $inputs.email
+        firstName: $inputs.firstName
+        lastName: $inputs.lastName
+        enabled: $inputs.enabled
+    successCriteria:
+    - condition: $statusCode == 201
+  - stepId: resolveCreatedUser
+    description: >-
+      Re-read the realm by username to resolve the id of the user that was just
+      created, since the create call returns no body.
+    operationId: listUsers
+    parameters:
+    - name: realm
+      in: path
+      value: $inputs.realm
+    - name: username
+      in: query
+      value: $inputs.username
+    - name: max
+      in: query
+      value: 1
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      userId: $response.body#/0/id
+  outputs:
+    updatedUserId: $steps.updateExisting.outputs.userId
+    createdUserId: $steps.resolveCreatedUser.outputs.userId

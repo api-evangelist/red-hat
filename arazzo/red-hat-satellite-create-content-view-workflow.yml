@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Satellite Create Content View
+  summary: Resolve an organization, select repositories, and create a content view from them.
+  description: >-
+    A content curation flow for Red Hat Satellite (Katello). The workflow
+    resolves the target organization, lists the repositories available in that
+    organization, and creates a new content view that includes the selected
+    repositories so curated content can be promoted through lifecycle
+    environments. Each step inlines its bearer token, parameters, request body,
+    documented success criteria, and outputs.
+  version: 1.0.0
+sourceDescriptions:
+- name: satelliteApi
+  url: ../openapi/red-hat-satellite-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-content-view
+  summary: Resolve an organization, list its repositories, and create a content view.
+  description: >-
+    Lists organizations, lists the repositories in the resolved organization,
+    and creates a content view including the first repository.
+  inputs:
+    type: object
+    required:
+    - token
+    - name
+    properties:
+      token:
+        type: string
+        description: Bearer token for the Satellite API.
+      name:
+        type: string
+        description: The name for the new content view.
+      description:
+        type: string
+        description: A description of the content view.
+      contentType:
+        type: string
+        description: Filter repositories by content type (e.g. yum, docker).
+  steps:
+  - stepId: resolveOrganization
+    description: >-
+      List organizations and capture the id of the first organization to scope
+      the content view to.
+    operationId: listOrganizations
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      organizationId: $response.body#/results/0/id
+    onSuccess:
+    - name: hasOrg
+      type: goto
+      stepId: listRepositories
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: noOrg
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: listRepositories
+    description: >-
+      List the repositories available in the resolved organization and capture
+      the id of the first repository to include in the content view.
+    operationId: listRepositories
+    parameters:
+    - name: organization_id
+      in: query
+      value: $steps.resolveOrganization.outputs.organizationId
+    - name: content_type
+      in: query
+      value: $inputs.contentType
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      repositoryId: $response.body#/results/0/id
+  - stepId: createContentView
+    description: >-
+      Create a content view in the organization that includes the selected
+      repository.
+    operationId: createContentView
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        description: $inputs.description
+        organization_id: $steps.resolveOrganization.outputs.organizationId
+        repository_ids:
+        - $steps.listRepositories.outputs.repositoryId
+    successCriteria:
+    - condition: $statusCode == 201
+  outputs:
+    organizationId: $steps.resolveOrganization.outputs.organizationId
+    repositoryId: $steps.listRepositories.outputs.repositoryId

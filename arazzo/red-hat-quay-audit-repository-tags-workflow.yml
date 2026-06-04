@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Quay Audit Repository Tags
+  summary: Read a repository, list its tags, and pull the security report for the latest tag's manifest.
+  description: >-
+    A container security audit flow for Red Hat Quay. The workflow retrieves a
+    repository, lists its tags, takes the manifest digest of the most recent
+    tag, and fetches the manifest's security scan report including detected
+    vulnerabilities. Each step inlines its bearer token, parameters, documented
+    success criteria, and outputs so the audit can be executed directly against
+    the Quay API.
+  version: 1.0.0
+sourceDescriptions:
+- name: quayApi
+  url: ../openapi/red-hat-quay-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-repository-tags
+  summary: Confirm a repository, list tags, and scan the most recent tag's manifest.
+  description: >-
+    Gets a repository, lists its tags, and uses the first returned tag's
+    manifest digest to retrieve a vulnerability report.
+  inputs:
+    type: object
+    required:
+    - token
+    - namespace
+    - repository
+    properties:
+      token:
+        type: string
+        description: OAuth bearer token for the Quay API.
+      namespace:
+        type: string
+        description: The organization or user namespace of the repository.
+      repository:
+        type: string
+        description: The short name of the repository to audit.
+      limit:
+        type: integer
+        description: The maximum number of tags to return per page.
+  steps:
+  - stepId: getRepository
+    description: >-
+      Retrieve the repository to confirm it exists before enumerating its tags.
+      The repository path is the namespace/name pair.
+    operationId: getRepository
+    parameters:
+    - name: repository
+      in: path
+      value: $inputs.namespace/$inputs.repository
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      isPublic: $response.body#/is_public
+  - stepId: listTags
+    description: >-
+      List the repository's tags, most recent first, and capture the manifest
+      digest of the first returned tag.
+    operationId: listRepositoryTags
+    parameters:
+    - name: repository
+      in: path
+      value: $inputs.namespace/$inputs.repository
+    - name: limit
+      in: query
+      value: $inputs.limit
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      latestTag: $response.body#/tags/0/name
+      manifestDigest: $response.body#/tags/0/manifest_digest
+    onSuccess:
+    - name: hasTags
+      type: goto
+      stepId: scanManifest
+      criteria:
+      - context: $response.body
+        condition: $.tags.length > 0
+        type: jsonpath
+    - name: noTags
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.tags.length == 0
+        type: jsonpath
+  - stepId: scanManifest
+    description: >-
+      Retrieve the security scan report, including detailed vulnerability
+      information, for the latest tag's manifest.
+    operationId: getManifestSecurity
+    parameters:
+    - name: repository
+      in: path
+      value: $inputs.namespace/$inputs.repository
+    - name: manifestref
+      in: path
+      value: $steps.listTags.outputs.manifestDigest
+    - name: vulnerabilities
+      in: query
+      value: true
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      data: $response.body#/data
+  outputs:
+    latestTag: $steps.listTags.outputs.latestTag
+    scanStatus: $steps.scanManifest.outputs.status

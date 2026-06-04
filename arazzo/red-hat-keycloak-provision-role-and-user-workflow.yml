@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Keycloak Provision Realm Role and User
+  summary: Confirm a realm exists, create a realm role, then create a user in that realm.
+  description: >-
+    An identity bootstrapping flow for the Red Hat build of Keycloak (RH-SSO)
+    admin API. The workflow confirms the target realm exists, creates a new
+    realm-level role, and then creates a user in the same realm. Each step
+    inlines its bearer token, parameters, request body, documented success
+    criteria, and outputs so the flow can be executed directly against the admin
+    API.
+  version: 1.0.0
+sourceDescriptions:
+- name: keycloakAdminApi
+  url: ../openapi/red-hat-keycloak-admin-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-role-and-user
+  summary: Verify a realm, create a realm role, and create a user.
+  description: >-
+    Gets a realm to confirm it exists, creates a realm role within it, and
+    creates a new user in the realm.
+  inputs:
+    type: object
+    required:
+    - token
+    - realm
+    - roleName
+    - username
+    properties:
+      token:
+        type: string
+        description: Admin bearer token for the Keycloak admin API.
+      realm:
+        type: string
+        description: The realm to provision into.
+      roleName:
+        type: string
+        description: The name of the realm role to create.
+      roleDescription:
+        type: string
+        description: A description of the realm role.
+      username:
+        type: string
+        description: The username for the new user.
+      email:
+        type: string
+        description: The email address for the new user.
+      enabled:
+        type: boolean
+        description: Whether the new user account is enabled.
+  steps:
+  - stepId: getRealm
+    description: >-
+      Retrieve the realm to confirm it exists before provisioning roles and
+      users into it.
+    operationId: getRealm
+    parameters:
+    - name: realm
+      in: path
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      realmName: $response.body#/realm
+  - stepId: createRealmRole
+    description: >-
+      Create a new realm-level role that can later be granted to users.
+    operationId: createRealmRole
+    parameters:
+    - name: realm
+      in: path
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.roleName
+        description: $inputs.roleDescription
+    successCriteria:
+    - condition: $statusCode == 201
+  - stepId: createUser
+    description: >-
+      Create a new user in the realm with the supplied username and email.
+    operationId: createUser
+    parameters:
+    - name: realm
+      in: path
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        username: $inputs.username
+        email: $inputs.email
+        enabled: $inputs.enabled
+    successCriteria:
+    - condition: $statusCode == 201
+  outputs:
+    realmName: $steps.getRealm.outputs.realmName
+    roleName: $inputs.roleName
+    username: $inputs.username

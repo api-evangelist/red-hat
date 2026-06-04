@@ -1,0 +1,167 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat OpenShift Provision Cluster and Add Machine Pool
+  summary: Pick a version and cloud provider, create a cluster, poll until ready, then add a machine pool.
+  description: >-
+    A full provisioning flow for the Red Hat OpenShift Cluster Manager
+    (clusters_mgmt v1). The workflow resolves an available OpenShift version and
+    a target cloud provider, creates a cluster, polls the cluster until it
+    leaves its installing state and becomes ready, then attaches an additional
+    machine pool of compute nodes. Each step inlines its bearer token, request
+    body, documented success criteria, and outputs so the flow is fully
+    self-describing.
+  version: 1.0.0
+sourceDescriptions:
+- name: openshiftClusterManagerApi
+  url: ../openapi/red-hat-openshift-cluster-manager-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-cluster
+  summary: Resolve version and provider, create a cluster, wait for ready, add a machine pool.
+  description: >-
+    Lists available OpenShift versions and cloud providers, creates a cluster
+    using the supplied name and region, polls the cluster until its state is
+    ready, and then creates an additional machine pool.
+  inputs:
+    type: object
+    required:
+    - token
+    - name
+    - regionId
+    properties:
+      token:
+        type: string
+        description: OCM bearer token for the Cluster Manager API.
+      name:
+        type: string
+        description: The name for the new cluster.
+      display_name:
+        type: string
+        description: An optional human-friendly display name for the cluster.
+      regionId:
+        type: string
+        description: The cloud provider region id to deploy into.
+      multi_az:
+        type: boolean
+        description: Whether to spread the cluster across multiple availability zones.
+      compute:
+        type: integer
+        description: The number of compute (worker) nodes for the cluster.
+      instance_type:
+        type: string
+        description: The instance type for the additional machine pool.
+      replicas:
+        type: integer
+        description: The replica count for the additional machine pool.
+  steps:
+  - stepId: resolveVersion
+    description: >-
+      List available OpenShift versions and select the first enabled entry to
+      install on the new cluster.
+    operationId: listVersions
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      versionId: $response.body#/items/0/id
+  - stepId: resolveProvider
+    description: >-
+      List supported cloud providers and select the first available provider id
+      to host the cluster.
+    operationId: listCloudProviders
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cloudProviderId: $response.body#/items/0/id
+  - stepId: createCluster
+    description: >-
+      Create the cluster using the resolved version, provider, and supplied
+      region. The API returns a cluster record whose state begins as installing.
+    operationId: createCluster
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        display_name: $inputs.display_name
+        cloud_provider:
+          id: $steps.resolveProvider.outputs.cloudProviderId
+        region:
+          id: $inputs.regionId
+        multi_az: $inputs.multi_az
+        nodes:
+          compute: $inputs.compute
+        version:
+          id: $steps.resolveVersion.outputs.versionId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      clusterId: $response.body#/id
+      state: $response.body#/state
+  - stepId: pollCluster
+    description: >-
+      Retrieve the cluster and re-poll while it is still installing; proceed to
+      add a machine pool once the cluster state becomes ready.
+    operationId: getCluster
+    parameters:
+    - name: cluster_id
+      in: path
+      value: $steps.createCluster.outputs.clusterId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/state
+      apiUrl: $response.body#/api/url
+    onSuccess:
+    - name: stillInstalling
+      type: goto
+      stepId: pollCluster
+      criteria:
+      - context: $response.body
+        condition: $.state == 'installing' || $.state == 'pending' || $.state == 'waiting'
+        type: jsonpath
+    - name: ready
+      type: goto
+      stepId: addMachinePool
+      criteria:
+      - context: $response.body
+        condition: $.state == 'ready'
+        type: jsonpath
+  - stepId: addMachinePool
+    description: >-
+      Create an additional machine pool of compute nodes on the now-ready
+      cluster.
+    operationId: createMachinePool
+    parameters:
+    - name: cluster_id
+      in: path
+      value: $steps.createCluster.outputs.clusterId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        instance_type: $inputs.instance_type
+        replicas: $inputs.replicas
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      machinePoolId: $response.body#/id
+  outputs:
+    clusterId: $steps.createCluster.outputs.clusterId
+    clusterState: $steps.pollCluster.outputs.state
+    machinePoolId: $steps.addMachinePool.outputs.machinePoolId

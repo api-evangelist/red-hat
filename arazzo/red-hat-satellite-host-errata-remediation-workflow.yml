@@ -1,0 +1,129 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Satellite Host Errata Remediation
+  summary: Find a host, review its applicable errata, and update its content view assignment.
+  description: >-
+    A patch-management flow for Red Hat Satellite. The workflow searches managed
+    hosts for one matching a name, retrieves its full record, lists the errata
+    applicable to that host, and then updates the host (for example to move it
+    to a content view or lifecycle environment that carries the needed
+    patches). Each step inlines its bearer token, parameters, request body,
+    documented success criteria, and outputs.
+  version: 1.0.0
+sourceDescriptions:
+- name: satelliteApi
+  url: ../openapi/red-hat-satellite-openapi.yml
+  type: openapi
+workflows:
+- workflowId: host-errata-remediation
+  summary: Locate a host, list its errata, and update its content view assignment.
+  description: >-
+    Lists hosts matching a search, gets the first match, lists its applicable
+    errata, and updates the host record.
+  inputs:
+    type: object
+    required:
+    - token
+    - search
+    properties:
+      token:
+        type: string
+        description: Bearer token for the Satellite API.
+      search:
+        type: string
+        description: A search expression used to locate the target host.
+      contentViewName:
+        type: string
+        description: The content view name to assign the host to.
+      lifecycleEnvironmentName:
+        type: string
+        description: The lifecycle environment name to assign the host to.
+  steps:
+  - stepId: findHost
+    description: >-
+      List managed hosts filtered by the search expression and capture the id of
+      the first match.
+    operationId: listHosts
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      hostId: $response.body#/results/0/id
+    onSuccess:
+    - name: matched
+      type: goto
+      stepId: getHost
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: noMatch
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: getHost
+    description: >-
+      Retrieve the matched host's full record, including its current content
+      view and errata counts.
+    operationId: getHost
+    parameters:
+    - name: id
+      in: path
+      value: $steps.findHost.outputs.hostId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      hostName: $response.body#/name
+      currentContentView: $response.body#/content_facet_attributes/content_view_name
+  - stepId: listErrata
+    description: >-
+      List the errata applicable to the host so an operator can confirm what
+      patches are outstanding before changing its assignment.
+    operationId: listHostErrata
+    parameters:
+    - name: id
+      in: path
+      value: $steps.findHost.outputs.hostId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      errataCount: $response.body#/total
+  - stepId: updateHost
+    description: >-
+      Update the host to assign it to the desired content view and lifecycle
+      environment so the applicable errata become available.
+    operationId: updateHost
+    parameters:
+    - name: id
+      in: path
+      value: $steps.findHost.outputs.hostId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        host:
+          name: $steps.getHost.outputs.hostName
+          content_facet_attributes:
+            content_view_name: $inputs.contentViewName
+            lifecycle_environment_name: $inputs.lifecycleEnvironmentName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedContentView: $response.body#/content_facet_attributes/content_view_name
+  outputs:
+    hostId: $steps.findHost.outputs.hostId
+    errataCount: $steps.listErrata.outputs.errataCount
+    updatedContentView: $steps.updateHost.outputs.updatedContentView

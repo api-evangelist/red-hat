@@ -1057,6 +1057,51 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/red-hat-aap-build-inventory-and-template-workflow.yml
+    name: Red Hat Ansible Automation Platform Build Inventory and Template
+    summary: Resolve an organization, create an inventory, build a job template on it, and launch a first run.
+  - url: arazzo/red-hat-aap-launch-monitor-cancel-job-workflow.yml
+    name: Red Hat Ansible Automation Platform Launch, Monitor, and Cancel Job
+    summary: Launch an existing job template, poll its job, and cancel it if it stalls.
+  - url: arazzo/red-hat-aap-provision-and-run-job-workflow.yml
+    name: Red Hat Ansible Automation Platform Provision and Run Job
+    summary: Create a job template, launch it, and poll the resulting job to completion.
+  - url: arazzo/red-hat-insights-inspect-system-workflow.yml
+    name: Red Hat Insights Inspect a System
+    summary: Pull fleet statistics, find a system by display name, and retrieve its detail.
+  - url: arazzo/red-hat-insights-rule-affected-systems-workflow.yml
+    name: Red Hat Insights Triage a Rule's Affected Systems
+    summary: Find a high-risk advisor rule, list the systems it affects, and inspect the first one.
+  - url: arazzo/red-hat-keycloak-provision-role-and-user-workflow.yml
+    name: Red Hat Keycloak Provision Realm Role and User
+    summary: Confirm a realm exists, create a realm role, then create a user in that realm.
+  - url: arazzo/red-hat-keycloak-upsert-user-workflow.yml
+    name: Red Hat Keycloak Upsert a Realm User
+    summary: Look up a user by username and update it if it exists, otherwise create it.
+  - url: arazzo/red-hat-openshift-configure-cluster-identity-workflow.yml
+    name: Red Hat OpenShift Configure Cluster Identity Provider
+    summary: Find a cluster by name, confirm it is ready, then attach an identity provider.
+  - url: arazzo/red-hat-openshift-provision-cluster-workflow.yml
+    name: Red Hat OpenShift Provision Cluster and Add Machine Pool
+    summary: Pick a version and cloud provider, create a cluster, poll until ready, then add a machine pool.
+  - url: arazzo/red-hat-quay-audit-repository-tags-workflow.yml
+    name: Red Hat Quay Audit Repository Tags
+    summary: Read a repository, list its tags, and pull the security report for the latest tag's manifest.
+  - url: arazzo/red-hat-quay-create-repo-tag-and-scan-workflow.yml
+    name: Red Hat Quay Create Repository, Tag Image, and Scan
+    summary: Create a Quay repository, point a tag at a manifest, then poll its security scan.
+  - url: arazzo/red-hat-quay-provision-org-robot-repo-workflow.yml
+    name: Red Hat Quay Provision Organization Robot and Repository
+    summary: Confirm an organization, create a robot account for it, then create a repository.
+  - url: arazzo/red-hat-satellite-create-content-view-workflow.yml
+    name: Red Hat Satellite Create Content View
+    summary: Resolve an organization, select repositories, and create a content view from them.
+  - url: arazzo/red-hat-satellite-host-errata-remediation-workflow.yml
+    name: Red Hat Satellite Host Errata Remediation
+    summary: Find a host, review its applicable errata, and update its content view assignment.
 - type: JSONLD
   url: json-ld/red-hat-context.jsonld
 - type: JSONSchema

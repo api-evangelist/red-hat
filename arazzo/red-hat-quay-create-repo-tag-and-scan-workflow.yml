@@ -1,0 +1,149 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Quay Create Repository, Tag Image, and Scan
+  summary: Create a Quay repository, point a tag at a manifest, then poll its security scan.
+  description: >-
+    An image-publishing flow for Red Hat Quay. The workflow creates a new
+    container image repository, confirms it exists, moves a tag to a specific
+    image manifest, and then polls Quay's security scanner for the manifest
+    until the scan completes. Each step inlines its bearer token, parameters,
+    request body, documented success criteria, and outputs so the flow is fully
+    self-describing.
+  version: 1.0.0
+sourceDescriptions:
+- name: quayApi
+  url: ../openapi/red-hat-quay-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-repo-tag-and-scan
+  summary: Create a repository, set a tag to a manifest, and wait for the security scan.
+  description: >-
+    Creates a repository in a namespace, reads it back, moves a tag to point at
+    a manifest digest, and polls the manifest security endpoint until the scan
+    status is no longer queued or scanning.
+  inputs:
+    type: object
+    required:
+    - token
+    - namespace
+    - repository
+    - tag
+    - manifestDigest
+    properties:
+      token:
+        type: string
+        description: OAuth bearer token for the Quay API.
+      namespace:
+        type: string
+        description: The organization or user namespace for the repository.
+      repository:
+        type: string
+        description: The short name of the repository to create.
+      visibility:
+        type: string
+        description: Repository visibility, either "public" or "private".
+      description:
+        type: string
+        description: A description for the repository.
+      tag:
+        type: string
+        description: The tag name to move onto the manifest.
+      manifestDigest:
+        type: string
+        description: The image manifest digest the tag should reference.
+  steps:
+  - stepId: createRepository
+    description: >-
+      Create a new container image repository in the supplied namespace with the
+      given visibility.
+    operationId: createRepository
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        repository: $inputs.repository
+        namespace: $inputs.namespace
+        visibility: $inputs.visibility
+        description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 201
+  - stepId: getRepository
+    description: >-
+      Read the newly created repository back to confirm it exists and capture
+      its namespace and name. The repository path is the namespace/name pair.
+    operationId: getRepository
+    parameters:
+    - name: repository
+      in: path
+      value: $inputs.namespace/$inputs.repository
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      name: $response.body#/name
+      isPublic: $response.body#/is_public
+  - stepId: moveTag
+    description: >-
+      Create or move the tag so it points at the supplied image manifest digest.
+    operationId: changeTag
+    parameters:
+    - name: repository
+      in: path
+      value: $inputs.namespace/$inputs.repository
+    - name: tag
+      in: path
+      value: $inputs.tag
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        manifest_digest: $inputs.manifestDigest
+    successCriteria:
+    - condition: $statusCode == 201
+  - stepId: scanManifest
+    description: >-
+      Poll the manifest security endpoint. While the scan status is queued or
+      scanning, repeat this step; end once the manifest has been scanned.
+    operationId: getManifestSecurity
+    parameters:
+    - name: repository
+      in: path
+      value: $inputs.namespace/$inputs.repository
+    - name: manifestref
+      in: path
+      value: $inputs.manifestDigest
+    - name: vulnerabilities
+      in: query
+      value: true
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      data: $response.body#/data
+    onSuccess:
+    - name: stillScanning
+      type: goto
+      stepId: scanManifest
+      criteria:
+      - context: $response.body
+        condition: $.status == 'queued' || $.status == 'scanning'
+        type: jsonpath
+    - name: scanned
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'scanned'
+        type: jsonpath
+  outputs:
+    repositoryName: $steps.getRepository.outputs.name
+    scanStatus: $steps.scanManifest.outputs.status

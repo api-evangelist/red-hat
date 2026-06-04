@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Insights Inspect a System
+  summary: Pull fleet statistics, find a system by display name, and retrieve its detail.
+  description: >-
+    A fleet inspection flow for Red Hat Insights. The workflow reads the
+    account-wide system statistics for context, searches the registered systems
+    for one matching a display name, and retrieves that system's full record.
+    Each step inlines its bearer token, parameters, documented success criteria,
+    and outputs so it can be executed directly against the Insights API.
+  version: 1.0.0
+sourceDescriptions:
+- name: insightsApi
+  url: ../openapi/red-hat-insights-openapi.yml
+  type: openapi
+workflows:
+- workflowId: inspect-system
+  summary: Read system statistics, locate a system by name, and get its detail.
+  description: >-
+    Gets account system statistics, lists systems filtered by display name, and
+    retrieves the first matching system's record.
+  inputs:
+    type: object
+    required:
+    - token
+    - displayName
+    properties:
+      token:
+        type: string
+        description: Bearer token for the Insights API.
+      displayName:
+        type: string
+        description: The display name (or fragment) used to locate the system.
+      sort:
+        type: string
+        description: Sort expression for the system list (e.g. display_name).
+  steps:
+  - stepId: getSystemStats
+    description: >-
+      Retrieve account-wide system statistics to establish fleet context before
+      drilling into an individual system.
+    operationId: getSystemStats
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      stats: $response.body
+  - stepId: findSystem
+    description: >-
+      List registered systems filtered by display name and capture the uuid of
+      the first match.
+    operationId: listSystems
+    parameters:
+    - name: display_name
+      in: query
+      value: $inputs.displayName
+    - name: sort
+      in: query
+      value: $inputs.sort
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      systemUuid: $response.body#/results/0/system_uuid
+    onSuccess:
+    - name: matched
+      type: goto
+      stepId: getSystem
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: noMatch
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: getSystem
+    description: >-
+      Retrieve the full record of the matched system.
+    operationId: getSystem
+    parameters:
+    - name: system_id
+      in: path
+      value: $steps.findSystem.outputs.systemUuid
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      systemDisplayName: $response.body#/display_name
+  outputs:
+    systemUuid: $steps.findSystem.outputs.systemUuid
+    systemDisplayName: $steps.getSystem.outputs.systemDisplayName

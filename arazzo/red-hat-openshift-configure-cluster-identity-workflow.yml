@@ -1,0 +1,125 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat OpenShift Configure Cluster Identity Provider
+  summary: Find a cluster by name, confirm it is ready, then attach an identity provider.
+  description: >-
+    A day-two configuration flow for the Red Hat OpenShift Cluster Manager. The
+    workflow searches the account's clusters for one matching the supplied name,
+    retrieves its full record to confirm it is ready to accept configuration,
+    and configures a new identity provider so users can authenticate. Each step
+    inlines its bearer token, parameters, request body, documented success
+    criteria, and outputs.
+  version: 1.0.0
+sourceDescriptions:
+- name: openshiftClusterManagerApi
+  url: ../openapi/red-hat-openshift-cluster-manager-openapi.yml
+  type: openapi
+workflows:
+- workflowId: configure-cluster-identity
+  summary: Locate a cluster, confirm readiness, and add a GitHub identity provider.
+  description: >-
+    Searches clusters by name, gets the matched cluster, and creates an identity
+    provider on it for user authentication.
+  inputs:
+    type: object
+    required:
+    - token
+    - search
+    - idpName
+    - clientId
+    properties:
+      token:
+        type: string
+        description: OCM bearer token for the Cluster Manager API.
+      search:
+        type: string
+        description: A search expression used to locate the target cluster.
+      idpName:
+        type: string
+        description: The name for the new identity provider.
+      mappingMethod:
+        type: string
+        description: How identities map to OpenShift users (e.g. "claim" or "add").
+      clientId:
+        type: string
+        description: The OAuth client id registered with the identity provider.
+      organizations:
+        type: array
+        description: GitHub organizations permitted to authenticate.
+        items:
+          type: string
+  steps:
+  - stepId: findCluster
+    description: >-
+      Search the account's clusters for one matching the supplied expression and
+      capture the first match.
+    operationId: listClusters
+    parameters:
+    - name: search
+      in: query
+      value: $inputs.search
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clusterId: $response.body#/items/0/id
+    onSuccess:
+    - name: matched
+      type: goto
+      stepId: getCluster
+      criteria:
+      - context: $response.body
+        condition: $.total > 0
+        type: jsonpath
+    - name: noMatch
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.total == 0
+        type: jsonpath
+  - stepId: getCluster
+    description: >-
+      Retrieve the matched cluster's full record to confirm its state before
+      configuring authentication.
+    operationId: getCluster
+    parameters:
+    - name: cluster_id
+      in: path
+      value: $steps.findCluster.outputs.clusterId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/state
+  - stepId: createIdentityProvider
+    description: >-
+      Configure a GitHub identity provider on the cluster so users in the listed
+      organizations can authenticate.
+    operationId: createIdentityProvider
+    parameters:
+    - name: cluster_id
+      in: path
+      value: $steps.findCluster.outputs.clusterId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.idpName
+        type: github
+        mapping_method: $inputs.mappingMethod
+        github:
+          client_id: $inputs.clientId
+          organizations: $inputs.organizations
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      identityProviderId: $response.body#/id
+  outputs:
+    clusterId: $steps.findCluster.outputs.clusterId
+    identityProviderId: $steps.createIdentityProvider.outputs.identityProviderId

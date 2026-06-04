@@ -1,0 +1,136 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Insights Triage a Rule's Affected Systems
+  summary: Find a high-risk advisor rule, list the systems it affects, and inspect the first one.
+  description: >-
+    A remediation triage flow for Red Hat Insights Advisor. The workflow lists
+    advisor rules filtered by category, retrieves the full detail of the first
+    matching rule, lists the systems currently affected by that rule, and then
+    pulls the detail of the first affected system so an operator can begin
+    remediation. Each step inlines its bearer token, parameters, documented
+    success criteria, and outputs.
+  version: 1.0.0
+sourceDescriptions:
+- name: insightsApi
+  url: ../openapi/red-hat-insights-openapi.yml
+  type: openapi
+workflows:
+- workflowId: triage-rule-affected-systems
+  summary: List rules, get a rule, list affected systems, and get the first system.
+  description: >-
+    Filters advisor rules, gets the first rule's detail, lists the systems it
+    affects, and retrieves the first affected system's record.
+  inputs:
+    type: object
+    required:
+    - token
+    properties:
+      token:
+        type: string
+        description: Bearer token for the Insights API.
+      category:
+        type: string
+        description: The advisor category to filter rules by (e.g. Availability, Security).
+      sort:
+        type: string
+        description: Sort expression for the rule list (e.g. -total_risk).
+  steps:
+  - stepId: listRules
+    description: >-
+      List advisor rules filtered by category and sorted so the highest-risk
+      rule is first; capture that rule's id.
+    operationId: listRules
+    parameters:
+    - name: category
+      in: query
+      value: $inputs.category
+    - name: sort
+      in: query
+      value: $inputs.sort
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ruleId: $response.body#/results/0/rule_id
+    onSuccess:
+    - name: hasRules
+      type: goto
+      stepId: getRule
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: noRules
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: getRule
+    description: >-
+      Retrieve the full detail of the selected advisor rule, including its risk
+      scoring and remediation guidance.
+    operationId: getRule
+    parameters:
+    - name: rule_id
+      in: path
+      value: $steps.listRules.outputs.ruleId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalRisk: $response.body#/total_risk
+  - stepId: listAffectedSystems
+    description: >-
+      List the systems currently affected by the rule and capture the uuid of
+      the first affected system.
+    operationId: listRuleSystems
+    parameters:
+    - name: rule_id
+      in: path
+      value: $steps.listRules.outputs.ruleId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      systemUuid: $response.body#/results/0/system_uuid
+    onSuccess:
+    - name: hasSystems
+      type: goto
+      stepId: getSystem
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: noSystems
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: getSystem
+    description: >-
+      Retrieve the detail of the first affected system to begin remediation
+      planning.
+    operationId: getSystem
+    parameters:
+    - name: system_id
+      in: path
+      value: $steps.listAffectedSystems.outputs.systemUuid
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      displayName: $response.body#/display_name
+  outputs:
+    ruleId: $steps.listRules.outputs.ruleId
+    totalRisk: $steps.getRule.outputs.totalRisk
+    affectedSystemUuid: $steps.listAffectedSystems.outputs.systemUuid

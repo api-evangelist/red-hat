@@ -1,0 +1,139 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Ansible Automation Platform Provision and Run Job
+  summary: Create a job template, launch it, and poll the resulting job to completion.
+  description: >-
+    A complete automation onboarding flow for Red Hat Ansible Automation
+    Platform (AWX/Tower API v2). The workflow creates a new job template bound
+    to an existing project, inventory, and playbook, immediately launches a job
+    from that template, and then polls the job record until it reaches a
+    terminal status. Every step spells out its request inline — including the
+    inline bearer token, the request body, and the documented success criteria —
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: ansibleAutomationPlatformApi
+  url: ../openapi/red-hat-ansible-automation-platform-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-and-run-job
+  summary: Create a job template, launch a job from it, and wait for the run to finish.
+  description: >-
+    Creates a job template referencing an existing project, inventory, and
+    playbook, launches a job from the new template, then polls the job until it
+    is no longer in a pending or running state.
+  inputs:
+    type: object
+    required:
+    - token
+    - name
+    - inventory
+    - project
+    - playbook
+    properties:
+      token:
+        type: string
+        description: OAuth2 bearer token for the Automation Platform API.
+      name:
+        type: string
+        description: The display name for the new job template.
+      description:
+        type: string
+        description: A human-readable description of the job template.
+      job_type:
+        type: string
+        description: The job type, e.g. "run" or "check".
+      inventory:
+        type: integer
+        description: The id of the inventory the template runs against.
+      project:
+        type: integer
+        description: The id of the project that supplies the playbook.
+      playbook:
+        type: string
+        description: The playbook file name to execute.
+      extra_vars:
+        type: object
+        description: Optional extra variables to pass into the launched job.
+  steps:
+  - stepId: createTemplate
+    description: >-
+      Create a new job template bound to the supplied project, inventory, and
+      playbook so it can be launched on demand.
+    operationId: createJobTemplate
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        description: $inputs.description
+        job_type: $inputs.job_type
+        inventory: $inputs.inventory
+        project: $inputs.project
+        playbook: $inputs.playbook
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      templateId: $response.body#/id
+  - stepId: launchJob
+    description: >-
+      Launch a job from the freshly created template, optionally overriding the
+      run with extra variables.
+    operationId: launchJobTemplate
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createTemplate.outputs.templateId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        extra_vars: $inputs.extra_vars
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      jobId: $response.body#/id
+      initialStatus: $response.body#/status
+  - stepId: pollJob
+    description: >-
+      Retrieve the job record and check whether it has reached a terminal
+      status. While the job is still new, pending, waiting, or running, repeat
+      this step.
+    operationId: getJob
+    parameters:
+    - name: id
+      in: path
+      value: $steps.launchJob.outputs.jobId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      failed: $response.body#/failed
+      elapsed: $response.body#/elapsed
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollJob
+      criteria:
+      - context: $response.body
+        condition: $.status == 'new' || $.status == 'pending' || $.status == 'waiting' || $.status == 'running'
+        type: jsonpath
+    - name: finished
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'successful' || $.status == 'failed' || $.status == 'error' || $.status == 'canceled'
+        type: jsonpath
+  outputs:
+    templateId: $steps.createTemplate.outputs.templateId
+    jobId: $steps.launchJob.outputs.jobId
+    finalStatus: $steps.pollJob.outputs.status

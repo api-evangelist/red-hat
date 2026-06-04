@@ -1,0 +1,128 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Ansible Automation Platform Build Inventory and Template
+  summary: Resolve an organization, create an inventory, build a job template on it, and launch a first run.
+  description: >-
+    A green-field automation setup flow for Red Hat Ansible Automation Platform.
+    The workflow resolves the organization to own the new inventory, creates the
+    inventory, builds a job template bound to that inventory and an existing
+    project and playbook, and launches an initial job to validate the setup.
+    Each step inlines its bearer token, request body, documented success
+    criteria, and outputs so the flow is self-describing.
+  version: 1.0.0
+sourceDescriptions:
+- name: ansibleAutomationPlatformApi
+  url: ../openapi/red-hat-ansible-automation-platform-openapi.yml
+  type: openapi
+workflows:
+- workflowId: build-inventory-and-template
+  summary: Resolve an org, create an inventory, create a template, and launch a job.
+  description: >-
+    Lists organizations, creates an inventory in the first one, creates a job
+    template referencing that inventory and a project/playbook, and launches an
+    initial job.
+  inputs:
+    type: object
+    required:
+    - token
+    - inventoryName
+    - templateName
+    - project
+    - playbook
+    properties:
+      token:
+        type: string
+        description: OAuth2 bearer token for the Automation Platform API.
+      inventoryName:
+        type: string
+        description: The name for the new inventory.
+      inventoryDescription:
+        type: string
+        description: A description for the new inventory.
+      templateName:
+        type: string
+        description: The name for the new job template.
+      project:
+        type: integer
+        description: The id of the project supplying the playbook.
+      playbook:
+        type: string
+        description: The playbook file name to run.
+  steps:
+  - stepId: resolveOrganization
+    description: >-
+      List organizations and capture the id of the first one to own the new
+      inventory.
+    operationId: listOrganizations
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      organizationId: $response.body#/results/0/id
+  - stepId: createInventory
+    description: >-
+      Create a new inventory within the resolved organization.
+    operationId: createInventory
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.inventoryName
+        description: $inputs.inventoryDescription
+        organization: $steps.resolveOrganization.outputs.organizationId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      inventoryId: $response.body#/id
+  - stepId: createTemplate
+    description: >-
+      Create a job template bound to the new inventory and the supplied project
+      and playbook.
+    operationId: createJobTemplate
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.templateName
+        job_type: run
+        inventory: $steps.createInventory.outputs.inventoryId
+        project: $inputs.project
+        playbook: $inputs.playbook
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      templateId: $response.body#/id
+  - stepId: launchInitialJob
+    description: >-
+      Launch an initial job from the new template to validate that the inventory
+      and template are wired up correctly.
+    operationId: launchJobTemplate
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createTemplate.outputs.templateId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        inventory: $steps.createInventory.outputs.inventoryId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      jobId: $response.body#/id
+      status: $response.body#/status
+  outputs:
+    inventoryId: $steps.createInventory.outputs.inventoryId
+    templateId: $steps.createTemplate.outputs.templateId
+    jobId: $steps.launchInitialJob.outputs.jobId

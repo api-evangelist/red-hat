@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Quay Provision Organization Robot and Repository
+  summary: Confirm an organization, create a robot account for it, then create a repository.
+  description: >-
+    An automation onboarding flow for Red Hat Quay. The workflow confirms an
+    organization exists, creates a robot account that CI systems can use to push
+    and pull images, and then creates a private repository in the organization's
+    namespace. Each step inlines its bearer token, parameters, request body,
+    documented success criteria, and outputs so the flow can be executed
+    directly against the Quay API.
+  version: 1.0.0
+sourceDescriptions:
+- name: quayApi
+  url: ../openapi/red-hat-quay-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-org-robot-repo
+  summary: Verify an organization, create a robot account, and create a repository.
+  description: >-
+    Gets an organization to confirm it exists, creates a robot account in it,
+    and creates a private repository in the organization's namespace.
+  inputs:
+    type: object
+    required:
+    - token
+    - orgname
+    - robotShortname
+    - repository
+    properties:
+      token:
+        type: string
+        description: OAuth bearer token for the Quay API.
+      orgname:
+        type: string
+        description: The organization name to provision against.
+      robotShortname:
+        type: string
+        description: The short name for the new robot account.
+      robotDescription:
+        type: string
+        description: A description of the robot account.
+      repository:
+        type: string
+        description: The short name of the repository to create.
+      visibility:
+        type: string
+        description: Repository visibility, either "public" or "private".
+      repoDescription:
+        type: string
+        description: A description for the repository.
+  steps:
+  - stepId: getOrganization
+    description: >-
+      Retrieve the organization to confirm it exists before provisioning robot
+      accounts and repositories.
+    operationId: getOrganization
+    parameters:
+    - name: orgname
+      in: path
+      value: $inputs.orgname
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      isAdmin: $response.body#/is_admin
+  - stepId: createRobot
+    description: >-
+      Create a robot account in the organization that automation systems can use
+      to authenticate to the registry.
+    operationId: createOrgRobot
+    parameters:
+    - name: orgname
+      in: path
+      value: $inputs.orgname
+    - name: robot_shortname
+      in: path
+      value: $inputs.robotShortname
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        description: $inputs.robotDescription
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      robotName: $response.body#/name
+      robotToken: $response.body#/token
+  - stepId: createRepository
+    description: >-
+      Create a repository in the organization's namespace that the robot account
+      can publish images to.
+    operationId: createRepository
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        repository: $inputs.repository
+        namespace: $inputs.orgname
+        visibility: $inputs.visibility
+        description: $inputs.repoDescription
+    successCriteria:
+    - condition: $statusCode == 201
+  outputs:
+    robotName: $steps.createRobot.outputs.robotName
+    repository: $inputs.repository

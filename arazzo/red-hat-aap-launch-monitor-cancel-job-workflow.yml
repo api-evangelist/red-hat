@@ -1,0 +1,136 @@
+arazzo: 1.0.1
+info:
+  title: Red Hat Ansible Automation Platform Launch, Monitor, and Cancel Job
+  summary: Launch an existing job template, poll its job, and cancel it if it stalls.
+  description: >-
+    An operational control loop for Red Hat Ansible Automation Platform. The
+    workflow confirms a job template exists, launches a job from it, and polls
+    the job record. When the job completes it ends cleanly; when the caller
+    decides the run is stuck, the same flow cancels the running job. Each step
+    inlines its bearer token, request body, documented success criteria, and
+    outputs so it can be executed directly against the v2 API.
+  version: 1.0.0
+sourceDescriptions:
+- name: ansibleAutomationPlatformApi
+  url: ../openapi/red-hat-ansible-automation-platform-openapi.yml
+  type: openapi
+workflows:
+- workflowId: launch-monitor-cancel-job
+  summary: Launch a known job template, monitor the job, and cancel it on demand.
+  description: >-
+    Reads an existing job template to confirm it is launchable, launches a job,
+    polls the job to a terminal state, and cancels the job when the caller
+    requests an abort.
+  inputs:
+    type: object
+    required:
+    - token
+    - templateId
+    properties:
+      token:
+        type: string
+        description: OAuth2 bearer token for the Automation Platform API.
+      templateId:
+        type: integer
+        description: The id of the job template to launch.
+      limit:
+        type: string
+        description: Optional host pattern to limit the inventory for this run.
+      abort:
+        type: boolean
+        description: When true, the running job is cancelled instead of being awaited.
+  steps:
+  - stepId: getTemplate
+    description: >-
+      Retrieve the job template to confirm it exists before attempting to
+      launch a job from it.
+    operationId: getJobTemplate
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.templateId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      name: $response.body#/name
+  - stepId: launchJob
+    description: >-
+      Launch a job from the confirmed template, optionally narrowing execution
+      with a host limit pattern.
+    operationId: launchJobTemplate
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.templateId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    requestBody:
+      contentType: application/json
+      payload:
+        limit: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      jobId: $response.body#/id
+    onSuccess:
+    - name: abortRequested
+      type: goto
+      stepId: cancelJob
+      criteria:
+      - condition: $inputs.abort == true
+    - name: monitor
+      type: goto
+      stepId: pollJob
+      criteria:
+      - condition: $inputs.abort == false
+  - stepId: pollJob
+    description: >-
+      Retrieve the job record and re-poll while it remains in a non-terminal
+      state; end the workflow once it reaches a terminal status.
+    operationId: getJob
+    parameters:
+    - name: id
+      in: path
+      value: $steps.launchJob.outputs.jobId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollJob
+      criteria:
+      - context: $response.body
+        condition: $.status == 'new' || $.status == 'pending' || $.status == 'waiting' || $.status == 'running'
+        type: jsonpath
+    - name: terminal
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'successful' || $.status == 'failed' || $.status == 'error' || $.status == 'canceled'
+        type: jsonpath
+  - stepId: cancelJob
+    description: >-
+      Cancel the running job. The API accepts the cancellation request for jobs
+      that are currently pending or running.
+    operationId: cancelJob
+    parameters:
+    - name: id
+      in: path
+      value: $steps.launchJob.outputs.jobId
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.token
+    successCriteria:
+    - condition: $statusCode == 202
+  outputs:
+    jobId: $steps.launchJob.outputs.jobId
+    finalStatus: $steps.pollJob.outputs.status
