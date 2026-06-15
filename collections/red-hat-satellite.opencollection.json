@@ -1,0 +1,421 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Satellite API",
+    "version": "6.16"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/hosts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A scoped search filter expression."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The sort order for results (e.g., name ASC)."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all hosts managed by Satellite, including their reported status, operating system, and organization membership."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific host, including its network interfaces, operating system, and content view assignment."
+        },
+        {
+          "info": {
+            "name": "Red Hat Update a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://satellite.example.com/api/v2/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing host managed by Satellite."
+        },
+        {
+          "info": {
+            "name": "Red Hat Delete a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://satellite.example.com/api/v2/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Deletes a host from Satellite. This removes the host record but does not affect the actual system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Errata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Errata for a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/hosts/:id/errata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of applicable errata for a specific host, including security advisories, bug fixes, and enhancements."
+        },
+        {
+          "info": {
+            "name": "Red Hat List Errata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/errata",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              },
+              {
+                "name": "type",
+                "value": "security",
+                "type": "query",
+                "description": "Filter errata by type."
+              },
+              {
+                "name": "severity",
+                "value": "Critical",
+                "type": "query",
+                "description": "Filter security errata by severity."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of available errata including security advisories, bug fixes, and enhancement updates."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Content Views",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Content Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/content_views",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              },
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by organization identifier."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by content view name."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of content views that define curated snapshots of software repositories used for controlled content delivery to hosts."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/content_views",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new content view that can include selected repositories and filters for curating content delivery."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Lifecycle Environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/environments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The organization identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of lifecycle environments for an organization, defining the promotion path for content views from development through to production."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Repositories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/repositories",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              },
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by organization."
+              },
+              {
+                "name": "content_type",
+                "value": "yum",
+                "type": "query",
+                "description": "Filter by content type."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of repositories managed by Satellite, including those synced from Red Hat CDN and custom repositories."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/organizations",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A scoped search filter expression."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of organizations in Satellite that provide multi-tenancy isolation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Host Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Host Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/hostgroups",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A scoped search filter expression."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of host groups that provide shared configuration templates for host provisioning and management."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

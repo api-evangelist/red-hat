@@ -1,0 +1,436 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat OpenShift Cluster Manager API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of OpenShift clusters managed by the authenticated account. Results can be filtered by various criteria and paginated using the page and size parameters."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provisions a new OpenShift cluster. The request body must include the cluster name, cloud provider, region, and desired node configuration. The cluster creation process is asynchronous and the cluster status will transition through several states before becoming ready."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific OpenShift cluster by its unique identifier, including its current status, configuration, and metadata."
+        },
+        {
+          "info": {
+            "name": "Red Hat Update a Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing OpenShift cluster. Only the fields provided in the request body will be modified. Some changes may trigger asynchronous operations such as node scaling."
+        },
+        {
+          "info": {
+            "name": "Red Hat Delete a Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Initiates the deletion of an OpenShift cluster. The cluster will be deprovisioned asynchronously and all associated resources in the cloud provider will be cleaned up."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Machine Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Machine Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of machine pools configured for a specific cluster. Machine pools define groups of compute nodes with shared instance type and scaling configuration."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Machine Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new machine pool for a cluster, defining a group of compute nodes with specified instance type, replica count, and optional autoscaling configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Identity Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Identity Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of identity providers configured for a specific cluster. Identity providers define how users authenticate to the OpenShift cluster."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create an Identity Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configures a new identity provider for a cluster, enabling user authentication through the specified provider type such as LDAP, GitHub, Google, or OpenID Connect."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cloud Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Cloud Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/cloud_providers",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of cloud providers available for deploying OpenShift clusters, including AWS, Google Cloud, and Microsoft Azure."
+        },
+        {
+          "info": {
+            "name": "Red Hat List Cloud Provider Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/cloud_providers/:cloud_provider_id/regions",
+            "params": [
+              {
+                "name": "cloud_provider_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the cloud provider."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of regions available for a specific cloud provider where OpenShift clusters can be deployed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Openshift Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/versions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of available OpenShift versions that can be used for provisioning new clusters or upgrading existing clusters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Add-Ons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Add-ons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/clusters_mgmt/v1/addons",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of available add-ons that can be installed on OpenShift clusters to extend functionality."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openshift.com/api/accounts_mgmt/v1/subscriptions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of OpenShift subscriptions associated with the authenticated account, including cluster entitlements and usage data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

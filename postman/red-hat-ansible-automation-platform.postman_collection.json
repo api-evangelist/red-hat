@@ -1,0 +1,3195 @@
+{
+  "info": {
+    "_postman_id": "4ee1a09b-646f-4dca-994f-98ca87adcce4",
+    "name": "Red Hat Ansible Automation Platform API",
+    "description": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:55.000Z",
+    "updatedAt": "2026-06-05T15:14:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4ee1a09b-646f-4dca-994f-98ca87adcce4"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "job_templates",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "launch",
+                      "item": [
+                        {
+                          "name": "Red Hat Launch a Job Template",
+                          "id": "572d5203-e905-4c3c-a70e-52dc67572962",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"extra_vars\": {},\n  \"inventory\": \"<integer>\",\n  \"credentials\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"limit\": \"<string>\",\n  \"tags\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/launch/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                "launch",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e7e50551-73ec-4697-a828-0dee710d2cff",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The unique numeric identifier of the resource."
+                                }
+                              ]
+                            },
+                            "description": "Launches a job from the specified job template. Optional extra variables, credentials, and inventory overrides can be provided in the request body. Returns the created job record with its identifier for tracking execution progress."
+                          },
+                          "response": [
+                            {
+                              "id": "00bae30f-7691-4eaa-9757-de3d4b71918f",
+                              "name": "Job launched successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"extra_vars\": {},\n  \"inventory\": \"<integer>\",\n  \"credentials\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"limit\": \"<string>\",\n  \"tags\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/job_templates/:id/launch/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "job_templates",
+                                    ":id",
+                                    "launch",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"failed\",\n  \"failed\": \"<boolean>\",\n  \"started\": \"<dateTime>\",\n  \"finished\": \"<dateTime>\",\n  \"elapsed\": \"<float>\",\n  \"job_template\": \"<integer>\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"launch_type\": \"relaunch\",\n  \"created\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-06-05T15:14:56.000Z",
+                              "updatedAt": "2026-06-05T15:14:56.000Z",
+                              "uid": "35240-00bae30f-7691-4eaa-9757-de3d4b71918f"
+                            },
+                            {
+                              "id": "14131017-29c3-4c4a-a6b3-729740023143",
+                              "name": "The request is malformed or contains invalid data.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"extra_vars\": {},\n  \"inventory\": \"<integer>\",\n  \"credentials\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"limit\": \"<string>\",\n  \"tags\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/job_templates/:id/launch/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "job_templates",
+                                    ":id",
+                                    "launch",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:56.000Z",
+                              "updatedAt": "2026-06-05T15:14:56.000Z",
+                              "uid": "35240-14131017-29c3-4c4a-a6b3-729740023143"
+                            },
+                            {
+                              "id": "65a2cb45-55f7-46d2-bd0d-a008a8821785",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"extra_vars\": {},\n  \"inventory\": \"<integer>\",\n  \"credentials\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"limit\": \"<string>\",\n  \"tags\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/job_templates/:id/launch/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "job_templates",
+                                    ":id",
+                                    "launch",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:56.000Z",
+                              "updatedAt": "2026-06-05T15:14:56.000Z",
+                              "uid": "35240-65a2cb45-55f7-46d2-bd0d-a008a8821785"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-572d5203-e905-4c3c-a70e-52dc67572962"
+                        }
+                      ],
+                      "id": "1774ed75-33ce-4a2b-ba2e-cf51b5e0892b",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-1774ed75-33ce-4a2b-ba2e-cf51b5e0892b"
+                    },
+                    {
+                      "name": "Red Hat Get a Job Template",
+                      "id": "b314ec61-08c7-4704-b7f3-83617974dc25",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "job_templates",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "cba40a9b-803f-45e6-8866-87feb89fd29e",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique numeric identifier of the resource."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the details of a specific job template by its identifier."
+                      },
+                      "response": [
+                        {
+                          "id": "75ea0f88-b28e-4eaa-941d-fd1c1fb749c3",
+                          "name": "Successfully retrieved job template",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-75ea0f88-b28e-4eaa-941d-fd1c1fb749c3"
+                        },
+                        {
+                          "id": "4376e8f7-1cc3-427e-9dbb-a1046467bc66",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-4376e8f7-1cc3-427e-9dbb-a1046467bc66"
+                        },
+                        {
+                          "id": "bc29c465-a43f-41da-9971-aabbf4c7f292",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-bc29c465-a43f-41da-9971-aabbf4c7f292"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-b314ec61-08c7-4704-b7f3-83617974dc25"
+                    },
+                    {
+                      "name": "Red Hat Update a Job Template",
+                      "id": "0d01a644-7ec6-45e4-a62d-f26ede16f624",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "job_templates",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "9f6b7a31-cc45-4d4a-8eec-a8d21fc45fa4",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique numeric identifier of the resource."
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing job template. Only the fields provided in the request body will be modified."
+                      },
+                      "response": [
+                        {
+                          "id": "115b2cde-60d5-4765-b8cc-89c80296d282",
+                          "name": "Job template updated successfully",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-115b2cde-60d5-4765-b8cc-89c80296d282"
+                        },
+                        {
+                          "id": "d456999f-b9fb-4146-8629-dd7c0852c87a",
+                          "name": "The request is malformed or contains invalid data.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-d456999f-b9fb-4146-8629-dd7c0852c87a"
+                        },
+                        {
+                          "id": "c3146800-b4c3-48f9-8796-87692e98165e",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-c3146800-b4c3-48f9-8796-87692e98165e"
+                        },
+                        {
+                          "id": "378c8b9e-193c-4a68-940b-f3ae33f8da73",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-378c8b9e-193c-4a68-940b-f3ae33f8da73"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-0d01a644-7ec6-45e4-a62d-f26ede16f624"
+                    },
+                    {
+                      "name": "Red Hat Delete a Job Template",
+                      "id": "472ea389-0838-4e93-b04f-4be2542d0b96",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "job_templates",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "ff48e93c-ffc0-4b72-aa6e-4347cc60bc0a",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique numeric identifier of the resource."
+                            }
+                          ]
+                        },
+                        "description": "Deletes a job template. Associated job runs will not be deleted but will no longer be linked to a template."
+                      },
+                      "response": [
+                        {
+                          "id": "e05f1dea-671a-4607-b7ad-88eacd4f39a2",
+                          "name": "Job template deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-e05f1dea-671a-4607-b7ad-88eacd4f39a2"
+                        },
+                        {
+                          "id": "fc55e7ee-a06c-4ed6-9b8c-0b67d8a73f2c",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-fc55e7ee-a06c-4ed6-9b8c-0b67d8a73f2c"
+                        },
+                        {
+                          "id": "3958d438-b521-47bb-a9f1-0281188be9c5",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/job_templates/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "job_templates",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-3958d438-b521-47bb-a9f1-0281188be9c5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-472ea389-0838-4e93-b04f-4be2542d0b96"
+                    }
+                  ],
+                  "id": "990dd654-5925-407a-8d0c-96294286ef3d",
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-990dd654-5925-407a-8d0c-96294286ef3d"
+                },
+                {
+                  "name": "Red Hat List Job Templates",
+                  "id": "ea24711c-1db4-442d-bee6-4f65e472b3fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/job_templates/?page=1&page_size=25&search=<string>&ordering=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "job_templates",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results to return per page.",
+                          "key": "page_size",
+                          "value": "25"
+                        },
+                        {
+                          "description": "A search term to filter results by name or description.",
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).",
+                          "key": "ordering",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of job templates. Job templates define the parameters for running Ansible playbooks against specified inventories, including the project, playbook, credentials, and extra variables."
+                  },
+                  "response": [
+                    {
+                      "id": "24a84f2b-3c11-4f9d-bb7c-aae9224f9a48",
+                      "name": "Successfully retrieved job templates",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/job_templates/?page=1&page_size=25&search=<string>&ordering=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "job_templates",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).",
+                              "key": "ordering",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"job_type\": \"run\",\n      \"inventory\": \"<integer>\",\n      \"project\": \"<integer>\",\n      \"playbook\": \"<string>\",\n      \"forks\": 0,\n      \"limit\": \"<string>\",\n      \"verbosity\": 0,\n      \"extra_vars\": \"<string>\",\n      \"ask_variables_on_launch\": \"<boolean>\",\n      \"ask_inventory_on_launch\": \"<boolean>\",\n      \"ask_credential_on_launch\": \"<boolean>\",\n      \"survey_enabled\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"modified\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"job_type\": \"check\",\n      \"inventory\": \"<integer>\",\n      \"project\": \"<integer>\",\n      \"playbook\": \"<string>\",\n      \"forks\": 0,\n      \"limit\": \"<string>\",\n      \"verbosity\": 0,\n      \"extra_vars\": \"<string>\",\n      \"ask_variables_on_launch\": \"<boolean>\",\n      \"ask_inventory_on_launch\": \"<boolean>\",\n      \"ask_credential_on_launch\": \"<boolean>\",\n      \"survey_enabled\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"modified\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-24a84f2b-3c11-4f9d-bb7c-aae9224f9a48"
+                    },
+                    {
+                      "id": "30c56e1e-6cbd-4c6d-b5a1-52d7278fa693",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/job_templates/?page=1&page_size=25&search=<string>&ordering=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "job_templates",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).",
+                              "key": "ordering",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-30c56e1e-6cbd-4c6d-b5a1-52d7278fa693"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-ea24711c-1db4-442d-bee6-4f65e472b3fa"
+                },
+                {
+                  "name": "Red Hat Create a Job Template",
+                  "id": "a8c146fa-e8c9-4ba4-9872-310adc2c8f0b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/job_templates/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "job_templates",
+                        ""
+                      ]
+                    },
+                    "description": "Creates a new job template with the specified configuration. Requires at minimum a name, project, playbook, and inventory reference."
+                  },
+                  "response": [
+                    {
+                      "id": "77e95740-6bec-4330-b49b-5e0b579503cd",
+                      "name": "Job template created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/job_templates/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "job_templates",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-77e95740-6bec-4330-b49b-5e0b579503cd"
+                    },
+                    {
+                      "id": "daf68eef-124f-4cb1-a4d0-f698332856b6",
+                      "name": "The request is malformed or contains invalid data.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/job_templates/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "job_templates",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-daf68eef-124f-4cb1-a4d0-f698332856b6"
+                    },
+                    {
+                      "id": "c8c80b6a-3a18-439a-beee-87bba9f15617",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"job_type\": \"check\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"forks\": 0,\n  \"limit\": \"<string>\",\n  \"verbosity\": 0,\n  \"extra_vars\": \"<string>\",\n  \"ask_variables_on_launch\": \"<boolean>\",\n  \"ask_inventory_on_launch\": \"<boolean>\",\n  \"ask_credential_on_launch\": \"<boolean>\",\n  \"survey_enabled\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/job_templates/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "job_templates",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-c8c80b6a-3a18-439a-beee-87bba9f15617"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-a8c146fa-e8c9-4ba4-9872-310adc2c8f0b"
+                }
+              ],
+              "id": "df17db58-ecd4-41c5-9a37-3edd0be7da0f",
+              "createdAt": "2026-06-05T15:14:56.000Z",
+              "updatedAt": "2026-06-05T15:14:56.000Z",
+              "uid": "35240-df17db58-ecd4-41c5-9a37-3edd0be7da0f"
+            },
+            {
+              "name": "jobs",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "cancel",
+                      "item": [
+                        {
+                          "name": "Red Hat Cancel a Job",
+                          "id": "8dad1353-f346-4a4c-b362-2421f34746e7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/jobs/:id/cancel/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "jobs",
+                                ":id",
+                                "cancel",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e67df887-f82d-4b51-a42d-4c272ed66e86",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The unique numeric identifier of the resource."
+                                }
+                              ]
+                            },
+                            "description": "Cancels a running job. Only jobs that are currently pending or running can be cancelled."
+                          },
+                          "response": [
+                            {
+                              "id": "6dfb6c84-9332-4b31-84da-7908b2d97f45",
+                              "name": "Job cancellation accepted",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/jobs/:id/cancel/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "jobs",
+                                    ":id",
+                                    "cancel",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:56.000Z",
+                              "updatedAt": "2026-06-05T15:14:56.000Z",
+                              "uid": "35240-6dfb6c84-9332-4b31-84da-7908b2d97f45"
+                            },
+                            {
+                              "id": "7d356302-a7d2-4344-a72b-8b16204772e1",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/jobs/:id/cancel/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "jobs",
+                                    ":id",
+                                    "cancel",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:56.000Z",
+                              "updatedAt": "2026-06-05T15:14:56.000Z",
+                              "uid": "35240-7d356302-a7d2-4344-a72b-8b16204772e1"
+                            },
+                            {
+                              "id": "68eabb3c-6baf-4740-bcef-6ea1a9755fe1",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/jobs/:id/cancel/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "jobs",
+                                    ":id",
+                                    "cancel",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"detail\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:56.000Z",
+                              "updatedAt": "2026-06-05T15:14:56.000Z",
+                              "uid": "35240-68eabb3c-6baf-4740-bcef-6ea1a9755fe1"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-8dad1353-f346-4a4c-b362-2421f34746e7"
+                        }
+                      ],
+                      "id": "3c0033bd-6a05-4035-87a0-dcaaef38d315",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-3c0033bd-6a05-4035-87a0-dcaaef38d315"
+                    },
+                    {
+                      "name": "Red Hat Get a Job",
+                      "id": "fdcf8362-7ee2-47f6-b4ec-f3181c8bbb62",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/jobs/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "jobs",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "3f19c4e8-ef36-44ab-a330-408da54a4975",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique numeric identifier of the resource."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the details of a specific job execution, including its status, timing, and associated template information."
+                      },
+                      "response": [
+                        {
+                          "id": "8eaab869-81b6-42c2-8655-b51bb33dfb94",
+                          "name": "Successfully retrieved job details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/jobs/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "jobs",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"failed\",\n  \"failed\": \"<boolean>\",\n  \"started\": \"<dateTime>\",\n  \"finished\": \"<dateTime>\",\n  \"elapsed\": \"<float>\",\n  \"job_template\": \"<integer>\",\n  \"inventory\": \"<integer>\",\n  \"project\": \"<integer>\",\n  \"playbook\": \"<string>\",\n  \"launch_type\": \"relaunch\",\n  \"created\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-8eaab869-81b6-42c2-8655-b51bb33dfb94"
+                        },
+                        {
+                          "id": "c0731222-bdc0-4934-8e78-9ce11d5c99a4",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/jobs/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "jobs",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-c0731222-bdc0-4934-8e78-9ce11d5c99a4"
+                        },
+                        {
+                          "id": "cc6a1073-36dc-497b-877b-b55b2e9967c0",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/jobs/:id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "jobs",
+                                ":id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:56.000Z",
+                          "updatedAt": "2026-06-05T15:14:56.000Z",
+                          "uid": "35240-cc6a1073-36dc-497b-877b-b55b2e9967c0"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-fdcf8362-7ee2-47f6-b4ec-f3181c8bbb62"
+                    }
+                  ],
+                  "id": "8e67371e-f040-4c03-b534-567e00c966af",
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-8e67371e-f040-4c03-b534-567e00c966af"
+                },
+                {
+                  "name": "Red Hat List Jobs",
+                  "id": "ab69ede8-cca8-47b5-a494-19f0c40fb1ea",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/jobs/?page=1&page_size=25&search=<string>&ordering=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "jobs",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results to return per page.",
+                          "key": "page_size",
+                          "value": "25"
+                        },
+                        {
+                          "description": "A search term to filter results by name or description.",
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).",
+                          "key": "ordering",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of job executions. Jobs represent individual runs of job templates against inventories."
+                  },
+                  "response": [
+                    {
+                      "id": "ebc424bd-9b09-46df-8e0b-7f64918d7c2d",
+                      "name": "Successfully retrieved jobs",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/jobs/?page=1&page_size=25&search=<string>&ordering=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "jobs",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).",
+                              "key": "ordering",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"status\": \"new\",\n      \"failed\": \"<boolean>\",\n      \"started\": \"<dateTime>\",\n      \"finished\": \"<dateTime>\",\n      \"elapsed\": \"<float>\",\n      \"job_template\": \"<integer>\",\n      \"inventory\": \"<integer>\",\n      \"project\": \"<integer>\",\n      \"playbook\": \"<string>\",\n      \"launch_type\": \"dependency\",\n      \"created\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"status\": \"successful\",\n      \"failed\": \"<boolean>\",\n      \"started\": \"<dateTime>\",\n      \"finished\": \"<dateTime>\",\n      \"elapsed\": \"<float>\",\n      \"job_template\": \"<integer>\",\n      \"inventory\": \"<integer>\",\n      \"project\": \"<integer>\",\n      \"playbook\": \"<string>\",\n      \"launch_type\": \"callback\",\n      \"created\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-ebc424bd-9b09-46df-8e0b-7f64918d7c2d"
+                    },
+                    {
+                      "id": "f5362c17-3f61-47ce-a75b-74e9244f45ca",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/jobs/?page=1&page_size=25&search=<string>&ordering=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "jobs",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).",
+                              "key": "ordering",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-f5362c17-3f61-47ce-a75b-74e9244f45ca"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-ab69ede8-cca8-47b5-a494-19f0c40fb1ea"
+                }
+              ],
+              "id": "3d95e349-ce86-437c-81d0-8c9b6697849c",
+              "createdAt": "2026-06-05T15:14:56.000Z",
+              "updatedAt": "2026-06-05T15:14:56.000Z",
+              "uid": "35240-3d95e349-ce86-437c-81d0-8c9b6697849c"
+            },
+            {
+              "name": "inventories",
+              "item": [
+                {
+                  "name": "Red Hat List Inventories",
+                  "id": "cff30470-1833-4eda-bd61-bdbacc52d576",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/inventories/?page=1&page_size=25&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "inventories",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results to return per page.",
+                          "key": "page_size",
+                          "value": "25"
+                        },
+                        {
+                          "description": "A search term to filter results by name or description.",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of inventories. Inventories contain the hosts and groups that automation jobs run against."
+                  },
+                  "response": [
+                    {
+                      "id": "03136a1e-b3e2-4225-aff3-1d3e353ffc22",
+                      "name": "Successfully retrieved inventories",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/inventories/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "inventories",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"organization\": \"<integer>\",\n      \"kind\": \"constructed\",\n      \"host_count\": \"<integer>\",\n      \"total_groups\": \"<integer>\",\n      \"has_inventory_sources\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"modified\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"organization\": \"<integer>\",\n      \"kind\": \"smart\",\n      \"host_count\": \"<integer>\",\n      \"total_groups\": \"<integer>\",\n      \"has_inventory_sources\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"modified\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-03136a1e-b3e2-4225-aff3-1d3e353ffc22"
+                    },
+                    {
+                      "id": "ebac3636-96c1-4310-afbd-492cec2d672c",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/inventories/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "inventories",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-ebac3636-96c1-4310-afbd-492cec2d672c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-cff30470-1833-4eda-bd61-bdbacc52d576"
+                },
+                {
+                  "name": "Red Hat Create an Inventory",
+                  "id": "b052ec06-34f3-49d4-bd0a-40d6a609d444",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organization\": \"<integer>\",\n  \"kind\": \"smart\",\n  \"host_count\": \"<integer>\",\n  \"total_groups\": \"<integer>\",\n  \"has_inventory_sources\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/inventories/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "inventories",
+                        ""
+                      ]
+                    },
+                    "description": "Creates a new inventory within the specified organization."
+                  },
+                  "response": [
+                    {
+                      "id": "8560ca98-5829-4c15-9352-2c24cabf26e9",
+                      "name": "Inventory created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organization\": \"<integer>\",\n  \"kind\": \"smart\",\n  \"host_count\": \"<integer>\",\n  \"total_groups\": \"<integer>\",\n  \"has_inventory_sources\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/inventories/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "inventories",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organization\": \"<integer>\",\n  \"kind\": \"smart\",\n  \"host_count\": \"<integer>\",\n  \"total_groups\": \"<integer>\",\n  \"has_inventory_sources\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-8560ca98-5829-4c15-9352-2c24cabf26e9"
+                    },
+                    {
+                      "id": "e32c8579-7f1f-4ea7-a855-8cbf4d32b2fd",
+                      "name": "The request is malformed or contains invalid data.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organization\": \"<integer>\",\n  \"kind\": \"smart\",\n  \"host_count\": \"<integer>\",\n  \"total_groups\": \"<integer>\",\n  \"has_inventory_sources\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/inventories/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "inventories",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-e32c8579-7f1f-4ea7-a855-8cbf4d32b2fd"
+                    },
+                    {
+                      "id": "446ac04e-ea46-48bb-b209-367c8d40941c",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organization\": \"<integer>\",\n  \"kind\": \"smart\",\n  \"host_count\": \"<integer>\",\n  \"total_groups\": \"<integer>\",\n  \"has_inventory_sources\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/inventories/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "inventories",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-446ac04e-ea46-48bb-b209-367c8d40941c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-b052ec06-34f3-49d4-bd0a-40d6a609d444"
+                }
+              ],
+              "id": "fa0a27e8-9377-4499-b313-b422b8ca35e3",
+              "createdAt": "2026-06-05T15:14:56.000Z",
+              "updatedAt": "2026-06-05T15:14:56.000Z",
+              "uid": "35240-fa0a27e8-9377-4499-b313-b422b8ca35e3"
+            },
+            {
+              "name": "projects",
+              "item": [
+                {
+                  "name": "Red Hat List Projects",
+                  "id": "d90ce035-9006-4556-b515-3e31c72d10b6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/projects/?page=1&page_size=25&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "projects",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results to return per page.",
+                          "key": "page_size",
+                          "value": "25"
+                        },
+                        {
+                          "description": "A search term to filter results by name or description.",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of projects. Projects represent collections of Ansible playbooks sourced from a version control system."
+                  },
+                  "response": [
+                    {
+                      "id": "ab2e79ba-f413-44d1-a5fd-6f7b402f2926",
+                      "name": "Successfully retrieved projects",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/projects/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "projects",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"scm_type\": \"svn\",\n      \"scm_url\": \"<string>\",\n      \"scm_branch\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"scm_type\": \"archive\",\n      \"scm_url\": \"<string>\",\n      \"scm_branch\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-ab2e79ba-f413-44d1-a5fd-6f7b402f2926"
+                    },
+                    {
+                      "id": "3428ba6d-3d29-403d-958c-3b0e29318301",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/projects/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "projects",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-3428ba6d-3d29-403d-958c-3b0e29318301"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-d90ce035-9006-4556-b515-3e31c72d10b6"
+                }
+              ],
+              "id": "765ed55d-27c8-438b-ac56-9056a766468e",
+              "createdAt": "2026-06-05T15:14:56.000Z",
+              "updatedAt": "2026-06-05T15:14:56.000Z",
+              "uid": "35240-765ed55d-27c8-438b-ac56-9056a766468e"
+            },
+            {
+              "name": "credentials",
+              "item": [
+                {
+                  "name": "Red Hat List Credentials",
+                  "id": "f024cddf-7ac8-44ab-963a-6f794122b2b5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/credentials/?page=1&page_size=25&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "credentials",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results to return per page.",
+                          "key": "page_size",
+                          "value": "25"
+                        },
+                        {
+                          "description": "A search term to filter results by name or description.",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of credentials used for authenticating automation jobs with managed hosts and external services."
+                  },
+                  "response": [
+                    {
+                      "id": "9c7245c2-128f-4c4e-b6c3-ba669b2118f7",
+                      "name": "Successfully retrieved credentials",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/credentials/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "credentials",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"credential_type\": \"<integer>\",\n      \"organization\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"credential_type\": \"<integer>\",\n      \"organization\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-9c7245c2-128f-4c4e-b6c3-ba669b2118f7"
+                    },
+                    {
+                      "id": "ae663c33-2943-4c0d-ae27-84d109196b64",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/credentials/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "credentials",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-ae663c33-2943-4c0d-ae27-84d109196b64"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-f024cddf-7ac8-44ab-963a-6f794122b2b5"
+                }
+              ],
+              "id": "e9c5c306-9955-4c92-be69-b75c10e2da97",
+              "createdAt": "2026-06-05T15:14:56.000Z",
+              "updatedAt": "2026-06-05T15:14:56.000Z",
+              "uid": "35240-e9c5c306-9955-4c92-be69-b75c10e2da97"
+            },
+            {
+              "name": "workflow_job_templates",
+              "item": [
+                {
+                  "name": "Red Hat List Workflow Job Templates",
+                  "id": "c82eccbe-3e66-4294-9fa3-f7b5ca28bbdb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/workflow_job_templates/?page=1&page_size=25&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "workflow_job_templates",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results to return per page.",
+                          "key": "page_size",
+                          "value": "25"
+                        },
+                        {
+                          "description": "A search term to filter results by name or description.",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of workflow job templates. Workflows chain multiple job templates into orchestrated automation sequences with conditional branching."
+                  },
+                  "response": [
+                    {
+                      "id": "94ba2957-b558-439b-a054-bdf98e94d4b8",
+                      "name": "Successfully retrieved workflow job templates",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/workflow_job_templates/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "workflow_job_templates",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-94ba2957-b558-439b-a054-bdf98e94d4b8"
+                    },
+                    {
+                      "id": "74496e90-d5e4-422f-9791-dd5bd8c2a1a8",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/workflow_job_templates/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "workflow_job_templates",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-74496e90-d5e4-422f-9791-dd5bd8c2a1a8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-c82eccbe-3e66-4294-9fa3-f7b5ca28bbdb"
+                }
+              ],
+              "id": "717c2f5e-31a5-4298-baab-8cb3048de295",
+              "createdAt": "2026-06-05T15:14:56.000Z",
+              "updatedAt": "2026-06-05T15:14:56.000Z",
+              "uid": "35240-717c2f5e-31a5-4298-baab-8cb3048de295"
+            },
+            {
+              "name": "organizations",
+              "item": [
+                {
+                  "name": "Red Hat List Organizations",
+                  "id": "885beb57-9b39-4c3c-b41f-0c4692ca2e98",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/organizations/?page=1&page_size=25&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "organizations",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results to return per page.",
+                          "key": "page_size",
+                          "value": "25"
+                        },
+                        {
+                          "description": "A search term to filter results by name or description.",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of organizations that provide multi-tenancy boundaries for access control and resource management."
+                  },
+                  "response": [
+                    {
+                      "id": "b56b9286-10b3-4c6c-917b-f758d8207cf2",
+                      "name": "Successfully retrieved organizations",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/organizations/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "organizations",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-b56b9286-10b3-4c6c-917b-f758d8207cf2"
+                    },
+                    {
+                      "id": "f2a4ba22-b101-4568-9308-2fd964191c80",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/organizations/?page=1&page_size=25&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "organizations",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results to return per page.",
+                              "key": "page_size",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A search term to filter results by name or description.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:14:56.000Z",
+                      "updatedAt": "2026-06-05T15:14:56.000Z",
+                      "uid": "35240-f2a4ba22-b101-4568-9308-2fd964191c80"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:56.000Z",
+                  "updatedAt": "2026-06-05T15:14:56.000Z",
+                  "uid": "35240-885beb57-9b39-4c3c-b41f-0c4692ca2e98"
+                }
+              ],
+              "id": "26435ab9-41f7-4399-9563-5c132f3eff03",
+              "createdAt": "2026-06-05T15:14:56.000Z",
+              "updatedAt": "2026-06-05T15:14:56.000Z",
+              "uid": "35240-26435ab9-41f7-4399-9563-5c132f3eff03"
+            }
+          ],
+          "id": "01e6514f-5bb2-4c5c-baf3-4b2584cf8e63",
+          "createdAt": "2026-06-05T15:14:56.000Z",
+          "updatedAt": "2026-06-05T15:14:56.000Z",
+          "uid": "35240-01e6514f-5bb2-4c5c-baf3-4b2584cf8e63"
+        }
+      ],
+      "id": "c2e7989f-4cbf-42aa-bece-bd855b682713",
+      "createdAt": "2026-06-05T15:14:56.000Z",
+      "updatedAt": "2026-06-05T15:14:56.000Z",
+      "uid": "35240-c2e7989f-4cbf-42aa-bece-bd855b682713"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ansible-platform.example.com"
+    }
+  ]
+}

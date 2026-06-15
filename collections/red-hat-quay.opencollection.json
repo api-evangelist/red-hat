@@ -1,0 +1,409 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Quay API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repositories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter repositories by namespace (organization or user)."
+              },
+              {
+                "name": "starred",
+                "value": "true",
+                "type": "query",
+                "description": "Filter to only starred repositories."
+              },
+              {
+                "name": "public",
+                "value": "true",
+                "type": "query",
+                "description": "Include public repositories."
+              },
+              {
+                "name": "last_modified",
+                "value": "true",
+                "type": "query",
+                "description": "Filter by last modified status."
+              },
+              {
+                "name": "popularity",
+                "value": "true",
+                "type": "query",
+                "description": "Filter by popularity."
+              },
+              {
+                "name": "next_page",
+                "value": "",
+                "type": "query",
+                "description": "The pagination token for the next page of results."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of repositories visible to the authenticated user, optionally filtered by namespace, popularity, or last modified date."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quay.io/api/v1/repository",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new container image repository in the specified namespace with the given visibility and optional description."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a Repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path",
+                "description": "The full repository path in the format namespace/repository_name."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific repository including its tags, description, and visibility settings."
+        },
+        {
+          "info": {
+            "name": "Red Hat Delete a Repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://quay.io/api/v1/repository/:repository",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path",
+                "description": "The full repository path in the format namespace/repository_name."
+              }
+            ]
+          },
+          "docs": "Deletes a repository and all associated images, tags, and build history. This action is irreversible."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Repository Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository/tag/",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path",
+                "description": "The full repository path in the format namespace/repository_name."
+              },
+              {
+                "name": "page",
+                "value": "10",
+                "type": "query",
+                "description": "The page number for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of tags to return."
+              },
+              {
+                "name": "specificTag",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter to a specific tag name."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of tags for the specified repository, including each tag's manifest digest and last modified date."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create or Move a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://quay.io/api/v1/repository/:repository/tag/:tag",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path",
+                "description": "The full repository path in the format namespace/repository_name."
+              },
+              {
+                "name": "tag",
+                "value": "example_value",
+                "type": "path",
+                "description": "The tag name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tag or moves an existing tag to point to a different image manifest digest."
+        },
+        {
+          "info": {
+            "name": "Red Hat Delete a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://quay.io/api/v1/repository/:repository/tag/:tag",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path",
+                "description": "The full repository path in the format namespace/repository_name."
+              },
+              {
+                "name": "tag",
+                "value": "example_value",
+                "type": "path",
+                "description": "The tag name to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a specific tag from a repository. The underlying image manifest is not deleted unless it becomes untagged."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Manifests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Get Manifest Security Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository/manifest/:manifestref/security",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path",
+                "description": "The full repository path in the format namespace/repository_name."
+              },
+              {
+                "name": "manifestref",
+                "value": "example_value",
+                "type": "path",
+                "description": "The manifest digest reference."
+              },
+              {
+                "name": "vulnerabilities",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to include detailed vulnerability information."
+              }
+            ]
+          },
+          "docs": "Retrieves the security scan results for a specific image manifest, including detected vulnerabilities and their severity levels."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Get an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/organization/:orgname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path",
+                "description": "The name of the organization."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific organization, including its member count and settings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Create or Update a Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://quay.io/api/v1/organization/:orgname/team/:teamname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path",
+                "description": "The name of the organization."
+              },
+              {
+                "name": "teamname",
+                "value": "example_value",
+                "type": "path",
+                "description": "The name of the team."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new team or updates an existing team within an organization, including the team role and description."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Robot Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Get an Organization Robot Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/organization/:orgname/robots/:robot_shortname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path",
+                "description": "The name of the organization."
+              },
+              {
+                "name": "robot_shortname",
+                "value": "example_value",
+                "type": "path",
+                "description": "The short name of the robot account."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific robot account within an organization, including its token for automated registry access."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create an Organization Robot Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://quay.io/api/v1/organization/:orgname/robots/:robot_shortname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path",
+                "description": "The name of the organization."
+              },
+              {
+                "name": "robot_shortname",
+                "value": "example_value",
+                "type": "path",
+                "description": "The short name for the new robot account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new robot account within an organization for automated access to container repositories."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Get Logged-in User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/user/"
+          },
+          "docs": "Retrieves the information for the currently authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

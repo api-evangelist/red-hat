@@ -1,0 +1,2389 @@
+{
+  "item": [
+    {
+      "id": "2abb3790-546a-4ec3-ba72-44865042ca34",
+      "name": "Content Views",
+      "description": {
+        "content": "Operations for managing content views that define curated snapshots of software repositories for controlled content delivery.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e3a7469-da0e-4081-9bf0-877d8777f328",
+          "name": "Red Hat List Content Views",
+          "request": {
+            "name": "Red Hat List Content Views",
+            "description": {
+              "content": "Retrieves the list of content views that define curated snapshots of software repositories used for controlled content delivery to hosts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<integer>",
+                  "description": "Filter by organization identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by content view name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "957fd4a6-c2f9-4738-9da1-4a2b02ea5e0a",
+              "name": "Successfully retrieved content views",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Example Title"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"composite\": true,\n      \"organization_id\": \"500123\",\n      \"repository_ids\": [\n        {}\n      ],\n      \"last_published\": \"2026-01-15T10:30:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96bec5a2-1c98-4f58-894e-a7a3ed951236",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Example Title"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "620f7eb4-6075-4496-bd79-3563b1fae548",
+          "name": "Red Hat Create a Content View",
+          "request": {
+            "name": "Red Hat Create a Content View",
+            "description": {
+              "content": "Creates a new content view that can include selected repositories and filters for curating content delivery.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"organization_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"repository_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "05b22b4b-7f77-4007-888c-609f6b0f5ed6",
+              "name": "Content view created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"organization_id\": \"500123\",\n  \"repository_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24cba24b-edbf-4450-8c82-d1e639ac87c3",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"organization_id\": \"500123\",\n  \"repository_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a45ef167-8cfe-4b0a-a907-cf5a74d1160d",
+      "name": "Environments",
+      "description": {
+        "content": "Operations for managing lifecycle environments that define the promotion path for content from development to production.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "678d3a39-06dd-42c2-a5d1-5f3651d5ffb4",
+          "name": "Red Hat List Lifecycle Environments",
+          "request": {
+            "name": "Red Hat List Lifecycle Environments",
+            "description": {
+              "content": "Retrieves the list of lifecycle environments for an organization, defining the promotion path for content views from development through to production.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "organizations",
+                ":organization_id",
+                "environments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "organization_id",
+                  "description": "(Required) The organization identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2dfc4ab6-03ff-4e00-b9ca-34fe82e96767",
+              "name": "Successfully retrieved lifecycle environments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "organizations",
+                    ":organization_id",
+                    "environments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "organization_id",
+                      "description": "(Required) The organization identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"prior\": {\n        \"id\": \"abc123\",\n        \"name\": \"Example Title\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03365a69-cbc6-4675-844b-8bccbf03789e",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "organizations",
+                    ":organization_id",
+                    "environments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "organization_id",
+                      "description": "(Required) The organization identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0f950416-35f5-454e-a361-6d92ae3b5327",
+      "name": "Errata",
+      "description": {
+        "content": "Operations for listing and managing errata (security advisories, bug fixes, and enhancements) applicable to registered hosts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8828152a-8480-4aba-8a01-c8d474c9cec1",
+          "name": "Red Hat List Errata for a Host",
+          "request": {
+            "name": "Red Hat List Errata for a Host",
+            "description": {
+              "content": "Retrieves the list of applicable errata for a specific host, including security advisories, bug fixes, and enhancements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts",
+                ":id",
+                "errata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bc559b3-226c-46dd-b171-4ea58f6d0441",
+              "name": "Successfully retrieved host errata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id",
+                    "errata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"errata_id\": \"500123\",\n      \"title\": \"Example Title\",\n      \"type\": \"security\",\n      \"severity\": \"Critical\",\n      \"issued\": \"2026-01-15\",\n      \"updated\": \"2026-01-15\",\n      \"hosts_available_count\": 10,\n      \"hosts_applicable_count\": 10,\n      \"cves\": [\n        {}\n      ],\n      \"packages\": [\n        {}\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35039676-0b41-4a87-8377-dbfe496fc436",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id",
+                    "errata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5dce78e5-8817-4af7-b5cf-74c7452a142f",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id",
+                    "errata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bf35793-3fc1-4575-b9f9-decf9cc3b2a8",
+          "name": "Red Hat List Errata",
+          "request": {
+            "name": "Red Hat List Errata",
+            "description": {
+              "content": "Retrieves a paginated list of available errata including security advisories, bug fixes, and enhancement updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "errata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter errata by type."
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "Filter security errata by severity."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c65f4b80-ce90-489a-9213-eb7774ef3c93",
+              "name": "Successfully retrieved errata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "errata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "type",
+                      "value": "security"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "Critical"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"errata_id\": \"500123\",\n      \"title\": \"Example Title\",\n      \"type\": \"security\",\n      \"severity\": \"Critical\",\n      \"issued\": \"2026-01-15\",\n      \"updated\": \"2026-01-15\",\n      \"hosts_available_count\": 10,\n      \"hosts_applicable_count\": 10,\n      \"cves\": [\n        {}\n      ],\n      \"packages\": [\n        {}\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a48d4dd5-457d-4233-a6c7-a36fac9c1766",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "errata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "type",
+                      "value": "security"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "Critical"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "50b49fb3-0a57-4eaf-b0e6-7a5d04a85c7f",
+      "name": "Host Groups",
+      "description": {
+        "content": "Operations for managing host groups that provide shared configuration templates for provisioning and management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b504015f-944a-4473-8b8d-99f2dade97e0",
+          "name": "Red Hat List Host Groups",
+          "request": {
+            "name": "Red Hat List Host Groups",
+            "description": {
+              "content": "Retrieves the list of host groups that provide shared configuration templates for host provisioning and management.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hostgroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A scoped search filter expression."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bba207a-e88f-466b-bfc7-c66cfbfee599",
+              "name": "Successfully retrieved host groups",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hostgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"title\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"environment_name\": \"example_value\",\n      \"operatingsystem_name\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0c56a5d-ecd8-4156-8a50-82c036ca94ba",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hostgroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cb3b56a3-696d-4d4d-897b-8fc83fbfbcb5",
+      "name": "Hosts",
+      "description": {
+        "content": "Operations for managing hosts registered with Satellite, including provisioning, facts, and power management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d51ff93-155a-46f9-b7dd-097771a6d4fe",
+          "name": "Red Hat List Hosts",
+          "request": {
+            "name": "Red Hat List Hosts",
+            "description": {
+              "content": "Retrieves a paginated list of all hosts managed by Satellite, including their reported status, operating system, and organization membership.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A scoped search filter expression."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "The sort order for results (e.g., name ASC)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc01904d-2eea-4e75-80fd-958cc03abeaf",
+              "name": "Successfully retrieved hosts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"ip\": \"example_value\",\n      \"mac\": \"example_value\",\n      \"operatingsystem_name\": \"example_value\",\n      \"environment_name\": \"example_value\",\n      \"hostgroup_name\": \"example_value\",\n      \"organization_name\": \"example_value\",\n      \"location_name\": \"example_value\",\n      \"global_status\": 10,\n      \"content_facet_attributes\": {},\n      \"created_at\": \"2026-01-15T10:30:00Z\",\n      \"updated_at\": \"2026-01-15T10:30:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d952b70c-2583-4970-acad-b73a8d116cff",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d200155-3a55-4e43-a261-8439af84b842",
+          "name": "Red Hat Get a Host",
+          "request": {
+            "name": "Red Hat Get a Host",
+            "description": {
+              "content": "Retrieves the details of a specific host, including its network interfaces, operating system, and content view assignment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d3fff67-36ad-4bd5-9132-90c6696db4dd",
+              "name": "Successfully retrieved host details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"ip\": \"example_value\",\n  \"mac\": \"example_value\",\n  \"operatingsystem_name\": \"example_value\",\n  \"environment_name\": \"example_value\",\n  \"hostgroup_name\": \"example_value\",\n  \"organization_name\": \"example_value\",\n  \"location_name\": \"example_value\",\n  \"global_status\": 10,\n  \"content_facet_attributes\": {\n    \"content_view_name\": \"example_value\",\n    \"lifecycle_environment_name\": \"example_value\",\n    \"errata_counts\": {\n      \"security\": 10,\n      \"bugfix\": 10,\n      \"enhancement\": 10\n    }\n  },\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e18f36ac-aba2-4832-87bd-8cc7439098eb",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1eb530f8-014f-4c67-b7b4-dd3da82f5b94",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "065d398e-1485-4787-8c61-f517c6422390",
+          "name": "Red Hat Update a Host",
+          "request": {
+            "name": "Red Hat Update a Host",
+            "description": {
+              "content": "Updates the configuration of an existing host managed by Satellite.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"host\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"mac\": \"<string>\",\n    \"operatingsystem_name\": \"<string>\",\n    \"environment_name\": \"<string>\",\n    \"hostgroup_name\": \"<string>\",\n    \"organization_name\": \"<string>\",\n    \"location_name\": \"<string>\",\n    \"global_status\": \"<integer>\",\n    \"content_facet_attributes\": {\n      \"content_view_name\": \"<string>\",\n      \"lifecycle_environment_name\": \"<string>\",\n      \"errata_counts\": {\n        \"security\": \"<integer>\",\n        \"bugfix\": \"<integer>\",\n        \"enhancement\": \"<integer>\"\n      }\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4df028d3-0c3e-4023-ac40-13160518a748",
+              "name": "Host updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"id\": \"abc123\",\n    \"name\": \"Example Title\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"operatingsystem_name\": \"example_value\",\n    \"environment_name\": \"example_value\",\n    \"hostgroup_name\": \"example_value\",\n    \"organization_name\": \"example_value\",\n    \"location_name\": \"example_value\",\n    \"global_status\": 10,\n    \"content_facet_attributes\": {\n      \"content_view_name\": \"example_value\",\n      \"lifecycle_environment_name\": \"example_value\",\n      \"errata_counts\": {\n        \"security\": 10,\n        \"bugfix\": 10,\n        \"enhancement\": 10\n      }\n    },\n    \"created_at\": \"2026-01-15T10:30:00Z\",\n    \"updated_at\": \"2026-01-15T10:30:00Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"ip\": \"example_value\",\n  \"mac\": \"example_value\",\n  \"operatingsystem_name\": \"example_value\",\n  \"environment_name\": \"example_value\",\n  \"hostgroup_name\": \"example_value\",\n  \"organization_name\": \"example_value\",\n  \"location_name\": \"example_value\",\n  \"global_status\": 10,\n  \"content_facet_attributes\": {\n    \"content_view_name\": \"example_value\",\n    \"lifecycle_environment_name\": \"example_value\",\n    \"errata_counts\": {\n      \"security\": 10,\n      \"bugfix\": 10,\n      \"enhancement\": 10\n    }\n  },\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32c3e191-eed4-4e9d-8621-c50ec37c6454",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"id\": \"abc123\",\n    \"name\": \"Example Title\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"operatingsystem_name\": \"example_value\",\n    \"environment_name\": \"example_value\",\n    \"hostgroup_name\": \"example_value\",\n    \"organization_name\": \"example_value\",\n    \"location_name\": \"example_value\",\n    \"global_status\": 10,\n    \"content_facet_attributes\": {\n      \"content_view_name\": \"example_value\",\n      \"lifecycle_environment_name\": \"example_value\",\n      \"errata_counts\": {\n        \"security\": 10,\n        \"bugfix\": 10,\n        \"enhancement\": 10\n      }\n    },\n    \"created_at\": \"2026-01-15T10:30:00Z\",\n    \"updated_at\": \"2026-01-15T10:30:00Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2363c2fb-0d5b-4124-8a8a-fc49ee1a8eb7",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"id\": \"abc123\",\n    \"name\": \"Example Title\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"operatingsystem_name\": \"example_value\",\n    \"environment_name\": \"example_value\",\n    \"hostgroup_name\": \"example_value\",\n    \"organization_name\": \"example_value\",\n    \"location_name\": \"example_value\",\n    \"global_status\": 10,\n    \"content_facet_attributes\": {\n      \"content_view_name\": \"example_value\",\n      \"lifecycle_environment_name\": \"example_value\",\n      \"errata_counts\": {\n        \"security\": 10,\n        \"bugfix\": 10,\n        \"enhancement\": 10\n      }\n    },\n    \"created_at\": \"2026-01-15T10:30:00Z\",\n    \"updated_at\": \"2026-01-15T10:30:00Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67283d47-282d-4149-87c7-9f96ea8465d7",
+          "name": "Red Hat Delete a Host",
+          "request": {
+            "name": "Red Hat Delete a Host",
+            "description": {
+              "content": "Deletes a host from Satellite. This removes the host record but does not affect the actual system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd1c1ffa-9988-4e1f-a41e-ee175341abc6",
+              "name": "Host deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "026dc406-9b9f-4a28-86a2-e58ed17be4f5",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d155122c-c530-4f6b-ba6c-0fa6041f394c",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "261cf42c-61b5-49aa-af50-25a540cef173",
+      "name": "Organizations",
+      "description": {
+        "content": "Operations for managing organizations that provide multi-tenancy isolation for content and infrastructure resources.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "177c0b2c-4d2d-45a6-be9f-03211d052467",
+          "name": "Red Hat List Organizations",
+          "request": {
+            "name": "Red Hat List Organizations",
+            "description": {
+              "content": "Retrieves the list of organizations in Satellite that provide multi-tenancy isolation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A scoped search filter expression."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77c10113-830c-4d11-885b-5399cb6e72a4",
+              "name": "Successfully retrieved organizations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"description\": \"A sample description.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbb61705-2200-4d45-af6f-13e2971e210b",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ef9d6d0e-92bd-4be1-8406-965863ecf40d",
+      "name": "Repositories",
+      "description": {
+        "content": "Operations for managing software repositories synced from Red Hat CDN or custom sources.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "97cd6a8a-a72d-4548-b711-507823097871",
+          "name": "Red Hat List Repositories",
+          "request": {
+            "name": "Red Hat List Repositories",
+            "description": {
+              "content": "Retrieves the list of repositories managed by Satellite, including those synced from Red Hat CDN and custom repositories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "repositories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<integer>",
+                  "description": "Filter by organization."
+                },
+                {
+                  "disabled": false,
+                  "key": "content_type",
+                  "value": "<string>",
+                  "description": "Filter by content type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "842e69cf-2113-4a07-80fe-f51ef9efff79",
+              "name": "Successfully retrieved repositories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "repositories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "yum"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"content_type\": \"example_value\",\n      \"url\": \"https://www.example.com\",\n      \"last_sync\": {\n        \"id\": \"abc123\",\n        \"state\": \"example_value\",\n        \"started_at\": \"2026-01-15T10:30:00Z\",\n        \"ended_at\": \"2026-01-15T10:30:00Z\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e638e46f-2990-4a2d-8488-f784044aeca9",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "repositories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "yum"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://satellite.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0e1550b-037e-4e57-ac47-47fd0ea69dfc",
+    "name": "Red Hat Satellite API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Satellite API provides programmatic access to managing Satellite infrastructure, including content management, host provisioning, patch management, and configuration across large-scale Linux environments. It covers both the Foreman API for host and infrastructure management and the Katello API for content and subscription management.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

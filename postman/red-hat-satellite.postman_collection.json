@@ -1,0 +1,2335 @@
+{
+  "info": {
+    "_postman_id": "72f8b151-681f-42d4-98b0-5355df14dd58",
+    "name": "Red Hat Satellite API",
+    "description": "The Red Hat Satellite API provides programmatic access to managing Satellite infrastructure, including content management, host provisioning, patch management, and configuration across large-scale Linux environments. It covers both the Foreman API for host and infrastructure management and the Katello API for content and subscription management.\n\nContact Support:\n Name: Red Hat Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:59.000Z",
+    "updatedAt": "2026-06-05T15:15:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-72f8b151-681f-42d4-98b0-5355df14dd58"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "hosts",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "errata",
+                      "item": [
+                        {
+                          "name": "Red Hat List Errata for a Host",
+                          "id": "36cfcc50-ef04-4aff-800d-613831e69b46",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id/errata?page=1&per_page=20",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id",
+                                "errata"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of results per page.",
+                                  "key": "per_page",
+                                  "value": "20"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5c720493-b877-4280-8512-db21310525ea",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) The unique identifier of the resource."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the list of applicable errata for a specific host, including security advisories, bug fixes, and enhancements."
+                          },
+                          "response": [
+                            {
+                              "id": "eb587a9f-daf0-4ac7-b03e-c68288e6c03c",
+                              "name": "Successfully retrieved host errata",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/hosts/:id/errata?page=1&per_page=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "hosts",
+                                    ":id",
+                                    "errata"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The page number for paginated results.",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "The number of results per page.",
+                                      "key": "per_page",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"errata_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"enhancement\",\n      \"severity\": \"Important\",\n      \"issued\": \"<date>\",\n      \"updated\": \"<date>\",\n      \"hosts_available_count\": \"<integer>\",\n      \"hosts_applicable_count\": \"<integer>\",\n      \"cves\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"errata_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"bugfix\",\n      \"severity\": \"Important\",\n      \"issued\": \"<date>\",\n      \"updated\": \"<date>\",\n      \"hosts_available_count\": \"<integer>\",\n      \"hosts_applicable_count\": \"<integer>\",\n      \"cves\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:15:00.000Z",
+                              "updatedAt": "2026-06-05T15:15:00.000Z",
+                              "uid": "35240-eb587a9f-daf0-4ac7-b03e-c68288e6c03c"
+                            },
+                            {
+                              "id": "a65bf912-bb2b-4361-97d3-cdca31f34862",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/hosts/:id/errata?page=1&per_page=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "hosts",
+                                    ":id",
+                                    "errata"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The page number for paginated results.",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "The number of results per page.",
+                                      "key": "per_page",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:00.000Z",
+                              "updatedAt": "2026-06-05T15:15:00.000Z",
+                              "uid": "35240-a65bf912-bb2b-4361-97d3-cdca31f34862"
+                            },
+                            {
+                              "id": "97185d0b-3048-43eb-a773-2387aec169d0",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/hosts/:id/errata?page=1&per_page=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "hosts",
+                                    ":id",
+                                    "errata"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The page number for paginated results.",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "The number of results per page.",
+                                      "key": "per_page",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:00.000Z",
+                              "updatedAt": "2026-06-05T15:15:00.000Z",
+                              "uid": "35240-97185d0b-3048-43eb-a773-2387aec169d0"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-36cfcc50-ef04-4aff-800d-613831e69b46"
+                        }
+                      ],
+                      "id": "a2c964df-41f6-4fc9-bfc4-7d9cab10381c",
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-a2c964df-41f6-4fc9-bfc4-7d9cab10381c"
+                    },
+                    {
+                      "name": "Red Hat Get a Host",
+                      "id": "c02b2d59-8a5a-4cfb-95d5-abd0bf6003d0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "hosts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "882d3071-5007-4353-92c6-7091ba6ee007",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier of the resource."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the details of a specific host, including its network interfaces, operating system, and content view assignment."
+                      },
+                      "response": [
+                        {
+                          "id": "662e48c8-9242-488a-809b-902848ecb43e",
+                          "name": "Successfully retrieved host details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"ip\": \"<string>\",\n  \"mac\": \"<string>\",\n  \"operatingsystem_name\": \"<string>\",\n  \"environment_name\": \"<string>\",\n  \"hostgroup_name\": \"<string>\",\n  \"organization_name\": \"<string>\",\n  \"location_name\": \"<string>\",\n  \"global_status\": \"<integer>\",\n  \"content_facet_attributes\": {\n    \"content_view_name\": \"<string>\",\n    \"lifecycle_environment_name\": \"<string>\",\n    \"errata_counts\": {\n      \"security\": \"<integer>\",\n      \"bugfix\": \"<integer>\",\n      \"enhancement\": \"<integer>\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-662e48c8-9242-488a-809b-902848ecb43e"
+                        },
+                        {
+                          "id": "fa15e0f9-5341-49c0-9603-299435ddb9c0",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-fa15e0f9-5341-49c0-9603-299435ddb9c0"
+                        },
+                        {
+                          "id": "1ad13789-8bad-45aa-85ef-b820c52c1b02",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-1ad13789-8bad-45aa-85ef-b820c52c1b02"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-c02b2d59-8a5a-4cfb-95d5-abd0bf6003d0"
+                    },
+                    {
+                      "name": "Red Hat Update a Host",
+                      "id": "b256cbc5-e783-4931-91a8-0765b3f475b1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"host\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"mac\": \"<string>\",\n    \"operatingsystem_name\": \"<string>\",\n    \"environment_name\": \"<string>\",\n    \"hostgroup_name\": \"<string>\",\n    \"organization_name\": \"<string>\",\n    \"location_name\": \"<string>\",\n    \"global_status\": \"<integer>\",\n    \"content_facet_attributes\": {\n      \"content_view_name\": \"<string>\",\n      \"lifecycle_environment_name\": \"<string>\",\n      \"errata_counts\": {\n        \"security\": \"<integer>\",\n        \"bugfix\": \"<integer>\",\n        \"enhancement\": \"<integer>\"\n      }\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "hosts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ad12a8c6-0fac-4bd8-ac7d-11154b70d8e4",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier of the resource."
+                            }
+                          ]
+                        },
+                        "description": "Updates the configuration of an existing host managed by Satellite."
+                      },
+                      "response": [
+                        {
+                          "id": "41159180-d383-46fc-b19e-60c5d8c2d9d0",
+                          "name": "Host updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"host\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"mac\": \"<string>\",\n    \"operatingsystem_name\": \"<string>\",\n    \"environment_name\": \"<string>\",\n    \"hostgroup_name\": \"<string>\",\n    \"organization_name\": \"<string>\",\n    \"location_name\": \"<string>\",\n    \"global_status\": \"<integer>\",\n    \"content_facet_attributes\": {\n      \"content_view_name\": \"<string>\",\n      \"lifecycle_environment_name\": \"<string>\",\n      \"errata_counts\": {\n        \"security\": \"<integer>\",\n        \"bugfix\": \"<integer>\",\n        \"enhancement\": \"<integer>\"\n      }\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"ip\": \"<string>\",\n  \"mac\": \"<string>\",\n  \"operatingsystem_name\": \"<string>\",\n  \"environment_name\": \"<string>\",\n  \"hostgroup_name\": \"<string>\",\n  \"organization_name\": \"<string>\",\n  \"location_name\": \"<string>\",\n  \"global_status\": \"<integer>\",\n  \"content_facet_attributes\": {\n    \"content_view_name\": \"<string>\",\n    \"lifecycle_environment_name\": \"<string>\",\n    \"errata_counts\": {\n      \"security\": \"<integer>\",\n      \"bugfix\": \"<integer>\",\n      \"enhancement\": \"<integer>\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-41159180-d383-46fc-b19e-60c5d8c2d9d0"
+                        },
+                        {
+                          "id": "cccb43aa-e2c4-42fe-b0d4-814b457dc242",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"host\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"mac\": \"<string>\",\n    \"operatingsystem_name\": \"<string>\",\n    \"environment_name\": \"<string>\",\n    \"hostgroup_name\": \"<string>\",\n    \"organization_name\": \"<string>\",\n    \"location_name\": \"<string>\",\n    \"global_status\": \"<integer>\",\n    \"content_facet_attributes\": {\n      \"content_view_name\": \"<string>\",\n      \"lifecycle_environment_name\": \"<string>\",\n      \"errata_counts\": {\n        \"security\": \"<integer>\",\n        \"bugfix\": \"<integer>\",\n        \"enhancement\": \"<integer>\"\n      }\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-cccb43aa-e2c4-42fe-b0d4-814b457dc242"
+                        },
+                        {
+                          "id": "94dc4fdb-c4ea-4a5f-9ab3-cbba0e4b2227",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"host\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"mac\": \"<string>\",\n    \"operatingsystem_name\": \"<string>\",\n    \"environment_name\": \"<string>\",\n    \"hostgroup_name\": \"<string>\",\n    \"organization_name\": \"<string>\",\n    \"location_name\": \"<string>\",\n    \"global_status\": \"<integer>\",\n    \"content_facet_attributes\": {\n      \"content_view_name\": \"<string>\",\n      \"lifecycle_environment_name\": \"<string>\",\n      \"errata_counts\": {\n        \"security\": \"<integer>\",\n        \"bugfix\": \"<integer>\",\n        \"enhancement\": \"<integer>\"\n      }\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-94dc4fdb-c4ea-4a5f-9ab3-cbba0e4b2227"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-b256cbc5-e783-4931-91a8-0765b3f475b1"
+                    },
+                    {
+                      "name": "Red Hat Delete a Host",
+                      "id": "156e9208-9cc5-4ede-853e-4eadd242e3b4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "hosts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4e92b40c-c898-4f68-8192-63a532054836",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier of the resource."
+                            }
+                          ]
+                        },
+                        "description": "Deletes a host from Satellite. This removes the host record but does not affect the actual system."
+                      },
+                      "response": [
+                        {
+                          "id": "4280fdca-447e-46a1-844b-08e4d3115202",
+                          "name": "Host deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-4280fdca-447e-46a1-844b-08e4d3115202"
+                        },
+                        {
+                          "id": "b172b2a5-60e2-4de0-9fed-21db86647c8e",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-b172b2a5-60e2-4de0-9fed-21db86647c8e"
+                        },
+                        {
+                          "id": "b30e4053-a649-4e0d-9618-d57a83203b46",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/hosts/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "hosts",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-b30e4053-a649-4e0d-9618-d57a83203b46"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-156e9208-9cc5-4ede-853e-4eadd242e3b4"
+                    }
+                  ],
+                  "id": "985dca69-ef25-4417-8f8e-13f8b38b2b2f",
+                  "createdAt": "2026-06-05T15:15:00.000Z",
+                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                  "uid": "35240-985dca69-ef25-4417-8f8e-13f8b38b2b2f"
+                },
+                {
+                  "name": "Red Hat List Hosts",
+                  "id": "8c0074f1-97fd-4fcc-ac82-dda21c5e3ff0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/hosts?page=1&per_page=20&search=<string>&order=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "hosts"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results per page.",
+                          "key": "per_page",
+                          "value": "20"
+                        },
+                        {
+                          "description": "A scoped search filter expression.",
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The sort order for results (e.g., name ASC).",
+                          "key": "order",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of all hosts managed by Satellite, including their reported status, operating system, and organization membership."
+                  },
+                  "response": [
+                    {
+                      "id": "8b38ca3f-7ff2-4c73-a646-9a28a7e90ace",
+                      "name": "Successfully retrieved hosts",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/hosts?page=1&per_page=20&search=<string>&order=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "hosts"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results per page.",
+                              "key": "per_page",
+                              "value": "20"
+                            },
+                            {
+                              "description": "A scoped search filter expression.",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The sort order for results (e.g., name ASC).",
+                              "key": "order",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"mac\": \"<string>\",\n      \"operatingsystem_name\": \"<string>\",\n      \"environment_name\": \"<string>\",\n      \"hostgroup_name\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"location_name\": \"<string>\",\n      \"global_status\": \"<integer>\",\n      \"content_facet_attributes\": {\n        \"content_view_name\": \"<string>\",\n        \"lifecycle_environment_name\": \"<string>\",\n        \"errata_counts\": {\n          \"security\": \"<integer>\",\n          \"bugfix\": \"<integer>\",\n          \"enhancement\": \"<integer>\"\n        }\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"mac\": \"<string>\",\n      \"operatingsystem_name\": \"<string>\",\n      \"environment_name\": \"<string>\",\n      \"hostgroup_name\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"location_name\": \"<string>\",\n      \"global_status\": \"<integer>\",\n      \"content_facet_attributes\": {\n        \"content_view_name\": \"<string>\",\n        \"lifecycle_environment_name\": \"<string>\",\n        \"errata_counts\": {\n          \"security\": \"<integer>\",\n          \"bugfix\": \"<integer>\",\n          \"enhancement\": \"<integer>\"\n        }\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-8b38ca3f-7ff2-4c73-a646-9a28a7e90ace"
+                    },
+                    {
+                      "id": "e8f4ab1f-64ea-4d28-8f1f-d8fd6f508678",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/hosts?page=1&per_page=20&search=<string>&order=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "hosts"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results per page.",
+                              "key": "per_page",
+                              "value": "20"
+                            },
+                            {
+                              "description": "A scoped search filter expression.",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The sort order for results (e.g., name ASC).",
+                              "key": "order",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-e8f4ab1f-64ea-4d28-8f1f-d8fd6f508678"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:00.000Z",
+                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                  "uid": "35240-8c0074f1-97fd-4fcc-ac82-dda21c5e3ff0"
+                }
+              ],
+              "id": "1f4e5309-6d8e-4f0d-86b3-8e094a21387a",
+              "createdAt": "2026-06-05T15:15:00.000Z",
+              "updatedAt": "2026-06-05T15:15:00.000Z",
+              "uid": "35240-1f4e5309-6d8e-4f0d-86b3-8e094a21387a"
+            },
+            {
+              "name": "organizations",
+              "item": [
+                {
+                  "name": "Red Hat List Organizations",
+                  "id": "64d4c50d-d631-4842-9544-ca4eef92057f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/organizations?page=1&per_page=20&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "organizations"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results per page.",
+                          "key": "per_page",
+                          "value": "20"
+                        },
+                        {
+                          "description": "A scoped search filter expression.",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the list of organizations in Satellite that provide multi-tenancy isolation."
+                  },
+                  "response": [
+                    {
+                      "id": "857877c2-1f80-490e-b6ea-b6c93303c9bf",
+                      "name": "Successfully retrieved organizations",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/organizations?page=1&per_page=20&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "organizations"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results per page.",
+                              "key": "per_page",
+                              "value": "20"
+                            },
+                            {
+                              "description": "A scoped search filter expression.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-857877c2-1f80-490e-b6ea-b6c93303c9bf"
+                    },
+                    {
+                      "id": "8edd08fe-6a8a-4461-a638-78def1ed1312",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/organizations?page=1&per_page=20&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "organizations"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results per page.",
+                              "key": "per_page",
+                              "value": "20"
+                            },
+                            {
+                              "description": "A scoped search filter expression.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-8edd08fe-6a8a-4461-a638-78def1ed1312"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:00.000Z",
+                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                  "uid": "35240-64d4c50d-d631-4842-9544-ca4eef92057f"
+                }
+              ],
+              "id": "46da1f4f-9d05-4298-8733-a3e92df64cc6",
+              "createdAt": "2026-06-05T15:15:00.000Z",
+              "updatedAt": "2026-06-05T15:15:00.000Z",
+              "uid": "35240-46da1f4f-9d05-4298-8733-a3e92df64cc6"
+            },
+            {
+              "name": "hostgroups",
+              "item": [
+                {
+                  "name": "Red Hat List Host Groups",
+                  "id": "c15c5c5c-6d2a-41a9-b7c0-61ff26105b8c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/hostgroups?page=1&per_page=20&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "hostgroups"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for paginated results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The number of results per page.",
+                          "key": "per_page",
+                          "value": "20"
+                        },
+                        {
+                          "description": "A scoped search filter expression.",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the list of host groups that provide shared configuration templates for host provisioning and management."
+                  },
+                  "response": [
+                    {
+                      "id": "1adfd599-e406-4862-957d-3a12bdd84528",
+                      "name": "Successfully retrieved host groups",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/hostgroups?page=1&per_page=20&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "hostgroups"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results per page.",
+                              "key": "per_page",
+                              "value": "20"
+                            },
+                            {
+                              "description": "A scoped search filter expression.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"environment_name\": \"<string>\",\n      \"operatingsystem_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"environment_name\": \"<string>\",\n      \"operatingsystem_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-1adfd599-e406-4862-957d-3a12bdd84528"
+                    },
+                    {
+                      "id": "6d8c5193-5b2e-49f0-98c1-fc183425fbd2",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/hostgroups?page=1&per_page=20&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "hostgroups"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results per page.",
+                              "key": "per_page",
+                              "value": "20"
+                            },
+                            {
+                              "description": "A scoped search filter expression.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-6d8c5193-5b2e-49f0-98c1-fc183425fbd2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:00.000Z",
+                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                  "uid": "35240-c15c5c5c-6d2a-41a9-b7c0-61ff26105b8c"
+                }
+              ],
+              "id": "8d0c391d-6829-46ca-9fb7-49d6911046ee",
+              "createdAt": "2026-06-05T15:15:00.000Z",
+              "updatedAt": "2026-06-05T15:15:00.000Z",
+              "uid": "35240-8d0c391d-6829-46ca-9fb7-49d6911046ee"
+            }
+          ],
+          "id": "1866a36b-17eb-43d9-ae9a-8afa707fbab1",
+          "createdAt": "2026-06-05T15:15:00.000Z",
+          "updatedAt": "2026-06-05T15:15:00.000Z",
+          "uid": "35240-1866a36b-17eb-43d9-ae9a-8afa707fbab1"
+        }
+      ],
+      "id": "cf2a2a81-afad-40f6-bad0-73ff6b951440",
+      "createdAt": "2026-06-05T15:15:00.000Z",
+      "updatedAt": "2026-06-05T15:15:00.000Z",
+      "uid": "35240-cf2a2a81-afad-40f6-bad0-73ff6b951440"
+    },
+    {
+      "name": "katello",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "content_views",
+                  "item": [
+                    {
+                      "name": "Red Hat List Content Views",
+                      "id": "5226eb3d-dc35-494f-90c2-60c897e1bfd2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/katello/api/v2/content_views?page=1&per_page=20&organization_id=<integer>&name=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "katello",
+                            "api",
+                            "v2",
+                            "content_views"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results per page.",
+                              "key": "per_page",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Filter by organization identifier.",
+                              "key": "organization_id",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filter by content view name.",
+                              "key": "name",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of content views that define curated snapshots of software repositories used for controlled content delivery to hosts."
+                      },
+                      "response": [
+                        {
+                          "id": "9352355f-ad24-453b-b08c-b63e889992db",
+                          "name": "Successfully retrieved content views",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/katello/api/v2/content_views?page=1&per_page=20&organization_id=<integer>&name=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "katello",
+                                "api",
+                                "v2",
+                                "content_views"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of results per page.",
+                                  "key": "per_page",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Filter by organization identifier.",
+                                  "key": "organization_id",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Filter by content view name.",
+                                  "key": "name",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\",\n      \"composite\": \"<boolean>\",\n      \"organization_id\": \"<integer>\",\n      \"repository_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"last_published\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\",\n      \"composite\": \"<boolean>\",\n      \"organization_id\": \"<integer>\",\n      \"repository_ids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"last_published\": \"<dateTime>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-9352355f-ad24-453b-b08c-b63e889992db"
+                        },
+                        {
+                          "id": "e8c4d2c1-b5b5-4c40-8af8-dc5e8f83cfc3",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/katello/api/v2/content_views?page=1&per_page=20&organization_id=<integer>&name=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "katello",
+                                "api",
+                                "v2",
+                                "content_views"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of results per page.",
+                                  "key": "per_page",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Filter by organization identifier.",
+                                  "key": "organization_id",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Filter by content view name.",
+                                  "key": "name",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-e8c4d2c1-b5b5-4c40-8af8-dc5e8f83cfc3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-5226eb3d-dc35-494f-90c2-60c897e1bfd2"
+                    },
+                    {
+                      "name": "Red Hat Create a Content View",
+                      "id": "2e215b2b-387e-4ef3-a727-83cb009196a3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"organization_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"repository_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/katello/api/v2/content_views",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "katello",
+                            "api",
+                            "v2",
+                            "content_views"
+                          ]
+                        },
+                        "description": "Creates a new content view that can include selected repositories and filters for curating content delivery."
+                      },
+                      "response": [
+                        {
+                          "id": "2bfe514d-d60f-41ce-b09c-50e6c93a72e9",
+                          "name": "Content view created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"organization_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"repository_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/katello/api/v2/content_views",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "katello",
+                                "api",
+                                "v2",
+                                "content_views"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-2bfe514d-d60f-41ce-b09c-50e6c93a72e9"
+                        },
+                        {
+                          "id": "8a91b980-f733-437f-ae38-702194e92614",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"organization_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"repository_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/katello/api/v2/content_views",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "katello",
+                                "api",
+                                "v2",
+                                "content_views"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-8a91b980-f733-437f-ae38-702194e92614"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-2e215b2b-387e-4ef3-a727-83cb009196a3"
+                    }
+                  ],
+                  "id": "5d9287ec-31aa-493a-90cd-b0984b21b46f",
+                  "createdAt": "2026-06-05T15:15:00.000Z",
+                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                  "uid": "35240-5d9287ec-31aa-493a-90cd-b0984b21b46f"
+                },
+                {
+                  "name": "organizations",
+                  "item": [
+                    {
+                      "name": "{organization_id}",
+                      "item": [
+                        {
+                          "name": "environments",
+                          "item": [
+                            {
+                              "name": "Red Hat List Lifecycle Environments",
+                              "id": "0a598e02-43c2-455b-b838-491410af408d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments?page=1&per_page=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "katello",
+                                    "api",
+                                    "v2",
+                                    "organizations",
+                                    ":organization_id",
+                                    "environments"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The page number for paginated results.",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "The number of results per page.",
+                                      "key": "per_page",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "83f1c89b-89ff-452b-9262-e953e91be0dc",
+                                      "key": "organization_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The organization identifier."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves the list of lifecycle environments for an organization, defining the promotion path for content views from development through to production."
+                              },
+                              "response": [
+                                {
+                                  "id": "b644fbfb-56e9-4e63-becd-8a8b1f72f526",
+                                  "name": "Successfully retrieved lifecycle environments",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments?page=1&per_page=20",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "environments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The page number for paginated results.",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "The number of results per page.",
+                                          "key": "per_page",
+                                          "value": "20"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\",\n      \"prior\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\",\n      \"prior\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      }\n    }\n  ]\n}",
+                                  "createdAt": "2026-06-05T15:15:00.000Z",
+                                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                                  "uid": "35240-b644fbfb-56e9-4e63-becd-8a8b1f72f526"
+                                },
+                                {
+                                  "id": "530a5630-469c-4a07-9817-17feb9f54251",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments?page=1&per_page=20",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "environments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The page number for paginated results.",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "The number of results per page.",
+                                          "key": "per_page",
+                                          "value": "20"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:15:00.000Z",
+                                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                                  "uid": "35240-530a5630-469c-4a07-9817-17feb9f54251"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:15:00.000Z",
+                              "updatedAt": "2026-06-05T15:15:00.000Z",
+                              "uid": "35240-0a598e02-43c2-455b-b838-491410af408d"
+                            }
+                          ],
+                          "id": "fd480884-3750-46c1-a506-f7eb7c0f63a7",
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-fd480884-3750-46c1-a506-f7eb7c0f63a7"
+                        }
+                      ],
+                      "id": "dea1d335-64e8-406c-84a1-e68e7938f9b8",
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-dea1d335-64e8-406c-84a1-e68e7938f9b8"
+                    }
+                  ],
+                  "id": "f151d104-ac78-40c0-96de-c36e33ec64fd",
+                  "createdAt": "2026-06-05T15:15:00.000Z",
+                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                  "uid": "35240-f151d104-ac78-40c0-96de-c36e33ec64fd"
+                },
+                {
+                  "name": "repositories",
+                  "item": [
+                    {
+                      "name": "Red Hat List Repositories",
+                      "id": "572ebb7c-b387-4438-af80-1beb3510ba99",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/katello/api/v2/repositories?page=1&per_page=20&organization_id=<integer>&content_type=file",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "katello",
+                            "api",
+                            "v2",
+                            "repositories"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results per page.",
+                              "key": "per_page",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Filter by organization.",
+                              "key": "organization_id",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filter by content type.",
+                              "key": "content_type",
+                              "value": "file"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of repositories managed by Satellite, including those synced from Red Hat CDN and custom repositories."
+                      },
+                      "response": [
+                        {
+                          "id": "ccc1e1b5-f0d2-4095-b500-c8c9fbf1f63a",
+                          "name": "Successfully retrieved repositories",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/katello/api/v2/repositories?page=1&per_page=20&organization_id=<integer>&content_type=file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "katello",
+                                "api",
+                                "v2",
+                                "repositories"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of results per page.",
+                                  "key": "per_page",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Filter by organization.",
+                                  "key": "organization_id",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Filter by content type.",
+                                  "key": "content_type",
+                                  "value": "file"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"content_type\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"last_sync\": {\n        \"id\": \"<integer>\",\n        \"state\": \"<string>\",\n        \"started_at\": \"<dateTime>\",\n        \"ended_at\": \"<dateTime>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"content_type\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"last_sync\": {\n        \"id\": \"<integer>\",\n        \"state\": \"<string>\",\n        \"started_at\": \"<dateTime>\",\n        \"ended_at\": \"<dateTime>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-ccc1e1b5-f0d2-4095-b500-c8c9fbf1f63a"
+                        },
+                        {
+                          "id": "610f41a4-af57-4737-a68d-0d617534e7ad",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/katello/api/v2/repositories?page=1&per_page=20&organization_id=<integer>&content_type=file",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "katello",
+                                "api",
+                                "v2",
+                                "repositories"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of results per page.",
+                                  "key": "per_page",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Filter by organization.",
+                                  "key": "organization_id",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Filter by content type.",
+                                  "key": "content_type",
+                                  "value": "file"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-610f41a4-af57-4737-a68d-0d617534e7ad"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-572ebb7c-b387-4438-af80-1beb3510ba99"
+                    }
+                  ],
+                  "id": "91ac0315-ab93-4901-9878-385060d57e11",
+                  "createdAt": "2026-06-05T15:15:00.000Z",
+                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                  "uid": "35240-91ac0315-ab93-4901-9878-385060d57e11"
+                },
+                {
+                  "name": "errata",
+                  "item": [
+                    {
+                      "name": "Red Hat List Errata",
+                      "id": "f8d28199-23a1-4446-877e-7baafd00b9af",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/katello/api/v2/errata?page=1&per_page=20&type=enhancement&severity=Important",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "katello",
+                            "api",
+                            "v2",
+                            "errata"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The number of results per page.",
+                              "key": "per_page",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Filter errata by type.",
+                              "key": "type",
+                              "value": "enhancement"
+                            },
+                            {
+                              "description": "Filter security errata by severity.",
+                              "key": "severity",
+                              "value": "Important"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a paginated list of available errata including security advisories, bug fixes, and enhancement updates."
+                      },
+                      "response": [
+                        {
+                          "id": "160edb5b-9ee2-487d-93bf-f870c0b06459",
+                          "name": "Successfully retrieved errata",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/katello/api/v2/errata?page=1&per_page=20&type=enhancement&severity=Important",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "katello",
+                                "api",
+                                "v2",
+                                "errata"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of results per page.",
+                                  "key": "per_page",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Filter errata by type.",
+                                  "key": "type",
+                                  "value": "enhancement"
+                                },
+                                {
+                                  "description": "Filter security errata by severity.",
+                                  "key": "severity",
+                                  "value": "Important"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"errata_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"enhancement\",\n      \"severity\": \"Important\",\n      \"issued\": \"<date>\",\n      \"updated\": \"<date>\",\n      \"hosts_available_count\": \"<integer>\",\n      \"hosts_applicable_count\": \"<integer>\",\n      \"cves\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"errata_id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"bugfix\",\n      \"severity\": \"Important\",\n      \"issued\": \"<date>\",\n      \"updated\": \"<date>\",\n      \"hosts_available_count\": \"<integer>\",\n      \"hosts_applicable_count\": \"<integer>\",\n      \"cves\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"packages\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-160edb5b-9ee2-487d-93bf-f870c0b06459"
+                        },
+                        {
+                          "id": "80bade37-2a5d-48ea-baed-71e33dfa8a3e",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/katello/api/v2/errata?page=1&per_page=20&type=enhancement&severity=Important",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "katello",
+                                "api",
+                                "v2",
+                                "errata"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The number of results per page.",
+                                  "key": "per_page",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Filter errata by type.",
+                                  "key": "type",
+                                  "value": "enhancement"
+                                },
+                                {
+                                  "description": "Filter security errata by severity.",
+                                  "key": "severity",
+                                  "value": "Important"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:00.000Z",
+                          "updatedAt": "2026-06-05T15:15:00.000Z",
+                          "uid": "35240-80bade37-2a5d-48ea-baed-71e33dfa8a3e"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:00.000Z",
+                      "updatedAt": "2026-06-05T15:15:00.000Z",
+                      "uid": "35240-f8d28199-23a1-4446-877e-7baafd00b9af"
+                    }
+                  ],
+                  "id": "54c76ba3-54dd-4a2c-8af1-98cfeca7ea90",
+                  "createdAt": "2026-06-05T15:15:00.000Z",
+                  "updatedAt": "2026-06-05T15:15:00.000Z",
+                  "uid": "35240-54c76ba3-54dd-4a2c-8af1-98cfeca7ea90"
+                }
+              ],
+              "id": "93799da9-c428-40be-b980-46fc36b1b1f7",
+              "createdAt": "2026-06-05T15:15:00.000Z",
+              "updatedAt": "2026-06-05T15:15:00.000Z",
+              "uid": "35240-93799da9-c428-40be-b980-46fc36b1b1f7"
+            }
+          ],
+          "id": "5ecc0dff-415f-483a-bb8f-f50d37d6a708",
+          "createdAt": "2026-06-05T15:15:00.000Z",
+          "updatedAt": "2026-06-05T15:15:00.000Z",
+          "uid": "35240-5ecc0dff-415f-483a-bb8f-f50d37d6a708"
+        }
+      ],
+      "id": "8c87f007-d27a-4b9d-8b9c-e50d091b0081",
+      "createdAt": "2026-06-05T15:15:00.000Z",
+      "updatedAt": "2026-06-05T15:15:00.000Z",
+      "uid": "35240-8c87f007-d27a-4b9d-8b9c-e50d091b0081"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://satellite.example.com"
+    }
+  ]
+}

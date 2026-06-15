@@ -1,0 +1,453 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Job Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/job_templates/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query",
+                "description": "The field to use for ordering results. Prefix with a dash for descending order (e.g., -created)."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of job templates. Job templates define the parameters for running Ansible playbooks against specified inventories, including the project, playbook, credentials, and extra variables."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Job Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/api/v2/job_templates/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new job template with the specified configuration. Requires at minimum a name, project, playbook, and inventory reference."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a Job Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/job_templates/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific job template by its identifier."
+        },
+        {
+          "info": {
+            "name": "Red Hat Update a Job Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://ansible-platform.example.com/api/v2/job_templates/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing job template. Only the fields provided in the request body will be modified."
+        },
+        {
+          "info": {
+            "name": "Red Hat Delete a Job Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ansible-platform.example.com/api/v2/job_templates/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Deletes a job template. Associated job runs will not be deleted but will no longer be linked to a template."
+        },
+        {
+          "info": {
+            "name": "Red Hat Launch a Job Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/api/v2/job_templates/:id/launch/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launches a job from the specified job template. Optional extra variables, credentials, and inventory overrides can be provided in the request body. Returns the created job record with its identifier for tracking execution progress."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/jobs/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query",
+                "description": "The field to use for ordering results. Prefix with a dash for descending order (e.g., -created)."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of job executions. Jobs represent individual runs of job templates against inventories."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/jobs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific job execution, including its status, timing, and associated template information."
+        },
+        {
+          "info": {
+            "name": "Red Hat Cancel a Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/api/v2/jobs/:id/cancel/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Cancels a running job. Only jobs that are currently pending or running can be cancelled."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Inventories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/inventories/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of inventories. Inventories contain the hosts and groups that automation jobs run against."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create an Inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/api/v2/inventories/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new inventory within the specified organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/projects/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of projects. Projects represent collections of Ansible playbooks sourced from a version control system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Credentials",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/credentials/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of credentials used for authenticating automation jobs with managed hosts and external services."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflow Job Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Workflow Job Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/workflow_job_templates/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of workflow job templates. Workflows chain multiple job templates into orchestrated automation sequences with conditional branching."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/organizations/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of organizations that provide multi-tenancy boundaries for access control and resource management."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3153 @@
+{
+  "info": {
+    "_postman_id": "90b4f3d9-0d3f-4767-ad0f-7e860baf3186",
+    "name": "Red Hat Build of Keycloak Admin REST API",
+    "description": "The Red Hat Build of Keycloak Admin REST API provides programmatic access to manage identity and access management functions, including realm configuration, user management, client registration, role assignments, identity provider configuration, and session management. It serves as the administrative interface for the Red Hat build of Keycloak identity platform.\n\nContact Support:\n Name: Red Hat Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:15:01.000Z",
+    "updatedAt": "2026-06-05T15:15:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-90b4f3d9-0d3f-4767-ad0f-7e860baf3186"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "realms",
+          "item": [
+            {
+              "name": "{realm}",
+              "item": [
+                {
+                  "name": "users",
+                  "item": [
+                    {
+                      "name": "{user_id}",
+                      "item": [
+                        {
+                          "name": "Red Hat Get a User",
+                          "id": "702ae481-7b3a-47c2-8455-83e5190c6d30",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "users",
+                                ":user_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "028fe339-1e11-4b3d-b39d-ab6cd55dedcf",
+                                  "key": "realm",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the Keycloak realm."
+                                },
+                                {
+                                  "id": "1d5eaa3b-e14b-4ef8-9084-a11335bc97eb",
+                                  "key": "user_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the user."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the details of a specific user in the realm."
+                          },
+                          "response": [
+                            {
+                              "id": "37dad049-e1b5-44b5-bd2e-8913438fec81",
+                              "name": "Successfully retrieved user",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-37dad049-e1b5-44b5-bd2e-8913438fec81"
+                            },
+                            {
+                              "id": "95a905b3-01a0-43f0-b2e8-710eb6369756",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-95a905b3-01a0-43f0-b2e8-710eb6369756"
+                            },
+                            {
+                              "id": "4c20a446-09aa-4703-8301-b76174b3d002",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-4c20a446-09aa-4703-8301-b76174b3d002"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-702ae481-7b3a-47c2-8455-83e5190c6d30"
+                        },
+                        {
+                          "name": "Red Hat Update a User",
+                          "id": "b659ef37-b34b-4c64-8ee6-03c949e2fd23",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "users",
+                                ":user_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c1db6112-68d5-4265-84bc-a86cfa0515a7",
+                                  "key": "realm",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the Keycloak realm."
+                                },
+                                {
+                                  "id": "c736df63-f5db-40e4-a908-0aa19257f140",
+                                  "key": "user_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the user."
+                                }
+                              ]
+                            },
+                            "description": "Updates the profile attributes of an existing user in the realm."
+                          },
+                          "response": [
+                            {
+                              "id": "7ed7a055-768e-4abc-b476-acf81ba56130",
+                              "name": "User updated successfully",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-7ed7a055-768e-4abc-b476-acf81ba56130"
+                            },
+                            {
+                              "id": "674c8a03-7784-4625-a024-120d3b6295e4",
+                              "name": "The request body is malformed or contains invalid values.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-674c8a03-7784-4625-a024-120d3b6295e4"
+                            },
+                            {
+                              "id": "461bc483-6d60-497d-a747-5b8dd3f0d639",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-461bc483-6d60-497d-a747-5b8dd3f0d639"
+                            },
+                            {
+                              "id": "dc590141-0a0c-4997-8e0d-fad00004365f",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-dc590141-0a0c-4997-8e0d-fad00004365f"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-b659ef37-b34b-4c64-8ee6-03c949e2fd23"
+                        },
+                        {
+                          "name": "Red Hat Delete a User",
+                          "id": "df8a5af2-c29b-4f28-84c8-ef2cfad2de51",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "users",
+                                ":user_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4eb859c4-511c-4f05-8e84-a8428ebe9626",
+                                  "key": "realm",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the Keycloak realm."
+                                },
+                                {
+                                  "id": "9b03a693-8aba-40ed-b814-cd07b3482bb8",
+                                  "key": "user_id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the user."
+                                }
+                              ]
+                            },
+                            "description": "Deletes a user from the realm along with all associated sessions, consents, and federated identity links."
+                          },
+                          "response": [
+                            {
+                              "id": "43d6f733-1efa-434f-a542-42ff99d9a9fb",
+                              "name": "User deleted successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-43d6f733-1efa-434f-a542-42ff99d9a9fb"
+                            },
+                            {
+                              "id": "9ef3aa60-d35d-4a4c-b316-29909f3efe87",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-9ef3aa60-d35d-4a4c-b316-29909f3efe87"
+                            },
+                            {
+                              "id": "0cbf9cf0-3411-4d10-af9b-8f1b57504760",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/users/:user_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "users",
+                                    ":user_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "user_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-0cbf9cf0-3411-4d10-af9b-8f1b57504760"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-df8a5af2-c29b-4f28-84c8-ef2cfad2de51"
+                        }
+                      ],
+                      "id": "8fa17b71-b37b-49f1-8ca6-c00bf509d3e1",
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-8fa17b71-b37b-49f1-8ca6-c00bf509d3e1"
+                    },
+                    {
+                      "name": "Red Hat List Users",
+                      "id": "7863e350-602f-4d2a-8eae-1b95f53e8e78",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm/users?username=<string>&email=<string>&firstName=<string>&lastName=<string>&enabled=<boolean>&first=<integer>&max=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm",
+                            "users"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by username.",
+                              "key": "username",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by email address.",
+                              "key": "email",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by first name.",
+                              "key": "firstName",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by last name.",
+                              "key": "lastName",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by enabled status.",
+                              "key": "enabled",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "The index of the first result to return (pagination offset).",
+                              "key": "first",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The maximum number of results to return.",
+                              "key": "max",
+                              "value": "100"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "e58129ad-9fd9-4e77-9b58-3d82d8c0adda",
+                              "key": "realm",
+                              "value": "<string>",
+                              "description": "(Required) The name of the Keycloak realm."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a paginated list of users in the specified realm. Results can be filtered by username, email, first name, or last name."
+                      },
+                      "response": [
+                        {
+                          "id": "dd33a8a6-a1e5-4fe7-90a5-87a14b133df5",
+                          "name": "Successfully retrieved users",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/users?username=<string>&email=<string>&firstName=<string>&lastName=<string>&enabled=<boolean>&first=<integer>&max=100",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "users"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by username.",
+                                  "key": "username",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by email address.",
+                                  "key": "email",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by first name.",
+                                  "key": "firstName",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by last name.",
+                                  "key": "lastName",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by enabled status.",
+                                  "key": "enabled",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "The index of the first result to return (pagination offset).",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "The maximum number of results to return.",
+                                  "key": "max",
+                                  "value": "100"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"username\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"emailVerified\": \"<boolean>\",\n    \"enabled\": \"<boolean>\",\n    \"createdTimestamp\": \"<long>\",\n    \"attributes\": {\n      \"est_e\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"credentials\": [\n      {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\",\n        \"temporary\": \"<boolean>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\",\n        \"temporary\": \"<boolean>\"\n      }\n    ],\n    \"requiredActions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"username\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"emailVerified\": \"<boolean>\",\n    \"enabled\": \"<boolean>\",\n    \"createdTimestamp\": \"<long>\",\n    \"attributes\": {\n      \"mollit_5a\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ullamco4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"voluptate59\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"credentials\": [\n      {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\",\n        \"temporary\": \"<boolean>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\",\n        \"temporary\": \"<boolean>\"\n      }\n    ],\n    \"requiredActions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-dd33a8a6-a1e5-4fe7-90a5-87a14b133df5"
+                        },
+                        {
+                          "id": "122b152c-09a8-42c6-b999-f301a06991a4",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/users?username=<string>&email=<string>&firstName=<string>&lastName=<string>&enabled=<boolean>&first=<integer>&max=100",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "users"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by username.",
+                                  "key": "username",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by email address.",
+                                  "key": "email",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by first name.",
+                                  "key": "firstName",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by last name.",
+                                  "key": "lastName",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by enabled status.",
+                                  "key": "enabled",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "description": "The index of the first result to return (pagination offset).",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "The maximum number of results to return.",
+                                  "key": "max",
+                                  "value": "100"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-122b152c-09a8-42c6-b999-f301a06991a4"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-7863e350-602f-4d2a-8eae-1b95f53e8e78"
+                    },
+                    {
+                      "name": "Red Hat Create a User",
+                      "id": "32bc5340-44e1-4da0-98a8-869bffe006e7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm",
+                            "users"
+                          ],
+                          "variable": [
+                            {
+                              "id": "eafa2244-a75e-425d-b531-2ecb3afe4701",
+                              "key": "realm",
+                              "value": "<string>",
+                              "description": "(Required) The name of the Keycloak realm."
+                            }
+                          ]
+                        },
+                        "description": "Creates a new user in the specified realm with the provided profile attributes and optional initial credentials."
+                      },
+                      "response": [
+                        {
+                          "id": "3de513d5-b613-4048-8905-57abcc36a9ab",
+                          "name": "User created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-3de513d5-b613-4048-8905-57abcc36a9ab"
+                        },
+                        {
+                          "id": "debb53e8-7bfb-4931-a4d1-0f5c0e017027",
+                          "name": "The request body is malformed or contains invalid values.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-debb53e8-7bfb-4931-a4d1-0f5c0e017027"
+                        },
+                        {
+                          "id": "e1462e57-d69c-4550-9bdb-422ac9cab94a",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-e1462e57-d69c-4550-9bdb-422ac9cab94a"
+                        },
+                        {
+                          "id": "4cca5443-35e9-430c-882e-c6b85dd99931",
+                          "name": "A user with the same username or email already exists.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"emailVerified\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"createdTimestamp\": \"<long>\",\n  \"attributes\": {\n    \"ut5f3\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"consectetur40\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"credentials\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\",\n      \"temporary\": \"<boolean>\"\n    }\n  ],\n  \"requiredActions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-4cca5443-35e9-430c-882e-c6b85dd99931"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-32bc5340-44e1-4da0-98a8-869bffe006e7"
+                    }
+                  ],
+                  "id": "936e1eba-deeb-43de-a2dd-cc7a75e128a6",
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-936e1eba-deeb-43de-a2dd-cc7a75e128a6"
+                },
+                {
+                  "name": "clients",
+                  "item": [
+                    {
+                      "name": "Red Hat List Clients",
+                      "id": "cc95e6e8-4852-4c3a-ae0f-26899a4de52d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm/clients?clientId=<string>&first=<integer>&max=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm",
+                            "clients"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by the client identifier.",
+                              "key": "clientId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Pagination offset.",
+                              "key": "first",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Maximum number of results.",
+                              "key": "max",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "79648e6a-b2b9-49d0-9baf-a70274a3c3fc",
+                              "key": "realm",
+                              "value": "<string>",
+                              "description": "(Required) The name of the Keycloak realm."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of client applications registered in the realm."
+                      },
+                      "response": [
+                        {
+                          "id": "d899ba8f-a129-4736-994f-aa65db0b79d1",
+                          "name": "Successfully retrieved clients",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/clients?clientId=<string>&first=<integer>&max=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "clients"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by the client identifier.",
+                                  "key": "clientId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Pagination offset.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of results.",
+                                  "key": "max",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"clientId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"protocol\": \"saml\",\n    \"publicClient\": \"<boolean>\",\n    \"rootUrl\": \"<uri>\",\n    \"redirectUris\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"webOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"serviceAccountsEnabled\": \"<boolean>\",\n    \"authorizationServicesEnabled\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"clientId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"protocol\": \"openid-connect\",\n    \"publicClient\": \"<boolean>\",\n    \"rootUrl\": \"<uri>\",\n    \"redirectUris\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"webOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"serviceAccountsEnabled\": \"<boolean>\",\n    \"authorizationServicesEnabled\": \"<boolean>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-d899ba8f-a129-4736-994f-aa65db0b79d1"
+                        },
+                        {
+                          "id": "678010f3-4873-47f2-b467-ae778e99da20",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/clients?clientId=<string>&first=<integer>&max=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "clients"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by the client identifier.",
+                                  "key": "clientId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Pagination offset.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of results.",
+                                  "key": "max",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-678010f3-4873-47f2-b467-ae778e99da20"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-cc95e6e8-4852-4c3a-ae0f-26899a4de52d"
+                    },
+                    {
+                      "name": "Red Hat Create a Client",
+                      "id": "d89b9894-2fd5-438b-ad37-542c6409ef10",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<uuid>\",\n  \"clientId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"protocol\": \"saml\",\n  \"publicClient\": \"<boolean>\",\n  \"rootUrl\": \"<uri>\",\n  \"redirectUris\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"webOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceAccountsEnabled\": \"<boolean>\",\n  \"authorizationServicesEnabled\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm/clients",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm",
+                            "clients"
+                          ],
+                          "variable": [
+                            {
+                              "id": "54ad8b40-065d-4617-9bde-158b1a9daae1",
+                              "key": "realm",
+                              "value": "<string>",
+                              "description": "(Required) The name of the Keycloak realm."
+                            }
+                          ]
+                        },
+                        "description": "Registers a new client application in the realm with the specified protocol and configuration settings."
+                      },
+                      "response": [
+                        {
+                          "id": "36c17552-63d6-408f-b04a-2db01d703457",
+                          "name": "Client created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"clientId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"protocol\": \"saml\",\n  \"publicClient\": \"<boolean>\",\n  \"rootUrl\": \"<uri>\",\n  \"redirectUris\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"webOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceAccountsEnabled\": \"<boolean>\",\n  \"authorizationServicesEnabled\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/clients",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "clients"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-36c17552-63d6-408f-b04a-2db01d703457"
+                        },
+                        {
+                          "id": "1ad4bef1-5533-45eb-be41-9605550f7147",
+                          "name": "The request body is malformed or contains invalid values.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"clientId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"protocol\": \"saml\",\n  \"publicClient\": \"<boolean>\",\n  \"rootUrl\": \"<uri>\",\n  \"redirectUris\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"webOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceAccountsEnabled\": \"<boolean>\",\n  \"authorizationServicesEnabled\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/clients",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "clients"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-1ad4bef1-5533-45eb-be41-9605550f7147"
+                        },
+                        {
+                          "id": "757fabab-54fc-4901-921b-8524aebb92a7",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"clientId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"protocol\": \"saml\",\n  \"publicClient\": \"<boolean>\",\n  \"rootUrl\": \"<uri>\",\n  \"redirectUris\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"webOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceAccountsEnabled\": \"<boolean>\",\n  \"authorizationServicesEnabled\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/clients",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "clients"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-757fabab-54fc-4901-921b-8524aebb92a7"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-d89b9894-2fd5-438b-ad37-542c6409ef10"
+                    }
+                  ],
+                  "id": "4d2c3bce-894c-459c-8863-000c97f36cf4",
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-4d2c3bce-894c-459c-8863-000c97f36cf4"
+                },
+                {
+                  "name": "roles",
+                  "item": [
+                    {
+                      "name": "Red Hat List Realm Roles",
+                      "id": "0e3971fa-f4cd-4460-a876-e28e578d3649",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm/roles?first=<integer>&max=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm",
+                            "roles"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination offset.",
+                              "key": "first",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Maximum number of results.",
+                              "key": "max",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "0262e7a5-203e-43d6-a4dc-8d653d592b43",
+                              "key": "realm",
+                              "value": "<string>",
+                              "description": "(Required) The name of the Keycloak realm."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of realm-level roles that can be assigned to users and groups."
+                      },
+                      "response": [
+                        {
+                          "id": "2fb1abdb-5b8c-400d-a359-ddc03a260324",
+                          "name": "Successfully retrieved roles",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/roles?first=<integer>&max=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "roles"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Pagination offset.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of results.",
+                                  "key": "max",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"composite\": \"<boolean>\",\n    \"clientRole\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"composite\": \"<boolean>\",\n    \"clientRole\": \"<boolean>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-2fb1abdb-5b8c-400d-a359-ddc03a260324"
+                        },
+                        {
+                          "id": "4a11dec8-cd09-4460-9711-307e9122696c",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/roles?first=<integer>&max=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "roles"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Pagination offset.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of results.",
+                                  "key": "max",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-4a11dec8-cd09-4460-9711-307e9122696c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-0e3971fa-f4cd-4460-a876-e28e578d3649"
+                    },
+                    {
+                      "name": "Red Hat Create a Realm Role",
+                      "id": "f9edfc4e-dedd-40cd-9f03-b5f56f95b8a0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"composite\": \"<boolean>\",\n  \"clientRole\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f7b4ced9-55af-4ed1-8b10-95abc396a1d3",
+                              "key": "realm",
+                              "value": "<string>",
+                              "description": "(Required) The name of the Keycloak realm."
+                            }
+                          ]
+                        },
+                        "description": "Creates a new realm-level role."
+                      },
+                      "response": [
+                        {
+                          "id": "fd0ee4e8-48b5-47c7-a1ff-241f378e14de",
+                          "name": "Role created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"composite\": \"<boolean>\",\n  \"clientRole\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/roles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "roles"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-fd0ee4e8-48b5-47c7-a1ff-241f378e14de"
+                        },
+                        {
+                          "id": "d43b34e0-d64a-4082-9fcb-d86c853a3f99",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"composite\": \"<boolean>\",\n  \"clientRole\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/roles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "roles"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-d43b34e0-d64a-4082-9fcb-d86c853a3f99"
+                        },
+                        {
+                          "id": "7714ab3d-a256-4ca9-b5a9-8a5f205c6aaa",
+                          "name": "A role with the same name already exists.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"composite\": \"<boolean>\",\n  \"clientRole\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/roles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "roles"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-7714ab3d-a256-4ca9-b5a9-8a5f205c6aaa"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-f9edfc4e-dedd-40cd-9f03-b5f56f95b8a0"
+                    }
+                  ],
+                  "id": "b290c594-bb3d-4b5e-98e6-d902fec9b0ba",
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-b290c594-bb3d-4b5e-98e6-d902fec9b0ba"
+                },
+                {
+                  "name": "groups",
+                  "item": [
+                    {
+                      "name": "Red Hat List Groups",
+                      "id": "66668028-ce5f-430d-894e-43673b51574e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm/groups?search=<string>&first=<integer>&max=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm",
+                            "groups"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter groups by name.",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Pagination offset.",
+                              "key": "first",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Maximum number of results.",
+                              "key": "max",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "d7207b2b-f48a-4af6-b8bd-5b300bd7656a",
+                              "key": "realm",
+                              "value": "<string>",
+                              "description": "(Required) The name of the Keycloak realm."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of groups in the realm, optionally filtered by name. Groups enable bulk role and attribute assignment to users."
+                      },
+                      "response": [
+                        {
+                          "id": "a26a521b-5eb8-48ac-b45e-b99f4726d78c",
+                          "name": "Successfully retrieved groups",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/groups?search=<string>&first=<integer>&max=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "groups"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter groups by name.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Pagination offset.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of results.",
+                                  "key": "max",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"path\": \"<string>\",\n    \"subGroups\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/Group detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/Group detected>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"path\": \"<string>\",\n    \"subGroups\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/Group detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/Group detected>\"\n      }\n    ]\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-a26a521b-5eb8-48ac-b45e-b99f4726d78c"
+                        },
+                        {
+                          "id": "d78d7ef0-859f-4d32-adc4-58745ae03d1c",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/groups?search=<string>&first=<integer>&max=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "groups"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter groups by name.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Pagination offset.",
+                                  "key": "first",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Maximum number of results.",
+                                  "key": "max",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realm"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-d78d7ef0-859f-4d32-adc4-58745ae03d1c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-66668028-ce5f-430d-894e-43673b51574e"
+                    }
+                  ],
+                  "id": "95bd50ff-bb26-4c5a-862b-80ba2eb4e46c",
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-95bd50ff-bb26-4c5a-862b-80ba2eb4e46c"
+                },
+                {
+                  "name": "identity-provider",
+                  "item": [
+                    {
+                      "name": "instances",
+                      "item": [
+                        {
+                          "name": "Red Hat List Identity Providers",
+                          "id": "b96fef49-2f42-4ab8-9258-e1b6d43969a1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/identity-provider/instances",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "identity-provider",
+                                "instances"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4ed5967f-3a5e-4531-b53d-51a80607f078",
+                                  "key": "realm",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the Keycloak realm."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the list of external identity providers configured for the realm, including SAML, OIDC, and social providers."
+                          },
+                          "response": [
+                            {
+                              "id": "47b9579e-3090-4e82-8977-cd432404bee1",
+                              "name": "Successfully retrieved identity providers",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/identity-provider/instances",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "identity-provider",
+                                    "instances"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"alias\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"providerId\": \"linkedin\",\n    \"enabled\": \"<boolean>\",\n    \"config\": {\n      \"Ut_f84\": \"<string>\",\n      \"nulla_f08\": \"<string>\",\n      \"laborum_52\": \"<string>\",\n      \"nulla_7\": \"<string>\"\n    }\n  },\n  {\n    \"alias\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"providerId\": \"google\",\n    \"enabled\": \"<boolean>\",\n    \"config\": {\n      \"aute_e\": \"<string>\",\n      \"dolore_2_a\": \"<string>\",\n      \"culpab\": \"<string>\"\n    }\n  }\n]",
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-47b9579e-3090-4e82-8977-cd432404bee1"
+                            },
+                            {
+                              "id": "eb200a64-0404-463f-8760-e30df737550b",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/identity-provider/instances",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "identity-provider",
+                                    "instances"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-eb200a64-0404-463f-8760-e30df737550b"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-b96fef49-2f42-4ab8-9258-e1b6d43969a1"
+                        }
+                      ],
+                      "id": "1c6c7694-ab59-45df-81c5-ab84e931c027",
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-1c6c7694-ab59-45df-81c5-ab84e931c027"
+                    }
+                  ],
+                  "id": "701139b3-ec4c-4028-827f-fec38e3e106c",
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-701139b3-ec4c-4028-827f-fec38e3e106c"
+                },
+                {
+                  "name": "sessions",
+                  "item": [
+                    {
+                      "name": "{session_id}",
+                      "item": [
+                        {
+                          "name": "Red Hat Remove a Session",
+                          "id": "d6fa132a-a7e3-4f16-8dd2-c388a8de268b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/realms/:realm/sessions/:session_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "realms",
+                                ":realm",
+                                "sessions",
+                                ":session_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b201b1da-ad3a-4f25-bad8-440eb9c59ccd",
+                                  "key": "realm",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the Keycloak realm."
+                                },
+                                {
+                                  "id": "d927462a-7f17-42b2-b60e-9bcc26f1d58e",
+                                  "key": "session_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the session."
+                                }
+                              ]
+                            },
+                            "description": "Terminates a specific user session, logging the user out of the associated client application."
+                          },
+                          "response": [
+                            {
+                              "id": "26d9c0dd-62f2-4e70-80c1-60ab395aaee9",
+                              "name": "Session terminated successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/sessions/:session_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "sessions",
+                                    ":session_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "session_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-26d9c0dd-62f2-4e70-80c1-60ab395aaee9"
+                            },
+                            {
+                              "id": "cef426a6-7aad-4192-86a0-044af03c0c11",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/sessions/:session_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "sessions",
+                                    ":session_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "session_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-cef426a6-7aad-4192-86a0-044af03c0c11"
+                            },
+                            {
+                              "id": "409eb1fb-715e-43ed-8cc3-4ea52e264c6f",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/realms/:realm/sessions/:session_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "realms",
+                                    ":realm",
+                                    "sessions",
+                                    ":session_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realm"
+                                    },
+                                    {
+                                      "key": "session_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:15:02.000Z",
+                              "updatedAt": "2026-06-05T15:15:02.000Z",
+                              "uid": "35240-409eb1fb-715e-43ed-8cc3-4ea52e264c6f"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:15:02.000Z",
+                          "updatedAt": "2026-06-05T15:15:02.000Z",
+                          "uid": "35240-d6fa132a-a7e3-4f16-8dd2-c388a8de268b"
+                        }
+                      ],
+                      "id": "cfa9350b-3b87-4325-bcd0-5c4d0a2b825c",
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-cfa9350b-3b87-4325-bcd0-5c4d0a2b825c"
+                    }
+                  ],
+                  "id": "2e780a3b-8def-4def-8c34-92567bfc9eec",
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-2e780a3b-8def-4def-8c34-92567bfc9eec"
+                },
+                {
+                  "name": "Red Hat Get a Realm",
+                  "id": "35c01309-e2d8-46e9-aff4-5f8d35ffbff2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/realms/:realm",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "realms",
+                        ":realm"
+                      ],
+                      "variable": [
+                        {
+                          "id": "92992cf4-3427-4f34-827a-831e4585e2b8",
+                          "key": "realm",
+                          "value": "<string>",
+                          "description": "(Required) The name of the Keycloak realm."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the configuration of a specific realm, including its login settings, token policies, and enabled features."
+                  },
+                  "response": [
+                    {
+                      "id": "14cc8145-bef1-4588-bda6-4e1e47a966c2",
+                      "name": "Successfully retrieved realm",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "realm"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"registrationAllowed\": \"<boolean>\",\n  \"loginWithEmailAllowed\": \"<boolean>\",\n  \"duplicateEmailsAllowed\": \"<boolean>\",\n  \"resetPasswordAllowed\": \"<boolean>\",\n  \"sslRequired\": \"none\",\n  \"accessTokenLifespan\": \"<integer>\",\n  \"ssoSessionIdleTimeout\": \"<integer>\",\n  \"ssoSessionMaxLifespan\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-14cc8145-bef1-4588-bda6-4e1e47a966c2"
+                    },
+                    {
+                      "id": "b2ef8367-4fd7-4c91-909b-0a0f753bc2df",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "realm"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-b2ef8367-4fd7-4c91-909b-0a0f753bc2df"
+                    },
+                    {
+                      "id": "da8cd87d-399e-4ecc-9098-9172bd43f399",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "realm"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-da8cd87d-399e-4ecc-9098-9172bd43f399"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-35c01309-e2d8-46e9-aff4-5f8d35ffbff2"
+                },
+                {
+                  "name": "Red Hat Update a Realm",
+                  "id": "a3d5b8fd-3b20-44c3-8f15-8b22187ffc4a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"registrationAllowed\": \"<boolean>\",\n  \"loginWithEmailAllowed\": \"<boolean>\",\n  \"duplicateEmailsAllowed\": \"<boolean>\",\n  \"resetPasswordAllowed\": \"<boolean>\",\n  \"sslRequired\": \"none\",\n  \"accessTokenLifespan\": \"<integer>\",\n  \"ssoSessionIdleTimeout\": \"<integer>\",\n  \"ssoSessionMaxLifespan\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/realms/:realm",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "realms",
+                        ":realm"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e55af5c8-b414-4e3e-a57f-2b08996fc64b",
+                          "key": "realm",
+                          "value": "<string>",
+                          "description": "(Required) The name of the Keycloak realm."
+                        }
+                      ]
+                    },
+                    "description": "Updates the configuration of a specific realm. All writable fields can be modified."
+                  },
+                  "response": [
+                    {
+                      "id": "a1d5e28c-4ea7-4427-a0c0-a93f136eed2a",
+                      "name": "Realm updated successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"registrationAllowed\": \"<boolean>\",\n  \"loginWithEmailAllowed\": \"<boolean>\",\n  \"duplicateEmailsAllowed\": \"<boolean>\",\n  \"resetPasswordAllowed\": \"<boolean>\",\n  \"sslRequired\": \"none\",\n  \"accessTokenLifespan\": \"<integer>\",\n  \"ssoSessionIdleTimeout\": \"<integer>\",\n  \"ssoSessionMaxLifespan\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "realm"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-a1d5e28c-4ea7-4427-a0c0-a93f136eed2a"
+                    },
+                    {
+                      "id": "1e5947cd-61f7-42b9-8537-1fd021c97a08",
+                      "name": "The request body is malformed or contains invalid values.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"registrationAllowed\": \"<boolean>\",\n  \"loginWithEmailAllowed\": \"<boolean>\",\n  \"duplicateEmailsAllowed\": \"<boolean>\",\n  \"resetPasswordAllowed\": \"<boolean>\",\n  \"sslRequired\": \"none\",\n  \"accessTokenLifespan\": \"<integer>\",\n  \"ssoSessionIdleTimeout\": \"<integer>\",\n  \"ssoSessionMaxLifespan\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "realm"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-1e5947cd-61f7-42b9-8537-1fd021c97a08"
+                    },
+                    {
+                      "id": "b16561f6-1fee-4ee6-9a3d-2149d1e2bb28",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"registrationAllowed\": \"<boolean>\",\n  \"loginWithEmailAllowed\": \"<boolean>\",\n  \"duplicateEmailsAllowed\": \"<boolean>\",\n  \"resetPasswordAllowed\": \"<boolean>\",\n  \"sslRequired\": \"none\",\n  \"accessTokenLifespan\": \"<integer>\",\n  \"ssoSessionIdleTimeout\": \"<integer>\",\n  \"ssoSessionMaxLifespan\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "realm"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-b16561f6-1fee-4ee6-9a3d-2149d1e2bb28"
+                    },
+                    {
+                      "id": "73f5e46b-e6da-499c-9462-e537e7b7b45b",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"registrationAllowed\": \"<boolean>\",\n  \"loginWithEmailAllowed\": \"<boolean>\",\n  \"duplicateEmailsAllowed\": \"<boolean>\",\n  \"resetPasswordAllowed\": \"<boolean>\",\n  \"sslRequired\": \"none\",\n  \"accessTokenLifespan\": \"<integer>\",\n  \"ssoSessionIdleTimeout\": \"<integer>\",\n  \"ssoSessionMaxLifespan\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/realms/:realm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "realms",
+                            ":realm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "realm"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:02.000Z",
+                      "updatedAt": "2026-06-05T15:15:02.000Z",
+                      "uid": "35240-73f5e46b-e6da-499c-9462-e537e7b7b45b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-a3d5b8fd-3b20-44c3-8f15-8b22187ffc4a"
+                }
+              ],
+              "id": "015cd056-0e2d-4645-a876-6043288745bd",
+              "createdAt": "2026-06-05T15:15:02.000Z",
+              "updatedAt": "2026-06-05T15:15:02.000Z",
+              "uid": "35240-015cd056-0e2d-4645-a876-6043288745bd"
+            },
+            {
+              "name": "Red Hat List Realms",
+              "id": "84eb3eb9-f73e-4d44-b2ac-fb7fc51b8e90",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/realms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "realms"
+                  ]
+                },
+                "description": "Retrieves the list of all realms accessible to the authenticated admin user."
+              },
+              "response": [
+                {
+                  "id": "bd3b1733-188b-4256-840c-bb0753627cfc",
+                  "name": "Successfully retrieved realms",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/realms",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "realms"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"registrationAllowed\": \"<boolean>\",\n    \"loginWithEmailAllowed\": \"<boolean>\",\n    \"duplicateEmailsAllowed\": \"<boolean>\",\n    \"resetPasswordAllowed\": \"<boolean>\",\n    \"sslRequired\": \"none\",\n    \"accessTokenLifespan\": \"<integer>\",\n    \"ssoSessionIdleTimeout\": \"<integer>\",\n    \"ssoSessionMaxLifespan\": \"<integer>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"realm\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"registrationAllowed\": \"<boolean>\",\n    \"loginWithEmailAllowed\": \"<boolean>\",\n    \"duplicateEmailsAllowed\": \"<boolean>\",\n    \"resetPasswordAllowed\": \"<boolean>\",\n    \"sslRequired\": \"all\",\n    \"accessTokenLifespan\": \"<integer>\",\n    \"ssoSessionIdleTimeout\": \"<integer>\",\n    \"ssoSessionMaxLifespan\": \"<integer>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-bd3b1733-188b-4256-840c-bb0753627cfc"
+                },
+                {
+                  "id": "20828467-0293-4c89-8a13-fc0dd525dfe4",
+                  "name": "Authentication credentials are missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/realms",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "realms"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:15:02.000Z",
+                  "updatedAt": "2026-06-05T15:15:02.000Z",
+                  "uid": "35240-20828467-0293-4c89-8a13-fc0dd525dfe4"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:02.000Z",
+              "updatedAt": "2026-06-05T15:15:02.000Z",
+              "uid": "35240-84eb3eb9-f73e-4d44-b2ac-fb7fc51b8e90"
+            }
+          ],
+          "id": "288cea32-9fd2-4749-a069-12fc41299bf9",
+          "createdAt": "2026-06-05T15:15:02.000Z",
+          "updatedAt": "2026-06-05T15:15:02.000Z",
+          "uid": "35240-288cea32-9fd2-4749-a069-12fc41299bf9"
+        }
+      ],
+      "id": "186bf42e-e3a6-4f64-91b6-86f6cae9ff06",
+      "createdAt": "2026-06-05T15:15:02.000Z",
+      "updatedAt": "2026-06-05T15:15:02.000Z",
+      "uid": "35240-186bf42e-e3a6-4f64-91b6-86f6cae9ff06"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://keycloak.example.com"
+    }
+  ]
+}

@@ -1,0 +1,3320 @@
+{
+  "info": {
+    "_postman_id": "05deb163-5d68-41fc-9e4b-0d9c75cc3746",
+    "name": "Red Hat OpenShift Cluster Manager API",
+    "description": "The Red Hat OpenShift Cluster Manager API provides programmatic access to provisioning, managing, and monitoring OpenShift clusters across cloud providers through the Red Hat Hybrid Cloud Console. It supports cluster lifecycle operations including creation, scaling, upgrades, and deletion of OpenShift Dedicated and ROSA clusters.\n\nContact Support:\n Name: Red Hat Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:54.000Z",
+    "updatedAt": "2026-06-05T15:14:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-05deb163-5d68-41fc-9e4b-0d9c75cc3746"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "clusters_mgmt",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "clusters",
+                  "item": [
+                    {
+                      "name": "{cluster_id}",
+                      "item": [
+                        {
+                          "name": "machine_pools",
+                          "item": [
+                            {
+                              "name": "Red Hat List Machine Pools",
+                              "id": "fcfb5b0b-ea0f-46f3-8f68-e58a70dad60c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools?page=1&size=100",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "machine_pools"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The page number for paginated results. Page numbering starts at 1.",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "The maximum number of items to return per page.",
+                                      "key": "size",
+                                      "value": "100"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3f1ae253-9a8c-4305-8a94-639f11ef264c",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the cluster."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves the list of machine pools configured for a specific cluster. Machine pools define groups of compute nodes with shared instance type and scaling configuration."
+                              },
+                              "response": [
+                                {
+                                  "id": "b6eeb866-9367-452f-8abf-bc8ebea0eb97",
+                                  "name": "Successfully retrieved machine pools",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools?page=1&size=100",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "machine_pools"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The page number for paginated results. Page numbering starts at 1.",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "The maximum number of items to return per page.",
+                                          "key": "size",
+                                          "value": "100"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"instance_type\": \"<string>\",\n      \"replicas\": \"<integer>\",\n      \"autoscaling\": {\n        \"min_replicas\": \"<integer>\",\n        \"max_replicas\": \"<integer>\"\n      },\n      \"availability_zones\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"labels\": {\n        \"ipsume\": \"<string>\"\n      },\n      \"taints\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\",\n          \"effect\": \"PreferNoSchedule\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\",\n          \"effect\": \"NoExecute\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"instance_type\": \"<string>\",\n      \"replicas\": \"<integer>\",\n      \"autoscaling\": {\n        \"min_replicas\": \"<integer>\",\n        \"max_replicas\": \"<integer>\"\n      },\n      \"availability_zones\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"labels\": {\n        \"adipisicing_7_8\": \"<string>\",\n        \"quis6b8\": \"<string>\"\n      },\n      \"taints\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\",\n          \"effect\": \"NoExecute\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\",\n          \"effect\": \"NoExecute\"\n        }\n      ]\n    }\n  ]\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-b6eeb866-9367-452f-8abf-bc8ebea0eb97"
+                                },
+                                {
+                                  "id": "de903bcd-5be5-44da-8601-d584aa43d08b",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools?page=1&size=100",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "machine_pools"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The page number for paginated results. Page numbering starts at 1.",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "The maximum number of items to return per page.",
+                                          "key": "size",
+                                          "value": "100"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-de903bcd-5be5-44da-8601-d584aa43d08b"
+                                },
+                                {
+                                  "id": "5fe0ba9f-3eb8-4f47-ae84-25de1cbeff87",
+                                  "name": "The requested resource was not found.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools?page=1&size=100",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "machine_pools"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The page number for paginated results. Page numbering starts at 1.",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "The maximum number of items to return per page.",
+                                          "key": "size",
+                                          "value": "100"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-5fe0ba9f-3eb8-4f47-ae84-25de1cbeff87"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-fcfb5b0b-ea0f-46f3-8f68-e58a70dad60c"
+                            },
+                            {
+                              "name": "Red Hat Create a Machine Pool",
+                              "id": "b2792d87-8961-484c-905e-cf59b556dc6b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  },\n  \"availability_zones\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"nisi_c2\": \"<string>\",\n    \"do117\": \"<string>\"\n  },\n  \"taints\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoExecute\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "machine_pools"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6f580089-4ce0-4502-b258-0d30cd9ae788",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the cluster."
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a new machine pool for a cluster, defining a group of compute nodes with specified instance type, replica count, and optional autoscaling configuration."
+                              },
+                              "response": [
+                                {
+                                  "id": "aadd02b3-6189-497e-922d-3593687af3d0",
+                                  "name": "Machine pool created successfully",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"id\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  },\n  \"availability_zones\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"nisi_c2\": \"<string>\",\n    \"do117\": \"<string>\"\n  },\n  \"taints\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoExecute\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "machine_pools"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  },\n  \"availability_zones\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"nisi_c2\": \"<string>\",\n    \"do117\": \"<string>\"\n  },\n  \"taints\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoExecute\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-aadd02b3-6189-497e-922d-3593687af3d0"
+                                },
+                                {
+                                  "id": "a056b189-d956-46ca-a95e-d260725da96f",
+                                  "name": "The request body is malformed or contains invalid values.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"id\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  },\n  \"availability_zones\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"nisi_c2\": \"<string>\",\n    \"do117\": \"<string>\"\n  },\n  \"taints\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoExecute\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "machine_pools"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-a056b189-d956-46ca-a95e-d260725da96f"
+                                },
+                                {
+                                  "id": "a14add92-ff6c-4918-8a73-3a815a007106",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"id\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  },\n  \"availability_zones\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"nisi_c2\": \"<string>\",\n    \"do117\": \"<string>\"\n  },\n  \"taints\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoExecute\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "machine_pools"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-a14add92-ff6c-4918-8a73-3a815a007106"
+                                },
+                                {
+                                  "id": "32858b52-59ac-41fb-9227-05a5f35dfbb4",
+                                  "name": "The requested resource was not found.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"id\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  },\n  \"availability_zones\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"nisi_c2\": \"<string>\",\n    \"do117\": \"<string>\"\n  },\n  \"taints\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoExecute\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/machine_pools",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "machine_pools"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-32858b52-59ac-41fb-9227-05a5f35dfbb4"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-b2792d87-8961-484c-905e-cf59b556dc6b"
+                            }
+                          ],
+                          "id": "fcd1f7db-3466-4275-b862-32966ae1c16c",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-fcd1f7db-3466-4275-b862-32966ae1c16c"
+                        },
+                        {
+                          "name": "identity_providers",
+                          "item": [
+                            {
+                              "name": "Red Hat List Identity Providers",
+                              "id": "995f098d-61ee-434f-926b-ef9efe54f95e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "identity_providers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "4ff4f150-9ad0-41de-bbf1-64219503b83d",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the cluster."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves the list of identity providers configured for a specific cluster. Identity providers define how users authenticate to the OpenShift cluster."
+                              },
+                              "response": [
+                                {
+                                  "id": "3a70c484-144a-43dd-a66c-f2301fd25ced",
+                                  "name": "Successfully retrieved identity providers",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "identity_providers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"google\",\n      \"mapping_method\": \"generate\",\n      \"github\": {\n        \"client_id\": \"<string>\",\n        \"organizations\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"ldap\": {\n        \"url\": \"<uri>\",\n        \"bind_dn\": \"<string>\",\n        \"insecure\": \"<boolean>\"\n      },\n      \"openid\": {\n        \"client_id\": \"<string>\",\n        \"issuer\": \"<uri>\",\n        \"claims\": {\n          \"email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"github\",\n      \"mapping_method\": \"lookup\",\n      \"github\": {\n        \"client_id\": \"<string>\",\n        \"organizations\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"ldap\": {\n        \"url\": \"<uri>\",\n        \"bind_dn\": \"<string>\",\n        \"insecure\": \"<boolean>\"\n      },\n      \"openid\": {\n        \"client_id\": \"<string>\",\n        \"issuer\": \"<uri>\",\n        \"claims\": {\n          \"email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    }\n  ]\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-3a70c484-144a-43dd-a66c-f2301fd25ced"
+                                },
+                                {
+                                  "id": "1a5d9479-ede8-4b18-87ed-ea1f30bc017f",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "identity_providers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-1a5d9479-ede8-4b18-87ed-ea1f30bc017f"
+                                },
+                                {
+                                  "id": "45c621db-7bef-40f0-863e-82031b0300c2",
+                                  "name": "The requested resource was not found.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "identity_providers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-45c621db-7bef-40f0-863e-82031b0300c2"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-995f098d-61ee-434f-926b-ef9efe54f95e"
+                            },
+                            {
+                              "name": "Red Hat Create an Identity Provider",
+                              "id": "d608ce17-0e6f-475b-8ac7-8f218eee2285",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"ldap\",\n  \"mapping_method\": \"claim\",\n  \"github\": {\n    \"client_id\": \"<string>\",\n    \"organizations\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"<uri>\",\n    \"bind_dn\": \"<string>\",\n    \"insecure\": \"<boolean>\"\n  },\n  \"openid\": {\n    \"client_id\": \"<string>\",\n    \"issuer\": \"<uri>\",\n    \"claims\": {\n      \"email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id",
+                                    "identity_providers"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "4c46daa8-58fe-4948-866b-ffdc1fa22b5f",
+                                      "key": "cluster_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the cluster."
+                                    }
+                                  ]
+                                },
+                                "description": "Configures a new identity provider for a cluster, enabling user authentication through the specified provider type such as LDAP, GitHub, Google, or OpenID Connect."
+                              },
+                              "response": [
+                                {
+                                  "id": "bfc9e015-edfe-4a76-9da1-d75d36f413c0",
+                                  "name": "Identity provider created successfully",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"ldap\",\n  \"mapping_method\": \"claim\",\n  \"github\": {\n    \"client_id\": \"<string>\",\n    \"organizations\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"<uri>\",\n    \"bind_dn\": \"<string>\",\n    \"insecure\": \"<boolean>\"\n  },\n  \"openid\": {\n    \"client_id\": \"<string>\",\n    \"issuer\": \"<uri>\",\n    \"claims\": {\n      \"email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "identity_providers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"ldap\",\n  \"mapping_method\": \"claim\",\n  \"github\": {\n    \"client_id\": \"<string>\",\n    \"organizations\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"<uri>\",\n    \"bind_dn\": \"<string>\",\n    \"insecure\": \"<boolean>\"\n  },\n  \"openid\": {\n    \"client_id\": \"<string>\",\n    \"issuer\": \"<uri>\",\n    \"claims\": {\n      \"email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-bfc9e015-edfe-4a76-9da1-d75d36f413c0"
+                                },
+                                {
+                                  "id": "a07e69d0-033f-43f3-9435-4b252bd0a51d",
+                                  "name": "The request body is malformed or contains invalid values.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"ldap\",\n  \"mapping_method\": \"claim\",\n  \"github\": {\n    \"client_id\": \"<string>\",\n    \"organizations\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"<uri>\",\n    \"bind_dn\": \"<string>\",\n    \"insecure\": \"<boolean>\"\n  },\n  \"openid\": {\n    \"client_id\": \"<string>\",\n    \"issuer\": \"<uri>\",\n    \"claims\": {\n      \"email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "identity_providers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-a07e69d0-033f-43f3-9435-4b252bd0a51d"
+                                },
+                                {
+                                  "id": "9399ebd8-59e8-44b2-beb7-85cc6cd6ed73",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"ldap\",\n  \"mapping_method\": \"claim\",\n  \"github\": {\n    \"client_id\": \"<string>\",\n    \"organizations\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"<uri>\",\n    \"bind_dn\": \"<string>\",\n    \"insecure\": \"<boolean>\"\n  },\n  \"openid\": {\n    \"client_id\": \"<string>\",\n    \"issuer\": \"<uri>\",\n    \"claims\": {\n      \"email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "identity_providers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-9399ebd8-59e8-44b2-beb7-85cc6cd6ed73"
+                                },
+                                {
+                                  "id": "bfc32c8f-544c-433d-8b48-99ba7a8a39b3",
+                                  "name": "The requested resource was not found.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"ldap\",\n  \"mapping_method\": \"claim\",\n  \"github\": {\n    \"client_id\": \"<string>\",\n    \"organizations\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"<uri>\",\n    \"bind_dn\": \"<string>\",\n    \"insecure\": \"<boolean>\"\n  },\n  \"openid\": {\n    \"client_id\": \"<string>\",\n    \"issuer\": \"<uri>\",\n    \"claims\": {\n      \"email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "clusters",
+                                        ":cluster_id",
+                                        "identity_providers"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cluster_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-bfc32c8f-544c-433d-8b48-99ba7a8a39b3"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-d608ce17-0e6f-475b-8ac7-8f218eee2285"
+                            }
+                          ],
+                          "id": "1e395694-87ca-481c-ae97-b27d0c962303",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-1e395694-87ca-481c-ae97-b27d0c962303"
+                        },
+                        {
+                          "name": "Red Hat Get a Cluster",
+                          "id": "b89946a0-9a94-4a75-85d6-7fe8ae822268",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters",
+                                ":cluster_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ad8cbfa0-1146-4f29-9f22-282cc53cb63a",
+                                  "key": "cluster_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the cluster."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the details of a specific OpenShift cluster by its unique identifier, including its current status, configuration, and metadata."
+                          },
+                          "response": [
+                            {
+                              "id": "ac782646-a8fe-406f-ae94-2f89ff4358cf",
+                              "name": "Successfully retrieved cluster details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-ac782646-a8fe-406f-ae94-2f89ff4358cf"
+                            },
+                            {
+                              "id": "b5eb5729-d055-4934-b860-386cd4eadea1",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-b5eb5729-d055-4934-b860-386cd4eadea1"
+                            },
+                            {
+                              "id": "453c0e9a-9468-44ae-adba-33bf0dd2e19f",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-453c0e9a-9468-44ae-adba-33bf0dd2e19f"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-b89946a0-9a94-4a75-85d6-7fe8ae822268"
+                        },
+                        {
+                          "name": "Red Hat Update a Cluster",
+                          "id": "2a52edec-2a91-4ba9-b56d-f19b93742146",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters",
+                                ":cluster_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f988b137-572e-40f9-91b7-e488987e46e2",
+                                  "key": "cluster_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the cluster."
+                                }
+                              ]
+                            },
+                            "description": "Updates the configuration of an existing OpenShift cluster. Only the fields provided in the request body will be modified. Some changes may trigger asynchronous operations such as node scaling."
+                          },
+                          "response": [
+                            {
+                              "id": "85a07cfc-6a44-4bd5-a072-2c84cd4ee17f",
+                              "name": "Cluster updated successfully",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-85a07cfc-6a44-4bd5-a072-2c84cd4ee17f"
+                            },
+                            {
+                              "id": "7e3bcd6b-0d9f-447d-abcd-acb4a00dca3f",
+                              "name": "The request body is malformed or contains invalid values.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-7e3bcd6b-0d9f-447d-abcd-acb4a00dca3f"
+                            },
+                            {
+                              "id": "e2214ae6-c6cb-46d0-bcb9-1fcd42d8d332",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-e2214ae6-c6cb-46d0-bcb9-1fcd42d8d332"
+                            },
+                            {
+                              "id": "6457a84c-b065-4abb-85f8-2d7ee1d4b31f",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-6457a84c-b065-4abb-85f8-2d7ee1d4b31f"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-2a52edec-2a91-4ba9-b56d-f19b93742146"
+                        },
+                        {
+                          "name": "Red Hat Delete a Cluster",
+                          "id": "6c1f4c64-3894-4633-8973-37202f9b48a4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters",
+                                ":cluster_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a1028dda-4749-4f48-9f14-c76e94d337e9",
+                                  "key": "cluster_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the cluster."
+                                }
+                              ]
+                            },
+                            "description": "Initiates the deletion of an OpenShift cluster. The cluster will be deprovisioned asynchronously and all associated resources in the cloud provider will be cleaned up."
+                          },
+                          "response": [
+                            {
+                              "id": "a5115cb1-6206-4c01-86e7-aa915a9c0f38",
+                              "name": "Cluster deletion initiated successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-a5115cb1-6206-4c01-86e7-aa915a9c0f38"
+                            },
+                            {
+                              "id": "bd8ac307-d484-4ebd-b5ab-f0a4a45a2d1d",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-bd8ac307-d484-4ebd-b5ab-f0a4a45a2d1d"
+                            },
+                            {
+                              "id": "072d1709-e0b4-498e-a613-0958ddff13e4",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters/:cluster_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "clusters",
+                                    ":cluster_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "cluster_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-072d1709-e0b4-498e-a613-0958ddff13e4"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-6c1f4c64-3894-4633-8973-37202f9b48a4"
+                        }
+                      ],
+                      "id": "2651d500-a472-4e0c-8487-2e87a5e0e7ee",
+                      "createdAt": "2026-06-05T15:14:54.000Z",
+                      "updatedAt": "2026-06-05T15:14:54.000Z",
+                      "uid": "35240-2651d500-a472-4e0c-8487-2e87a5e0e7ee"
+                    },
+                    {
+                      "name": "Red Hat List Clusters",
+                      "id": "157589a1-a837-4d75-a14d-dd7538fee810",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters?page=1&size=100&search=<string>&order=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clusters_mgmt",
+                            "v1",
+                            "clusters"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results. Page numbering starts at 1.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "size",
+                              "value": "100"
+                            },
+                            {
+                              "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.",
+                              "key": "order",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a list of OpenShift clusters managed by the authenticated account. Results can be filtered by various criteria and paginated using the page and size parameters."
+                      },
+                      "response": [
+                        {
+                          "id": "c904b7ca-efd7-49e2-8b8d-8ef5bccaada5",
+                          "name": "Successfully retrieved list of clusters",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters?page=1&size=100&search=<string>&order=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.",
+                                  "key": "order",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"state\": \"validating\",\n      \"cloud_provider\": {\n        \"id\": \"<string>\"\n      },\n      \"region\": {\n        \"id\": \"<string>\"\n      },\n      \"multi_az\": \"<boolean>\",\n      \"nodes\": {\n        \"compute\": \"<integer>\",\n        \"compute_machine_type\": {\n          \"id\": \"<string>\"\n        }\n      },\n      \"api\": {\n        \"url\": \"<uri>\",\n        \"listening\": \"internal\"\n      },\n      \"console\": {\n        \"url\": \"<uri>\"\n      },\n      \"version\": {\n        \"id\": \"<string>\",\n        \"raw_id\": \"<string>\"\n      },\n      \"creation_timestamp\": \"<dateTime>\",\n      \"expiration_timestamp\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"state\": \"validating\",\n      \"cloud_provider\": {\n        \"id\": \"<string>\"\n      },\n      \"region\": {\n        \"id\": \"<string>\"\n      },\n      \"multi_az\": \"<boolean>\",\n      \"nodes\": {\n        \"compute\": \"<integer>\",\n        \"compute_machine_type\": {\n          \"id\": \"<string>\"\n        }\n      },\n      \"api\": {\n        \"url\": \"<uri>\",\n        \"listening\": \"external\"\n      },\n      \"console\": {\n        \"url\": \"<uri>\"\n      },\n      \"version\": {\n        \"id\": \"<string>\",\n        \"raw_id\": \"<string>\"\n      },\n      \"creation_timestamp\": \"<dateTime>\",\n      \"expiration_timestamp\": \"<dateTime>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-c904b7ca-efd7-49e2-8b8d-8ef5bccaada5"
+                        },
+                        {
+                          "id": "911f48ca-1998-4f9a-aef3-f693a61ccebd",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters?page=1&size=100&search=<string>&order=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.",
+                                  "key": "order",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-911f48ca-1998-4f9a-aef3-f693a61ccebd"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:54.000Z",
+                      "updatedAt": "2026-06-05T15:14:54.000Z",
+                      "uid": "35240-157589a1-a837-4d75-a14d-dd7538fee810"
+                    },
+                    {
+                      "name": "Red Hat Create a Cluster",
+                      "id": "b30ff773-0ee5-4fbb-89d4-d77ab26f034b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clusters_mgmt",
+                            "v1",
+                            "clusters"
+                          ]
+                        },
+                        "description": "Provisions a new OpenShift cluster. The request body must include the cluster name, cloud provider, region, and desired node configuration. The cluster creation process is asynchronous and the cluster status will transition through several states before becoming ready."
+                      },
+                      "response": [
+                        {
+                          "id": "824fe449-70f0-4d7f-b29b-e588825a49e4",
+                          "name": "Cluster creation initiated successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-824fe449-70f0-4d7f-b29b-e588825a49e4"
+                        },
+                        {
+                          "id": "4dd9654e-e92e-4307-8cdc-31063fca8a46",
+                          "name": "The request body is malformed or contains invalid values.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-4dd9654e-e92e-4307-8cdc-31063fca8a46"
+                        },
+                        {
+                          "id": "3983ea6c-d14f-46f8-be89-332677097ea8",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"state\": \"uninstalling\",\n  \"cloud_provider\": {\n    \"id\": \"<string>\"\n  },\n  \"region\": {\n    \"id\": \"<string>\"\n  },\n  \"multi_az\": \"<boolean>\",\n  \"nodes\": {\n    \"compute\": \"<integer>\",\n    \"compute_machine_type\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"api\": {\n    \"url\": \"<uri>\",\n    \"listening\": \"internal\"\n  },\n  \"console\": {\n    \"url\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"raw_id\": \"<string>\"\n  },\n  \"creation_timestamp\": \"<dateTime>\",\n  \"expiration_timestamp\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/clusters",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "clusters"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-3983ea6c-d14f-46f8-be89-332677097ea8"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:54.000Z",
+                      "updatedAt": "2026-06-05T15:14:54.000Z",
+                      "uid": "35240-b30ff773-0ee5-4fbb-89d4-d77ab26f034b"
+                    }
+                  ],
+                  "id": "34585c94-a37d-4818-a378-161d55bebbe9",
+                  "createdAt": "2026-06-05T15:14:54.000Z",
+                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                  "uid": "35240-34585c94-a37d-4818-a378-161d55bebbe9"
+                },
+                {
+                  "name": "cloud_providers",
+                  "item": [
+                    {
+                      "name": "{cloud_provider_id}",
+                      "item": [
+                        {
+                          "name": "regions",
+                          "item": [
+                            {
+                              "name": "Red Hat List Cloud Provider Regions",
+                              "id": "93c34f85-2b9b-4b1e-9870-74077aaf96dd",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/clusters_mgmt/v1/cloud_providers/:cloud_provider_id/regions?page=1&size=100",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "clusters_mgmt",
+                                    "v1",
+                                    "cloud_providers",
+                                    ":cloud_provider_id",
+                                    "regions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The page number for paginated results. Page numbering starts at 1.",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "The maximum number of items to return per page.",
+                                      "key": "size",
+                                      "value": "100"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "8f619a54-fdfe-48b0-9d0f-7a154ea3970d",
+                                      "key": "cloud_provider_id",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the cloud provider."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieves the list of regions available for a specific cloud provider where OpenShift clusters can be deployed."
+                              },
+                              "response": [
+                                {
+                                  "id": "696cbdb6-e35d-4786-8d68-12de8a67f0ff",
+                                  "name": "Successfully retrieved cloud provider regions",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/cloud_providers/:cloud_provider_id/regions?page=1&size=100",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "cloud_providers",
+                                        ":cloud_provider_id",
+                                        "regions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The page number for paginated results. Page numbering starts at 1.",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "The maximum number of items to return per page.",
+                                          "key": "size",
+                                          "value": "100"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cloud_provider_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-696cbdb6-e35d-4786-8d68-12de8a67f0ff"
+                                },
+                                {
+                                  "id": "19b09f6c-ce42-4193-8084-3c2db56ea37c",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/cloud_providers/:cloud_provider_id/regions?page=1&size=100",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "cloud_providers",
+                                        ":cloud_provider_id",
+                                        "regions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The page number for paginated results. Page numbering starts at 1.",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "The maximum number of items to return per page.",
+                                          "key": "size",
+                                          "value": "100"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cloud_provider_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-19b09f6c-ce42-4193-8084-3c2db56ea37c"
+                                },
+                                {
+                                  "id": "b81938be-0855-485b-9a96-57bbb986fa26",
+                                  "name": "The requested resource was not found.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/clusters_mgmt/v1/cloud_providers/:cloud_provider_id/regions?page=1&size=100",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "clusters_mgmt",
+                                        "v1",
+                                        "cloud_providers",
+                                        ":cloud_provider_id",
+                                        "regions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The page number for paginated results. Page numbering starts at 1.",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "The maximum number of items to return per page.",
+                                          "key": "size",
+                                          "value": "100"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "cloud_provider_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:14:54.000Z",
+                                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                                  "uid": "35240-b81938be-0855-485b-9a96-57bbb986fa26"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:14:54.000Z",
+                              "updatedAt": "2026-06-05T15:14:54.000Z",
+                              "uid": "35240-93c34f85-2b9b-4b1e-9870-74077aaf96dd"
+                            }
+                          ],
+                          "id": "4d9fccb8-6a23-4b22-869d-d0ae347daeaf",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-4d9fccb8-6a23-4b22-869d-d0ae347daeaf"
+                        }
+                      ],
+                      "id": "4e89037b-01ad-4e70-a7a3-9ca913787e9d",
+                      "createdAt": "2026-06-05T15:14:54.000Z",
+                      "updatedAt": "2026-06-05T15:14:54.000Z",
+                      "uid": "35240-4e89037b-01ad-4e70-a7a3-9ca913787e9d"
+                    },
+                    {
+                      "name": "Red Hat List Cloud Providers",
+                      "id": "566f05c8-2a99-43ce-abbd-3c3255860735",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clusters_mgmt/v1/cloud_providers?page=1&size=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clusters_mgmt",
+                            "v1",
+                            "cloud_providers"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results. Page numbering starts at 1.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "size",
+                              "value": "100"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of cloud providers available for deploying OpenShift clusters, including AWS, Google Cloud, and Microsoft Azure."
+                      },
+                      "response": [
+                        {
+                          "id": "f44d2fb1-311e-42bc-b018-d065fa603a69",
+                          "name": "Successfully retrieved cloud providers",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/cloud_providers?page=1&size=100",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "cloud_providers"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-f44d2fb1-311e-42bc-b018-d065fa603a69"
+                        },
+                        {
+                          "id": "af9dc958-e4c9-4ac7-86a7-21441b6851be",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/cloud_providers?page=1&size=100",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "cloud_providers"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-af9dc958-e4c9-4ac7-86a7-21441b6851be"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:54.000Z",
+                      "updatedAt": "2026-06-05T15:14:54.000Z",
+                      "uid": "35240-566f05c8-2a99-43ce-abbd-3c3255860735"
+                    }
+                  ],
+                  "id": "c97f96ab-5451-4a51-9f21-bb374aee7b05",
+                  "createdAt": "2026-06-05T15:14:54.000Z",
+                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                  "uid": "35240-c97f96ab-5451-4a51-9f21-bb374aee7b05"
+                },
+                {
+                  "name": "versions",
+                  "item": [
+                    {
+                      "name": "Red Hat List Openshift Versions",
+                      "id": "22ff06f6-6687-4b33-8d18-2096bf0d7185",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clusters_mgmt/v1/versions?page=1&size=100&search=<string>&order=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clusters_mgmt",
+                            "v1",
+                            "versions"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results. Page numbering starts at 1.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "size",
+                              "value": "100"
+                            },
+                            {
+                              "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.",
+                              "key": "order",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of available OpenShift versions that can be used for provisioning new clusters or upgrading existing clusters."
+                      },
+                      "response": [
+                        {
+                          "id": "584a47f3-ca0d-4193-a32d-c44bfe771c57",
+                          "name": "Successfully retrieved OpenShift versions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/versions?page=1&size=100&search=<string>&order=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "versions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.",
+                                  "key": "order",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"raw_id\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"default\": \"<boolean>\",\n      \"channel_group\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"raw_id\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"default\": \"<boolean>\",\n      \"channel_group\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-584a47f3-ca0d-4193-a32d-c44bfe771c57"
+                        },
+                        {
+                          "id": "bb9dfd78-cbcc-499a-8e42-c5f15a98c1f1",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/versions?page=1&size=100&search=<string>&order=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "versions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.",
+                                  "key": "order",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-bb9dfd78-cbcc-499a-8e42-c5f15a98c1f1"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:54.000Z",
+                      "updatedAt": "2026-06-05T15:14:54.000Z",
+                      "uid": "35240-22ff06f6-6687-4b33-8d18-2096bf0d7185"
+                    }
+                  ],
+                  "id": "5c82ac21-d63a-4fe2-8d59-da22d22b85ff",
+                  "createdAt": "2026-06-05T15:14:54.000Z",
+                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                  "uid": "35240-5c82ac21-d63a-4fe2-8d59-da22d22b85ff"
+                },
+                {
+                  "name": "addons",
+                  "item": [
+                    {
+                      "name": "Red Hat List Add-ons",
+                      "id": "b603af28-f311-48cd-866c-d2ff8e8699b7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/clusters_mgmt/v1/addons?page=1&size=100&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "clusters_mgmt",
+                            "v1",
+                            "addons"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results. Page numbering starts at 1.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "size",
+                              "value": "100"
+                            },
+                            {
+                              "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of available add-ons that can be installed on OpenShift clusters to extend functionality."
+                      },
+                      "response": [
+                        {
+                          "id": "b52ba8dc-7d8b-491f-8129-57c5b25cc870",
+                          "name": "Successfully retrieved add-ons",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/addons?page=1&size=100&search=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "addons"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-b52ba8dc-7d8b-491f-8129-57c5b25cc870"
+                        },
+                        {
+                          "id": "0c91cddf-545c-416f-8f7f-5460656886d3",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/clusters_mgmt/v1/addons?page=1&size=100&search=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "clusters_mgmt",
+                                "v1",
+                                "addons"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-0c91cddf-545c-416f-8f7f-5460656886d3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:54.000Z",
+                      "updatedAt": "2026-06-05T15:14:54.000Z",
+                      "uid": "35240-b603af28-f311-48cd-866c-d2ff8e8699b7"
+                    }
+                  ],
+                  "id": "f294efcd-8009-42bd-9e10-b280439483f8",
+                  "createdAt": "2026-06-05T15:14:54.000Z",
+                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                  "uid": "35240-f294efcd-8009-42bd-9e10-b280439483f8"
+                }
+              ],
+              "id": "9b0088da-caee-4604-ab46-64eb4ccaea1c",
+              "createdAt": "2026-06-05T15:14:54.000Z",
+              "updatedAt": "2026-06-05T15:14:54.000Z",
+              "uid": "35240-9b0088da-caee-4604-ab46-64eb4ccaea1c"
+            }
+          ],
+          "id": "04781e7c-4aa8-4833-97a3-b4010d3b6c0f",
+          "createdAt": "2026-06-05T15:14:54.000Z",
+          "updatedAt": "2026-06-05T15:14:54.000Z",
+          "uid": "35240-04781e7c-4aa8-4833-97a3-b4010d3b6c0f"
+        },
+        {
+          "name": "accounts_mgmt",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "subscriptions",
+                  "item": [
+                    {
+                      "name": "Red Hat List Subscriptions",
+                      "id": "eb7c29d7-6a51-465f-a2c3-f8a25774c565",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/accounts_mgmt/v1/subscriptions?page=1&size=100&search=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "accounts_mgmt",
+                            "v1",
+                            "subscriptions"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for paginated results. Page numbering starts at 1.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of items to return per page.",
+                              "key": "size",
+                              "value": "100"
+                            },
+                            {
+                              "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                              "key": "search",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the list of OpenShift subscriptions associated with the authenticated account, including cluster entitlements and usage data."
+                      },
+                      "response": [
+                        {
+                          "id": "69919f7c-4f1b-4180-96f9-3842e9a37d90",
+                          "name": "Successfully retrieved subscriptions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/accounts_mgmt/v1/subscriptions?page=1&size=100&search=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "accounts_mgmt",
+                                "v1",
+                                "subscriptions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"size\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"cluster_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"cluster_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-69919f7c-4f1b-4180-96f9-3842e9a37d90"
+                        },
+                        {
+                          "id": "5f94990f-650a-4ee9-bff9-e31ee6c2b2ca",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/accounts_mgmt/v1/subscriptions?page=1&size=100&search=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "accounts_mgmt",
+                                "v1",
+                                "subscriptions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The page number for paginated results. Page numbering starts at 1.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of items to return per page.",
+                                  "key": "size",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.",
+                                  "key": "search",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"<string>\",\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"href\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:54.000Z",
+                          "updatedAt": "2026-06-05T15:14:54.000Z",
+                          "uid": "35240-5f94990f-650a-4ee9-bff9-e31ee6c2b2ca"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:54.000Z",
+                      "updatedAt": "2026-06-05T15:14:54.000Z",
+                      "uid": "35240-eb7c29d7-6a51-465f-a2c3-f8a25774c565"
+                    }
+                  ],
+                  "id": "a4254f19-0129-4f65-8132-59ce807cce08",
+                  "createdAt": "2026-06-05T15:14:54.000Z",
+                  "updatedAt": "2026-06-05T15:14:54.000Z",
+                  "uid": "35240-a4254f19-0129-4f65-8132-59ce807cce08"
+                }
+              ],
+              "id": "88a7f6f1-389a-4118-9e85-f77451052e67",
+              "createdAt": "2026-06-05T15:14:54.000Z",
+              "updatedAt": "2026-06-05T15:14:54.000Z",
+              "uid": "35240-88a7f6f1-389a-4118-9e85-f77451052e67"
+            }
+          ],
+          "id": "2112d50d-90a4-4ae0-951a-fbd00392906a",
+          "createdAt": "2026-06-05T15:14:54.000Z",
+          "updatedAt": "2026-06-05T15:14:54.000Z",
+          "uid": "35240-2112d50d-90a4-4ae0-951a-fbd00392906a"
+        }
+      ],
+      "id": "2f6e4e8b-ac81-4c7a-b11d-8331c24abfcc",
+      "createdAt": "2026-06-05T15:14:54.000Z",
+      "updatedAt": "2026-06-05T15:14:54.000Z",
+      "uid": "35240-2f6e4e8b-ac81-4c7a-b11d-8331c24abfcc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.openshift.com"
+    }
+  ]
+}

@@ -1,0 +1,1473 @@
+{
+  "info": {
+    "_postman_id": "14e6823c-9153-40c3-8b8c-f18722023ed7",
+    "name": "Red Hat Insights API",
+    "description": "The Red Hat Insights API provides programmatic access to predictive analytics and remediation services for Red Hat Enterprise Linux systems. Through the Hybrid Cloud Console, it enables proactive identification of security vulnerabilities, configuration issues, performance risks, and compliance gaps across registered RHEL systems, along with automated remediation recommendations.\n\nContact Support:\n Name: Red Hat Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:58.000Z",
+    "updatedAt": "2026-06-05T15:14:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-14e6823c-9153-40c3-8b8c-f18722023ed7"
+  },
+  "item": [
+    {
+      "name": "insights",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "system",
+              "item": [
+                {
+                  "name": "{system_id}",
+                  "item": [
+                    {
+                      "name": "Red Hat Get a System",
+                      "id": "7aeb60e2-01fe-4712-b572-4d125bb00370",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/system/:system_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "system",
+                            ":system_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "2d52c779-725f-427b-9b81-f25b113939be",
+                              "key": "system_id",
+                              "value": "<uuid>",
+                              "description": "(Required) The unique identifier (UUID) of the system."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the details of a specific registered system, including its display name, last check-in time, and total number of active recommendations."
+                      },
+                      "response": [
+                        {
+                          "id": "33f3fa98-9131-4419-8ded-3e500a317132",
+                          "name": "Successfully retrieved system details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/system/:system_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "system",
+                                ":system_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "system_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"system_uuid\": \"<uuid>\",\n  \"display_name\": \"<string>\",\n  \"last_seen\": \"<dateTime>\",\n  \"stale_at\": \"<dateTime>\",\n  \"hits\": \"<integer>\",\n  \"critical_hits\": \"<integer>\",\n  \"important_hits\": \"<integer>\",\n  \"moderate_hits\": \"<integer>\",\n  \"low_hits\": \"<integer>\",\n  \"rhel_version\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-33f3fa98-9131-4419-8ded-3e500a317132"
+                        },
+                        {
+                          "id": "df23c3a6-f34e-4ed1-ba01-e0a2499b3a61",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/system/:system_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "system",
+                                ":system_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "system_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-df23c3a6-f34e-4ed1-ba01-e0a2499b3a61"
+                        },
+                        {
+                          "id": "732f6258-7e7b-4de7-99f9-352ace4ecf78",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/system/:system_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "system",
+                                ":system_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "system_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-732f6258-7e7b-4de7-99f9-352ace4ecf78"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-7aeb60e2-01fe-4712-b572-4d125bb00370"
+                    }
+                  ],
+                  "id": "055c916e-2257-4631-8df3-568ade3f4a9d",
+                  "createdAt": "2026-06-05T15:14:59.000Z",
+                  "updatedAt": "2026-06-05T15:14:59.000Z",
+                  "uid": "35240-055c916e-2257-4631-8df3-568ade3f4a9d"
+                },
+                {
+                  "name": "Red Hat List Systems",
+                  "id": "0ecdaf01-51d0-4b26-b7ba-a1037bb5e719",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/v1/system/?limit=10&offset=0&display_name=<string>&sort=-hits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "v1",
+                        "system",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The maximum number of results to return per page.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "The number of results to skip before returning.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filter systems by display name.",
+                          "key": "display_name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The field to sort results by. Prefix with a dash for descending order.",
+                          "key": "sort",
+                          "value": "-hits"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of RHEL systems registered with Red Hat Insights, including their stale status and last check-in time."
+                  },
+                  "response": [
+                    {
+                      "id": "9fec91e6-e516-48d3-9a72-b2bc0f8e2dd6",
+                      "name": "Successfully retrieved systems",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/system/?limit=10&offset=0&display_name=<string>&sort=-hits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "system",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of results to return per page.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "The number of results to skip before returning.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter systems by display name.",
+                              "key": "display_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The field to sort results by. Prefix with a dash for descending order.",
+                              "key": "sort",
+                              "value": "-hits"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\"\n  },\n  \"links\": {\n    \"first\": \"<uri>\",\n    \"last\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"previous\": \"<uri>\"\n  },\n  \"data\": [\n    {\n      \"system_uuid\": \"<uuid>\",\n      \"display_name\": \"<string>\",\n      \"last_seen\": \"<dateTime>\",\n      \"stale_at\": \"<dateTime>\",\n      \"hits\": \"<integer>\",\n      \"critical_hits\": \"<integer>\",\n      \"important_hits\": \"<integer>\",\n      \"moderate_hits\": \"<integer>\",\n      \"low_hits\": \"<integer>\",\n      \"rhel_version\": \"<string>\"\n    },\n    {\n      \"system_uuid\": \"<uuid>\",\n      \"display_name\": \"<string>\",\n      \"last_seen\": \"<dateTime>\",\n      \"stale_at\": \"<dateTime>\",\n      \"hits\": \"<integer>\",\n      \"critical_hits\": \"<integer>\",\n      \"important_hits\": \"<integer>\",\n      \"moderate_hits\": \"<integer>\",\n      \"low_hits\": \"<integer>\",\n      \"rhel_version\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-9fec91e6-e516-48d3-9a72-b2bc0f8e2dd6"
+                    },
+                    {
+                      "id": "f3f124de-fd86-41c9-bded-b5cadc9fa5e3",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/system/?limit=10&offset=0&display_name=<string>&sort=-hits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "system",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of results to return per page.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "The number of results to skip before returning.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter systems by display name.",
+                              "key": "display_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The field to sort results by. Prefix with a dash for descending order.",
+                              "key": "sort",
+                              "value": "-hits"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-f3f124de-fd86-41c9-bded-b5cadc9fa5e3"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:59.000Z",
+                  "updatedAt": "2026-06-05T15:14:59.000Z",
+                  "uid": "35240-0ecdaf01-51d0-4b26-b7ba-a1037bb5e719"
+                }
+              ],
+              "id": "7c51d5b0-0810-4045-b766-685f634f7c3a",
+              "createdAt": "2026-06-05T15:14:59.000Z",
+              "updatedAt": "2026-06-05T15:14:59.000Z",
+              "uid": "35240-7c51d5b0-0810-4045-b766-685f634f7c3a"
+            },
+            {
+              "name": "rule",
+              "item": [
+                {
+                  "name": "{rule_id}",
+                  "item": [
+                    {
+                      "name": "systems",
+                      "item": [
+                        {
+                          "name": "Red Hat List Systems Affected by a Rule",
+                          "id": "a8983002-ce73-4977-9469-fc34af77e21f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/rule/:rule_id/systems/?limit=10&offset=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "rule",
+                                ":rule_id",
+                                "systems",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "The maximum number of results to return per page.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "The number of results to skip before returning.",
+                                  "key": "offset",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c3e627c9-9cbf-4971-a7ed-1b8aaa1ba3f9",
+                                  "key": "rule_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the rule."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the list of systems that are affected by a specific Advisor rule and where the recommendation is currently active."
+                          },
+                          "response": [
+                            {
+                              "id": "0cdd5017-712a-49d6-a427-2cf3d104268f",
+                              "name": "Successfully retrieved affected systems",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/insights/v1/rule/:rule_id/systems/?limit=10&offset=0",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "insights",
+                                    "v1",
+                                    "rule",
+                                    ":rule_id",
+                                    "systems",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The maximum number of results to return per page.",
+                                      "key": "limit",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "The number of results to skip before returning.",
+                                      "key": "offset",
+                                      "value": "0"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "rule_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\"\n  },\n  \"links\": {\n    \"first\": \"<uri>\",\n    \"last\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"previous\": \"<uri>\"\n  },\n  \"data\": [\n    {\n      \"system_uuid\": \"<uuid>\",\n      \"display_name\": \"<string>\",\n      \"last_seen\": \"<dateTime>\",\n      \"stale_at\": \"<dateTime>\",\n      \"hits\": \"<integer>\",\n      \"critical_hits\": \"<integer>\",\n      \"important_hits\": \"<integer>\",\n      \"moderate_hits\": \"<integer>\",\n      \"low_hits\": \"<integer>\",\n      \"rhel_version\": \"<string>\"\n    },\n    {\n      \"system_uuid\": \"<uuid>\",\n      \"display_name\": \"<string>\",\n      \"last_seen\": \"<dateTime>\",\n      \"stale_at\": \"<dateTime>\",\n      \"hits\": \"<integer>\",\n      \"critical_hits\": \"<integer>\",\n      \"important_hits\": \"<integer>\",\n      \"moderate_hits\": \"<integer>\",\n      \"low_hits\": \"<integer>\",\n      \"rhel_version\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:14:59.000Z",
+                              "updatedAt": "2026-06-05T15:14:59.000Z",
+                              "uid": "35240-0cdd5017-712a-49d6-a427-2cf3d104268f"
+                            },
+                            {
+                              "id": "f929b9b1-93e5-4379-92c5-4dcc730ef243",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/insights/v1/rule/:rule_id/systems/?limit=10&offset=0",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "insights",
+                                    "v1",
+                                    "rule",
+                                    ":rule_id",
+                                    "systems",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The maximum number of results to return per page.",
+                                      "key": "limit",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "The number of results to skip before returning.",
+                                      "key": "offset",
+                                      "value": "0"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "rule_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:59.000Z",
+                              "updatedAt": "2026-06-05T15:14:59.000Z",
+                              "uid": "35240-f929b9b1-93e5-4379-92c5-4dcc730ef243"
+                            },
+                            {
+                              "id": "59035c87-e5da-4240-b841-8c1f0655d156",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/insights/v1/rule/:rule_id/systems/?limit=10&offset=0",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "insights",
+                                    "v1",
+                                    "rule",
+                                    ":rule_id",
+                                    "systems",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The maximum number of results to return per page.",
+                                      "key": "limit",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "The number of results to skip before returning.",
+                                      "key": "offset",
+                                      "value": "0"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "rule_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:59.000Z",
+                              "updatedAt": "2026-06-05T15:14:59.000Z",
+                              "uid": "35240-59035c87-e5da-4240-b841-8c1f0655d156"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-a8983002-ce73-4977-9469-fc34af77e21f"
+                        }
+                      ],
+                      "id": "96834d9a-1a3b-4ccf-8fc3-93446fbc326e",
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-96834d9a-1a3b-4ccf-8fc3-93446fbc326e"
+                    },
+                    {
+                      "name": "Red Hat Get an Advisor Rule",
+                      "id": "11762678-d383-4bb4-9be6-8acf50168f8b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/rule/:rule_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "rule",
+                            ":rule_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "3d41c058-1f72-4414-beff-ad255b3bff11",
+                              "key": "rule_id",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the rule."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the details of a specific Advisor rule, including its description, resolution steps, affected system count, and whether an Ansible remediation playbook is available."
+                      },
+                      "response": [
+                        {
+                          "id": "ba8c4e8a-58a7-41d4-aed0-1991337f8d3e",
+                          "name": "Successfully retrieved rule details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/rule/:rule_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "rule",
+                                ":rule_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"rule_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"category\": {\n    \"id\": \"<integer>\",\n    \"name\": \"Availability\"\n  },\n  \"impact\": {\n    \"name\": \"<string>\",\n    \"value\": \"<integer>\"\n  },\n  \"likelihood\": \"<integer>\",\n  \"total_risk\": \"<integer>\",\n  \"risk_of_change\": \"<integer>\",\n  \"has_playbook\": \"<boolean>\",\n  \"publish_date\": \"<dateTime>\",\n  \"systems_affected\": \"<integer>\",\n  \"resolution_set\": [\n    {\n      \"system_type\": \"<integer>\",\n      \"resolution\": \"<string>\",\n      \"has_playbook\": \"<boolean>\"\n    },\n    {\n      \"system_type\": \"<integer>\",\n      \"resolution\": \"<string>\",\n      \"has_playbook\": \"<boolean>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-ba8c4e8a-58a7-41d4-aed0-1991337f8d3e"
+                        },
+                        {
+                          "id": "da2d3f83-68d2-49ba-b81c-8c89fb1e9a05",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/rule/:rule_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "rule",
+                                ":rule_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-da2d3f83-68d2-49ba-b81c-8c89fb1e9a05"
+                        },
+                        {
+                          "id": "5cda4a34-4ede-4092-8176-b11813b8b4a1",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/rule/:rule_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "rule",
+                                ":rule_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "rule_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-5cda4a34-4ede-4092-8176-b11813b8b4a1"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-11762678-d383-4bb4-9be6-8acf50168f8b"
+                    }
+                  ],
+                  "id": "de1ada20-11aa-45e8-bbbb-8decd635ae74",
+                  "createdAt": "2026-06-05T15:14:59.000Z",
+                  "updatedAt": "2026-06-05T15:14:59.000Z",
+                  "uid": "35240-de1ada20-11aa-45e8-bbbb-8decd635ae74"
+                },
+                {
+                  "name": "Red Hat List Advisor Rules",
+                  "id": "af3aba45-33c1-467c-b449-15fd6e811e09",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/v1/rule/?limit=10&offset=0&category=4&impact=<string>&likelihood=<string>&has_playbook=<boolean>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "v1",
+                        "rule",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The maximum number of results to return per page.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "The number of results to skip before returning.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filter rules by category.",
+                          "key": "category",
+                          "value": "4"
+                        },
+                        {
+                          "description": "Filter rules by impact level.",
+                          "key": "impact",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter rules by likelihood level.",
+                          "key": "likelihood",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter to rules that have remediation playbooks.",
+                          "key": "has_playbook",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The field to sort results by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of Advisor rules that detect configuration issues, security risks, and performance problems on RHEL systems."
+                  },
+                  "response": [
+                    {
+                      "id": "e27e177e-97b6-4afc-ac39-1b305fb738ec",
+                      "name": "Successfully retrieved rules",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/rule/?limit=10&offset=0&category=4&impact=<string>&likelihood=<string>&has_playbook=<boolean>&sort=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "rule",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of results to return per page.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "The number of results to skip before returning.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter rules by category.",
+                              "key": "category",
+                              "value": "4"
+                            },
+                            {
+                              "description": "Filter rules by impact level.",
+                              "key": "impact",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter rules by likelihood level.",
+                              "key": "likelihood",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter to rules that have remediation playbooks.",
+                              "key": "has_playbook",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "The field to sort results by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"count\": \"<integer>\"\n  },\n  \"links\": {\n    \"first\": \"<uri>\",\n    \"last\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"previous\": \"<uri>\"\n  },\n  \"data\": [\n    {\n      \"rule_id\": \"<string>\",\n      \"description\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"category\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Stability\"\n      },\n      \"impact\": {\n        \"name\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"likelihood\": \"<integer>\",\n      \"total_risk\": \"<integer>\",\n      \"risk_of_change\": \"<integer>\",\n      \"has_playbook\": \"<boolean>\",\n      \"publish_date\": \"<dateTime>\",\n      \"systems_affected\": \"<integer>\",\n      \"resolution_set\": [\n        {\n          \"system_type\": \"<integer>\",\n          \"resolution\": \"<string>\",\n          \"has_playbook\": \"<boolean>\"\n        },\n        {\n          \"system_type\": \"<integer>\",\n          \"resolution\": \"<string>\",\n          \"has_playbook\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"rule_id\": \"<string>\",\n      \"description\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"category\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Performance\"\n      },\n      \"impact\": {\n        \"name\": \"<string>\",\n        \"value\": \"<integer>\"\n      },\n      \"likelihood\": \"<integer>\",\n      \"total_risk\": \"<integer>\",\n      \"risk_of_change\": \"<integer>\",\n      \"has_playbook\": \"<boolean>\",\n      \"publish_date\": \"<dateTime>\",\n      \"systems_affected\": \"<integer>\",\n      \"resolution_set\": [\n        {\n          \"system_type\": \"<integer>\",\n          \"resolution\": \"<string>\",\n          \"has_playbook\": \"<boolean>\"\n        },\n        {\n          \"system_type\": \"<integer>\",\n          \"resolution\": \"<string>\",\n          \"has_playbook\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-e27e177e-97b6-4afc-ac39-1b305fb738ec"
+                    },
+                    {
+                      "id": "6edf286f-8bbe-4001-bcf6-0f6c88ffbbde",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/rule/?limit=10&offset=0&category=4&impact=<string>&likelihood=<string>&has_playbook=<boolean>&sort=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "rule",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of results to return per page.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "The number of results to skip before returning.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter rules by category.",
+                              "key": "category",
+                              "value": "4"
+                            },
+                            {
+                              "description": "Filter rules by impact level.",
+                              "key": "impact",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter rules by likelihood level.",
+                              "key": "likelihood",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter to rules that have remediation playbooks.",
+                              "key": "has_playbook",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "The field to sort results by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-6edf286f-8bbe-4001-bcf6-0f6c88ffbbde"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:59.000Z",
+                  "updatedAt": "2026-06-05T15:14:59.000Z",
+                  "uid": "35240-af3aba45-33c1-467c-b449-15fd6e811e09"
+                }
+              ],
+              "id": "2dde079b-3fec-43b0-b2bf-d51e92070013",
+              "createdAt": "2026-06-05T15:14:59.000Z",
+              "updatedAt": "2026-06-05T15:14:59.000Z",
+              "uid": "35240-2dde079b-3fec-43b0-b2bf-d51e92070013"
+            },
+            {
+              "name": "topic",
+              "item": [
+                {
+                  "name": "Red Hat List Topics",
+                  "id": "5d65a7ee-3e92-45f4-a285-eec86787adba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/v1/topic/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "v1",
+                        "topic",
+                        ""
+                      ]
+                    },
+                    "description": "Retrieves the list of curated Advisor topics that group related rules and recommendations by technology area, risk category, or common concern."
+                  },
+                  "response": [
+                    {
+                      "id": "5c400556-23a6-4d17-ad58-1dbd35e864d7",
+                      "name": "Successfully retrieved topics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/topic/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "topic",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tag\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"impacted_systems_count\": \"<integer>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tag\": \"<string>\",\n    \"featured\": \"<boolean>\",\n    \"impacted_systems_count\": \"<integer>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-5c400556-23a6-4d17-ad58-1dbd35e864d7"
+                    },
+                    {
+                      "id": "d149c5ed-bb37-419a-a157-1b09a4e05857",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/topic/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "topic",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-d149c5ed-bb37-419a-a157-1b09a4e05857"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:59.000Z",
+                  "updatedAt": "2026-06-05T15:14:59.000Z",
+                  "uid": "35240-5d65a7ee-3e92-45f4-a285-eec86787adba"
+                }
+              ],
+              "id": "5728b6ac-6307-44b0-b2ab-055189f36751",
+              "createdAt": "2026-06-05T15:14:59.000Z",
+              "updatedAt": "2026-06-05T15:14:59.000Z",
+              "uid": "35240-5728b6ac-6307-44b0-b2ab-055189f36751"
+            },
+            {
+              "name": "stats",
+              "item": [
+                {
+                  "name": "systems",
+                  "item": [
+                    {
+                      "name": "Red Hat Get System Statistics",
+                      "id": "387928d8-ffad-4938-9f7a-4c055a2a0ac2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/stats/systems/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "stats",
+                            "systems",
+                            ""
+                          ]
+                        },
+                        "description": "Retrieves aggregate statistics about registered systems, including total system count, stale systems, and systems with active recommendations."
+                      },
+                      "response": [
+                        {
+                          "id": "e1a5418f-b32f-42b4-b2b0-f7bc59a81ef1",
+                          "name": "Successfully retrieved system statistics",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/stats/systems/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "stats",
+                                "systems",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"total\": \"<integer>\",\n  \"stale\": \"<integer>\",\n  \"with_hits\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-e1a5418f-b32f-42b4-b2b0-f7bc59a81ef1"
+                        },
+                        {
+                          "id": "5bf22a8b-9cf0-48ef-ae70-d922b7a75f24",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/stats/systems/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "stats",
+                                "systems",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-5bf22a8b-9cf0-48ef-ae70-d922b7a75f24"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-387928d8-ffad-4938-9f7a-4c055a2a0ac2"
+                    }
+                  ],
+                  "id": "d3a25c1b-de6d-4036-9d0f-51d171197a25",
+                  "createdAt": "2026-06-05T15:14:59.000Z",
+                  "updatedAt": "2026-06-05T15:14:59.000Z",
+                  "uid": "35240-d3a25c1b-de6d-4036-9d0f-51d171197a25"
+                },
+                {
+                  "name": "rules",
+                  "item": [
+                    {
+                      "name": "Red Hat Get Rule Statistics",
+                      "id": "9d0de019-00c2-4750-b47b-c360f1b92a45",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/insights/v1/stats/rules/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "insights",
+                            "v1",
+                            "stats",
+                            "rules",
+                            ""
+                          ]
+                        },
+                        "description": "Retrieves aggregate statistics about Advisor rules, including total rule count, rules by category, and rules by severity."
+                      },
+                      "response": [
+                        {
+                          "id": "1a81e0f8-6080-43fb-852b-cc53d5fc2628",
+                          "name": "Successfully retrieved rule statistics",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/stats/rules/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "stats",
+                                "rules",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"total\": \"<integer>\",\n  \"by_category\": {\n    \"non31_\": \"<integer>\"\n  },\n  \"by_severity\": {\n    \"ullamco_f\": \"<integer>\",\n    \"non8\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-1a81e0f8-6080-43fb-852b-cc53d5fc2628"
+                        },
+                        {
+                          "id": "3bd91cb9-c684-485d-8e9c-8a98bb05aade",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/insights/v1/stats/rules/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "insights",
+                                "v1",
+                                "stats",
+                                "rules",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:59.000Z",
+                          "updatedAt": "2026-06-05T15:14:59.000Z",
+                          "uid": "35240-3bd91cb9-c684-485d-8e9c-8a98bb05aade"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:59.000Z",
+                      "updatedAt": "2026-06-05T15:14:59.000Z",
+                      "uid": "35240-9d0de019-00c2-4750-b47b-c360f1b92a45"
+                    }
+                  ],
+                  "id": "0a7ed395-5e3b-4462-aaa3-4049affaa2c0",
+                  "createdAt": "2026-06-05T15:14:59.000Z",
+                  "updatedAt": "2026-06-05T15:14:59.000Z",
+                  "uid": "35240-0a7ed395-5e3b-4462-aaa3-4049affaa2c0"
+                }
+              ],
+              "id": "942ef27a-500a-4068-8c0a-4515ac3383d8",
+              "createdAt": "2026-06-05T15:14:59.000Z",
+              "updatedAt": "2026-06-05T15:14:59.000Z",
+              "uid": "35240-942ef27a-500a-4068-8c0a-4515ac3383d8"
+            }
+          ],
+          "id": "b9d104e3-85a8-434e-ac8c-ae86d1aad367",
+          "createdAt": "2026-06-05T15:14:59.000Z",
+          "updatedAt": "2026-06-05T15:14:59.000Z",
+          "uid": "35240-b9d104e3-85a8-434e-ac8c-ae86d1aad367"
+        }
+      ],
+      "id": "7dc2c97b-0dc3-4631-bed6-815ece6bcbb9",
+      "createdAt": "2026-06-05T15:14:59.000Z",
+      "updatedAt": "2026-06-05T15:14:59.000Z",
+      "uid": "35240-7dc2c97b-0dc3-4631-bed6-815ece6bcbb9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://console.redhat.com/api"
+    }
+  ]
+}

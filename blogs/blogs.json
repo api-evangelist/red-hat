@@ -2,10 +2,21 @@
   "repo": "red-hat",
   "feeds": [
     {
+      "source": "https://developers.redhat.com/blog/feed",
+      "error": "HTTPError"
+    },
+    {
+      "source": "https://www.redhat.com/en/rss/blog",
+      "feed_url": "https://www.redhat.com/en/rss/blog",
+      "title": "",
+      "saved": 10,
+      "method": "feed"
+    },
+    {
       "source": "https://docs.redhat.com/en/products",
       "error": "HTTPError"
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-06-01T23:35:02Z"
+  "post_count": 34,
+  "fetched": "2026-06-14T20:42:17Z"
 }

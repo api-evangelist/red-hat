@@ -1,0 +1,483 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Build of Keycloak Admin REST API",
+    "version": "26.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Realms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Realms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://keycloak.example.com/admin/realms"
+          },
+          "docs": "Retrieves the list of all realms accessible to the authenticated admin user."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a Realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://keycloak.example.com/admin/realms/:realm",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              }
+            ]
+          },
+          "docs": "Retrieves the configuration of a specific realm, including its login settings, token policies, and enabled features."
+        },
+        {
+          "info": {
+            "name": "Red Hat Update a Realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://keycloak.example.com/admin/realms/:realm",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a specific realm. All writable fields can be modified."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://keycloak.example.com/admin/realms/:realm/users",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              },
+              {
+                "name": "username",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter by username."
+              },
+              {
+                "name": "email",
+                "value": "user@example.com",
+                "type": "query",
+                "description": "Filter by email address."
+              },
+              {
+                "name": "firstName",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter by first name."
+              },
+              {
+                "name": "lastName",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter by last name."
+              },
+              {
+                "name": "enabled",
+                "value": "true",
+                "type": "query",
+                "description": "Filter by enabled status."
+              },
+              {
+                "name": "first",
+                "value": "10",
+                "type": "query",
+                "description": "The index of the first result to return (pagination offset)."
+              },
+              {
+                "name": "max",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of results to return."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of users in the specified realm. Results can be filtered by username, email, first name, or last name."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://keycloak.example.com/admin/realms/:realm/users",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user in the specified realm with the provided profile attributes and optional initial credentials."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://keycloak.example.com/admin/realms/:realm/users/:user_id",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific user in the realm."
+        },
+        {
+          "info": {
+            "name": "Red Hat Update a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://keycloak.example.com/admin/realms/:realm/users/:user_id",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the profile attributes of an existing user in the realm."
+        },
+        {
+          "info": {
+            "name": "Red Hat Delete a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://keycloak.example.com/admin/realms/:realm/users/:user_id",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user."
+              }
+            ]
+          },
+          "docs": "Deletes a user from the realm along with all associated sessions, consents, and federated identity links."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://keycloak.example.com/admin/realms/:realm/clients",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              },
+              {
+                "name": "clientId",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by the client identifier."
+              },
+              {
+                "name": "first",
+                "value": "10",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "max",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum number of results."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of client applications registered in the realm."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://keycloak.example.com/admin/realms/:realm/clients",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new client application in the realm with the specified protocol and configuration settings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Realm Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://keycloak.example.com/admin/realms/:realm/roles",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              },
+              {
+                "name": "first",
+                "value": "10",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "max",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum number of results."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of realm-level roles that can be assigned to users and groups."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Realm Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://keycloak.example.com/admin/realms/:realm/roles",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new realm-level role."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://keycloak.example.com/admin/realms/:realm/groups",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              },
+              {
+                "name": "search",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter groups by name."
+              },
+              {
+                "name": "first",
+                "value": "10",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "max",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum number of results."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of groups in the realm, optionally filtered by name. Groups enable bulk role and attribute assignment to users."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Identity Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Identity Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://keycloak.example.com/admin/realms/:realm/identity-provider/instances",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of external identity providers configured for the realm, including SAML, OIDC, and social providers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Remove a Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://keycloak.example.com/admin/realms/:realm/sessions/:session_id",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              },
+              {
+                "name": "session_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the session."
+              }
+            ]
+          },
+          "docs": "Terminates a specific user session, logging the user out of the associated client application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

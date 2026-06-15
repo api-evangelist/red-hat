@@ -1,0 +1,242 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Insights API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Systems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.redhat.com/api/insights/v1/system/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip before returning."
+              },
+              {
+                "name": "display_name",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter systems by display name."
+              },
+              {
+                "name": "sort",
+                "value": "display_name",
+                "type": "query",
+                "description": "The field to sort results by. Prefix with a dash for descending order."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of RHEL systems registered with Red Hat Insights, including their stale status and last check-in time."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a System",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.redhat.com/api/insights/v1/system/:system_id/",
+            "params": [
+              {
+                "name": "system_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (UUID) of the system."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific registered system, including its display name, last check-in time, and total number of active recommendations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Advisor Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.redhat.com/api/insights/v1/rule/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip before returning."
+              },
+              {
+                "name": "category",
+                "value": "1",
+                "type": "query",
+                "description": "Filter rules by category."
+              },
+              {
+                "name": "impact",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter rules by impact level."
+              },
+              {
+                "name": "likelihood",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter rules by likelihood level."
+              },
+              {
+                "name": "has_playbook",
+                "value": "true",
+                "type": "query",
+                "description": "Filter to rules that have remediation playbooks."
+              },
+              {
+                "name": "sort",
+                "value": "example_value",
+                "type": "query",
+                "description": "The field to sort results by."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of Advisor rules that detect configuration issues, security risks, and performance problems on RHEL systems."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get an Advisor Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.redhat.com/api/insights/v1/rule/:rule_id/",
+            "params": [
+              {
+                "name": "rule_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the rule."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific Advisor rule, including its description, resolution steps, affected system count, and whether an Ansible remediation playbook is available."
+        },
+        {
+          "info": {
+            "name": "Red Hat List Systems Affected by a Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.redhat.com/api/insights/v1/rule/:rule_id/systems/",
+            "params": [
+              {
+                "name": "rule_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the rule."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip before returning."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of systems that are affected by a specific Advisor rule and where the recommendation is currently active."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.redhat.com/api/insights/v1/topic/"
+          },
+          "docs": "Retrieves the list of curated Advisor topics that group related rules and recommendations by technology area, risk category, or common concern."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Get System Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.redhat.com/api/insights/v1/stats/systems/"
+          },
+          "docs": "Retrieves aggregate statistics about registered systems, including total system count, stale systems, and systems with active recommendations."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get Rule Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.redhat.com/api/insights/v1/stats/rules/"
+          },
+          "docs": "Retrieves aggregate statistics about Advisor rules, including total rule count, rules by category, and rules by severity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

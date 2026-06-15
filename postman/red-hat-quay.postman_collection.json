@@ -1,0 +1,2785 @@
+{
+  "info": {
+    "_postman_id": "7063872f-a725-4a89-a9ed-e286e5d4b45e",
+    "name": "Red Hat Quay API",
+    "description": "The Red Hat Quay API provides programmatic access to the Quay container registry for managing container images, repositories, organizations, and security scanning results. It supports operations for image tagging, repository management, team permissions, robot accounts, and vulnerability scanning of container images.\n\nContact Support:\n Name: Red Hat Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:14:57.000Z",
+    "updatedAt": "2026-06-05T15:14:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7063872f-a725-4a89-a9ed-e286e5d4b45e"
+  },
+  "item": [
+    {
+      "name": "repository",
+      "item": [
+        {
+          "name": "{repository}",
+          "item": [
+            {
+              "name": "tag",
+              "item": [
+                {
+                  "name": "{tag}",
+                  "item": [
+                    {
+                      "name": "Red Hat Create or Move a Tag",
+                      "id": "07a578fd-a4a0-498a-8621-0f9e4d6dbaa0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"manifest_digest\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/repository/:repository/tag/:tag",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repository",
+                            ":repository",
+                            "tag",
+                            ":tag"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e65ae820-a056-41cf-83b9-f2eb7d97e083",
+                              "key": "repository",
+                              "value": "<string>",
+                              "description": "(Required) The full repository path in the format namespace/repository_name."
+                            },
+                            {
+                              "id": "5f964e29-83a7-4880-a22d-e5e744853a25",
+                              "key": "tag",
+                              "value": "<string>",
+                              "description": "(Required) The tag name."
+                            }
+                          ]
+                        },
+                        "description": "Creates a new tag or moves an existing tag to point to a different image manifest digest."
+                      },
+                      "response": [
+                        {
+                          "id": "2193d0af-abdc-421e-b746-ac7d8d239202",
+                          "name": "Tag created or moved successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"manifest_digest\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/repository/:repository/tag/:tag",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repository",
+                                ":repository",
+                                "tag",
+                                ":tag"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repository"
+                                },
+                                {
+                                  "key": "tag"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-2193d0af-abdc-421e-b746-ac7d8d239202"
+                        },
+                        {
+                          "id": "ba7ee898-8aa8-4f94-b954-d45314387b98",
+                          "name": "The request body is malformed or contains invalid values.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"manifest_digest\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/repository/:repository/tag/:tag",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repository",
+                                ":repository",
+                                "tag",
+                                ":tag"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repository"
+                                },
+                                {
+                                  "key": "tag"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-ba7ee898-8aa8-4f94-b954-d45314387b98"
+                        },
+                        {
+                          "id": "be386da7-045a-4565-9322-3504ac243740",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"manifest_digest\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/repository/:repository/tag/:tag",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repository",
+                                ":repository",
+                                "tag",
+                                ":tag"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repository"
+                                },
+                                {
+                                  "key": "tag"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-be386da7-045a-4565-9322-3504ac243740"
+                        },
+                        {
+                          "id": "9cd7b18a-3e0d-40d5-9ff9-17d90a4b14f2",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"manifest_digest\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/repository/:repository/tag/:tag",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repository",
+                                ":repository",
+                                "tag",
+                                ":tag"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repository"
+                                },
+                                {
+                                  "key": "tag"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-9cd7b18a-3e0d-40d5-9ff9-17d90a4b14f2"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:57.000Z",
+                      "updatedAt": "2026-06-05T15:14:57.000Z",
+                      "uid": "35240-07a578fd-a4a0-498a-8621-0f9e4d6dbaa0"
+                    },
+                    {
+                      "name": "Red Hat Delete a Tag",
+                      "id": "8a2873c9-3646-4fdf-a691-3cef284e33f0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/repository/:repository/tag/:tag",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repository",
+                            ":repository",
+                            "tag",
+                            ":tag"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e8aa7806-625b-40ce-a9a4-2c6a388870d0",
+                              "key": "repository",
+                              "value": "<string>",
+                              "description": "(Required) The full repository path in the format namespace/repository_name."
+                            },
+                            {
+                              "id": "2466f1d8-56cb-4d4f-ae07-20148a4d1f12",
+                              "key": "tag",
+                              "value": "<string>",
+                              "description": "(Required) The tag name to delete."
+                            }
+                          ]
+                        },
+                        "description": "Deletes a specific tag from a repository. The underlying image manifest is not deleted unless it becomes untagged."
+                      },
+                      "response": [
+                        {
+                          "id": "341add81-f575-4d28-8bea-af870452631e",
+                          "name": "Tag deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repository/:repository/tag/:tag",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repository",
+                                ":repository",
+                                "tag",
+                                ":tag"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repository"
+                                },
+                                {
+                                  "key": "tag"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-341add81-f575-4d28-8bea-af870452631e"
+                        },
+                        {
+                          "id": "68bd4e5b-e088-4859-bcfe-06a306ab21ae",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repository/:repository/tag/:tag",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repository",
+                                ":repository",
+                                "tag",
+                                ":tag"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repository"
+                                },
+                                {
+                                  "key": "tag"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-68bd4e5b-e088-4859-bcfe-06a306ab21ae"
+                        },
+                        {
+                          "id": "d8b1ad23-d62f-4841-bfc6-61ec2cc1d57b",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repository/:repository/tag/:tag",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repository",
+                                ":repository",
+                                "tag",
+                                ":tag"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repository"
+                                },
+                                {
+                                  "key": "tag"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-d8b1ad23-d62f-4841-bfc6-61ec2cc1d57b"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:57.000Z",
+                      "updatedAt": "2026-06-05T15:14:57.000Z",
+                      "uid": "35240-8a2873c9-3646-4fdf-a691-3cef284e33f0"
+                    }
+                  ],
+                  "id": "564d303e-5d5a-4d23-bab6-62e7bf85c85c",
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-564d303e-5d5a-4d23-bab6-62e7bf85c85c"
+                },
+                {
+                  "name": "Red Hat List Repository Tags",
+                  "id": "2807ab0b-d4fb-47fe-8edd-9fd27d4770f4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repository/:repository/tag/?page=<integer>&limit=<integer>&specificTag=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repository",
+                        ":repository",
+                        "tag",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number for pagination.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The maximum number of tags to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Filter to a specific tag name.",
+                          "key": "specificTag",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "2f58e472-adc8-48b0-941c-b3f28132b53a",
+                          "key": "repository",
+                          "value": "<string>",
+                          "description": "(Required) The full repository path in the format namespace/repository_name."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of tags for the specified repository, including each tag's manifest digest and last modified date."
+                  },
+                  "response": [
+                    {
+                      "id": "039ac2b0-5f0f-460b-b541-f9db7c8c831b",
+                      "name": "Successfully retrieved tags",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repository/:repository/tag/?page=<integer>&limit=<integer>&specificTag=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repository",
+                            ":repository",
+                            "tag",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for pagination.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The maximum number of tags to return.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filter to a specific tag name.",
+                              "key": "specificTag",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "repository"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"tags\": [\n    {\n      \"name\": \"<string>\",\n      \"manifest_digest\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"last_modified\": \"<string>\",\n      \"is_manifest_list\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"manifest_digest\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"last_modified\": \"<string>\",\n      \"is_manifest_list\": \"<boolean>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"has_additional\": \"<boolean>\"\n}",
+                      "createdAt": "2026-06-05T15:14:57.000Z",
+                      "updatedAt": "2026-06-05T15:14:57.000Z",
+                      "uid": "35240-039ac2b0-5f0f-460b-b541-f9db7c8c831b"
+                    },
+                    {
+                      "id": "ae7b1a3b-ea20-4f27-a59c-0911e4feb9ac",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repository/:repository/tag/?page=<integer>&limit=<integer>&specificTag=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repository",
+                            ":repository",
+                            "tag",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for pagination.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The maximum number of tags to return.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filter to a specific tag name.",
+                              "key": "specificTag",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "repository"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:57.000Z",
+                      "updatedAt": "2026-06-05T15:14:57.000Z",
+                      "uid": "35240-ae7b1a3b-ea20-4f27-a59c-0911e4feb9ac"
+                    },
+                    {
+                      "id": "42121068-030a-4e2f-9b58-f7a6f01995c9",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repository/:repository/tag/?page=<integer>&limit=<integer>&specificTag=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repository",
+                            ":repository",
+                            "tag",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number for pagination.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The maximum number of tags to return.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Filter to a specific tag name.",
+                              "key": "specificTag",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "repository"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:14:57.000Z",
+                      "updatedAt": "2026-06-05T15:14:57.000Z",
+                      "uid": "35240-42121068-030a-4e2f-9b58-f7a6f01995c9"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-2807ab0b-d4fb-47fe-8edd-9fd27d4770f4"
+                }
+              ],
+              "id": "000d7ca7-cc34-4097-9ef2-425fac07b9e4",
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-000d7ca7-cc34-4097-9ef2-425fac07b9e4"
+            },
+            {
+              "name": "manifest",
+              "item": [
+                {
+                  "name": "{manifestref}",
+                  "item": [
+                    {
+                      "name": "security",
+                      "item": [
+                        {
+                          "name": "Red Hat Get Manifest Security Information",
+                          "id": "eafcb77c-0d95-4001-a3d0-dff43b0be0d1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repository/:repository/manifest/:manifestref/security?vulnerabilities=true",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repository",
+                                ":repository",
+                                "manifest",
+                                ":manifestref",
+                                "security"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Whether to include detailed vulnerability information.",
+                                  "key": "vulnerabilities",
+                                  "value": "true"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "44d9375d-d57e-4c65-a0c1-00954f769350",
+                                  "key": "repository",
+                                  "value": "<string>",
+                                  "description": "(Required) The full repository path in the format namespace/repository_name."
+                                },
+                                {
+                                  "id": "67f9d313-ecf0-48e2-9e10-9c790ecd9492",
+                                  "key": "manifestref",
+                                  "value": "<string>",
+                                  "description": "(Required) The manifest digest reference."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the security scan results for a specific image manifest, including detected vulnerabilities and their severity levels."
+                          },
+                          "response": [
+                            {
+                              "id": "3ed87ed4-d670-4779-b305-2f3e5618861d",
+                              "name": "Successfully retrieved security scan results",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repository/:repository/manifest/:manifestref/security?vulnerabilities=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repository",
+                                    ":repository",
+                                    "manifest",
+                                    ":manifestref",
+                                    "security"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Whether to include detailed vulnerability information.",
+                                      "key": "vulnerabilities",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repository"
+                                    },
+                                    {
+                                      "key": "manifestref"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"unsupported\",\n  \"data\": {\n    \"Layer\": {\n      \"Features\": [\n        {\n          \"Name\": \"<string>\",\n          \"Version\": \"<string>\",\n          \"Vulnerabilities\": [\n            {\n              \"Name\": \"<string>\",\n              \"Severity\": \"Low\",\n              \"FixedBy\": \"<string>\",\n              \"Link\": \"<uri>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Severity\": \"High\",\n              \"FixedBy\": \"<string>\",\n              \"Link\": \"<uri>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Version\": \"<string>\",\n          \"Vulnerabilities\": [\n            {\n              \"Name\": \"<string>\",\n              \"Severity\": \"High\",\n              \"FixedBy\": \"<string>\",\n              \"Link\": \"<uri>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Severity\": \"High\",\n              \"FixedBy\": \"<string>\",\n              \"Link\": \"<uri>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                              "createdAt": "2026-06-05T15:14:57.000Z",
+                              "updatedAt": "2026-06-05T15:14:57.000Z",
+                              "uid": "35240-3ed87ed4-d670-4779-b305-2f3e5618861d"
+                            },
+                            {
+                              "id": "1fa400eb-6e80-41cf-9bc1-7d66b5015ee3",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repository/:repository/manifest/:manifestref/security?vulnerabilities=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repository",
+                                    ":repository",
+                                    "manifest",
+                                    ":manifestref",
+                                    "security"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Whether to include detailed vulnerability information.",
+                                      "key": "vulnerabilities",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repository"
+                                    },
+                                    {
+                                      "key": "manifestref"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:57.000Z",
+                              "updatedAt": "2026-06-05T15:14:57.000Z",
+                              "uid": "35240-1fa400eb-6e80-41cf-9bc1-7d66b5015ee3"
+                            },
+                            {
+                              "id": "708a1e76-8209-406a-9bc9-449bbadcfbe8",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repository/:repository/manifest/:manifestref/security?vulnerabilities=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repository",
+                                    ":repository",
+                                    "manifest",
+                                    ":manifestref",
+                                    "security"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Whether to include detailed vulnerability information.",
+                                      "key": "vulnerabilities",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repository"
+                                    },
+                                    {
+                                      "key": "manifestref"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:14:57.000Z",
+                              "updatedAt": "2026-06-05T15:14:57.000Z",
+                              "uid": "35240-708a1e76-8209-406a-9bc9-449bbadcfbe8"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-eafcb77c-0d95-4001-a3d0-dff43b0be0d1"
+                        }
+                      ],
+                      "id": "9c0ee046-53ff-4589-9432-a3adc0e15fd7",
+                      "createdAt": "2026-06-05T15:14:57.000Z",
+                      "updatedAt": "2026-06-05T15:14:57.000Z",
+                      "uid": "35240-9c0ee046-53ff-4589-9432-a3adc0e15fd7"
+                    }
+                  ],
+                  "id": "64c9cb62-af81-4df8-8b66-016316e2c71d",
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-64c9cb62-af81-4df8-8b66-016316e2c71d"
+                }
+              ],
+              "id": "dfcd4b98-8185-43b9-9058-3097c701fd9a",
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-dfcd4b98-8185-43b9-9058-3097c701fd9a"
+            },
+            {
+              "name": "Red Hat Get a Repository",
+              "id": "bba26117-bf88-4652-9f2a-4c706f46b296",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repository/:repository",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repository",
+                    ":repository"
+                  ],
+                  "variable": [
+                    {
+                      "id": "537a6417-e732-46f9-b1b1-a125f5c00452",
+                      "key": "repository",
+                      "value": "<string>",
+                      "description": "(Required) The full repository path in the format namespace/repository_name."
+                    }
+                  ]
+                },
+                "description": "Retrieves the details of a specific repository including its tags, description, and visibility settings."
+              },
+              "response": [
+                {
+                  "id": "bf9cfb0a-7201-4f9e-9a19-06d43dc60d71",
+                  "name": "Successfully retrieved repository details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repository/:repository",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repository",
+                        ":repository"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repository"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"namespace\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"is_public\": \"<boolean>\",\n  \"kind\": \"application\",\n  \"tag_count\": \"<integer>\",\n  \"status_token\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-bf9cfb0a-7201-4f9e-9a19-06d43dc60d71"
+                },
+                {
+                  "id": "cdf51544-3388-48cf-a4bd-92796c979cc8",
+                  "name": "Authentication credentials are missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repository/:repository",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repository",
+                        ":repository"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repository"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-cdf51544-3388-48cf-a4bd-92796c979cc8"
+                },
+                {
+                  "id": "f47eeac7-142b-432f-b4e3-cbbd3e6e771a",
+                  "name": "The requested resource was not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repository/:repository",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repository",
+                        ":repository"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repository"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-f47eeac7-142b-432f-b4e3-cbbd3e6e771a"
+                }
+              ],
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-bba26117-bf88-4652-9f2a-4c706f46b296"
+            },
+            {
+              "name": "Red Hat Delete a Repository",
+              "id": "9c8fa966-ff18-47ae-a80c-32b3ef7edf75",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/repository/:repository",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repository",
+                    ":repository"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5d018701-365c-4154-9d95-a995d28c0966",
+                      "key": "repository",
+                      "value": "<string>",
+                      "description": "(Required) The full repository path in the format namespace/repository_name."
+                    }
+                  ]
+                },
+                "description": "Deletes a repository and all associated images, tags, and build history. This action is irreversible."
+              },
+              "response": [
+                {
+                  "id": "69146712-316e-4bbc-b428-e9ce450bf35a",
+                  "name": "Repository deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repository/:repository",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repository",
+                        ":repository"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repository"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-69146712-316e-4bbc-b428-e9ce450bf35a"
+                },
+                {
+                  "id": "2aecd758-769c-4b13-8000-a6504a867a96",
+                  "name": "Authentication credentials are missing or invalid.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repository/:repository",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repository",
+                        ":repository"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repository"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-2aecd758-769c-4b13-8000-a6504a867a96"
+                },
+                {
+                  "id": "79a52e1c-d3dd-4c55-8bd2-43e38675b730",
+                  "name": "The requested resource was not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repository/:repository",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repository",
+                        ":repository"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repository"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-79a52e1c-d3dd-4c55-8bd2-43e38675b730"
+                }
+              ],
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-9c8fa966-ff18-47ae-a80c-32b3ef7edf75"
+            }
+          ],
+          "id": "f5e2a3a7-95e1-4a6b-a505-bd55de9794e1",
+          "createdAt": "2026-06-05T15:14:57.000Z",
+          "updatedAt": "2026-06-05T15:14:57.000Z",
+          "uid": "35240-f5e2a3a7-95e1-4a6b-a505-bd55de9794e1"
+        },
+        {
+          "name": "Red Hat List Repositories",
+          "id": "81b88b24-1ffe-4d02-9069-5c47ac4b34f7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/repository?namespace=<string>&starred=<boolean>&public=<boolean>&last_modified=<boolean>&popularity=<boolean>&next_page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "repository"
+              ],
+              "query": [
+                {
+                  "description": "Filter repositories by namespace (organization or user).",
+                  "key": "namespace",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter to only starred repositories.",
+                  "key": "starred",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "Include public repositories.",
+                  "key": "public",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "Filter by last modified status.",
+                  "key": "last_modified",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "Filter by popularity.",
+                  "key": "popularity",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "The pagination token for the next page of results.",
+                  "key": "next_page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves a paginated list of repositories visible to the authenticated user, optionally filtered by namespace, popularity, or last modified date."
+          },
+          "response": [
+            {
+              "id": "f3bb9a51-2d3e-49bb-8504-c69607bbc60b",
+              "name": "Successfully retrieved repositories",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repository?namespace=<string>&starred=<boolean>&public=<boolean>&last_modified=<boolean>&popularity=<boolean>&next_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repository"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter repositories by namespace (organization or user).",
+                      "key": "namespace",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter to only starred repositories.",
+                      "key": "starred",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Include public repositories.",
+                      "key": "public",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Filter by last modified status.",
+                      "key": "last_modified",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Filter by popularity.",
+                      "key": "popularity",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The pagination token for the next page of results.",
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"repositories\": [\n    {\n      \"namespace\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"is_public\": \"<boolean>\",\n      \"kind\": \"image\",\n      \"tag_count\": \"<integer>\",\n      \"status_token\": \"<string>\"\n    },\n    {\n      \"namespace\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"is_public\": \"<boolean>\",\n      \"kind\": \"image\",\n      \"tag_count\": \"<integer>\",\n      \"status_token\": \"<string>\"\n    }\n  ],\n  \"next_page\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-f3bb9a51-2d3e-49bb-8504-c69607bbc60b"
+            },
+            {
+              "id": "422505c4-d750-432f-9e69-9c9ec5cbab2a",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repository?namespace=<string>&starred=<boolean>&public=<boolean>&last_modified=<boolean>&popularity=<boolean>&next_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repository"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter repositories by namespace (organization or user).",
+                      "key": "namespace",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter to only starred repositories.",
+                      "key": "starred",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Include public repositories.",
+                      "key": "public",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Filter by last modified status.",
+                      "key": "last_modified",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Filter by popularity.",
+                      "key": "popularity",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The pagination token for the next page of results.",
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-422505c4-d750-432f-9e69-9c9ec5cbab2a"
+            }
+          ],
+          "createdAt": "2026-06-05T15:14:57.000Z",
+          "updatedAt": "2026-06-05T15:14:57.000Z",
+          "uid": "35240-81b88b24-1ffe-4d02-9069-5c47ac4b34f7"
+        },
+        {
+          "name": "Red Hat Create a Repository",
+          "id": "b3c3b8f2-f140-44d3-93f9-9e62563da821",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repository\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"visibility\": \"public\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/repository",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "repository"
+              ]
+            },
+            "description": "Creates a new container image repository in the specified namespace with the given visibility and optional description."
+          },
+          "response": [
+            {
+              "id": "06cd1dbf-c9d2-4125-bed6-950dd568192d",
+              "name": "Repository created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"visibility\": \"public\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/repository",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repository"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-06cd1dbf-c9d2-4125-bed6-950dd568192d"
+            },
+            {
+              "id": "941ef59e-5917-4de3-a1e8-44d9ecaf0d98",
+              "name": "The request body is malformed or contains invalid values.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"visibility\": \"public\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/repository",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repository"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-941ef59e-5917-4de3-a1e8-44d9ecaf0d98"
+            },
+            {
+              "id": "7540683a-4d03-450b-af6c-885321fcc591",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"visibility\": \"public\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/repository",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repository"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-7540683a-4d03-450b-af6c-885321fcc591"
+            }
+          ],
+          "createdAt": "2026-06-05T15:14:57.000Z",
+          "updatedAt": "2026-06-05T15:14:57.000Z",
+          "uid": "35240-b3c3b8f2-f140-44d3-93f9-9e62563da821"
+        }
+      ],
+      "id": "446e5906-4f14-47e9-b29c-9c170dedd668",
+      "createdAt": "2026-06-05T15:14:57.000Z",
+      "updatedAt": "2026-06-05T15:14:57.000Z",
+      "uid": "35240-446e5906-4f14-47e9-b29c-9c170dedd668"
+    },
+    {
+      "name": "organization",
+      "item": [
+        {
+          "name": "{orgname}",
+          "item": [
+            {
+              "name": "team",
+              "item": [
+                {
+                  "name": "{teamname}",
+                  "item": [
+                    {
+                      "name": "Red Hat Create or Update a Team",
+                      "id": "88982960-f6fd-430d-a51e-7e582f373cdb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"role\": \"admin\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/:orgname/team/:teamname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            ":orgname",
+                            "team",
+                            ":teamname"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fbbd421e-c314-4057-9e1f-6527a5f43421",
+                              "key": "orgname",
+                              "value": "<string>",
+                              "description": "(Required) The name of the organization."
+                            },
+                            {
+                              "id": "0056e20d-04c5-448b-883b-361f713b1142",
+                              "key": "teamname",
+                              "value": "<string>",
+                              "description": "(Required) The name of the team."
+                            }
+                          ]
+                        },
+                        "description": "Creates a new team or updates an existing team within an organization, including the team role and description."
+                      },
+                      "response": [
+                        {
+                          "id": "603fea2a-89fa-4363-b6ef-a41d6cc08601",
+                          "name": "Team updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"role\": \"admin\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/team/:teamname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "team",
+                                ":teamname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "teamname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-603fea2a-89fa-4363-b6ef-a41d6cc08601"
+                        },
+                        {
+                          "id": "e27ebdcd-e6b4-48e1-af2f-970283fda79a",
+                          "name": "Team created successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"role\": \"admin\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/team/:teamname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "team",
+                                ":teamname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "teamname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-e27ebdcd-e6b4-48e1-af2f-970283fda79a"
+                        },
+                        {
+                          "id": "da660285-bcbd-405e-9bb6-11a3e45fbb71",
+                          "name": "The request body is malformed or contains invalid values.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"role\": \"admin\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/team/:teamname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "team",
+                                ":teamname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "teamname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-da660285-bcbd-405e-9bb6-11a3e45fbb71"
+                        },
+                        {
+                          "id": "cd83ea16-9e3a-462f-b531-b4c8cbeb642d",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"role\": \"admin\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/team/:teamname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "team",
+                                ":teamname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "teamname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-cd83ea16-9e3a-462f-b531-b4c8cbeb642d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:57.000Z",
+                      "updatedAt": "2026-06-05T15:14:57.000Z",
+                      "uid": "35240-88982960-f6fd-430d-a51e-7e582f373cdb"
+                    }
+                  ],
+                  "id": "4de33437-24c3-4e17-bfbe-476d9f1cf793",
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-4de33437-24c3-4e17-bfbe-476d9f1cf793"
+                }
+              ],
+              "id": "3fd3dadf-adf0-4156-932c-0c25757cd3e4",
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-3fd3dadf-adf0-4156-932c-0c25757cd3e4"
+            },
+            {
+              "name": "robots",
+              "item": [
+                {
+                  "name": "{robot_shortname}",
+                  "item": [
+                    {
+                      "name": "Red Hat Get an Organization Robot Account",
+                      "id": "53db700e-aff8-457a-aad3-6ee34b6b6140",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/:orgname/robots/:robot_shortname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            ":orgname",
+                            "robots",
+                            ":robot_shortname"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7b93b55d-4e55-47e2-8b76-82e6aeb7af12",
+                              "key": "orgname",
+                              "value": "<string>",
+                              "description": "(Required) The name of the organization."
+                            },
+                            {
+                              "id": "1558ffda-5f54-46cb-8e93-2980c673a1d6",
+                              "key": "robot_shortname",
+                              "value": "<string>",
+                              "description": "(Required) The short name of the robot account."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the details of a specific robot account within an organization, including its token for automated registry access."
+                      },
+                      "response": [
+                        {
+                          "id": "0a085193-f339-4779-806b-63614d70f2cb",
+                          "name": "Successfully retrieved robot account",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/robots/:robot_shortname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "robots",
+                                ":robot_shortname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "robot_shortname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"token\": \"<string>\",\n  \"created\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-0a085193-f339-4779-806b-63614d70f2cb"
+                        },
+                        {
+                          "id": "dcf93001-0d6f-414a-ae0c-727455ab4016",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/robots/:robot_shortname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "robots",
+                                ":robot_shortname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "robot_shortname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-dcf93001-0d6f-414a-ae0c-727455ab4016"
+                        },
+                        {
+                          "id": "ba74bb69-b946-4b3d-b3af-36765552a6b3",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/robots/:robot_shortname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "robots",
+                                ":robot_shortname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "robot_shortname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-ba74bb69-b946-4b3d-b3af-36765552a6b3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:57.000Z",
+                      "updatedAt": "2026-06-05T15:14:57.000Z",
+                      "uid": "35240-53db700e-aff8-457a-aad3-6ee34b6b6140"
+                    },
+                    {
+                      "name": "Red Hat Create an Organization Robot Account",
+                      "id": "e09e9ce0-f477-47c4-b751-f3f803f12420",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/:orgname/robots/:robot_shortname",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            ":orgname",
+                            "robots",
+                            ":robot_shortname"
+                          ],
+                          "variable": [
+                            {
+                              "id": "19e964e9-c362-440a-a31a-f3faf0c5cef8",
+                              "key": "orgname",
+                              "value": "<string>",
+                              "description": "(Required) The name of the organization."
+                            },
+                            {
+                              "id": "f956d746-40fd-4613-867b-d4367d9558a3",
+                              "key": "robot_shortname",
+                              "value": "<string>",
+                              "description": "(Required) The short name for the new robot account."
+                            }
+                          ]
+                        },
+                        "description": "Creates a new robot account within an organization for automated access to container repositories."
+                      },
+                      "response": [
+                        {
+                          "id": "3573e35e-511e-4768-90bc-c66ee5e5f665",
+                          "name": "Robot account created successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/robots/:robot_shortname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "robots",
+                                ":robot_shortname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "robot_shortname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"token\": \"<string>\",\n  \"created\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-3573e35e-511e-4768-90bc-c66ee5e5f665"
+                        },
+                        {
+                          "id": "1dfafe0f-9a99-469f-a4d9-b5985a1e2be8",
+                          "name": "The request body is malformed or contains invalid values.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/robots/:robot_shortname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "robots",
+                                ":robot_shortname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "robot_shortname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-1dfafe0f-9a99-469f-a4d9-b5985a1e2be8"
+                        },
+                        {
+                          "id": "94a44c90-9fa4-438c-80b4-b0cb4ade8950",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organization/:orgname/robots/:robot_shortname",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organization",
+                                ":orgname",
+                                "robots",
+                                ":robot_shortname"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orgname"
+                                },
+                                {
+                                  "key": "robot_shortname"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:14:57.000Z",
+                          "updatedAt": "2026-06-05T15:14:57.000Z",
+                          "uid": "35240-94a44c90-9fa4-438c-80b4-b0cb4ade8950"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:14:57.000Z",
+                      "updatedAt": "2026-06-05T15:14:57.000Z",
+                      "uid": "35240-e09e9ce0-f477-47c4-b751-f3f803f12420"
+                    }
+                  ],
+                  "id": "96bdfd20-75bd-49ef-a77c-6151dd6a14cf",
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-96bdfd20-75bd-49ef-a77c-6151dd6a14cf"
+                }
+              ],
+              "id": "bf05531c-d3e3-4788-8ca4-494adb9a251c",
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-bf05531c-d3e3-4788-8ca4-494adb9a251c"
+            },
+            {
+              "name": "Red Hat Get an Organization",
+              "id": "28e43b86-0238-45ed-a10c-a496b778e4e4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organization/:orgname",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organization",
+                    ":orgname"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0d8f1b2b-2c8f-435e-a58a-f4790efb1ab2",
+                      "key": "orgname",
+                      "value": "<string>",
+                      "description": "(Required) The name of the organization."
+                    }
+                  ]
+                },
+                "description": "Retrieves the details of a specific organization, including its member count and settings."
+              },
+              "response": [
+                {
+                  "id": "2db55ce2-a254-4e55-b379-fec99120e1fc",
+                  "name": "Successfully retrieved organization details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/:orgname",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        ":orgname"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orgname"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"invoice_email\": \"<boolean>\",\n  \"is_admin\": \"<boolean>\",\n  \"is_member\": \"<boolean>\"\n}",
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-2db55ce2-a254-4e55-b379-fec99120e1fc"
+                },
+                {
+                  "id": "f26f2486-495e-436e-b8e6-b0c11034d79d",
+                  "name": "Authentication credentials are missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/:orgname",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        ":orgname"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orgname"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-f26f2486-495e-436e-b8e6-b0c11034d79d"
+                },
+                {
+                  "id": "2bc60a58-c596-4c48-8aa9-9612e3676310",
+                  "name": "The requested resource was not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/:orgname",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        ":orgname"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orgname"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:14:57.000Z",
+                  "updatedAt": "2026-06-05T15:14:57.000Z",
+                  "uid": "35240-2bc60a58-c596-4c48-8aa9-9612e3676310"
+                }
+              ],
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-28e43b86-0238-45ed-a10c-a496b778e4e4"
+            }
+          ],
+          "id": "2cf01aa6-eb9f-4b92-8624-db40fd0fd233",
+          "createdAt": "2026-06-05T15:14:57.000Z",
+          "updatedAt": "2026-06-05T15:14:57.000Z",
+          "uid": "35240-2cf01aa6-eb9f-4b92-8624-db40fd0fd233"
+        }
+      ],
+      "id": "12c1843a-9e4e-4047-8b90-f9637f8ffb48",
+      "createdAt": "2026-06-05T15:14:57.000Z",
+      "updatedAt": "2026-06-05T15:14:57.000Z",
+      "uid": "35240-12c1843a-9e4e-4047-8b90-f9637f8ffb48"
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "Red Hat Get Logged-in User",
+          "id": "4f7c812f-9dc4-4e41-9f1e-4935b35df1e0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                ""
+              ]
+            },
+            "description": "Retrieves the information for the currently authenticated user."
+          },
+          "response": [
+            {
+              "id": "e6679849-121e-4725-b12f-194f2eb599f9",
+              "name": "Successfully retrieved user information",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"verified\": \"<boolean>\",\n  \"organizations\": [\n    {\n      \"name\": \"<string>\",\n      \"is_admin\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"is_admin\": \"<boolean>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-e6679849-121e-4725-b12f-194f2eb599f9"
+            },
+            {
+              "id": "31f17f9e-ed9e-47a6-9a5a-2db15d464d8b",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:14:57.000Z",
+              "updatedAt": "2026-06-05T15:14:57.000Z",
+              "uid": "35240-31f17f9e-ed9e-47a6-9a5a-2db15d464d8b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:14:57.000Z",
+          "updatedAt": "2026-06-05T15:14:57.000Z",
+          "uid": "35240-4f7c812f-9dc4-4e41-9f1e-4935b35df1e0"
+        }
+      ],
+      "id": "fd83999f-88ce-46f4-869e-9ea4a83db87d",
+      "createdAt": "2026-06-05T15:14:57.000Z",
+      "updatedAt": "2026-06-05T15:14:57.000Z",
+      "uid": "35240-fd83999f-88ce-46f4-869e-9ea4a83db87d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://quay.io/api/v1"
+    }
+  ]
+}
