@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/red-hat-ansible-automation-platform-openapi.yml, openapi/red-hat-insights-openapi.yml,
+  openapi/red-hat-keycloak-admin-openapi.yml, openapi/red-hat-openshift-cluster-manager-openapi.yml,
+  openapi/red-hat-quay-openapi.yml, openapi/red-hat-satellite-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+  sources:
+  - openapi/red-hat-ansible-automation-platform-openapi.yml
+  - openapi/red-hat-insights-openapi.yml
+  - openapi/red-hat-keycloak-admin-openapi.yml
+  - openapi/red-hat-openshift-cluster-manager-openapi.yml
+  - openapi/red-hat-quay-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication using a valid Satellite username and password. Alternatively,
+    a personal access token can be used.
+  sources:
+  - openapi/red-hat-satellite-openapi.yml

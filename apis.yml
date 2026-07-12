@@ -1035,6 +1035,15 @@ apis:
       - type: Support
         url: https://access.redhat.com/support
 common:
+  - type: VulnerabilityDisclosure
+    url: security/red-hat-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/red-hat-domain-security.yml
+  - type: Authentication
+    url: authentication/red-hat-authentication.yml
+  - name: Agent Skills
+    url: https://www.redhat.com/en/blog/empower-your-ai-tools-new-agent-skills-red-hat-enterprise-linux
+    type: AgentSkills
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/red-hat/overview
   - type: Arazzo
