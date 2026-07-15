@@ -1035,6 +1035,8 @@ apis:
       - type: Support
         url: https://access.redhat.com/support
 common:
+  - type: AgenticAccess
+    url: agentic-access/red-hat-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/red-hat-vulnerability-disclosure.yml
   - type: DomainSecurity
