@@ -1,0 +1,37 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html,
+  https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform,
+  and Red Hat Developer blog release announcements (developers.redhat.com/blog).
+description: >-
+  Red Hat has no single company-wide changelog; each product publishes dated
+  release notes. This artifact records the recent, publicly announced releases
+  per marquee product observed as of mid-2026. The per-product release-notes
+  pages are the authoritative source of truth.
+versioning:
+  scheme: per-product semantic/major.minor (OpenShift 4.x, AAP 2.x, Service Mesh 3.x)
+  detail: lifecycle/red-hat-lifecycle.yml
+products:
+  - product: Red Hat OpenShift Container Platform
+    release_notes: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    current: '4.22'
+    recent:
+      - {version: '4.22', highlights: [New observability features], evidence: developers.redhat.com/blog "New observability features in Red Hat OpenShift 4.22"}
+  - product: Red Hat OpenShift Service Mesh
+    current: '3.4'
+    recent:
+      - {version: '3.4', highlights: [Service Mesh 3.4 release], evidence: developers.redhat.com/blog "Introducing Red Hat OpenShift Service Mesh 3.4"}
+  - product: Red Hat Ansible Automation Platform
+    release_notes: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform
+    current: '2.7'
+    recent:
+      - {version: '2.7', highlights: [Visual execution, platform updates], evidence: developers.redhat.com/blog "What's new in Ansible Automation Platform 2.7"}
+  - product: Red Hat Enterprise Linux
+    current: '10'
+    recent:
+      - {version: '10', highlights: [bootc image mode], evidence: developers.redhat.com/blog "Installing Red Hat Enterprise Linux 10 bootc image (bootc)"}
+notes: >-
+  Console (console.redhat.com) service APIs are versioned in the URL path and do
+  not publish dated changelogs; breaking changes are gated behind new path major
+  versions (see lifecycle/red-hat-lifecycle.yml).

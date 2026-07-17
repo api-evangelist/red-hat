@@ -1,0 +1,102 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from the component schemas and id-reference fields in openapi/*.yml
+  across the six spec-bearing Red Hat products (OpenShift Cluster Manager,
+  Ansible Automation Platform, Red Hat build of Keycloak, Red Hat Insights,
+  Red Hat Quay, Red Hat Satellite). Each product is a distinct domain; entities
+  and relationships are grouped by product because the APIs do not share a single
+  object graph.
+notation: >-
+  relationships use has_one / has_many / belongs_to with the reference field name;
+  direction is from the entity that owns the reference.
+domains:
+  - product: OpenShift Cluster Manager
+    source: openapi/red-hat-openshift-cluster-manager-openapi.yml
+    entities:
+      - {name: Cluster, domain: clusters_mgmt, description: A managed OpenShift cluster.}
+      - {name: MachinePool, domain: clusters_mgmt, description: A pool of worker machines within a cluster.}
+      - {name: IdentityProvider, domain: clusters_mgmt, description: An IdP configured on a cluster.}
+      - {name: Subscription, domain: accounts_mgmt, description: A subscription entitling a cluster.}
+      - {name: CloudProvider, domain: clusters_mgmt, description: A cloud provider a cluster can run on.}
+      - {name: CloudRegion, domain: clusters_mgmt, description: A region within a cloud provider.}
+      - {name: Version, domain: clusters_mgmt, description: An available OpenShift version.}
+      - {name: Addon, domain: clusters_mgmt, description: An installable cluster add-on.}
+    relationships:
+      - {from: Cluster, to: MachinePool, kind: has_many, via: cluster_id}
+      - {from: Cluster, to: IdentityProvider, kind: has_many, via: cluster_id}
+      - {from: Cluster, to: CloudProvider, kind: belongs_to, via: cloud_provider}
+      - {from: Cluster, to: CloudRegion, kind: belongs_to, via: region}
+      - {from: Cluster, to: Version, kind: belongs_to, via: version}
+      - {from: Cluster, to: Subscription, kind: belongs_to, via: subscription_id}
+  - product: Ansible Automation Platform
+    source: openapi/red-hat-ansible-automation-platform-openapi.yml
+    entities:
+      - {name: JobTemplate, description: A parameterized definition for running a playbook.}
+      - {name: Job, description: An execution instance of a job template.}
+      - {name: Inventory, description: A collection of managed hosts.}
+      - {name: Project, description: A source-controlled collection of playbooks.}
+      - {name: Credential, description: A stored secret used by jobs.}
+    relationships:
+      - {from: JobTemplate, to: Inventory, kind: belongs_to, via: inventory}
+      - {from: JobTemplate, to: Project, kind: belongs_to, via: project}
+      - {from: JobTemplate, to: Job, kind: has_many, via: job_template}
+      - {from: Job, to: JobTemplate, kind: belongs_to, via: job_template}
+      - {from: JobTemplate, to: Credential, kind: has_many, via: credentials}
+  - product: Red Hat build of Keycloak
+    source: openapi/red-hat-keycloak-admin-openapi.yml
+    entities:
+      - {name: Realm, description: An isolated security domain.}
+      - {name: User, description: An account within a realm.}
+      - {name: Client, description: An application/service that requests authentication.}
+      - {name: Role, description: A permission grouping (realm or client scoped).}
+      - {name: Group, description: A collection of users.}
+      - {name: IdentityProvider, description: A federated external IdP.}
+    relationships:
+      - {from: Realm, to: User, kind: has_many, via: realm}
+      - {from: Realm, to: Client, kind: has_many, via: realm}
+      - {from: Realm, to: Role, kind: has_many, via: realm}
+      - {from: Realm, to: Group, kind: has_many, via: realm}
+      - {from: Realm, to: IdentityProvider, kind: has_many, via: realm}
+      - {from: User, to: Group, kind: has_many, via: user}
+      - {from: User, to: Role, kind: has_many, via: user}
+  - product: Red Hat Insights
+    source: openapi/red-hat-insights-openapi.yml
+    entities:
+      - {name: System, description: A registered host reporting into Insights.}
+      - {name: Rule, description: A recommendation rule evaluated against systems.}
+      - {name: Topic, description: A grouping of related rules.}
+    relationships:
+      - {from: Rule, to: System, kind: has_many, via: rule_id}
+      - {from: Topic, to: Rule, kind: has_many, via: topic}
+      - {from: System, to: Rule, kind: has_many, via: system_id}
+  - product: Red Hat Quay
+    source: openapi/red-hat-quay-openapi.yml
+    entities:
+      - {name: Organization, description: A namespace owning repositories.}
+      - {name: Repository, description: A container-image repository.}
+      - {name: Tag, description: A named pointer to an image manifest.}
+      - {name: RobotAccount, description: A machine credential scoped to an org/repo.}
+      - {name: User, description: A Quay user account.}
+      - {name: SecurityScanResult, description: Vulnerability scan output for a tag/manifest.}
+    relationships:
+      - {from: Organization, to: Repository, kind: has_many, via: namespace}
+      - {from: Organization, to: RobotAccount, kind: has_many, via: organization}
+      - {from: Repository, to: Tag, kind: has_many, via: repository}
+      - {from: Tag, to: SecurityScanResult, kind: has_one, via: tag}
+  - product: Red Hat Satellite
+    source: openapi/red-hat-satellite-openapi.yml
+    entities:
+      - {name: Host, description: A managed system.}
+      - {name: HostGroup, description: A template grouping for hosts.}
+      - {name: ContentView, description: A curated set of repositories/content.}
+      - {name: Environment, description: A lifecycle environment (e.g. Dev/QA/Prod).}
+      - {name: Repository, description: A content repository.}
+      - {name: Organization, description: A tenancy boundary.}
+      - {name: Errata, description: An advisory/patch applicable to hosts.}
+    relationships:
+      - {from: Host, to: HostGroup, kind: belongs_to, via: hostgroup_id}
+      - {from: Host, to: ContentView, kind: belongs_to, via: content_view_id}
+      - {from: Host, to: Errata, kind: has_many, via: host_id}
+      - {from: ContentView, to: Repository, kind: has_many, via: content_view_id}
+      - {from: Organization, to: Host, kind: has_many, via: organization_id}

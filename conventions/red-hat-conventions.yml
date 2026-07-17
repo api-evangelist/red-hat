@@ -1,0 +1,59 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://console.redhat.com/docs/api,
+  https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api,
+  https://access.redhat.com/articles/3626371 (offline-token auth), and derived
+  from openapi/*.yml. Red Hat is multi-product, so several conventions vary by
+  product family; the dominant Hybrid Cloud Console (console.redhat.com) shape is
+  described, with product deviations noted.
+description: >-
+  Cross-cutting request/response semantics across the Red Hat API portfolio:
+  authentication, pagination, versioning, identity propagation, error envelopes,
+  and rate-limit signaling. These are the runtime conventions OpenAPI does not
+  fully express.
+authentication:
+  primary: >-
+    Bearer token (JWT) obtained by exchanging a long-lived offline token at the
+    sso.redhat.com Keycloak token endpoint (grant_type=refresh_token). Console
+    and api.openshift.com services accept the resulting Authorization: Bearer.
+  offline_token_docs: https://access.redhat.com/articles/3626371
+  service_accounts: >-
+    Red Hat service accounts (client_id/client_secret, client_credentials grant)
+    are the recommended non-interactive alternative to offline tokens.
+  satellite: HTTP Basic (username/password) or personal access token; Satellite is self-hosted.
+  detail: authentication/red-hat-authentication.yml
+  token_issuer: https://sso.redhat.com/auth/realms/redhat-external
+identity:
+  org_scoping: >-
+    Console API access is scoped to the caller's Red Hat organization and RBAC
+    roles (apis.yml Red Hat Role-Based Access Control API).
+pagination:
+  console_services:
+    style: offset
+    request_params: {limit: page size (service-specific default/max), offset: starting index}
+    response_fields: {meta: {count, limit, offset}, links: {first, next, previous, last}, data: array}
+    note: Insights and most console.redhat.com services return {meta, links, data}.
+  openshift_cluster_manager:
+    style: offset
+    request_params: {size: page size, page: page number}
+    response_fields: {kind, page, size, total, items}
+  satellite:
+    style: page
+    request_params: {page: page number, per_page: page size}
+    response_fields: {total, subtotal, page, per_page, results}
+versioning:
+  scheme: uri-path major version (v1/v2/v3.1)
+  detail: lifecycle/red-hat-lifecycle.yml
+error_envelope:
+  note: Product-specific JSON envelopes; no RFC 9457 problem+json.
+  detail: errors/red-hat-problem-types.yml
+rate_limiting:
+  note: >-
+    Per-service throttling on console.redhat.com; limits and any headers are
+    service-specific and not uniformly documented.
+  detail: rate-limits/red-hat-rate-limits.yml
+content_type:
+  request: application/json
+  response: application/json
+  security_data: Red Hat Security Data API also serves CSAF/OVAL (JSON/XML) documents.

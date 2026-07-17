@@ -1,0 +1,66 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html-single/cli_tools/index,
+  https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index,
+  https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/hammer_cli_guide/index,
+  https://github.com/openshift-online/ocm-cli
+description: >-
+  Red Hat ships a CLI per product rather than one company-wide binary. Each CLI
+  sits over the corresponding REST API; the binaries themselves are distributed
+  via the OpenShift mirror, developer.redhat.com, or package registries
+  (packages/red-hat-packages.yml). This catalogs the primary CLIs and their
+  command surfaces.
+clis:
+  - name: oc
+    product: OpenShift Container Platform
+    description: The OpenShift CLI — create applications and manage projects/resources from a terminal (superset of kubectl).
+    docs: https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html
+    install: Download from the OpenShift mirror / cluster "Command line tools" page.
+    command_groups:
+      - {name: login, description: Authenticate to a cluster API server.}
+      - {name: new-app / new-project, description: Create applications and projects.}
+      - {name: get / describe / edit / delete, description: CRUD over Kubernetes/OpenShift resources.}
+      - {name: apply / create -f, description: Apply resource manifests.}
+      - {name: rollout / scale, description: Manage deployments.}
+      - {name: adm, description: Cluster administration subcommands.}
+  - name: rosa
+    product: Red Hat OpenShift Service on AWS
+    description: Create, update, manage, and delete ROSA clusters and resources.
+    docs: https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cli_tools/rosa-cli
+    command_groups:
+      - {name: create cluster, description: Provision a ROSA cluster.}
+      - {name: list / describe, description: Inspect clusters, machine pools, versions.}
+      - {name: edit / upgrade / delete, description: Manage cluster lifecycle.}
+  - name: ocm
+    product: OpenShift Cluster Manager
+    description: Command-line client for api.openshift.com, built on ocm-sdk-go.
+    repo: https://github.com/openshift-online/ocm-cli
+    command_groups:
+      - {name: login, description: Authenticate to OCM with an offline token.}
+      - {name: get / post / patch / delete, description: Raw calls against OCM API resources.}
+      - {name: list clusters, description: List and inspect managed clusters.}
+  - name: hammer
+    product: Red Hat Satellite
+    description: Full-featured CLI for Satellite content, provisioning, and configuration management.
+    docs: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/hammer_cli_guide/index
+    command_groups:
+      - {name: host, description: Manage registered hosts.}
+      - {name: content-view, description: Manage content views and publish/promote.}
+      - {name: repository / organization, description: Manage repositories and organizations.}
+  - name: rhc
+    product: Red Hat Enterprise Linux / Insights
+    description: Register RHEL systems and manage the connection to Red Hat (remote host configuration).
+    docs: https://access.redhat.com/documentation
+  - name: ansible-navigator
+    product: Ansible Automation Platform
+    description: Text-based UI/CLI for running and developing Ansible content with execution environments.
+    docs: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform
+  - name: awx / tower-cli
+    product: Ansible Automation Platform (AWX)
+    description: CLI/SDK for the automation controller REST API (awxkit).
+    package: packages/red-hat-packages.yml
+  - name: opm / tkn / kn
+    product: OpenShift add-on CLIs
+    description: opm (operator catalogs), tkn (OpenShift Pipelines/Tekton), kn (OpenShift Serverless/Knative).
+    docs: https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html-single/cli_tools/index

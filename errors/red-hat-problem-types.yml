@@ -1,0 +1,44 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from the 4xx/5xx responses and Error component schemas in openapi/*.yml.
+  Red Hat does not use RFC 9457 application/problem+json; each product ships its
+  own JSON error envelope. Captured here as a cross-product error catalog with
+  the per-product envelope recorded under envelopes[].
+format: product-specific-json
+envelopes:
+  - product: OpenShift Cluster Manager
+    source: openapi/red-hat-openshift-cluster-manager-openapi.yml
+    schema: Error
+    fields: [kind, id, href, code, reason]
+    required: [kind, id, code, reason]
+    note: Standard OCM/api.openshift.com error object (kind=Error, href links to error docs).
+  - product: Ansible Automation Platform
+    source: openapi/red-hat-ansible-automation-platform-openapi.yml
+    schema: Error
+    fields: [detail]
+    note: 'Automation controller returns {"detail": "..."} on errors.'
+  - product: Red Hat build of Keycloak
+    source: openapi/red-hat-keycloak-admin-openapi.yml
+    fields: [error, error_description, errorMessage]
+    note: Keycloak admin API returns errorMessage (and OAuth error/error_description on token endpoints).
+problems:
+  - status: 400
+    title: Bad Request
+    description: The request was malformed or failed validation.
+    products: [OpenShift Cluster Manager, Ansible Automation Platform, Red Hat build of Keycloak, Red Hat Quay]
+    component: BadRequestError
+  - status: 401
+    title: Unauthorized
+    description: Authentication credentials were missing, invalid, or expired (bearer token / offline token, or Basic on Satellite).
+    products: [OpenShift Cluster Manager, Ansible Automation Platform, Red Hat Insights, Red Hat build of Keycloak, Red Hat Quay, Red Hat Satellite]
+    component: UnauthorizedError
+  - status: 404
+    title: Not Found
+    description: The requested resource does not exist or is not visible to the caller.
+    products: [OpenShift Cluster Manager, Ansible Automation Platform, Red Hat Insights, Red Hat build of Keycloak, Red Hat Quay, Red Hat Satellite]
+    component: NotFoundError
+  - status: 409
+    title: Conflict
+    description: The request conflicts with the current state of the resource (e.g. duplicate realm/user in Keycloak).
+    products: [Red Hat build of Keycloak]

@@ -1,0 +1,74 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from openapi/*.yml (securitySchemes = http bearer/basic, pagination
+  params, error schemas) and Red Hat compliance/standards documentation. Red Hat
+  is a platform/infrastructure vendor, so the relevant cross-cutting standards
+  are identity (OAuth2/OIDC via Keycloak SSO), Kubernetes API conventions, and
+  security-data formats (CSAF/OVAL/CVE), not payments standards.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      console.redhat.com and api.openshift.com accept OAuth 2.0 bearer tokens
+      minted from offline tokens at the sso.redhat.com Keycloak realm; OpenAPI
+      securitySchemes declare http bearer (JWT).
+  - id: oidc
+    conforms: true
+    evidence: >-
+      sso.redhat.com/auth/realms/redhat-external exposes a live OIDC discovery
+      document (well-known/red-hat-openid-configuration.json); the Red Hat build
+      of Keycloak is a certified OpenID Connect provider.
+  - id: http-bearer-basic-auth
+    conforms: true
+    evidence: >-
+      OpenAPI securitySchemes define bearerAuth (JWT) across five specs and
+      basicAuth on Satellite (authentication/red-hat-authentication.yml).
+  - id: kubernetes-api-conventions
+    conforms: true
+    evidence: >-
+      OpenShift is a certified Kubernetes distribution; the OpenShift API extends
+      the Kubernetes API and follows its resource/verb conventions.
+  - id: csaf
+    conforms: true
+    evidence: >-
+      Red Hat publishes machine-readable security advisories in CSAF 2.0 and is a
+      CSAF provider (security.txt CSAF: provider-metadata.json); the Security Data
+      API serves CSAF documents.
+  - id: oval
+    conforms: true
+    evidence: The Red Hat Security Data API serves OVAL definitions for vulnerability scanning.
+  - id: cve
+    conforms: true
+    evidence: Red Hat is a CVE Numbering Authority (CNA); security.txt declares CNA contacts.
+  - id: scap
+    conforms: true
+    evidence: >-
+      The Compliance service assesses RHEL systems against SCAP security policy
+      profiles (apis.yml Red Hat Compliance API).
+  - id: pagination
+    conforms: true
+    evidence: >-
+      List endpoints use offset/limit (RHSM, OCM) or page/per_page (Satellite)
+      with total/count envelopes; see conventions/red-hat-conventions.yml.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Error responses use product-specific envelopes (OCM kind/id/code/reason,
+      Keycloak errorMessage, AAP detail), not application/problem+json.
+  - id: pci-dss
+    conforms: true
+    evidence: >-
+      Red Hat maintains PCI DSS 4.0 certification for in-scope managed services
+      (security/red-hat-trust-center.yml).
+  - id: fhir-r4
+    conforms: false
+  - id: scim
+    conforms: false
+    evidence: No SCIM 2.0 provisioning surface in the captured specs; user/group management is via the Keycloak Admin and RBAC APIs.
+  - id: odata
+    conforms: false
+  - id: json-api
+    conforms: false
+  - id: fapi
+    conforms: false

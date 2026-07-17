@@ -1,0 +1,55 @@
+# Red Hat
+
+> APIs and developer resources from Red Hat, a leading provider of enterprise open source solutions spanning Linux (RHEL), Kubernetes/containers (OpenShift), automation (Ansible), identity (Keycloak), and the Hybrid Cloud Console (console.redhat.com). This is an API Evangelist catalog profile; it links Red Hat's own documentation and the machine-readable artifacts curated in this repository. Generated from apis.yml — no fabricated endpoints.
+
+## APIs
+
+- [Red Hat OpenShift Cluster Manager API](https://api.openshift.com/): Provision, manage, and monitor OpenShift clusters across clouds.
+- [Red Hat OpenShift API](https://docs.openshift.com/container-platform/latest/rest_api/index.html): Manage OpenShift clusters, applications, and resources.
+- [Red Hat Ansible Automation Platform API](https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html): Automate infrastructure, deployment, and configuration via the automation controller.
+- [Red Hat build of Keycloak Admin REST API](https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api): Manage realms, users, clients, roles, and identity federation.
+- [Red Hat Quay API](https://docs.redhat.com/en/documentation/red_hat_quay/): Container registry — repositories, tags, robot accounts, image scanning.
+- [Red Hat Insights API](https://console.redhat.com/docs/api): Predictive analytics and remediation across RHEL fleets.
+- [Red Hat Satellite API](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index): Content, provisioning, and patch management for Linux estates.
+- [Red Hat Security Data API](https://docs.redhat.com/en/documentation/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index): CVE, CSAF, and OVAL security data.
+- [Red Hat API Catalog](https://developers.redhat.com/api-catalog): The full catalog of Hybrid Cloud Console service APIs (cost management, image builder, vulnerability, compliance, RBAC, notifications, and more).
+
+## Specs (machine-readable, this repository)
+
+- [OpenShift Cluster Manager OpenAPI](openapi/red-hat-openshift-cluster-manager-openapi.yml)
+- [Ansible Automation Platform OpenAPI](openapi/red-hat-ansible-automation-platform-openapi.yml)
+- [Keycloak Admin OpenAPI](openapi/red-hat-keycloak-admin-openapi.yml)
+- [Insights OpenAPI](openapi/red-hat-insights-openapi.yml)
+- [Quay OpenAPI](openapi/red-hat-quay-openapi.yml)
+- [Satellite OpenAPI](openapi/red-hat-satellite-openapi.yml)
+- [Kafka Bridge AsyncAPI](asyncapi/red-hat-kafka-bridge-asyncapi.yml)
+- [Notifications Webhooks AsyncAPI](asyncapi/red-hat-notifications-webhooks-asyncapi.yml)
+
+## Artifacts (this repository)
+
+- [Authentication profile](authentication/red-hat-authentication.yml)
+- [API conventions](conventions/red-hat-conventions.yml)
+- [Error catalog](errors/red-hat-problem-types.yml)
+- [Data model](data-model/red-hat-data-model.yml)
+- [Lifecycle & versioning](lifecycle/red-hat-lifecycle.yml)
+- [Conformance](conformance/red-hat-conformance.yml)
+- [Packages & SDKs](packages/red-hat-packages.yml)
+- [CLI surface](cli/red-hat-cli.yml)
+- [UI components (PatternFly)](components/red-hat-components.yml)
+- [MCP servers](mcp/red-hat-mcp.yml)
+- [Sandbox / trial environments](sandbox/red-hat-sandbox.yml)
+- [Domain security](security/red-hat-domain-security.yml)
+- [Trust center & certifications](security/red-hat-trust-center.yml)
+- [Vulnerability disclosure](security/red-hat-vulnerability-disclosure.yml)
+- [Arazzo workflows](arazzo/)
+
+## Docs
+
+- [Red Hat Developer](https://developers.redhat.com)
+- [Get started](https://developers.redhat.com/get-started)
+- [Product documentation](https://docs.redhat.com/en/products)
+- [Hybrid Cloud Console](https://console.redhat.com)
+- [Authentication (offline tokens)](https://access.redhat.com/articles/3626371)
+- [Product life cycles](https://access.redhat.com/product-life-cycles)
+- [Status](https://status.redhat.com)
+- [Security](https://access.redhat.com/security/vulnerabilities)

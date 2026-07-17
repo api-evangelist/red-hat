@@ -1,0 +1,46 @@
+generated: '2026-06-20'
+method: searched
+status: published
+source: >-
+  https://www.redhat.com/en/blog/model-context-protocol-server-red-hat-openshift-now-available-technology-preview,
+  https://developers.redhat.com/articles/2026/02/04/how-connect-openshift-lightspeed-mcp-your-ide,
+  https://www.redhat.com/en/blog/mcp-catalog-here-discover-deploy-and-connect-red-hat-openshift-ai
+description: >-
+  Red Hat ships official Model Context Protocol servers as part of its AI
+  portfolio rather than a single company-wide hosted endpoint. The primary one
+  is the MCP server for Red Hat OpenShift (technology preview), which gives LLM
+  agents governed access to a cluster's Kubernetes/OpenShift API; OpenShift
+  Lightspeed embeds a read-only MCP server for the same purpose. Red Hat also
+  operates an MCP catalog on OpenShift AI for discovering and deploying servers.
+  These are deployed into a customer's own cluster (stdio / in-cluster
+  transport), not a public multi-tenant URL, so no fixed hosted URL is recorded.
+servers:
+  - name: mcp-server-openshift
+    product: Red Hat OpenShift
+    transport: stdio
+    maturity: technology-preview
+    url: null
+    docs: https://www.redhat.com/en/blog/model-context-protocol-server-red-hat-openshift-now-available-technology-preview
+    notes: >-
+      Read-only by default; write capabilities must be explicitly enabled.
+      Supports multicluster operations and multiple toolsets (e.g. Helm,
+      NetEdge). Deployed into the target cluster.
+  - name: openshift-lightspeed-mcp
+    product: Red Hat OpenShift Lightspeed
+    transport: stdio
+    maturity: generally-available
+    url: null
+    docs: https://developers.redhat.com/articles/2026/02/04/how-connect-openshift-lightspeed-mcp-your-ide
+    notes: >-
+      Lightspeed installs an MCP server that grants the assistant read access to
+      the cluster API; connectable from MCP-capable IDEs (Claude Code, Cursor,
+      VS Code + Copilot).
+  - name: mcp-catalog-openshift-ai
+    product: Red Hat OpenShift AI
+    transport: http
+    maturity: technology-preview
+    url: null
+    docs: https://www.redhat.com/en/blog/mcp-catalog-here-discover-deploy-and-connect-red-hat-openshift-ai
+    notes: A curated catalog to discover, deploy, and connect MCP servers on OpenShift AI.
+related_packages:
+  - packages/red-hat-packages.yml

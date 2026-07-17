@@ -1,0 +1,36 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developers.redhat.com/developer-sandbox,
+  https://developers.redhat.com/developer-sandbox/FAQ,
+  https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-developer-sandbox-trial
+description: >-
+  Red Hat's sandbox surface is a free, no-commitment trial environment rather
+  than a payments-style test-mode with magic values. The Developer Sandbox gives
+  a private, time-boxed slice of a shared multi-tenant OpenShift cluster
+  pre-provisioned with select Red Hat technologies, reachable through the same
+  console/API surface as production. No fabricated test credentials are recorded;
+  the sandbox is provisioned per-user against a real Red Hat developer account.
+sandboxes:
+  - name: Developer Sandbox for Red Hat OpenShift
+    url: https://developers.redhat.com/developer-sandbox
+    trial_length: 30 days (re-signup permitted; no signup limit)
+    cost: free — no credit card; a Red Hat developer account and a valid phone number are required
+    access: >-
+      Private access to a shared, multi-tenant OpenShift cluster; deploy via the
+      OpenShift console, `oc` CLI, or OpenShift Dev Spaces (in-browser IDE).
+    support_contact: devsandbox@redhat.com
+    marketplaces:
+      - https://aws.amazon.com/marketplace/pp/prodview-aiqxqej2v7cq2
+      - https://azuremarketplace.microsoft.com/en-us/marketplace/apps/redhat.rh-openshift-dev-sandbox
+  - name: Developer Sandbox for Red Hat OpenShift AI
+    url: https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai/dev-sandbox/trial
+    trial_length: 30 days
+    cost: free — Red Hat developer account required
+    access: Self-serve trial of OpenShift AI (model serving, notebooks, pipelines) on a shared cluster.
+notes: >-
+  For the console.redhat.com service APIs, authentication in the sandbox/trial
+  uses the same offline-token -> bearer-token flow as production
+  (authentication/red-hat-authentication.yml); there is no separate test-key
+  prefix or magic identifier scheme. Product trials for AAP, Satellite, and RHEL
+  are available under developers.redhat.com/products.

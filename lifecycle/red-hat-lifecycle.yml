@@ -1,0 +1,47 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://access.redhat.com/product-life-cycles, https://access.redhat.com/support/policy/updates/errata,
+  https://status.redhat.com, https://docs.openshift.com/container-platform/latest/release_notes,
+  and per-product API versioning observed in openapi/*.yml servers/paths.
+description: >-
+  Versioning, deprecation, lifecycle, and status posture across the Red Hat API
+  portfolio. Red Hat versions APIs per product via URI-path major versions
+  (v1/v2/v3.1); the company's broader software lifecycle (Full Support ->
+  Maintenance -> Extended Life) is governed by the published product life cycle
+  policy rather than per-endpoint Sunset headers.
+versioning:
+  scheme: uri-path
+  examples:
+    - https://console.redhat.com/api/inventory/v1
+    - https://api.openshift.com/api/clusters_mgmt/v1
+    - https://api.openshift.com/api/assisted-install/v2
+    - https://console.redhat.com/api/sources/v3.1
+    - https://api.access.redhat.com/management/v1
+  docs: https://developers.redhat.com/api-catalog
+  notes: >-
+    Each Hybrid Cloud Console service carries its own major version in the path.
+    OpenShift itself follows Kubernetes-style versioned API groups (apiVersion).
+deprecation:
+  policy_url: https://access.redhat.com/support/policy/updates/errata
+  product_life_cycle: https://access.redhat.com/product-life-cycles
+  sunset_header: false
+  notes: >-
+    Deprecations are communicated through product release notes and the product
+    life cycle pages (Full Support / Maintenance Support / Extended Life phases),
+    not via RFC 8594 Sunset/Deprecation HTTP headers. RHEL Lightspeed Planning
+    (apis.yml roadmap API) exposes machine-readable EOL/lifecycle dates.
+sla:
+  url: https://www.redhat.com/en/about/agreements
+  managed_services: https://access.redhat.com/articles/2928071
+  public_uptime_target: null
+  notes: >-
+    Uptime commitments for managed services (ROSA, OpenShift Dedicated, etc.) are
+    defined in the applicable service agreements; Red Hat does not publish a
+    single numeric uptime SLA for all APIs.
+status_page: https://status.redhat.com
+release_notes:
+  openshift: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+  ansible_automation_platform: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform
+changelog: changelog/red-hat-changelog.yml
+deprecated_operations: []

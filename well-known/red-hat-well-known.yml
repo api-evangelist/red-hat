@@ -1,0 +1,69 @@
+generated: '2026-06-20'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for the Red Hat web,
+  identity, and API hosts drawn from apis.yml (Website, Portal, Console, Login,
+  baseURL) and the OpenAPI servers[]. Status is the HTTP code observed at fetch
+  time. Only documents that returned a real, correctly-typed payload were saved
+  verbatim; console.redhat.com answers 200 with a text/html SPA shell for every
+  /.well-known/ path, so those are recorded as present-but-not-a-real-document
+  and not saved. The Keycloak-backed SSO realm (sso.redhat.com) exposes a real
+  OIDC discovery document at the realm path, not at the host root.
+hosts:
+  - host: https://www.redhat.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        type: text/plain
+        file: red-hat-security.txt
+        note: >-
+          RFC 9116 security.txt (PGP-signed). Points at Red Hat Product Security
+          contacts and the CSAF provider metadata. Expires field (2026-06-04)
+          had lapsed at fetch time but the document is still served.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+  - host: https://sso.redhat.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /auth/realms/redhat-external/.well-known/openid-configuration
+        status: 200
+        type: application/json
+        file: red-hat-openid-configuration.json
+        note: >-
+          RFC 8414 / OIDC discovery document for the Red Hat external SSO realm
+          (Keycloak). issuer https://sso.redhat.com/auth/realms/redhat-external.
+          This is the token issuer for console.redhat.com and api.openshift.com
+          bearer tokens.
+  - host: https://console.redhat.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        type: text/html
+        note: SPA shell, not a real security.txt; not saved.
+      - path: /.well-known/openid-configuration
+        status: 200
+        type: text/html
+        note: SPA shell, not a real OIDC discovery document; not saved.
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        type: text/html
+        note: SPA shell, not a real document; not saved.
+  - host: https://api.openshift.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+  - host: https://quay.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 308
+        note: Redirects; no security.txt served.
+  - host: https://developers.redhat.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        note: Edge/WAF blocks automated fetch.

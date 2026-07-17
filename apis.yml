@@ -7,7 +7,7 @@ type: Index
 image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
 url: https://raw.githubusercontent.com/api-evangelist/red-hat/refs/heads/main/apis.yml
 created: '2024-01-15'
-modified: '2026-05-19'
+modified: '2026-06-20'
 specificationVersion: '0.19'
 tags:
   - Cloud
@@ -1039,10 +1039,52 @@ common:
     url: agentic-access/red-hat-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/red-hat-vulnerability-disclosure.yml
+  - type: TrustCenter
+    url: security/red-hat-trust-center.yml
   - type: DomainSecurity
     url: security/red-hat-domain-security.yml
   - type: Authentication
     url: authentication/red-hat-authentication.yml
+  - type: Packages
+    url: packages/red-hat-packages.yml
+  - type: WellKnown
+    url: well-known/red-hat-well-known.yml
+  - type: SecurityTxt
+    url: well-known/red-hat-security.txt
+  - type: MCPServer
+    url: mcp/red-hat-mcp.yml
+  - type: LLMsTxt
+    url: llms/red-hat-llms.txt
+  - type: Conformance
+    url: conformance/red-hat-conformance.yml
+  - type: ErrorCatalog
+    url: errors/red-hat-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/red-hat-lifecycle.yml
+  - type: Conventions
+    url: conventions/red-hat-conventions.yml
+  - type: ChangeLog
+    url: changelog/red-hat-changelog.yml
+  - type: CLI
+    url: cli/red-hat-cli.yml
+  - type: Components
+    url: components/red-hat-components.yml
+  - type: DataModel
+    url: data-model/red-hat-data-model.yml
+  - type: Sandbox
+    url: sandbox/red-hat-sandbox.yml
+  - type: Overlay
+    url: overlays/red-hat-openshift-cluster-manager-overlay.yaml
+  - type: Overlay
+    url: overlays/red-hat-ansible-automation-platform-overlay.yaml
+  - type: Overlay
+    url: overlays/red-hat-keycloak-admin-overlay.yaml
+  - type: Overlay
+    url: overlays/red-hat-insights-overlay.yaml
+  - type: Overlay
+    url: overlays/red-hat-quay-overlay.yaml
+  - type: Overlay
+    url: overlays/red-hat-satellite-overlay.yaml
   - name: Agent Skills
     url: https://www.redhat.com/en/blog/empower-your-ai-tools-new-agent-skills-red-hat-enterprise-linux
     type: AgentSkills

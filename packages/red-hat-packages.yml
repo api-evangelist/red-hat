@@ -1,0 +1,106 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developers.redhat.com/openshift/REST-API-client-libraries and the
+  public package registries (PyPI, pkg.go.dev, Maven Central, npm). Registry
+  HTTP status recorded at fetch time. Red Hat's client-library surface is spread
+  across its product upstreams (OpenShift, Ansible/AWX, Keycloak, PatternFly);
+  official:true is set only for libraries published by Red Hat or the Red
+  Hat-sponsored upstream project.
+description: >-
+  First-party and Red Hat-sponsored-upstream client libraries, SDKs, and CLIs
+  across the Red Hat product portfolio. Because OpenShift is built on Kubernetes,
+  any Kubernetes API client library also works against the OpenShift API; only
+  the Red Hat / OpenShift-specific clients are listed here.
+packages:
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/openshift-online/ocm-sdk-go
+    url: https://pkg.go.dev/github.com/openshift-online/ocm-sdk-go
+    source: https://github.com/openshift-online/ocm-sdk-go
+    install: go get github.com/openshift-online/ocm-sdk-go
+    official: true
+    status: 200
+    note: >-
+      Official Go SDK for the OpenShift Cluster Manager (api.openshift.com); the
+      `ocm` CLI is built on top of it (catalogued in cli/red-hat-cli.yml).
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/openshift/client-go
+    url: https://pkg.go.dev/github.com/openshift/client-go
+    source: https://github.com/openshift/client-go
+    install: go get github.com/openshift/client-go
+    official: true
+    status: 200
+    note: Official typed Go client for the OpenShift API extensions over Kubernetes.
+  - language: python
+    registry: pypi
+    name: openshift-client
+    url: https://pypi.org/project/openshift-client/
+    source: https://github.com/openshift/openshift-client-python
+    install: pip install openshift-client
+    official: true
+    status: 200
+    note: OpenShift client Python library/DSL maintained under the openshift GitHub org.
+  - language: python
+    registry: pypi
+    name: awxkit
+    url: https://pypi.org/project/awxkit/
+    source: https://github.com/ansible/awx/tree/devel/awxkit
+    install: pip install awxkit
+    official: true
+    status: 200
+    note: >-
+      Official CLI/SDK for AWX, the Red Hat-sponsored upstream of the Ansible
+      Automation Platform controller (the `awx` command).
+  - language: python
+    registry: pypi
+    name: ansible-tower-cli
+    url: https://pypi.org/project/ansible-tower-cli/
+    source: https://github.com/ansible/tower-cli
+    install: pip install ansible-tower-cli
+    official: true
+    status: 200
+    note: >-
+      Legacy Ansible Tower / AWX CLI (the `tower-cli` command). Deprecated in
+      favor of awxkit; retained for older AAP/Tower deployments.
+  - language: python
+    registry: pypi
+    name: ansible
+    url: https://pypi.org/project/ansible/
+    source: https://github.com/ansible/ansible
+    install: pip install ansible
+    official: true
+    status: 200
+    note: The Ansible community package (Red Hat-sponsored); ansible-core is its engine.
+  - language: java
+    registry: maven-central
+    name: org.keycloak:keycloak-admin-client
+    url: https://repo1.maven.org/maven2/org/keycloak/keycloak-admin-client/
+    source: https://github.com/keycloak/keycloak
+    install: 'Maven: org.keycloak:keycloak-admin-client (matches Red Hat build of Keycloak version)'
+    official: true
+    status: 200
+    note: >-
+      Official Java admin REST client for Keycloak, the upstream of the Red Hat
+      build of Keycloak Admin REST API.
+  - language: javascript
+    registry: npm
+    name: "@patternfly/react-core"
+    url: https://www.npmjs.com/package/@patternfly/react-core
+    source: https://github.com/patternfly/patternfly-react
+    install: npm install @patternfly/react-core
+    official: true
+    status: 200
+    note: >-
+      Red Hat PatternFly React component library used to build the Hybrid Cloud
+      Console UI; see components/red-hat-components.yml.
+  - language: javascript
+    registry: npm
+    name: "@patternfly/elements"
+    url: https://www.npmjs.com/package/@patternfly/elements
+    source: https://github.com/patternfly/patternfly-elements
+    install: npm install @patternfly/elements
+    official: true
+    status: 200
+    note: PatternFly Elements — framework-agnostic web components based on PatternFly.

@@ -1,0 +1,41 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://www.patternfly.org/, https://www.patternfly.org/get-started/develop/,
+  https://patternflyelements.org/, https://ux.redhat.com/about/,
+  https://github.com/patternfly
+description: >-
+  Red Hat's client-side/embeddable UI surface is PatternFly, its open source
+  design system that powers the Hybrid Cloud Console and OpenShift web console.
+  PatternFly ships as a React component library, an HTML/CSS (Sass) library, and
+  a framework-agnostic Web Components library (PatternFly Elements). These are
+  developer-facing UI building blocks distinct from the server-side SDKs in
+  packages/red-hat-packages.yml.
+families:
+  - name: PatternFly React
+    kind: react-component-library
+    docs: https://www.patternfly.org/
+    loaders:
+      - {package: "@patternfly/react-core", registry: npm, url: https://www.npmjs.com/package/@patternfly/react-core}
+      - {package: "@patternfly/react-table", registry: npm}
+      - {package: "@patternfly/react-charts", registry: npm}
+    supports: React 17, 18, 19 (PatternFly 6)
+    note: Primary way Red Hat builds enterprise console UIs; consistent markup, styling, behavior.
+  - name: PatternFly HTML/CSS
+    kind: css-framework
+    docs: https://www.patternfly.org/get-started/develop/
+    loaders:
+      - {package: "@patternfly/patternfly", registry: npm}
+    modules: [layouts, components, utilities]
+    formats: [Sass (.scss), CSS]
+  - name: PatternFly Elements (PFE)
+    kind: web-components
+    docs: https://patternflyelements.org/
+    repo: https://github.com/patternfly/patternfly-elements
+    loaders:
+      - {package: "@patternfly/elements", registry: npm, url: https://www.npmjs.com/package/@patternfly/elements}
+    note: >-
+      Framework-agnostic custom elements (work in React, Vue, Angular, vanilla
+      JS); ships React wrappers for use inside JSX.
+maintainer: Red Hat (open source; open to all contributors)
+design_system_home: https://ux.redhat.com/

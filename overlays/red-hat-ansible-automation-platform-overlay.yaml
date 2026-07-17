@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Red Hat Ansible Automation Platform API
+  version: 1.0.0
+extends: openapi/red-hat-ansible-automation-platform-openapi.yml
+generated: '2026-06-20'
+method: generated
+source: openapi/red-hat-ansible-automation-platform-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist:
+      catalog: https://apis.io/red-hat
+      provider: Red Hat
+      maintainer: Kin Lane <kin@apievangelist.com>
+      artifacts:
+      - apis.yml
+      - authentication/red-hat-authentication.yml
+      - conventions/red-hat-conventions.yml
+      - conformance/red-hat-conformance.yml
+      - errors/red-hat-problem-types.yml
+      - lifecycle/red-hat-lifecycle.yml
+      - data-model/red-hat-data-model.yml
+      - packages/red-hat-packages.yml
+      - cli/red-hat-cli.yml
+      - mcp/red-hat-mcp.yml
