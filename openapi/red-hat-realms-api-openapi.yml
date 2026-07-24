@@ -1,0 +1,221 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Realms API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Realms
+  description: Operations for managing Keycloak realms that serve as tenants for isolating identity configurations.
+paths:
+  /admin/realms:
+    get:
+      operationId: listRealms
+      summary: Red Hat List Realms
+      description: Retrieves the list of all realms accessible to the authenticated admin user.
+      tags:
+      - Realms
+      responses:
+        '200':
+          description: Successfully retrieved realms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Realm'
+              examples:
+                Listrealms200Example:
+                  summary: Default listRealms 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    realm: example_value
+                    displayName: example_value
+                    enabled: true
+                    registrationAllowed: true
+                    loginWithEmailAllowed: user@example.com
+                    duplicateEmailsAllowed: user@example.com
+                    resetPasswordAllowed: true
+                    sslRequired: all
+                    accessTokenLifespan: 10
+                    ssoSessionIdleTimeout: 10
+                    ssoSessionMaxLifespan: 10
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /admin/realms/{realm}:
+    get:
+      operationId: getRealm
+      summary: Red Hat Get a Realm
+      description: Retrieves the configuration of a specific realm, including its login settings, token policies, and enabled features.
+      tags:
+      - Realms
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      responses:
+        '200':
+          description: Successfully retrieved realm
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+              examples:
+                Getrealm200Example:
+                  summary: Default getRealm 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    realm: example_value
+                    displayName: example_value
+                    enabled: true
+                    registrationAllowed: true
+                    loginWithEmailAllowed: user@example.com
+                    duplicateEmailsAllowed: user@example.com
+                    resetPasswordAllowed: true
+                    sslRequired: all
+                    accessTokenLifespan: 10
+                    ssoSessionIdleTimeout: 10
+                    ssoSessionMaxLifespan: 10
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateRealm
+      summary: Red Hat Update a Realm
+      description: Updates the configuration of a specific realm. All writable fields can be modified.
+      tags:
+      - Realms
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realm'
+            examples:
+              UpdaterealmRequestExample:
+                summary: Default updateRealm request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  realm: example_value
+                  displayName: example_value
+                  enabled: true
+                  registrationAllowed: true
+                  loginWithEmailAllowed: user@example.com
+                  duplicateEmailsAllowed: user@example.com
+                  resetPasswordAllowed: true
+                  sslRequired: all
+                  accessTokenLifespan: 10
+                  ssoSessionIdleTimeout: 10
+                  ssoSessionMaxLifespan: 10
+      responses:
+        '204':
+          description: Realm updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+  parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
+  schemas:
+    Realm:
+      type: object
+      description: A Keycloak realm representing an isolated tenant for identity management.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the realm.
+          example: abc123
+        realm:
+          type: string
+          description: The name of the realm.
+          example: example_value
+        displayName:
+          type: string
+          description: The display name of the realm.
+          example: example_value
+        enabled:
+          type: boolean
+          description: Whether the realm is enabled.
+          example: true
+        registrationAllowed:
+          type: boolean
+          description: Whether user self-registration is allowed.
+          example: true
+        loginWithEmailAllowed:
+          type: boolean
+          description: Whether users can log in with their email address.
+          example: user@example.com
+        duplicateEmailsAllowed:
+          type: boolean
+          description: Whether duplicate emails are allowed.
+          example: user@example.com
+        resetPasswordAllowed:
+          type: boolean
+          description: Whether password reset is enabled.
+          example: true
+        sslRequired:
+          type: string
+          description: The SSL requirement policy.
+          enum:
+          - all
+          - external
+          - none
+          example: all
+        accessTokenLifespan:
+          type: integer
+          description: The access token lifespan in seconds.
+          example: 10
+        ssoSessionIdleTimeout:
+          type: integer
+          description: The SSO session idle timeout in seconds.
+          example: 10
+        ssoSessionMaxLifespan:
+          type: integer
+          description: The maximum SSO session lifespan in seconds.
+          example: 10
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

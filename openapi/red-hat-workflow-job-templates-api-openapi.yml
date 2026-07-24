@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Workflow Job Templates API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Workflow Job Templates
+  description: Operations for managing workflow job templates that chain multiple job templates into orchestrated automation workflows.
+paths:
+  /api/v2/workflow_job_templates/:
+    get:
+      operationId: listWorkflowJobTemplates
+      summary: Red Hat List Workflow Job Templates
+      description: Retrieves a paginated list of workflow job templates. Workflows chain multiple job templates into orchestrated automation sequences with conditional branching.
+      tags:
+      - Workflow Job Templates
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PageSizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved workflow job templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedList'
+              examples:
+                Listworkflowjobtemplates200Example:
+                  summary: Default listWorkflowJobTemplates 200 response
+                  x-microcks-default: true
+                  value:
+                    count: 10
+                    next: https://www.example.com
+                    previous: https://www.example.com
+                    results:
+                    - {}
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PaginatedList:
+      type: object
+      description: A generic paginated list response.
+      properties:
+        count:
+          type: integer
+          example: 10
+        next:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        results:
+          type: array
+          items:
+            type: object
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

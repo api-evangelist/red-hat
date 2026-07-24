@@ -1,0 +1,233 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Errata API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Errata
+  description: Operations for listing and managing errata (security advisories, bug fixes, and enhancements) applicable to registered hosts.
+paths:
+  /api/v2/hosts/{id}/errata:
+    get:
+      operationId: listHostErrata
+      summary: Red Hat List Errata for a Host
+      description: Retrieves the list of applicable errata for a specific host, including security advisories, bug fixes, and enhancements.
+      tags:
+      - Errata
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      responses:
+        '200':
+          description: Successfully retrieved host errata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedErrataList'
+              examples:
+                Listhosterrata200Example:
+                  summary: Default listHostErrata 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      errata_id: '500123'
+                      title: Example Title
+                      type: security
+                      severity: Critical
+                      issued: '2026-01-15'
+                      updated: '2026-01-15'
+                      hosts_available_count: 10
+                      hosts_applicable_count: 10
+                      cves:
+                      - {}
+                      packages:
+                      - {}
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /katello/api/v2/errata:
+    get:
+      operationId: listErrata
+      summary: Red Hat List Errata
+      description: Retrieves a paginated list of available errata including security advisories, bug fixes, and enhancement updates.
+      tags:
+      - Errata
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      - name: type
+        in: query
+        description: Filter errata by type.
+        schema:
+          type: string
+          enum:
+          - security
+          - bugfix
+          - enhancement
+        example: security
+      - name: severity
+        in: query
+        description: Filter security errata by severity.
+        schema:
+          type: string
+          enum:
+          - Critical
+          - Important
+          - Moderate
+          - Low
+        example: Critical
+      responses:
+        '200':
+          description: Successfully retrieved errata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedErrataList'
+              examples:
+                Listerrata200Example:
+                  summary: Default listErrata 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      errata_id: '500123'
+                      title: Example Title
+                      type: security
+                      severity: Critical
+                      issued: '2026-01-15'
+                      updated: '2026-01-15'
+                      hosts_available_count: 10
+                      hosts_applicable_count: 10
+                      cves:
+                      - {}
+                      packages:
+                      - {}
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: integer
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PerPageParam:
+      name: per_page
+      in: query
+      description: The number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+  schemas:
+    PaginatedErrataList:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 10
+        subtotal:
+          type: integer
+          example: 10
+        page:
+          type: integer
+          example: 10
+        per_page:
+          type: integer
+          example: 10
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              errata_id:
+                type: string
+                description: The advisory identifier (e.g., RHSA-2024:1234).
+              title:
+                type: string
+              type:
+                type: string
+                enum:
+                - security
+                - bugfix
+                - enhancement
+              severity:
+                type: string
+                enum:
+                - Critical
+                - Important
+                - Moderate
+                - Low
+                - N/A
+              issued:
+                type: string
+                format: date
+              updated:
+                type: string
+                format: date
+              hosts_available_count:
+                type: integer
+              hosts_applicable_count:
+                type: integer
+              cves:
+                type: array
+                items:
+                  type: string
+              packages:
+                type: array
+                items:
+                  type: string
+          example: []
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

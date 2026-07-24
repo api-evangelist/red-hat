@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Add-Ons
+  description: Operations for managing cluster add-ons that extend OpenShift cluster functionality.
+paths:
+  /api/clusters_mgmt/v1/addons:
+    get:
+      operationId: listAddons
+      summary: Red Hat List Add-ons
+      description: Retrieves the list of available add-ons that can be installed on OpenShift clusters to extend functionality.
+      tags:
+      - Add-Ons
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved add-ons
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddonList'
+              examples:
+                Listaddons200Example:
+                  summary: Default listAddons 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      enabled: true
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    SizeParam:
+      name: size
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
+      schema:
+        type: string
+  schemas:
+    AddonList:
+      type: object
+      description: A paginated list of available cluster add-ons.
+      properties:
+        kind:
+          type: string
+          example: example_value
+        page:
+          type: integer
+          example: 10
+        size:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The add-on identifier.
+              name:
+                type: string
+                description: The display name of the add-on.
+              description:
+                type: string
+                description: A description of the add-on.
+              enabled:
+                type: boolean
+                description: Whether the add-on is available for installation.
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

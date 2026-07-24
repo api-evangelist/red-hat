@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Projects API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Projects
+  description: Operations for managing projects that represent collections of Ansible playbooks sourced from version control.
+paths:
+  /api/v2/projects/:
+    get:
+      operationId: listProjects
+      summary: Red Hat List Projects
+      description: Retrieves a paginated list of projects. Projects represent collections of Ansible playbooks sourced from a version control system.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PageSizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProjectList'
+              examples:
+                Listprojects200Example:
+                  summary: Default listProjects 200 response
+                  x-microcks-default: true
+                  value:
+                    count: 10
+                    next: https://www.example.com
+                    previous: https://www.example.com
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      scm_type: ''
+                      scm_url: https://www.example.com
+                      scm_branch: example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+  schemas:
+    PaginatedProjectList:
+      type: object
+      description: A paginated list of projects.
+      properties:
+        count:
+          type: integer
+          example: 10
+        next:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: The unique identifier of the project.
+              name:
+                type: string
+                description: The name of the project.
+              description:
+                type: string
+                description: A description of the project.
+              scm_type:
+                type: string
+                description: The source control type.
+                enum:
+                - ''
+                - git
+                - svn
+                - insights
+                - archive
+              scm_url:
+                type: string
+                description: The source control URL.
+              scm_branch:
+                type: string
+                description: The source control branch.
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

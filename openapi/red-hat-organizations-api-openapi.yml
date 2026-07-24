@@ -1,0 +1,275 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Organizations API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Organizations
+  description: Operations for managing organizations that provide multi-tenancy and access control boundaries.
+paths:
+  /api/v2/organizations/:
+    get:
+      operationId: listOrganizations
+      summary: Red Hat List Organizations
+      description: Retrieves a paginated list of organizations that provide multi-tenancy boundaries for access control and resource management.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PageSizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved organizations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedList'
+              examples:
+                Listorganizations200Example:
+                  summary: Default listOrganizations 200 response
+                  x-microcks-default: true
+                  value:
+                    count: 10
+                    next: https://www.example.com
+                    previous: https://www.example.com
+                    results:
+                    - {}
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /organization/{orgname}:
+    get:
+      operationId: getOrganization
+      summary: Red Hat Get an Organization
+      description: Retrieves the details of a specific organization, including its member count and settings.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/OrgNameParam'
+      responses:
+        '200':
+          description: Successfully retrieved organization details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+              examples:
+                Getorganization200Example:
+                  summary: Default getOrganization 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    email: user@example.com
+                    invoice_email: user@example.com
+                    is_admin: true
+                    is_member: true
+        '401':
+          $ref: '#/components/responses/UnauthorizedError_2'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v2/organizations:
+    get:
+      operationId: listOrganizations
+      summary: Red Hat List Organizations
+      description: Retrieves the list of organizations in Satellite that provide multi-tenancy isolation.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      - $ref: '#/components/parameters/SearchParam_2'
+      responses:
+        '200':
+          description: Successfully retrieved organizations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOrganizationList'
+              examples:
+                Listorganizations200Example:
+                  summary: Default listOrganizations 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                      description: A sample description.
+        '401':
+          $ref: '#/components/responses/UnauthorizedError_3'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    UnauthorizedError_2:
+      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError_3:
+      description: Authentication credentials are missing or invalid.
+  schemas:
+    PaginatedList:
+      type: object
+      description: A generic paginated list response.
+      properties:
+        count:
+          type: integer
+          example: 10
+        next:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        results:
+          type: array
+          items:
+            type: object
+          example: []
+    Organization:
+      type: object
+      description: A Quay organization.
+      properties:
+        name:
+          type: string
+          description: The name of the organization.
+          example: Example Title
+        email:
+          type: string
+          format: email
+          description: The organization contact email.
+          example: user@example.com
+        invoice_email:
+          type: boolean
+          description: Whether invoices are sent to the organization email.
+          example: user@example.com
+        is_admin:
+          type: boolean
+          description: Whether the current user is an admin of this organization.
+          example: true
+        is_member:
+          type: boolean
+          description: Whether the current user is a member of this organization.
+          example: true
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+    PaginatedOrganizationList:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 10
+        subtotal:
+          type: integer
+          example: 10
+        page:
+          type: integer
+          example: 10
+        per_page:
+          type: integer
+          example: 10
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              label:
+                type: string
+              description:
+                type: string
+          example: []
+  parameters:
+    SearchParam_2:
+      name: search
+      in: query
+      description: A scoped search filter expression.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    OrgNameParam:
+      name: orgname
+      in: path
+      required: true
+      description: The name of the organization.
+      schema:
+        type: string
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    PerPageParam:
+      name: per_page
+      in: query
+      description: The number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

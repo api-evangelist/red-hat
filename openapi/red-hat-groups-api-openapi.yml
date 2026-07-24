@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Groups API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Groups
+  description: Operations for managing user groups that enable bulk role and attribute assignment.
+paths:
+  /admin/realms/{realm}/groups:
+    get:
+      operationId: listGroups
+      summary: Red Hat List Groups
+      description: Retrieves the list of groups in the realm, optionally filtered by name. Groups enable bulk role and attribute assignment to users.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      - name: search
+        in: query
+        description: Filter groups by name.
+        schema:
+          type: string
+        example: example_value
+      - name: first
+        in: query
+        description: Pagination offset.
+        schema:
+          type: integer
+        example: 10
+      - name: max
+        in: query
+        description: Maximum number of results.
+        schema:
+          type: integer
+        example: 10
+      responses:
+        '200':
+          description: Successfully retrieved groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+              examples:
+                Listgroups200Example:
+                  summary: Default listGroups 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    name: Example Title
+                    path: example_value
+                    subGroups:
+                    - {}
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Group:
+      type: object
+      description: A group that enables bulk role and attribute assignment to users.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the group.
+          example: abc123
+        name:
+          type: string
+          description: The name of the group.
+          example: Example Title
+        path:
+          type: string
+          description: The full path of the group in the hierarchy.
+          example: example_value
+        subGroups:
+          type: array
+          description: Child groups.
+          items:
+            $ref: '#/components/schemas/Group'
+          example: []
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+  parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

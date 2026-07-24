@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Host Groups API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Host Groups
+  description: Operations for managing host groups that provide shared configuration templates for provisioning and management.
+paths:
+  /api/v2/hostgroups:
+    get:
+      operationId: listHostGroups
+      summary: Red Hat List Host Groups
+      description: Retrieves the list of host groups that provide shared configuration templates for host provisioning and management.
+      tags:
+      - Host Groups
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PerPageParam'
+      - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved host groups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedHostGroupList'
+              examples:
+                Listhostgroups200Example:
+                  summary: Default listHostGroups 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      title: Example Title
+                      description: A sample description.
+                      environment_name: example_value
+                      operatingsystem_name: example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A scoped search filter expression.
+      schema:
+        type: string
+    PerPageParam:
+      name: per_page
+      in: query
+      description: The number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+  schemas:
+    PaginatedHostGroupList:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 10
+        subtotal:
+          type: integer
+          example: 10
+        page:
+          type: integer
+          example: 10
+        per_page:
+          type: integer
+          example: 10
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              title:
+                type: string
+              description:
+                type: string
+              environment_name:
+                type: string
+              operatingsystem_name:
+                type: string
+          example: []
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

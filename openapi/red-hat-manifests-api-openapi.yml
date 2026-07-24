@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Manifests API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Manifests
+  description: Operations for retrieving manifest information and security scan results for container images.
+paths:
+  /repository/{repository}/manifest/{manifestref}/security:
+    get:
+      operationId: getManifestSecurity
+      summary: Red Hat Get Manifest Security Information
+      description: Retrieves the security scan results for a specific image manifest, including detected vulnerabilities and their severity levels.
+      tags:
+      - Manifests
+      parameters:
+      - $ref: '#/components/parameters/RepositoryParam'
+      - name: manifestref
+        in: path
+        required: true
+        description: The manifest digest reference.
+        schema:
+          type: string
+        example: example_value
+      - name: vulnerabilities
+        in: query
+        description: Whether to include detailed vulnerability information.
+        schema:
+          type: boolean
+          default: true
+        example: true
+      responses:
+        '200':
+          description: Successfully retrieved security scan results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityScanResult'
+              examples:
+                Getmanifestsecurity200Example:
+                  summary: Default getManifestSecurity 200 response
+                  x-microcks-default: true
+                  value:
+                    status: queued
+                    data:
+                      Layer:
+                        Features:
+                        - {}
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
+  parameters:
+    RepositoryParam:
+      name: repository
+      in: path
+      required: true
+      description: The full repository path in the format namespace/repository_name.
+      schema:
+        type: string
+  schemas:
+    SecurityScanResult:
+      type: object
+      description: Security scan results for a container image manifest, including detected vulnerabilities.
+      properties:
+        status:
+          type: string
+          description: The scan status.
+          enum:
+          - queued
+          - scanned
+          - unsupported
+          - failed
+          example: queued
+        data:
+          type: object
+          description: The scan result data.
+          properties:
+            Layer:
+              type: object
+              properties:
+                Features:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Name:
+                        type: string
+                        description: The package name.
+                      Version:
+                        type: string
+                        description: The installed version.
+                      Vulnerabilities:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            Name:
+                              type: string
+                              description: The vulnerability CVE identifier.
+                            Severity:
+                              type: string
+                              description: The severity level.
+                              enum:
+                              - Negligible
+                              - Low
+                              - Medium
+                              - High
+                              - Critical
+                              - Unknown
+                            FixedBy:
+                              type: string
+                              description: The version that fixes the vulnerability.
+                            Link:
+                              type: string
+                              format: uri
+                              description: A link to vulnerability details.
+          example: example_value
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

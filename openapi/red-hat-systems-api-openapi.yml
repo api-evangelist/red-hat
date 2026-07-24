@@ -1,0 +1,256 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Systems API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Systems
+  description: Operations for retrieving registered systems and their Insights status.
+paths:
+  /insights/v1/system/:
+    get:
+      operationId: listSystems
+      summary: Red Hat List Systems
+      description: Retrieves a paginated list of RHEL systems registered with Red Hat Insights, including their stale status and last check-in time.
+      tags:
+      - Systems
+      parameters:
+      - $ref: '#/components/parameters/LimitParam'
+      - $ref: '#/components/parameters/OffsetParam'
+      - name: display_name
+        in: query
+        description: Filter systems by display name.
+        schema:
+          type: string
+        example: example_value
+      - name: sort
+        in: query
+        description: The field to sort results by. Prefix with a dash for descending order.
+        schema:
+          type: string
+          enum:
+          - display_name
+          - -display_name
+          - last_seen
+          - -last_seen
+          - hits
+          - -hits
+        example: display_name
+      responses:
+        '200':
+          description: Successfully retrieved systems
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSystemList'
+              examples:
+                Listsystems200Example:
+                  summary: Default listSystems 200 response
+                  x-microcks-default: true
+                  value:
+                    meta:
+                      count: 10
+                    links:
+                      first: https://www.example.com
+                      last: https://www.example.com
+                      next: https://www.example.com
+                      previous: https://www.example.com
+                    data:
+                    - system_uuid: '500123'
+                      display_name: example_value
+                      last_seen: '2026-01-15T10:30:00Z'
+                      stale_at: '2026-01-15T10:30:00Z'
+                      hits: 10
+                      critical_hits: 10
+                      important_hits: 10
+                      moderate_hits: 10
+                      low_hits: 10
+                      rhel_version: example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /insights/v1/system/{system_id}/:
+    get:
+      operationId: getSystem
+      summary: Red Hat Get a System
+      description: Retrieves the details of a specific registered system, including its display name, last check-in time, and total number of active recommendations.
+      tags:
+      - Systems
+      parameters:
+      - $ref: '#/components/parameters/SystemIdParam'
+      responses:
+        '200':
+          description: Successfully retrieved system details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+              examples:
+                Getsystem200Example:
+                  summary: Default getSystem 200 response
+                  x-microcks-default: true
+                  value:
+                    system_uuid: '500123'
+                    display_name: example_value
+                    last_seen: '2026-01-15T10:30:00Z'
+                    stale_at: '2026-01-15T10:30:00Z'
+                    hits: 10
+                    critical_hits: 10
+                    important_hits: 10
+                    moderate_hits: 10
+                    low_hits: 10
+                    rhel_version: example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses.
+      properties:
+        count:
+          type: integer
+          description: The total number of results.
+          example: 10
+    System:
+      type: object
+      description: A RHEL system registered with Red Hat Insights for monitoring and recommendations.
+      properties:
+        system_uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the system.
+          example: '500123'
+        display_name:
+          type: string
+          description: The display name of the system.
+          example: example_value
+        last_seen:
+          type: string
+          format: date-time
+          description: The last time the system checked in with Insights.
+          example: '2026-01-15T10:30:00Z'
+        stale_at:
+          type: string
+          format: date-time
+          description: The date when the system will be considered stale.
+          example: '2026-01-15T10:30:00Z'
+        hits:
+          type: integer
+          description: The number of active Advisor recommendations.
+          example: 10
+        critical_hits:
+          type: integer
+          description: The number of critical severity recommendations.
+          example: 10
+        important_hits:
+          type: integer
+          description: The number of important severity recommendations.
+          example: 10
+        moderate_hits:
+          type: integer
+          description: The number of moderate severity recommendations.
+          example: 10
+        low_hits:
+          type: integer
+          description: The number of low severity recommendations.
+          example: 10
+        rhel_version:
+          type: string
+          description: The RHEL version running on the system.
+          example: example_value
+    PaginatedSystemList:
+      type: object
+      description: A paginated list of systems.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/System'
+          example: []
+    PaginationLinks:
+      type: object
+      description: Pagination links for navigating result sets.
+      properties:
+        first:
+          type: string
+          format: uri
+          description: URL to the first page.
+          example: https://www.example.com
+        last:
+          type: string
+          format: uri
+          description: URL to the last page.
+          example: https://www.example.com
+        next:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the next page.
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the previous page.
+          example: https://www.example.com
+  parameters:
+    SystemIdParam:
+      name: system_id
+      in: path
+      required: true
+      description: The unique identifier (UUID) of the system.
+      schema:
+        type: string
+        format: uuid
+    LimitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+    OffsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip before returning.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

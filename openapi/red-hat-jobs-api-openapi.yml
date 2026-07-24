@@ -1,0 +1,293 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Jobs API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Jobs
+  description: Operations for launching, monitoring, and managing automation job executions and their output.
+paths:
+  /api/v2/jobs/:
+    get:
+      operationId: listJobs
+      summary: Red Hat List Jobs
+      description: Retrieves a paginated list of job executions. Jobs represent individual runs of job templates against inventories.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PageSizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/OrderingParam'
+      responses:
+        '200':
+          description: Successfully retrieved jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedJobList'
+              examples:
+                Listjobs200Example:
+                  summary: Default listJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    count: 10
+                    next: https://www.example.com
+                    previous: https://www.example.com
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      status: new
+                      failed: true
+                      started: '2026-01-15T10:30:00Z'
+                      finished: '2026-01-15T10:30:00Z'
+                      elapsed: 42.5
+                      job_template: 10
+                      inventory: 10
+                      project: 10
+                      playbook: example_value
+                      launch_type: manual
+                      created: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v2/jobs/{id}/:
+    get:
+      operationId: getJob
+      summary: Red Hat Get a Job
+      description: Retrieves the details of a specific job execution, including its status, timing, and associated template information.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Successfully retrieved job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+              examples:
+                Getjob200Example:
+                  summary: Default getJob 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    status: new
+                    failed: true
+                    started: '2026-01-15T10:30:00Z'
+                    finished: '2026-01-15T10:30:00Z'
+                    elapsed: 42.5
+                    job_template: 10
+                    inventory: 10
+                    project: 10
+                    playbook: example_value
+                    launch_type: manual
+                    created: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v2/jobs/{id}/cancel/:
+    post:
+      operationId: cancelJob
+      summary: Red Hat Cancel a Job
+      description: Cancels a running job. Only jobs that are currently pending or running can be cancelled.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/IdParam'
+      responses:
+        '202':
+          description: Job cancellation accepted
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique numeric identifier of the resource.
+      schema:
+        type: integer
+    OrderingParam:
+      name: ordering
+      in: query
+      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+  schemas:
+    Job:
+      type: object
+      description: A job represents a single execution of a job template, tracking the playbook run status, timing, and output.
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the job.
+          example: abc123
+        name:
+          type: string
+          description: The name of the job.
+          example: Example Title
+        status:
+          type: string
+          description: The current execution status of the job.
+          enum:
+          - new
+          - pending
+          - waiting
+          - running
+          - successful
+          - failed
+          - error
+          - canceled
+          example: new
+        failed:
+          type: boolean
+          description: Whether the job execution failed.
+          example: true
+        started:
+          type: string
+          format: date-time
+          description: When the job execution started.
+          example: '2026-01-15T10:30:00Z'
+        finished:
+          type: string
+          format: date-time
+          description: When the job execution finished.
+          example: '2026-01-15T10:30:00Z'
+        elapsed:
+          type: number
+          format: float
+          description: The elapsed time in seconds for job execution.
+          example: 42.5
+        job_template:
+          type: integer
+          description: The ID of the job template that was executed.
+          example: 10
+        inventory:
+          type: integer
+          description: The ID of the inventory used for this job.
+          example: 10
+        project:
+          type: integer
+          description: The ID of the project used for this job.
+          example: 10
+        playbook:
+          type: string
+          description: The playbook that was executed.
+          example: example_value
+        launch_type:
+          type: string
+          description: How the job was launched.
+          enum:
+          - manual
+          - relaunch
+          - callback
+          - scheduled
+          - dependency
+          - workflow
+          - sync
+          - scm
+          example: manual
+        created:
+          type: string
+          format: date-time
+          description: The date and time the job record was created.
+          example: '2026-01-15T10:30:00Z'
+    PaginatedJobList:
+      type: object
+      description: A paginated list of jobs.
+      properties:
+        count:
+          type: integer
+          example: 10
+        next:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

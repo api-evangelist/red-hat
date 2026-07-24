@@ -1,0 +1,171 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Versions API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Versions
+  description: Operations for listing available OpenShift versions for cluster provisioning and upgrades.
+paths:
+  /api/clusters_mgmt/v1/versions:
+    get:
+      operationId: listVersions
+      summary: Red Hat List Openshift Versions
+      description: Retrieves the list of available OpenShift versions that can be used for provisioning new clusters or upgrading existing clusters.
+      tags:
+      - Versions
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/OrderParam'
+      responses:
+        '200':
+          description: Successfully retrieved OpenShift versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionList'
+              examples:
+                Listversions200Example:
+                  summary: Default listVersions 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      raw_id: '500123'
+                      enabled: true
+                      default: true
+                      channel_group: example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    SizeParam:
+      name: size
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
+      schema:
+        type: string
+    OrderParam:
+      name: order
+      in: query
+      description: The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.
+      schema:
+        type: string
+  schemas:
+    VersionList:
+      type: object
+      description: A paginated list of available OpenShift versions.
+      properties:
+        kind:
+          type: string
+          example: example_value
+        page:
+          type: integer
+          example: 10
+        size:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The version identifier.
+              raw_id:
+                type: string
+                description: The raw version string.
+              enabled:
+                type: boolean
+                description: Whether this version is available for new clusters.
+              default:
+                type: boolean
+                description: Whether this is the default version for new clusters.
+              channel_group:
+                type: string
+                description: The channel group for the version (stable, fast, candidate).
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

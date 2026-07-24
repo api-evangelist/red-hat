@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Stats API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Stats
+  description: Operations for retrieving aggregate statistics about system health and recommendation coverage.
+paths:
+  /insights/v1/stats/systems/:
+    get:
+      operationId: getSystemStats
+      summary: Red Hat Get System Statistics
+      description: Retrieves aggregate statistics about registered systems, including total system count, stale systems, and systems with active recommendations.
+      tags:
+      - Stats
+      responses:
+        '200':
+          description: Successfully retrieved system statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemStats'
+              examples:
+                Getsystemstats200Example:
+                  summary: Default getSystemStats 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    stale: 10
+                    with_hits: 10
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /insights/v1/stats/rules/:
+    get:
+      operationId: getRuleStats
+      summary: Red Hat Get Rule Statistics
+      description: Retrieves aggregate statistics about Advisor rules, including total rule count, rules by category, and rules by severity.
+      tags:
+      - Stats
+      responses:
+        '200':
+          description: Successfully retrieved rule statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleStats'
+              examples:
+                Getrulestats200Example:
+                  summary: Default getRuleStats 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    by_category: example_value
+                    by_severity: example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    SystemStats:
+      type: object
+      description: Aggregate statistics about registered systems.
+      properties:
+        total:
+          type: integer
+          description: The total number of registered systems.
+          example: 10
+        stale:
+          type: integer
+          description: The number of stale systems.
+          example: 10
+        with_hits:
+          type: integer
+          description: Systems with at least one active recommendation.
+          example: 10
+    RuleStats:
+      type: object
+      description: Aggregate statistics about Advisor rules.
+      properties:
+        total:
+          type: integer
+          description: The total number of active rules.
+          example: 10
+        by_category:
+          type: object
+          description: Rule counts by category.
+          additionalProperties:
+            type: integer
+          example: example_value
+        by_severity:
+          type: object
+          description: Rule counts by total risk severity.
+          additionalProperties:
+            type: integer
+          example: example_value
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

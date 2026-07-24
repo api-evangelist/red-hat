@@ -1,0 +1,378 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Identity Providers API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Identity Providers
+  description: Operations for managing external identity providers for federated authentication such as SAML and OIDC.
+paths:
+  /admin/realms/{realm}/identity-provider/instances:
+    get:
+      operationId: listIdentityProviders
+      summary: Red Hat List Identity Providers
+      description: Retrieves the list of external identity providers configured for the realm, including SAML, OIDC, and social providers.
+      tags:
+      - Identity Providers
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      responses:
+        '200':
+          description: Successfully retrieved identity providers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IdentityProviderRepresentation'
+              examples:
+                Listidentityproviders200Example:
+                  summary: Default listIdentityProviders 200 response
+                  x-microcks-default: true
+                  value:
+                  - alias: example_value
+                    displayName: example_value
+                    providerId: saml
+                    enabled: true
+                    config: example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers:
+    get:
+      operationId: listIdentityProviders
+      summary: Red Hat List Identity Providers
+      description: Retrieves the list of identity providers configured for a specific cluster. Identity providers define how users authenticate to the OpenShift cluster.
+      tags:
+      - Identity Providers
+      parameters:
+      - $ref: '#/components/parameters/ClusterIdParam'
+      responses:
+        '200':
+          description: Successfully retrieved identity providers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityProviderList'
+              examples:
+                Listidentityproviders200Example:
+                  summary: Default listIdentityProviders 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      type: github
+                      mapping_method: add
+                      github: {}
+                      ldap: {}
+                      openid: {}
+        '401':
+          $ref: '#/components/responses/UnauthorizedError_2'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createIdentityProvider
+      summary: Red Hat Create an Identity Provider
+      description: Configures a new identity provider for a cluster, enabling user authentication through the specified provider type such as LDAP, GitHub, Google, or OpenID Connect.
+      tags:
+      - Identity Providers
+      parameters:
+      - $ref: '#/components/parameters/ClusterIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentityProvider'
+            examples:
+              CreateidentityproviderRequestExample:
+                summary: Default createIdentityProvider request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  name: Example Title
+                  type: github
+                  mapping_method: add
+                  github:
+                    client_id: '500123'
+                    organizations:
+                    - example_value
+                  ldap:
+                    url: https://www.example.com
+                    bind_dn: example_value
+                    insecure: true
+                  openid:
+                    client_id: '500123'
+                    issuer: https://www.example.com
+                    claims:
+                      email:
+                      - {}
+                      name:
+                      - {}
+      responses:
+        '201':
+          description: Identity provider created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityProvider'
+              examples:
+                Createidentityprovider201Example:
+                  summary: Default createIdentityProvider 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    type: github
+                    mapping_method: add
+                    github:
+                      client_id: '500123'
+                      organizations:
+                      - example_value
+                    ldap:
+                      url: https://www.example.com
+                      bind_dn: example_value
+                      insecure: true
+                    openid:
+                      client_id: '500123'
+                      issuer: https://www.example.com
+                      claims:
+                        email:
+                        - {}
+                        name:
+                        - {}
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError_2'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    UnauthorizedError_2:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+  schemas:
+    IdentityProviderRepresentation:
+      type: object
+      description: An external identity provider configured for federated authentication.
+      properties:
+        alias:
+          type: string
+          description: The unique alias for the identity provider.
+          example: example_value
+        displayName:
+          type: string
+          description: The display name of the identity provider.
+          example: example_value
+        providerId:
+          type: string
+          description: The provider type identifier.
+          enum:
+          - saml
+          - oidc
+          - google
+          - github
+          - facebook
+          - microsoft
+          - linkedin
+          example: saml
+        enabled:
+          type: boolean
+          description: Whether the identity provider is enabled.
+          example: true
+        config:
+          type: object
+          description: Provider-specific configuration.
+          additionalProperties:
+            type: string
+          example: example_value
+    IdentityProvider:
+      type: object
+      description: Represents an identity provider configured for cluster authentication.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the identity provider.
+          example: abc123
+        name:
+          type: string
+          description: The display name of the identity provider.
+          example: Example Title
+        type:
+          type: string
+          description: The type of identity provider.
+          enum:
+          - github
+          - gitlab
+          - google
+          - htpasswd
+          - ldap
+          - openid
+          example: github
+        mapping_method:
+          type: string
+          description: The method used to map identities to users.
+          enum:
+          - add
+          - claim
+          - generate
+          - lookup
+          example: add
+        github:
+          type: object
+          description: GitHub-specific identity provider configuration.
+          properties:
+            client_id:
+              type: string
+            organizations:
+              type: array
+              items:
+                type: string
+          example: example_value
+        ldap:
+          type: object
+          description: LDAP-specific identity provider configuration.
+          properties:
+            url:
+              type: string
+              format: uri
+            bind_dn:
+              type: string
+            insecure:
+              type: boolean
+          example: example_value
+        openid:
+          type: object
+          description: OpenID Connect identity provider configuration.
+          properties:
+            client_id:
+              type: string
+            issuer:
+              type: string
+              format: uri
+            claims:
+              type: object
+              properties:
+                email:
+                  type: array
+                  items:
+                    type: string
+                name:
+                  type: array
+                  items:
+                    type: string
+          example: '500123'
+    IdentityProviderList:
+      type: object
+      description: A paginated list of identity providers.
+      properties:
+        kind:
+          type: string
+          example: example_value
+        page:
+          type: integer
+          example: 10
+        size:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityProvider'
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
+  parameters:
+    ClusterIdParam:
+      name: cluster_id
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

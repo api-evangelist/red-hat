@@ -1,0 +1,287 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Machine Pools API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Machine Pools
+  description: Operations for managing machine pools that define groups of compute nodes within a cluster.
+paths:
+  /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools:
+    get:
+      operationId: listMachinePools
+      summary: Red Hat List Machine Pools
+      description: Retrieves the list of machine pools configured for a specific cluster. Machine pools define groups of compute nodes with shared instance type and scaling configuration.
+      tags:
+      - Machine Pools
+      parameters:
+      - $ref: '#/components/parameters/ClusterIdParam'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: Successfully retrieved machine pools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachinePoolList'
+              examples:
+                Listmachinepools200Example:
+                  summary: Default listMachinePools 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      instance_type: example_value
+                      replicas: 10
+                      autoscaling: {}
+                      availability_zones: {}
+                      labels: example_value
+                      taints: {}
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createMachinePool
+      summary: Red Hat Create a Machine Pool
+      description: Creates a new machine pool for a cluster, defining a group of compute nodes with specified instance type, replica count, and optional autoscaling configuration.
+      tags:
+      - Machine Pools
+      parameters:
+      - $ref: '#/components/parameters/ClusterIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachinePool'
+            examples:
+              CreatemachinepoolRequestExample:
+                summary: Default createMachinePool request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  instance_type: example_value
+                  replicas: 10
+                  autoscaling:
+                    min_replicas: 10
+                    max_replicas: 10
+                  availability_zones:
+                  - example_value
+                  labels: example_value
+                  taints:
+                  - key: example_value
+                    value: example_value
+                    effect: NoSchedule
+      responses:
+        '201':
+          description: Machine pool created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachinePool'
+              examples:
+                Createmachinepool201Example:
+                  summary: Default createMachinePool 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    instance_type: example_value
+                    replicas: 10
+                    autoscaling:
+                      min_replicas: 10
+                      max_replicas: 10
+                    availability_zones:
+                    - example_value
+                    labels: example_value
+                    taints:
+                    - key: example_value
+                      value: example_value
+                      effect: NoSchedule
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    MachinePoolList:
+      type: object
+      description: A paginated list of machine pools.
+      properties:
+        kind:
+          type: string
+          example: example_value
+        page:
+          type: integer
+          example: 10
+        size:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachinePool'
+          example: []
+    MachinePool:
+      type: object
+      description: Represents a machine pool within a cluster, defining a group of compute nodes with shared configuration.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the machine pool.
+          example: abc123
+        instance_type:
+          type: string
+          description: The cloud provider instance type for nodes in this pool.
+          example: example_value
+        replicas:
+          type: integer
+          description: The fixed number of nodes in this machine pool.
+          example: 10
+        autoscaling:
+          type: object
+          description: Autoscaling configuration for the machine pool.
+          properties:
+            min_replicas:
+              type: integer
+              description: The minimum number of nodes when autoscaling is enabled.
+            max_replicas:
+              type: integer
+              description: The maximum number of nodes when autoscaling is enabled.
+          example: example_value
+        availability_zones:
+          type: array
+          description: The availability zones where nodes will be placed.
+          items:
+            type: string
+          example: []
+        labels:
+          type: object
+          description: Kubernetes labels applied to nodes in this pool.
+          additionalProperties:
+            type: string
+          example: example_value
+        taints:
+          type: array
+          description: Kubernetes taints applied to nodes in this pool.
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+              effect:
+                type: string
+                enum:
+                - NoSchedule
+                - PreferNoSchedule
+                - NoExecute
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
+  parameters:
+    SizeParam:
+      name: size
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    ClusterIdParam:
+      name: cluster_id
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+  responses:
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

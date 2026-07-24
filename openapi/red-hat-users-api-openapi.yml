@@ -1,0 +1,421 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Users API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Users
+  description: Operations for managing user accounts, credentials, and profile attributes within a realm.
+paths:
+  /admin/realms/{realm}/users:
+    get:
+      operationId: listUsers
+      summary: Red Hat List Users
+      description: Retrieves a paginated list of users in the specified realm. Results can be filtered by username, email, first name, or last name.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      - name: username
+        in: query
+        description: Filter by username.
+        schema:
+          type: string
+        example: example_value
+      - name: email
+        in: query
+        description: Filter by email address.
+        schema:
+          type: string
+        example: user@example.com
+      - name: firstName
+        in: query
+        description: Filter by first name.
+        schema:
+          type: string
+        example: example_value
+      - name: lastName
+        in: query
+        description: Filter by last name.
+        schema:
+          type: string
+        example: example_value
+      - name: enabled
+        in: query
+        description: Filter by enabled status.
+        schema:
+          type: boolean
+        example: true
+      - name: first
+        in: query
+        description: The index of the first result to return (pagination offset).
+        schema:
+          type: integer
+        example: 10
+      - name: max
+        in: query
+        description: The maximum number of results to return.
+        schema:
+          type: integer
+          default: 100
+        example: 10
+      responses:
+        '200':
+          description: Successfully retrieved users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+              examples:
+                Listusers200Example:
+                  summary: Default listUsers 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    username: example_value
+                    firstName: example_value
+                    lastName: example_value
+                    email: user@example.com
+                    emailVerified: user@example.com
+                    enabled: true
+                    createdTimestamp: 10
+                    attributes: example_value
+                    credentials:
+                    - type: example_value
+                      value: example_value
+                      temporary: true
+                    requiredActions:
+                    - example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createUser
+      summary: Red Hat Create a User
+      description: Creates a new user in the specified realm with the provided profile attributes and optional initial credentials.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            examples:
+              CreateuserRequestExample:
+                summary: Default createUser request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  username: example_value
+                  firstName: example_value
+                  lastName: example_value
+                  email: user@example.com
+                  emailVerified: user@example.com
+                  enabled: true
+                  createdTimestamp: 10
+                  attributes: example_value
+                  credentials:
+                  - type: example_value
+                    value: example_value
+                    temporary: true
+                  requiredActions:
+                  - example_value
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '409':
+          description: A user with the same username or email already exists.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /admin/realms/{realm}/users/{user_id}:
+    get:
+      operationId: getUser
+      summary: Red Hat Get a User
+      description: Retrieves the details of a specific user in the realm.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          description: Successfully retrieved user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Getuser200Example:
+                  summary: Default getUser 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    username: example_value
+                    firstName: example_value
+                    lastName: example_value
+                    email: user@example.com
+                    emailVerified: user@example.com
+                    enabled: true
+                    createdTimestamp: 10
+                    attributes: example_value
+                    credentials:
+                    - type: example_value
+                      value: example_value
+                      temporary: true
+                    requiredActions:
+                    - example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateUser
+      summary: Red Hat Update a User
+      description: Updates the profile attributes of an existing user in the realm.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/UserIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            examples:
+              UpdateuserRequestExample:
+                summary: Default updateUser request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  username: example_value
+                  firstName: example_value
+                  lastName: example_value
+                  email: user@example.com
+                  emailVerified: user@example.com
+                  enabled: true
+                  createdTimestamp: 10
+                  attributes: example_value
+                  credentials:
+                  - type: example_value
+                    value: example_value
+                    temporary: true
+                  requiredActions:
+                  - example_value
+      responses:
+        '204':
+          description: User updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteUser
+      summary: Red Hat Delete a User
+      description: Deletes a user from the realm along with all associated sessions, consents, and federated identity links.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '204':
+          description: User deleted successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /user/:
+    get:
+      operationId: getLoggedInUser
+      summary: Red Hat Get Logged-in User
+      description: Retrieves the information for the currently authenticated user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Successfully retrieved user information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User_2'
+              examples:
+                Getloggedinuser200Example:
+                  summary: Default getLoggedInUser 200 response
+                  x-microcks-default: true
+                  value:
+                    username: example_value
+                    email: user@example.com
+                    verified: true
+                    organizations:
+                    - name: Example Title
+                      is_admin: true
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    User:
+      type: object
+      description: A user account within a Keycloak realm.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the user.
+          example: abc123
+        username:
+          type: string
+          description: The username.
+          example: example_value
+        firstName:
+          type: string
+          description: The user's first name.
+          example: example_value
+        lastName:
+          type: string
+          description: The user's last name.
+          example: example_value
+        email:
+          type: string
+          format: email
+          description: The user's email address.
+          example: user@example.com
+        emailVerified:
+          type: boolean
+          description: Whether the email has been verified.
+          example: user@example.com
+        enabled:
+          type: boolean
+          description: Whether the user account is enabled.
+          example: true
+        createdTimestamp:
+          type: integer
+          format: int64
+          description: The creation timestamp in milliseconds.
+          example: 10
+        attributes:
+          type: object
+          description: Custom user attributes.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example: example_value
+        credentials:
+          type: array
+          description: User credentials configuration.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: The credential type.
+              value:
+                type: string
+                description: The credential value.
+              temporary:
+                type: boolean
+                description: Whether the credential is temporary.
+          example: []
+        requiredActions:
+          type: array
+          description: Actions required on next login.
+          items:
+            type: string
+          example: []
+    User_2:
+      type: object
+      description: A Quay user account.
+      properties:
+        username:
+          type: string
+          description: The username.
+          example: example_value
+        email:
+          type: string
+          format: email
+          description: The user's email address.
+          example: user@example.com
+        verified:
+          type: boolean
+          description: Whether the user's email has been verified.
+          example: true
+        organizations:
+          type: array
+          description: Organizations the user belongs to.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              is_admin:
+                type: boolean
+          example: []
+  parameters:
+    UserIdParam:
+      name: user_id
+      in: path
+      required: true
+      description: The unique identifier of the user.
+      schema:
+        type: string
+        format: uuid
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

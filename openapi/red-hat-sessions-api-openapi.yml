@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Sessions API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Sessions
+  description: Operations for viewing and managing active user sessions across a realm.
+paths:
+  /admin/realms/{realm}/sessions/{session_id}:
+    delete:
+      operationId: deleteSession
+      summary: Red Hat Remove a Session
+      description: Terminates a specific user session, logging the user out of the associated client application.
+      tags:
+      - Sessions
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      - name: session_id
+        in: path
+        required: true
+        description: The unique identifier of the session.
+        schema:
+          type: string
+        example: '500123'
+      responses:
+        '204':
+          description: Session terminated successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
+  parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

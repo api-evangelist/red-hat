@@ -1,0 +1,234 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Cloud Providers API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Cloud Providers
+  description: Operations for listing available cloud providers and their regions for cluster deployment.
+paths:
+  /api/clusters_mgmt/v1/cloud_providers:
+    get:
+      operationId: listCloudProviders
+      summary: Red Hat List Cloud Providers
+      description: Retrieves the list of cloud providers available for deploying OpenShift clusters, including AWS, Google Cloud, and Microsoft Azure.
+      tags:
+      - Cloud Providers
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: Successfully retrieved cloud providers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudProviderList'
+              examples:
+                Listcloudproviders200Example:
+                  summary: Default listCloudProviders 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      display_name: example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/clusters_mgmt/v1/cloud_providers/{cloud_provider_id}/regions:
+    get:
+      operationId: listCloudProviderRegions
+      summary: Red Hat List Cloud Provider Regions
+      description: Retrieves the list of regions available for a specific cloud provider where OpenShift clusters can be deployed.
+      tags:
+      - Cloud Providers
+      parameters:
+      - name: cloud_provider_id
+        in: path
+        required: true
+        description: The unique identifier of the cloud provider.
+        schema:
+          type: string
+        example: '500123'
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: Successfully retrieved cloud provider regions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudRegionList'
+              examples:
+                Listcloudproviderregions200Example:
+                  summary: Default listCloudProviderRegions 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      display_name: example_value
+                      enabled: true
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    SizeParam:
+      name: size
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CloudProviderList:
+      type: object
+      description: A paginated list of cloud providers.
+      properties:
+        kind:
+          type: string
+          example: example_value
+        page:
+          type: integer
+          example: 10
+        size:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The cloud provider identifier.
+              name:
+                type: string
+                description: The display name of the cloud provider.
+              display_name:
+                type: string
+                description: The human-readable display name.
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
+    CloudRegionList:
+      type: object
+      description: A paginated list of cloud regions.
+      properties:
+        kind:
+          type: string
+          example: example_value
+        page:
+          type: integer
+          example: 10
+        size:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The region identifier.
+              name:
+                type: string
+                description: The display name of the region.
+              display_name:
+                type: string
+                description: The human-readable region name.
+              enabled:
+                type: boolean
+                description: Whether the region is enabled for cluster creation.
+          example: []
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

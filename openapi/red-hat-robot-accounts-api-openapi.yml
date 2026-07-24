@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Robot Accounts API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Robot Accounts
+  description: Operations for managing robot accounts that provide automated access to repositories.
+paths:
+  /organization/{orgname}/robots/{robot_shortname}:
+    get:
+      operationId: getOrgRobot
+      summary: Red Hat Get an Organization Robot Account
+      description: Retrieves the details of a specific robot account within an organization, including its token for automated registry access.
+      tags:
+      - Robot Accounts
+      parameters:
+      - $ref: '#/components/parameters/OrgNameParam'
+      - name: robot_shortname
+        in: path
+        required: true
+        description: The short name of the robot account.
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '200':
+          description: Successfully retrieved robot account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RobotAccount'
+              examples:
+                Getorgrobot200Example:
+                  summary: Default getOrgRobot 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    description: A sample description.
+                    token: example_value
+                    created: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: createOrgRobot
+      summary: Red Hat Create an Organization Robot Account
+      description: Creates a new robot account within an organization for automated access to container repositories.
+      tags:
+      - Robot Accounts
+      parameters:
+      - $ref: '#/components/parameters/OrgNameParam'
+      - name: robot_shortname
+        in: path
+        required: true
+        description: The short name for the new robot account.
+        schema:
+          type: string
+        example: example_value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: A description of the robot account.
+            examples:
+              CreateorgrobotRequestExample:
+                summary: Default createOrgRobot request
+                x-microcks-default: true
+                value:
+                  description: A sample description.
+      responses:
+        '201':
+          description: Robot account created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RobotAccount'
+              examples:
+                Createorgrobot201Example:
+                  summary: Default createOrgRobot 201 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    description: A sample description.
+                    token: example_value
+                    created: '2026-01-15T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+  parameters:
+    OrgNameParam:
+      name: orgname
+      in: path
+      required: true
+      description: The name of the organization.
+      schema:
+        type: string
+  schemas:
+    RobotAccount:
+      type: object
+      description: A robot account for automated registry access.
+      properties:
+        name:
+          type: string
+          description: The fully qualified name of the robot account.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the robot account.
+          example: A sample description.
+        token:
+          type: string
+          description: The authentication token for the robot account.
+          example: example_value
+        created:
+          type: string
+          format: date-time
+          description: When the robot account was created.
+          example: '2026-01-15T10:30:00Z'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

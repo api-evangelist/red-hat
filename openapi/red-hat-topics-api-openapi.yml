@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Topics API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Topics
+  description: Operations for retrieving curated topics that group related recommendations by technology area or risk category.
+paths:
+  /insights/v1/topic/:
+    get:
+      operationId: listTopics
+      summary: Red Hat List Topics
+      description: Retrieves the list of curated Advisor topics that group related rules and recommendations by technology area, risk category, or common concern.
+      tags:
+      - Topics
+      responses:
+        '200':
+          description: Successfully retrieved topics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+              examples:
+                Listtopics200Example:
+                  summary: Default listTopics 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    slug: example_value
+                    description: A sample description.
+                    tag: example_value
+                    featured: true
+                    impacted_systems_count: 10
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+  schemas:
+    Topic:
+      type: object
+      description: A curated Advisor topic that groups related rules and recommendations.
+      properties:
+        name:
+          type: string
+          description: The name of the topic.
+          example: Example Title
+        slug:
+          type: string
+          description: The URL-friendly slug for the topic.
+          example: example_value
+        description:
+          type: string
+          description: A description of the topic.
+          example: A sample description.
+        tag:
+          type: string
+          description: The tag associated with the topic.
+          example: example_value
+        featured:
+          type: boolean
+          description: Whether the topic is featured.
+          example: true
+        impacted_systems_count:
+          type: integer
+          description: The number of systems impacted by rules in this topic.
+          example: 10
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

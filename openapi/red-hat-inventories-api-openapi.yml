@@ -1,0 +1,244 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Inventories API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Inventories
+  description: Operations for managing inventories that define collections of hosts and groups for automation targeting.
+paths:
+  /api/v2/inventories/:
+    get:
+      operationId: listInventories
+      summary: Red Hat List Inventories
+      description: Retrieves a paginated list of inventories. Inventories contain the hosts and groups that automation jobs run against.
+      tags:
+      - Inventories
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/PageSizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: Successfully retrieved inventories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedInventoryList'
+              examples:
+                Listinventories200Example:
+                  summary: Default listInventories 200 response
+                  x-microcks-default: true
+                  value:
+                    count: 10
+                    next: https://www.example.com
+                    previous: https://www.example.com
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      organization: 10
+                      kind: ''
+                      host_count: 10
+                      total_groups: 10
+                      has_inventory_sources: true
+                      created: '2026-01-15T10:30:00Z'
+                      modified: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createInventory
+      summary: Red Hat Create an Inventory
+      description: Creates a new inventory within the specified organization.
+      tags:
+      - Inventories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inventory'
+            examples:
+              CreateinventoryRequestExample:
+                summary: Default createInventory request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  name: Example Title
+                  description: A sample description.
+                  organization: 10
+                  kind: ''
+                  host_count: 10
+                  total_groups: 10
+                  has_inventory_sources: true
+                  created: '2026-01-15T10:30:00Z'
+                  modified: '2026-01-15T10:30:00Z'
+      responses:
+        '201':
+          description: Inventory created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+              examples:
+                Createinventory201Example:
+                  summary: Default createInventory 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    description: A sample description.
+                    organization: 10
+                    kind: ''
+                    host_count: 10
+                    total_groups: 10
+                    has_inventory_sources: true
+                    created: '2026-01-15T10:30:00Z'
+                    modified: '2026-01-15T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Inventory:
+      type: object
+      description: An inventory defines a collection of hosts and groups that automation jobs target for execution.
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the inventory.
+          example: abc123
+        name:
+          type: string
+          description: The name of the inventory.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the inventory.
+          example: A sample description.
+        organization:
+          type: integer
+          description: The ID of the organization this inventory belongs to.
+          example: 10
+        kind:
+          type: string
+          description: The kind of inventory.
+          enum:
+          - ''
+          - smart
+          - constructed
+          example: ''
+        host_count:
+          type: integer
+          description: The total number of hosts in this inventory.
+          example: 10
+        total_groups:
+          type: integer
+          description: The total number of groups in this inventory.
+          example: 10
+        has_inventory_sources:
+          type: boolean
+          description: Whether this inventory has dynamic sources.
+          example: true
+        created:
+          type: string
+          format: date-time
+          description: When the inventory was created.
+          example: '2026-01-15T10:30:00Z'
+        modified:
+          type: string
+          format: date-time
+          description: When the inventory was last modified.
+          example: '2026-01-15T10:30:00Z'
+    PaginatedInventoryList:
+      type: object
+      description: A paginated list of inventories.
+      properties:
+        count:
+          type: integer
+          example: 10
+        next:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Inventory'
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+  responses:
+    BadRequestError:
+      description: The request is malformed or contains invalid data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

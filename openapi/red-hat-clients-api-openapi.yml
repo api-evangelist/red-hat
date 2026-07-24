@@ -1,0 +1,206 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Clients API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Clients
+  description: Operations for managing client applications registered in a realm for authentication and authorization.
+paths:
+  /admin/realms/{realm}/clients:
+    get:
+      operationId: listClients
+      summary: Red Hat List Clients
+      description: Retrieves the list of client applications registered in the realm.
+      tags:
+      - Clients
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      - name: clientId
+        in: query
+        description: Filter by the client identifier.
+        schema:
+          type: string
+        example: '500123'
+      - name: first
+        in: query
+        description: Pagination offset.
+        schema:
+          type: integer
+        example: 10
+      - name: max
+        in: query
+        description: Maximum number of results.
+        schema:
+          type: integer
+        example: 10
+      responses:
+        '200':
+          description: Successfully retrieved clients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+              examples:
+                Listclients200Example:
+                  summary: Default listClients 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    clientId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    enabled: true
+                    protocol: openid-connect
+                    publicClient: true
+                    rootUrl: https://www.example.com
+                    redirectUris:
+                    - example_value
+                    webOrigins:
+                    - example_value
+                    serviceAccountsEnabled: true
+                    authorizationServicesEnabled: true
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createClient
+      summary: Red Hat Create a Client
+      description: Registers a new client application in the realm with the specified protocol and configuration settings.
+      tags:
+      - Clients
+      parameters:
+      - $ref: '#/components/parameters/RealmParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+            examples:
+              CreateclientRequestExample:
+                summary: Default createClient request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  clientId: '500123'
+                  name: Example Title
+                  description: A sample description.
+                  enabled: true
+                  protocol: openid-connect
+                  publicClient: true
+                  rootUrl: https://www.example.com
+                  redirectUris:
+                  - example_value
+                  webOrigins:
+                  - example_value
+                  serviceAccountsEnabled: true
+                  authorizationServicesEnabled: true
+      responses:
+        '201':
+          description: Client created successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Client:
+      type: object
+      description: A client application registered in a Keycloak realm for authentication.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier of the client.
+          example: abc123
+        clientId:
+          type: string
+          description: The client identifier used in authentication flows.
+          example: '500123'
+        name:
+          type: string
+          description: The display name of the client.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the client.
+          example: A sample description.
+        enabled:
+          type: boolean
+          description: Whether the client is enabled.
+          example: true
+        protocol:
+          type: string
+          description: The authentication protocol.
+          enum:
+          - openid-connect
+          - saml
+          example: openid-connect
+        publicClient:
+          type: boolean
+          description: Whether the client is public (no client secret).
+          example: true
+        rootUrl:
+          type: string
+          format: uri
+          description: The root URL of the client application.
+          example: https://www.example.com
+        redirectUris:
+          type: array
+          description: Allowed redirect URIs after authentication.
+          items:
+            type: string
+          example: []
+        webOrigins:
+          type: array
+          description: Allowed web origins for CORS.
+          items:
+            type: string
+          example: []
+        serviceAccountsEnabled:
+          type: boolean
+          description: Whether service accounts are enabled.
+          example: true
+        authorizationServicesEnabled:
+          type: boolean
+          description: Whether authorization services are enabled.
+          example: true
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+  parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

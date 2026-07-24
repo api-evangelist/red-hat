@@ -1,0 +1,199 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Repository API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Repository
+paths:
+  /repository/{repository}/tag/:
+    get:
+      operationId: listRepositoryTags
+      summary: Red Hat List Repository Tags
+      description: Retrieves a paginated list of tags for the specified repository, including each tag's manifest digest and last modified date.
+      tags:
+      - Repository
+      parameters:
+      - $ref: '#/components/parameters/RepositoryParam'
+      - name: page
+        in: query
+        description: The page number for pagination.
+        schema:
+          type: integer
+        example: 10
+      - name: limit
+        in: query
+        description: The maximum number of tags to return.
+        schema:
+          type: integer
+        example: 10
+      - name: specificTag
+        in: query
+        description: Filter to a specific tag name.
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '200':
+          description: Successfully retrieved tags
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagList'
+              examples:
+                Listrepositorytags200Example:
+                  summary: Default listRepositoryTags 200 response
+                  x-microcks-default: true
+                  value:
+                    tags:
+                    - name: Example Title
+                      manifest_digest: example_value
+                      size: 10
+                      last_modified: example_value
+                      is_manifest_list: true
+                    page: 10
+                    has_additional: true
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /repository/{repository}/tag/{tag}:
+    put:
+      operationId: changeTag
+      summary: Red Hat Create or Move a Tag
+      description: Creates a new tag or moves an existing tag to point to a different image manifest digest.
+      tags:
+      - Repository
+      parameters:
+      - $ref: '#/components/parameters/RepositoryParam'
+      - name: tag
+        in: path
+        required: true
+        description: The tag name.
+        schema:
+          type: string
+        example: example_value
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - manifest_digest
+              properties:
+                manifest_digest:
+                  type: string
+                  description: The manifest digest to point the tag to.
+            examples:
+              ChangetagRequestExample:
+                summary: Default changeTag request
+                x-microcks-default: true
+                value:
+                  manifest_digest: example_value
+      responses:
+        '201':
+          description: Tag created or moved successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteTag
+      summary: Red Hat Delete a Tag
+      description: Deletes a specific tag from a repository. The underlying image manifest is not deleted unless it becomes untagged.
+      tags:
+      - Repository
+      parameters:
+      - $ref: '#/components/parameters/RepositoryParam'
+      - name: tag
+        in: path
+        required: true
+        description: The tag name to delete.
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '204':
+          description: Tag deleted successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+  parameters:
+    RepositoryParam:
+      name: repository
+      in: path
+      required: true
+      description: The full repository path in the format namespace/repository_name.
+      schema:
+        type: string
+  schemas:
+    TagList:
+      type: object
+      description: A paginated list of image tags.
+      properties:
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The tag name.
+              manifest_digest:
+                type: string
+                description: The manifest digest the tag points to.
+              size:
+                type: integer
+                description: The compressed image size in bytes.
+              last_modified:
+                type: string
+                description: The last modified timestamp.
+              is_manifest_list:
+                type: boolean
+                description: Whether this tag points to a manifest list.
+          example: []
+        page:
+          type: integer
+          example: 10
+        has_additional:
+          type: boolean
+          example: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

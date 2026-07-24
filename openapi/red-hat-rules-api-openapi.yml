@@ -1,0 +1,430 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Rules API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Rules
+  description: Operations for listing and retrieving Advisor rules that define the detection logic for system issues.
+paths:
+  /insights/v1/rule/:
+    get:
+      operationId: listRules
+      summary: Red Hat List Advisor Rules
+      description: Retrieves a paginated list of Advisor rules that detect configuration issues, security risks, and performance problems on RHEL systems.
+      tags:
+      - Rules
+      parameters:
+      - $ref: '#/components/parameters/LimitParam'
+      - $ref: '#/components/parameters/OffsetParam'
+      - name: category
+        in: query
+        description: Filter rules by category.
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+        example: 1
+      - name: impact
+        in: query
+        description: Filter rules by impact level.
+        schema:
+          type: string
+        example: example_value
+      - name: likelihood
+        in: query
+        description: Filter rules by likelihood level.
+        schema:
+          type: string
+        example: example_value
+      - name: has_playbook
+        in: query
+        description: Filter to rules that have remediation playbooks.
+        schema:
+          type: boolean
+        example: true
+      - name: sort
+        in: query
+        description: The field to sort results by.
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '200':
+          description: Successfully retrieved rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRuleList'
+              examples:
+                Listrules200Example:
+                  summary: Default listRules 200 response
+                  x-microcks-default: true
+                  value:
+                    meta:
+                      count: 10
+                    links:
+                      first: https://www.example.com
+                      last: https://www.example.com
+                      next: https://www.example.com
+                      previous: https://www.example.com
+                    data:
+                    - rule_id: '500123'
+                      description: A sample description.
+                      active: true
+                      category: {}
+                      impact: {}
+                      likelihood: 10
+                      total_risk: 10
+                      risk_of_change: 10
+                      has_playbook: true
+                      publish_date: '2026-01-15T10:30:00Z'
+                      systems_affected: 10
+                      resolution_set: {}
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /insights/v1/rule/{rule_id}/:
+    get:
+      operationId: getRule
+      summary: Red Hat Get an Advisor Rule
+      description: Retrieves the details of a specific Advisor rule, including its description, resolution steps, affected system count, and whether an Ansible remediation playbook is available.
+      tags:
+      - Rules
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        description: The unique identifier of the rule.
+        schema:
+          type: string
+        example: '500123'
+      responses:
+        '200':
+          description: Successfully retrieved rule details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+              examples:
+                Getrule200Example:
+                  summary: Default getRule 200 response
+                  x-microcks-default: true
+                  value:
+                    rule_id: '500123'
+                    description: A sample description.
+                    active: true
+                    category:
+                      id: abc123
+                      name: Availability
+                    impact:
+                      name: Example Title
+                      value: 10
+                    likelihood: 10
+                    total_risk: 10
+                    risk_of_change: 10
+                    has_playbook: true
+                    publish_date: '2026-01-15T10:30:00Z'
+                    systems_affected: 10
+                    resolution_set:
+                    - system_type: 10
+                      resolution: example_value
+                      has_playbook: true
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /insights/v1/rule/{rule_id}/systems/:
+    get:
+      operationId: listRuleSystems
+      summary: Red Hat List Systems Affected by a Rule
+      description: Retrieves the list of systems that are affected by a specific Advisor rule and where the recommendation is currently active.
+      tags:
+      - Rules
+      parameters:
+      - name: rule_id
+        in: path
+        required: true
+        description: The unique identifier of the rule.
+        schema:
+          type: string
+        example: '500123'
+      - $ref: '#/components/parameters/LimitParam'
+      - $ref: '#/components/parameters/OffsetParam'
+      responses:
+        '200':
+          description: Successfully retrieved affected systems
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSystemList'
+              examples:
+                Listrulesystems200Example:
+                  summary: Default listRuleSystems 200 response
+                  x-microcks-default: true
+                  value:
+                    meta:
+                      count: 10
+                    links:
+                      first: https://www.example.com
+                      last: https://www.example.com
+                      next: https://www.example.com
+                      previous: https://www.example.com
+                    data:
+                    - system_uuid: '500123'
+                      display_name: example_value
+                      last_seen: '2026-01-15T10:30:00Z'
+                      stale_at: '2026-01-15T10:30:00Z'
+                      hits: 10
+                      critical_hits: 10
+                      important_hits: 10
+                      moderate_hits: 10
+                      low_hits: 10
+                      rhel_version: example_value
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PaginatedRuleList:
+      type: object
+      description: A paginated list of rules.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+          example: []
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses.
+      properties:
+        count:
+          type: integer
+          description: The total number of results.
+          example: 10
+    System:
+      type: object
+      description: A RHEL system registered with Red Hat Insights for monitoring and recommendations.
+      properties:
+        system_uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the system.
+          example: '500123'
+        display_name:
+          type: string
+          description: The display name of the system.
+          example: example_value
+        last_seen:
+          type: string
+          format: date-time
+          description: The last time the system checked in with Insights.
+          example: '2026-01-15T10:30:00Z'
+        stale_at:
+          type: string
+          format: date-time
+          description: The date when the system will be considered stale.
+          example: '2026-01-15T10:30:00Z'
+        hits:
+          type: integer
+          description: The number of active Advisor recommendations.
+          example: 10
+        critical_hits:
+          type: integer
+          description: The number of critical severity recommendations.
+          example: 10
+        important_hits:
+          type: integer
+          description: The number of important severity recommendations.
+          example: 10
+        moderate_hits:
+          type: integer
+          description: The number of moderate severity recommendations.
+          example: 10
+        low_hits:
+          type: integer
+          description: The number of low severity recommendations.
+          example: 10
+        rhel_version:
+          type: string
+          description: The RHEL version running on the system.
+          example: example_value
+    PaginatedSystemList:
+      type: object
+      description: A paginated list of systems.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/System'
+          example: []
+    Rule:
+      type: object
+      description: An Advisor rule that defines detection logic for a specific system issue, along with resolution steps and remediation guidance.
+      properties:
+        rule_id:
+          type: string
+          description: The unique identifier of the rule.
+          example: '500123'
+        description:
+          type: string
+          description: A description of what the rule detects.
+          example: A sample description.
+        active:
+          type: boolean
+          description: Whether the rule is currently active.
+          example: true
+        category:
+          type: object
+          description: The category the rule belongs to.
+          properties:
+            id:
+              type: integer
+              description: The category identifier.
+            name:
+              type: string
+              description: The category name.
+              enum:
+              - Availability
+              - Security
+              - Stability
+              - Performance
+          example: example_value
+        impact:
+          type: object
+          description: The impact level of the rule.
+          properties:
+            name:
+              type: string
+            value:
+              type: integer
+          example: example_value
+        likelihood:
+          type: integer
+          description: The likelihood value (1-4).
+          example: 10
+        total_risk:
+          type: integer
+          description: The calculated total risk score.
+          example: 10
+        risk_of_change:
+          type: integer
+          description: The risk associated with applying the remediation.
+          example: 10
+        has_playbook:
+          type: boolean
+          description: Whether an Ansible remediation playbook is available.
+          example: true
+        publish_date:
+          type: string
+          format: date-time
+          description: When the rule was published.
+          example: '2026-01-15T10:30:00Z'
+        systems_affected:
+          type: integer
+          description: The number of systems currently affected by this rule.
+          example: 10
+        resolution_set:
+          type: array
+          description: Available resolution options for the rule.
+          items:
+            type: object
+            properties:
+              system_type:
+                type: integer
+                description: The system type identifier.
+              resolution:
+                type: string
+                description: The resolution description in markdown format.
+              has_playbook:
+                type: boolean
+                description: Whether this resolution has a playbook.
+          example: []
+    PaginationLinks:
+      type: object
+      description: Pagination links for navigating result sets.
+      properties:
+        first:
+          type: string
+          format: uri
+          description: URL to the first page.
+          example: https://www.example.com
+        last:
+          type: string
+          format: uri
+          description: URL to the last page.
+          example: https://www.example.com
+        next:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the next page.
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the previous page.
+          example: https://www.example.com
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+  parameters:
+    LimitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+    OffsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip before returning.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

@@ -1,0 +1,536 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Clusters API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Clusters
+  description: Operations for provisioning, managing, and retrieving OpenShift clusters across cloud providers.
+paths:
+  /api/clusters_mgmt/v1/clusters:
+    get:
+      operationId: listClusters
+      summary: Red Hat List Clusters
+      description: Retrieves a list of OpenShift clusters managed by the authenticated account. Results can be filtered by various criteria and paginated using the page and size parameters.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/PageParam'
+      - $ref: '#/components/parameters/SizeParam'
+      - $ref: '#/components/parameters/SearchParam'
+      - $ref: '#/components/parameters/OrderParam'
+      responses:
+        '200':
+          description: Successfully retrieved list of clusters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterList'
+              examples:
+                Listclusters200Example:
+                  summary: Default listClusters 200 response
+                  x-microcks-default: true
+                  value:
+                    kind: example_value
+                    page: 10
+                    size: 10
+                    total: 10
+                    items:
+                    - id: abc123
+                      name: Example Title
+                      display_name: example_value
+                      state: error
+                      cloud_provider: {}
+                      region: {}
+                      multi_az: true
+                      nodes: {}
+                      api: {}
+                      console: {}
+                      version: {}
+                      creation_timestamp: '2026-01-15T10:30:00Z'
+                      expiration_timestamp: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createCluster
+      summary: Red Hat Create a Cluster
+      description: Provisions a new OpenShift cluster. The request body must include the cluster name, cloud provider, region, and desired node configuration. The cluster creation process is asynchronous and the cluster status will transition through several states before becoming ready.
+      tags:
+      - Clusters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+            examples:
+              CreateclusterRequestExample:
+                summary: Default createCluster request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  name: Example Title
+                  display_name: example_value
+                  state: error
+                  cloud_provider:
+                    id: abc123
+                  region:
+                    id: abc123
+                  multi_az: true
+                  nodes:
+                    compute: 10
+                    compute_machine_type:
+                      id: abc123
+                  api:
+                    url: https://www.example.com
+                    listening: external
+                  console:
+                    url: https://www.example.com
+                  version:
+                    id: abc123
+                    raw_id: '500123'
+                  creation_timestamp: '2026-01-15T10:30:00Z'
+                  expiration_timestamp: '2026-01-15T10:30:00Z'
+      responses:
+        '201':
+          description: Cluster creation initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+              examples:
+                Createcluster201Example:
+                  summary: Default createCluster 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    display_name: example_value
+                    state: error
+                    cloud_provider:
+                      id: abc123
+                    region:
+                      id: abc123
+                    multi_az: true
+                    nodes:
+                      compute: 10
+                      compute_machine_type:
+                        id: abc123
+                    api:
+                      url: https://www.example.com
+                      listening: external
+                    console:
+                      url: https://www.example.com
+                    version:
+                      id: abc123
+                      raw_id: '500123'
+                    creation_timestamp: '2026-01-15T10:30:00Z'
+                    expiration_timestamp: '2026-01-15T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/clusters_mgmt/v1/clusters/{cluster_id}:
+    get:
+      operationId: getCluster
+      summary: Red Hat Get a Cluster
+      description: Retrieves the details of a specific OpenShift cluster by its unique identifier, including its current status, configuration, and metadata.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/ClusterIdParam'
+      responses:
+        '200':
+          description: Successfully retrieved cluster details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+              examples:
+                Getcluster200Example:
+                  summary: Default getCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    display_name: example_value
+                    state: error
+                    cloud_provider:
+                      id: abc123
+                    region:
+                      id: abc123
+                    multi_az: true
+                    nodes:
+                      compute: 10
+                      compute_machine_type:
+                        id: abc123
+                    api:
+                      url: https://www.example.com
+                      listening: external
+                    console:
+                      url: https://www.example.com
+                    version:
+                      id: abc123
+                      raw_id: '500123'
+                    creation_timestamp: '2026-01-15T10:30:00Z'
+                    expiration_timestamp: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: updateCluster
+      summary: Red Hat Update a Cluster
+      description: Updates the configuration of an existing OpenShift cluster. Only the fields provided in the request body will be modified. Some changes may trigger asynchronous operations such as node scaling.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/ClusterIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+            examples:
+              UpdateclusterRequestExample:
+                summary: Default updateCluster request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  name: Example Title
+                  display_name: example_value
+                  state: error
+                  cloud_provider:
+                    id: abc123
+                  region:
+                    id: abc123
+                  multi_az: true
+                  nodes:
+                    compute: 10
+                    compute_machine_type:
+                      id: abc123
+                  api:
+                    url: https://www.example.com
+                    listening: external
+                  console:
+                    url: https://www.example.com
+                  version:
+                    id: abc123
+                    raw_id: '500123'
+                  creation_timestamp: '2026-01-15T10:30:00Z'
+                  expiration_timestamp: '2026-01-15T10:30:00Z'
+      responses:
+        '200':
+          description: Cluster updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+              examples:
+                Updatecluster200Example:
+                  summary: Default updateCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    display_name: example_value
+                    state: error
+                    cloud_provider:
+                      id: abc123
+                    region:
+                      id: abc123
+                    multi_az: true
+                    nodes:
+                      compute: 10
+                      compute_machine_type:
+                        id: abc123
+                    api:
+                      url: https://www.example.com
+                      listening: external
+                    console:
+                      url: https://www.example.com
+                    version:
+                      id: abc123
+                      raw_id: '500123'
+                    creation_timestamp: '2026-01-15T10:30:00Z'
+                    expiration_timestamp: '2026-01-15T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteCluster
+      summary: Red Hat Delete a Cluster
+      description: Initiates the deletion of an OpenShift cluster. The cluster will be deprovisioned asynchronously and all associated resources in the cloud provider will be cleaned up.
+      tags:
+      - Clusters
+      parameters:
+      - $ref: '#/components/parameters/ClusterIdParam'
+      responses:
+        '204':
+          description: Cluster deletion initiated successfully
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    SizeParam:
+      name: size
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    ClusterIdParam:
+      name: cluster_id
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+    SearchParam:
+      name: search
+      in: query
+      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
+      schema:
+        type: string
+    OrderParam:
+      name: order
+      in: query
+      description: The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.
+      schema:
+        type: string
+  responses:
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ClusterList:
+      type: object
+      description: A paginated list of clusters.
+      properties:
+        kind:
+          type: string
+          description: The resource kind.
+          example: example_value
+        page:
+          type: integer
+          description: The current page number.
+          example: 10
+        size:
+          type: integer
+          description: The number of items in this page.
+          example: 10
+        total:
+          type: integer
+          description: The total number of items across all pages.
+          example: 10
+        items:
+          type: array
+          description: The list of clusters.
+          items:
+            $ref: '#/components/schemas/Cluster'
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
+    Cluster:
+      type: object
+      description: Represents an OpenShift cluster managed through the Cluster Manager.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the cluster.
+          example: abc123
+        name:
+          type: string
+          description: The name of the cluster.
+          example: Example Title
+        display_name:
+          type: string
+          description: The display name of the cluster.
+          example: example_value
+        state:
+          type: string
+          description: The current state of the cluster.
+          enum:
+          - error
+          - hibernating
+          - installing
+          - pending
+          - powering_down
+          - ready
+          - resuming
+          - uninstalling
+          - unknown
+          - validating
+          - waiting
+          example: error
+        cloud_provider:
+          type: object
+          description: The cloud provider where the cluster is deployed.
+          properties:
+            id:
+              type: string
+              description: The cloud provider identifier (e.g., aws, gcp, azure).
+          example: example_value
+        region:
+          type: object
+          description: The cloud region where the cluster is deployed.
+          properties:
+            id:
+              type: string
+              description: The region identifier.
+          example: example_value
+        multi_az:
+          type: boolean
+          description: Whether the cluster spans multiple availability zones for high availability.
+          example: true
+        nodes:
+          type: object
+          description: Node configuration for the cluster.
+          properties:
+            compute:
+              type: integer
+              description: The number of compute nodes.
+            compute_machine_type:
+              type: object
+              description: The instance type for compute nodes.
+              properties:
+                id:
+                  type: string
+                  description: The machine type identifier.
+          example: example_value
+        api:
+          type: object
+          description: API server endpoint configuration.
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The URL of the cluster API server.
+            listening:
+              type: string
+              description: The listening mode for the API server, either external or internal.
+              enum:
+              - external
+              - internal
+          example: example_value
+        console:
+          type: object
+          description: Web console configuration.
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The URL of the OpenShift web console.
+          example: example_value
+        version:
+          type: object
+          description: The OpenShift version of the cluster.
+          properties:
+            id:
+              type: string
+              description: The OpenShift version identifier.
+            raw_id:
+              type: string
+              description: The raw OpenShift version string.
+          example: example_value
+        creation_timestamp:
+          type: string
+          format: date-time
+          description: The date and time when the cluster was created.
+          example: '2026-01-15T10:30:00Z'
+        expiration_timestamp:
+          type: string
+          format: date-time
+          description: The date and time when the cluster is set to expire, if applicable.
+          example: '2026-01-15T10:30:00Z'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index

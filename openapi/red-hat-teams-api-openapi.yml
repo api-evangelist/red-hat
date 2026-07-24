@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Ansible Automation Platform Add-Ons Teams API
+  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
+  version: '2.6'
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  termsOfService: https://www.redhat.com/en/about/terms-use
+servers:
+- url: https://ansible-platform.example.com
+  description: Ansible Automation Platform Server
+security:
+- bearerAuth: []
+tags:
+- name: Teams
+  description: Operations for managing teams within organizations and their repository permissions.
+paths:
+  /organization/{orgname}/team/{teamname}:
+    put:
+      operationId: createOrUpdateTeam
+      summary: Red Hat Create or Update a Team
+      description: Creates a new team or updates an existing team within an organization, including the team role and description.
+      tags:
+      - Teams
+      parameters:
+      - $ref: '#/components/parameters/OrgNameParam'
+      - name: teamname
+        in: path
+        required: true
+        description: The name of the team.
+        schema:
+          type: string
+        example: example_value
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - role
+              properties:
+                role:
+                  type: string
+                  description: The role for the team.
+                  enum:
+                  - member
+                  - creator
+                  - admin
+                description:
+                  type: string
+                  description: A description of the team.
+            examples:
+              CreateorupdateteamRequestExample:
+                summary: Default createOrUpdateTeam request
+                x-microcks-default: true
+                value:
+                  role: member
+                  description: A sample description.
+      responses:
+        '200':
+          description: Team updated successfully
+        '201':
+          description: Team created successfully
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+  parameters:
+    OrgNameParam:
+      name: orgname
+      in: path
+      required: true
+      description: The name of the organization.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+externalDocs:
+  description: Ansible Automation Platform API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index
