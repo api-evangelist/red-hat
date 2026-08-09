@@ -1,8 +1,7 @@
 aid: red-hat
 name: Red Hat
-description: >-
-  APIs and developer resources from Red Hat, a leading provider of enterprise open source solutions including Linux,
-  cloud, container, and Kubernetes technologies.
+description: APIs and developer resources from Red Hat, a leading provider of enterprise open source solutions
+  including Linux, cloud, container, and Kubernetes technologies.
 type: Index
 accessModel:
   pricing: enterprise
@@ -20,16 +19,16 @@ accessModel:
 image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
 url: https://raw.githubusercontent.com/api-evangelist/red-hat/refs/heads/main/apis.yml
 created: '2024-01-15'
-modified: '2026-06-20'
+modified: '2026-08-08'
 specificationVersion: '0.19'
 tags:
-  - Cloud
-  - Containers
-  - Enterprise
-  - Hybrid Cloud
-  - Kubernetes
-  - Linux
-  - Open Source
+- Cloud
+- Containers
+- Enterprise
+- Hybrid Cloud
+- Kubernetes
+- Linux
+- Open Source
 apis:
 - name: Red Hat Subscription Management API
   description: API for managing Red Hat subscriptions, entitlements, and system registrations.
@@ -51,12 +50,10 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Advanced Cluster Management API
-  description: >-
-    API for managing multiple Kubernetes clusters across hybrid cloud environments, providing cluster
-    lifecycle management, policy-based governance, and application deployment.
+  description: API for managing multiple Kubernetes clusters across hybrid cloud environments, providing
+    cluster lifecycle management, policy-based governance, and application deployment.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
-  humanUrl: >-
-    https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15
   baseUrl: https://multicloud-console.example.com/api
   tags:
   - Cluster Management
@@ -65,20 +62,17 @@ apis:
   - Multi-Cluster
   properties:
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15
+    url: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15
   - type: GitHubRepository
     url: https://github.com/stolostron/rhacm-docs
   contact:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Advanced Cluster Security API
-  description: >-
-    REST API for managing Kubernetes-native security including vulnerability management, compliance, network
-    segmentation, and risk profiling across OpenShift and Kubernetes clusters.
+  description: REST API for managing Kubernetes-native security including vulnerability management, compliance,
+    network segmentation, and risk profiling across OpenShift and Kubernetes clusters.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
-  humanUrl: >-
-    https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
   baseUrl: https://central.example.com/v1
   tags:
   - Compliance
@@ -87,20 +81,17 @@ apis:
   - Vulnerability Management
   properties:
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
+    url: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
+    url: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_security_for_kubernetes/4.5
   - type: GitHubRepository
     url: https://github.com/stackrox/stackrox
   contact:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat 3scale API Management
-  description: >-
-    API management platform providing access control, rate limiting, analytics, and developer portal capabilities
-    for managing the full lifecycle of APIs.
+  description: API management platform providing access control, rate limiting, analytics, and developer
+    portal capabilities for managing the full lifecycle of APIs.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://docs.redhat.com/en/documentation/red_hat_3scale_api_management/2.15
   baseUrl: https://3scale-admin.example.com/admin/api
@@ -118,9 +109,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Cost Management API
-  description: >-
-    API for tracking and analyzing costs associated with Red Hat OpenShift clusters and cloud infrastructure,
-    providing visibility into resource consumption and spend.
+  description: API for tracking and analyzing costs associated with Red Hat OpenShift clusters and cloud
+    infrastructure, providing visibility into resource consumption and spend.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog/api/cost-management
   baseUrl: https://console.redhat.com/api/cost-management/v1
@@ -138,8 +128,7 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Image Builder API
-  description: >-
-    API for building customized RHEL system images for deployment across cloud providers, virtualization
+  description: API for building customized RHEL system images for deployment across cloud providers, virtualization
     platforms, and bare metal environments through the Hybrid Cloud Console.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog/api/image-builder
@@ -158,9 +147,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Vulnerability Management API
-  description: >-
-    API for assessing and monitoring security vulnerabilities across RHEL systems, providing CVE tracking,
-    severity scoring, and remediation guidance.
+  description: API for assessing and monitoring security vulnerabilities across RHEL systems, providing
+    CVE tracking, severity scoring, and remediation guidance.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog/api/vulnerability
   baseUrl: https://console.redhat.com/api/vulnerability/v1
@@ -178,9 +166,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Patch API
-  description: >-
-    API for managing and applying patches to RHEL systems, providing advisories, package updates, and
-    system patch status through the Hybrid Cloud Console.
+  description: API for managing and applying patches to RHEL systems, providing advisories, package updates,
+    and system patch status through the Hybrid Cloud Console.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/patch/v3
@@ -198,9 +185,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Compliance API
-  description: >-
-    API for managing security policy compliance assessments on RHEL systems using SCAP profiles, providing
-    compliance scoring, reporting, and policy management.
+  description: API for managing security policy compliance assessments on RHEL systems using SCAP profiles,
+    providing compliance scoring, reporting, and policy management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/compliance/v2
@@ -218,9 +204,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Build of Apicurio Registry API
-  description: >-
-    REST API for managing schemas and API design artifacts in a schema registry, supporting formats including
-    Avro, JSON Schema, Protobuf, OpenAPI, and AsyncAPI.
+  description: REST API for managing schemas and API design artifacts in a schema registry, supporting
+    formats including Avro, JSON Schema, Protobuf, OpenAPI, and AsyncAPI.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/3.0
   baseUrl: https://registry.example.com/apis/registry/v2
@@ -233,8 +218,7 @@ apis:
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/3.0
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/2.5/html-single/apicurio_registry_user_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/2.5/html-single/apicurio_registry_user_guide/index
   - type: Website
     url: https://www.apicur.io/registry/
   - type: GitHubRepository
@@ -243,9 +227,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Streams for Apache Kafka Bridge API
-  description: >-
-    HTTP bridge API for producing and consuming messages to Apache Kafka topics without requiring a native
-    Kafka client, deployed as part of Red Hat Streams for Apache Kafka on OpenShift.
+  description: HTTP bridge API for producing and consuming messages to Apache Kafka topics without requiring
+    a native Kafka client, deployed as part of Red Hat Streams for Apache Kafka on OpenShift.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://docs.redhat.com/en/documentation/red_hat_streams_for_apache_kafka/3.1
   baseUrl: https://kafka-bridge.example.com
@@ -267,9 +250,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Ansible Lightspeed API
-  description: >-
-    AI-powered API that provides generative AI assistance for creating Ansible automation content, helping
-    users generate Ansible Playbooks and task recommendations.
+  description: AI-powered API that provides generative AI assistance for creating Ansible automation content,
+    helping users generate Ansible Playbooks and task recommendations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/ansible-wisdom
@@ -285,9 +267,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Managed Inventory API
-  description: >-
-    REST API for managing host inventory data within the Hybrid Cloud Console, providing system profile
-    information, tagging, grouping, and host lifecycle management.
+  description: REST API for managing host inventory data within the Hybrid Cloud Console, providing system
+    profile information, tagging, grouping, and host lifecycle management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/inventory/v1
@@ -305,8 +286,7 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Remediations API
-  description: >-
-    API for creating and managing automated remediation playbooks that address security vulnerabilities,
+  description: API for creating and managing automated remediation playbooks that address security vulnerabilities,
     compliance issues, and configuration drift identified by Red Hat Insights services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
@@ -325,9 +305,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Notifications API
-  description: >-
-    API for managing notification preferences, integrations, and event routing within the Hybrid Cloud
-    Console, enabling alerts through email, webhook, and third-party services.
+  description: API for managing notification preferences, integrations, and event routing within the Hybrid
+    Cloud Console, enabling alerts through email, webhook, and third-party services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/notifications/v1
@@ -347,9 +326,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Role-Based Access Control API
-  description: >-
-    API for managing role-based access control policies within the Hybrid Cloud Console, including user
-    groups, roles, permissions, and access policies.
+  description: API for managing role-based access control policies within the Hybrid Cloud Console, including
+    user groups, roles, permissions, and access policies.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/rbac/v1
@@ -367,9 +345,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Advisor API
-  description: >-
-    Predictive analytics API that provides proactive recommendations for improving the stability, performance,
-    and security of RHEL systems through the Hybrid Cloud Console.
+  description: Predictive analytics API that provides proactive recommendations for improving the stability,
+    performance, and security of RHEL systems through the Hybrid Cloud Console.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/insights/v1
@@ -387,9 +364,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Malware Detection API
-  description: >-
-    API for detecting potential malware signatures on RHEL systems registered with the Hybrid Cloud Console,
-    providing scanning results and threat analysis.
+  description: API for detecting potential malware signatures on RHEL systems registered with the Hybrid
+    Cloud Console, providing scanning results and threat analysis.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/malware-detection/v1
@@ -407,9 +383,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Sources API
-  description: >-
-    API for managing source connections and integrations within the Hybrid Cloud Console, enabling connectivity
-    to cloud providers and other external services.
+  description: API for managing source connections and integrations within the Hybrid Cloud Console, enabling
+    connectivity to cloud providers and other external services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/sources/v3.1
@@ -427,9 +402,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Integrations API
-  description: >-
-    API for configuring third-party integrations and notification endpoints within the Hybrid Cloud Console,
-    supporting webhook, email, and service integrations.
+  description: API for configuring third-party integrations and notification endpoints within the Hybrid
+    Cloud Console, supporting webhook, email, and service integrations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/integrations/v1
@@ -447,9 +421,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Resource Optimization API
-  description: >-
-    API for analyzing resource utilization and providing optimization recommendations for RHEL systems,
-    helping right-size workloads and reduce waste.
+  description: API for analyzing resource utilization and providing optimization recommendations for RHEL
+    systems, helping right-size workloads and reduce waste.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/ros/v1
@@ -467,9 +440,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Export Service API
-  description: >-
-    API for exporting data from Hybrid Cloud Console services in JSON or CSV formats, enabling bulk data
-    retrieval for inventory, notifications, and other services.
+  description: API for exporting data from Hybrid Cloud Console services in JSON or CSV formats, enabling
+    bulk data retrieval for inventory, notifications, and other services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/export/v1
@@ -487,9 +459,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Playbook Dispatcher API
-  description: >-
-    API for dispatching and managing Ansible Playbook execution on hosts connected via Cloud Connector,
-    enabling automated remediation and configuration management.
+  description: API for dispatching and managing Ansible Playbook execution on hosts connected via Cloud
+    Connector, enabling automated remediation and configuration management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/playbook-dispatcher/v1
@@ -507,9 +478,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Content Sources API
-  description: >-
-    API for managing custom and Red Hat content repositories within the Hybrid Cloud Console, enabling
-    organizations to curate and distribute software packages.
+  description: API for managing custom and Red Hat content repositories within the Hybrid Cloud Console,
+    enabling organizations to curate and distribute software packages.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/content-sources/v1
@@ -527,9 +497,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Tasks API
-  description: >-
-    API for managing and issuing Red Hat-generated tasks on registered infrastructure, enabling automated
-    system maintenance and configuration operations.
+  description: API for managing and issuing Red Hat-generated tasks on registered infrastructure, enabling
+    automated system maintenance and configuration operations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/tasks/v1
@@ -547,9 +516,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Subscriptions Usage API
-  description: >-
-    API for monitoring and reporting Red Hat subscription utilization including OpenShift, RHEL, and other
-    product usage metrics for capacity planning and compliance.
+  description: API for monitoring and reporting Red Hat subscription utilization including OpenShift,
+    RHEL, and other product usage metrics for capacity planning and compliance.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/rhsm-subscriptions/v1
@@ -567,9 +535,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Account Management Service API
-  description: >-
-    API for managing user subscriptions, clusters, and organizations through the OpenShift Cluster Manager,
-    providing account-level operations and resource management.
+  description: API for managing user subscriptions, clusters, and organizations through the OpenShift
+    Cluster Manager, providing account-level operations and resource management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/accounts_mgmt/v1
@@ -585,9 +552,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Authorization Service API
-  description: >-
-    API for managing access control on resources of OpenShift Cluster Manager services, enabling fine-grained
-    authorization policies and permission management.
+  description: API for managing access control on resources of OpenShift Cluster Manager services, enabling
+    fine-grained authorization policies and permission management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/authorizations/v1
@@ -603,9 +569,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Service Logs API
-  description: >-
-    API for receiving and maintaining logs from internal sources related to OpenShift clusters, providing
-    centralized log management and retrieval.
+  description: API for receiving and maintaining logs from internal sources related to OpenShift clusters,
+    providing centralized log management and retrieval.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/service_logs/v1
@@ -621,9 +586,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Connector Management API
-  description: >-
-    REST API for managing connectors that enable integration between Red Hat services and external systems,
-    supporting connector lifecycle operations.
+  description: REST API for managing connectors that enable integration between Red Hat services and external
+    systems, supporting connector lifecycle operations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/connector_mgmt/v1
@@ -639,9 +603,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Upgrades Information Service API
-  description: >-
-    API for retrieving upgrade path information and recommendations for OpenShift clusters, helping plan
-    and execute cluster version upgrades safely.
+  description: API for retrieving upgrade path information and recommendations for OpenShift clusters,
+    helping plan and execute cluster version upgrades safely.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/upgrades_info/v1
@@ -657,9 +620,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Automation Hub API
-  description: >-
-    API for fetching, uploading, organizing, and distributing Ansible Collections through Red Hat Automation
-    Hub, providing access to Red Hat Certified and partner content.
+  description: API for fetching, uploading, organizing, and distributing Ansible Collections through Red
+    Hat Automation Hub, providing access to Red Hat Certified and partner content.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/automation-hub/
@@ -672,17 +634,15 @@ apis:
   - type: Documentation
     url: https://developers.redhat.com/api-catalog
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.4/html-single/getting_started_with_automation_hub/index
+    url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.4/html-single/getting_started_with_automation_hub/index
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   contact:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Operator Gathering Conditions Service API
-  description: >-
-    API providing gathering conditions to the Insights Operator, defining what data should be collected
-    from OpenShift clusters for analysis and recommendations.
+  description: API providing gathering conditions to the Insights Operator, defining what data should
+    be collected from OpenShift clusters for analysis and recommendations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/gathering/v1
@@ -698,9 +658,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Payload Ingress Service API
-  description: >-
-    API for ingesting payloads and data uploads from registered systems into the Hybrid Cloud Console
-    platform for processing by downstream services.
+  description: API for ingesting payloads and data uploads from registered systems into the Hybrid Cloud
+    Console platform for processing by downstream services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/ingress/v1
@@ -718,9 +677,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Lightspeed Advisor for OpenShift API
-  description: >-
-    Aggregation API for Insights Advisor that exposes recommendations for single and multiple OpenShift
-    clusters, providing AI-powered operational guidance.
+  description: Aggregation API for Insights Advisor that exposes recommendations for single and multiple
+    OpenShift clusters, providing AI-powered operational guidance.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/insights-results-aggregator/v2
@@ -738,9 +696,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat OCP Vulnerability Dashboard API
-  description: >-
-    API for tracking and analyzing vulnerabilities affecting OpenShift Container Platform clusters, providing
-    CVE exposure data and remediation status.
+  description: API for tracking and analyzing vulnerabilities affecting OpenShift Container Platform clusters,
+    providing CVE exposure data and remediation status.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/ocp-vulnerability/v1
@@ -758,9 +715,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Web-RCA Service API
-  description: >-
-    API for the Web Root Cause Analysis service, providing incident tracking, root cause analysis, and
-    post-incident review capabilities for OpenShift managed services.
+  description: API for the Web Root Cause Analysis service, providing incident tracking, root cause analysis,
+    and post-incident review capabilities for OpenShift managed services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/web-rca/v1
@@ -776,9 +732,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Case Management API
-  description: >-
-    API for managing support cases through the Red Hat Customer Portal, supporting case creation, updates,
-    comments, attachments, and escalation workflows.
+  description: API for managing support cases through the Red Hat Customer Portal, supporting case creation,
+    updates, comments, attachments, and escalation workflows.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.access.redhat.com/support/v1
@@ -796,12 +751,10 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Security Data API
-  description: >-
-    Public API for querying Red Hat security data including CVE details, CSAF advisories, OVAL data, and
-    vulnerability severity scores across Red Hat products.
+  description: Public API for querying Red Hat security data including CVE details, CSAF advisories, OVAL
+    data, and vulnerability severity scores across Red Hat products.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
-  humanUrl: >-
-    https://docs.redhat.com/en/documentation/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index
   baseUrl: https://access.redhat.com/hydra/rest/securitydata
   tags:
   - CSAF
@@ -810,20 +763,17 @@ apis:
   - Vulnerability Management
   properties:
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index
   - type: GitHubRepository
     url: https://github.com/RedHatOfficial/rhsecapi
   contact:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Edge Management API
-  description: >-
-    API for fleet edge management capabilities including device provisioning, image management, update
-    orchestration, and fleet-level configuration of RHEL-based edge devices.
+  description: API for fleet edge management capabilities including device provisioning, image management,
+    update orchestration, and fleet-level configuration of RHEL-based edge devices.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
-  humanUrl: >-
-    https://docs.redhat.com/en/documentation/red_hat_edge_manager/1.0/html/architecture/red_hat_edge_manager_architecture
+  humanUrl: https://docs.redhat.com/en/documentation/red_hat_edge_manager/1.0/html/architecture/red_hat_edge_manager_architecture
   baseUrl: https://console.redhat.com/api/edge/v1
   tags:
   - Device Management
@@ -832,8 +782,7 @@ apis:
   - IoT
   properties:
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_edge_manager/1.0/html/architecture/red_hat_edge_manager_architecture
+    url: https://docs.redhat.com/en/documentation/red_hat_edge_manager/1.0/html/architecture/red_hat_edge_manager_architecture
   - type: GitHubRepository
     url: https://github.com/RedHatInsights/edge-api
   - type: Authentication
@@ -842,9 +791,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Lightspeed for RHEL Planning API
-  description: >-
-    API providing RHEL product lifecycle data including release dates, end-of-life schedules, and upgrade
-    path planning information.
+  description: API providing RHEL product lifecycle data including release dates, end-of-life schedules,
+    and upgrade path planning information.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/roadmap/v1
@@ -874,14 +822,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -891,15 +836,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -909,27 +852,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-clients-api
   name: Red Hat Clients API
-  description: >-
-    Operations for managing client applications registered in a realm for authentication and authorization.
+  description: Operations for managing client applications registered in a realm for authentication and
+    authorization.
   tags:
   - Clients
   properties:
@@ -940,14 +879,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -957,15 +893,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -975,27 +909,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-cloud-providers-api
   name: Red Hat Cloud Providers API
-  description: >-
-    Operations for listing available cloud providers and their regions for cluster deployment.
+  description: Operations for listing available cloud providers and their regions for cluster deployment.
   tags:
   - Cloud Providers
   properties:
@@ -1006,14 +935,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1023,15 +949,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1041,27 +965,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-clusters-api
   name: Red Hat Clusters API
-  description: >-
-    Operations for provisioning, managing, and retrieving OpenShift clusters across cloud providers.
+  description: Operations for provisioning, managing, and retrieving OpenShift clusters across cloud providers.
   tags:
   - Clusters
   properties:
@@ -1072,14 +991,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1089,15 +1005,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1107,28 +1021,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-content-views-api
   name: Red Hat Content Views API
-  description: >-
-    Operations for managing content views that define curated snapshots of software repositories for controlled
-    content delivery.
+  description: Operations for managing content views that define curated snapshots of software repositories
+    for controlled content delivery.
   tags:
   - Content Views
   properties:
@@ -1139,14 +1048,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1156,15 +1062,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1174,28 +1078,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-credentials-api
   name: Red Hat Credentials API
-  description: >-
-    Operations for managing credentials used by automation jobs to authenticate with managed hosts and
-    external services.
+  description: Operations for managing credentials used by automation jobs to authenticate with managed
+    hosts and external services.
   tags:
   - Credentials
   properties:
@@ -1206,14 +1105,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1223,15 +1119,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1241,28 +1135,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-environments-api
   name: Red Hat Environments API
-  description: >-
-    Operations for managing lifecycle environments that define the promotion path for content from development
-    to production.
+  description: Operations for managing lifecycle environments that define the promotion path for content
+    from development to production.
   tags:
   - Environments
   properties:
@@ -1273,14 +1162,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1290,15 +1176,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1308,28 +1192,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-errata-api
   name: Red Hat Errata API
-  description: >-
-    Operations for listing and managing errata (security advisories, bug fixes, and enhancements) applicable
-    to registered hosts.
+  description: Operations for listing and managing errata (security advisories, bug fixes, and enhancements)
+    applicable to registered hosts.
   tags:
   - Errata
   properties:
@@ -1340,14 +1219,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1357,15 +1233,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1375,21 +1249,17 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-groups-api
@@ -1405,14 +1275,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1422,15 +1289,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1440,28 +1305,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-host-groups-api
   name: Red Hat Host Groups API
-  description: >-
-    Operations for managing host groups that provide shared configuration templates for provisioning and
-    management.
+  description: Operations for managing host groups that provide shared configuration templates for provisioning
+    and management.
   tags:
   - Host Groups
   properties:
@@ -1472,14 +1332,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1489,15 +1346,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1507,28 +1362,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-hosts-api
   name: Red Hat Hosts API
-  description: >-
-    Operations for managing hosts registered with Satellite, including provisioning, facts, and power
-    management.
+  description: Operations for managing hosts registered with Satellite, including provisioning, facts,
+    and power management.
   tags:
   - Hosts
   properties:
@@ -1539,14 +1389,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1556,15 +1403,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1574,28 +1419,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-identity-providers-api
   name: Red Hat Identity Providers API
-  description: >-
-    Operations for managing external identity providers for federated authentication such as SAML and
-    OIDC.
+  description: Operations for managing external identity providers for federated authentication such as
+    SAML and OIDC.
   tags:
   - Identity Providers
   properties:
@@ -1606,14 +1446,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1623,15 +1460,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1641,27 +1476,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-inventories-api
   name: Red Hat Inventories API
-  description: >-
-    Operations for managing inventories that define collections of hosts and groups for automation targeting.
+  description: Operations for managing inventories that define collections of hosts and groups for automation
+    targeting.
   tags:
   - Inventories
   properties:
@@ -1672,14 +1503,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1689,15 +1517,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1707,27 +1533,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-job-templates-api
   name: Red Hat Job Templates API
-  description: >-
-    Operations for managing job templates that define parameterized playbook runs against inventories
+  description: Operations for managing job templates that define parameterized playbook runs against inventories
     of managed hosts.
   tags:
   - Job Templates
@@ -1739,14 +1560,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1756,15 +1574,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1774,27 +1590,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-jobs-api
   name: Red Hat Jobs API
-  description: >-
-    Operations for launching, monitoring, and managing automation job executions and their output.
+  description: Operations for launching, monitoring, and managing automation job executions and their
+    output.
   tags:
   - Jobs
   properties:
@@ -1805,14 +1617,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1822,15 +1631,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1840,27 +1647,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-machine-pools-api
   name: Red Hat Machine Pools API
-  description: >-
-    Operations for managing machine pools that define groups of compute nodes within a cluster.
+  description: Operations for managing machine pools that define groups of compute nodes within a cluster.
   tags:
   - Machine Pools
   properties:
@@ -1871,14 +1673,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1888,15 +1687,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1906,27 +1703,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-manifests-api
   name: Red Hat Manifests API
-  description: >-
-    Operations for retrieving manifest information and security scan results for container images.
+  description: Operations for retrieving manifest information and security scan results for container
+    images.
   tags:
   - Manifests
   properties:
@@ -1937,14 +1730,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -1954,15 +1744,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -1972,27 +1760,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-organizations-api
   name: Red Hat Organizations API
-  description: >-
-    Operations for managing organizations that provide multi-tenancy and access control boundaries.
+  description: Operations for managing organizations that provide multi-tenancy and access control boundaries.
   tags:
   - Organizations
   properties:
@@ -2003,14 +1786,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2020,15 +1800,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2038,28 +1816,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-projects-api
   name: Red Hat Projects API
-  description: >-
-    Operations for managing projects that represent collections of Ansible playbooks sourced from version
-    control.
+  description: Operations for managing projects that represent collections of Ansible playbooks sourced
+    from version control.
   tags:
   - Projects
   properties:
@@ -2070,14 +1843,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2087,15 +1857,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2105,27 +1873,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-realms-api
   name: Red Hat Realms API
-  description: >-
-    Operations for managing Keycloak realms that serve as tenants for isolating identity configurations.
+  description: Operations for managing Keycloak realms that serve as tenants for isolating identity configurations.
   tags:
   - Realms
   properties:
@@ -2136,14 +1899,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2153,15 +1913,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2171,27 +1929,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-repositories-api
   name: Red Hat Repositories API
-  description: >-
-    Operations for managing container image repositories, including creation, listing, and deletion.
+  description: Operations for managing container image repositories, including creation, listing, and
+    deletion.
   tags:
   - Repositories
   properties:
@@ -2202,14 +1956,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2219,15 +1970,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2237,21 +1986,17 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-repository-api
@@ -2267,14 +2012,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2284,15 +2026,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2302,21 +2042,17 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-robot-accounts-api
@@ -2332,14 +2068,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2349,15 +2082,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2367,21 +2098,17 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-roles-api
@@ -2397,14 +2124,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2414,15 +2138,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2432,27 +2154,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-rules-api
   name: Red Hat Rules API
-  description: >-
-    Operations for listing and retrieving Advisor rules that define the detection logic for system issues.
+  description: Operations for listing and retrieving Advisor rules that define the detection logic for
+    system issues.
   tags:
   - Rules
   properties:
@@ -2463,14 +2181,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2480,15 +2195,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2498,21 +2211,17 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-sessions-api
@@ -2528,14 +2237,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2545,15 +2251,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2563,27 +2267,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-stats-api
   name: Red Hat Stats API
-  description: >-
-    Operations for retrieving aggregate statistics about system health and recommendation coverage.
+  description: Operations for retrieving aggregate statistics about system health and recommendation coverage.
   tags:
   - Stats
   properties:
@@ -2594,14 +2293,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2611,15 +2307,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2629,21 +2323,17 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-subscriptions-api
@@ -2659,14 +2349,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2676,15 +2363,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2694,21 +2379,17 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-systems-api
@@ -2724,14 +2405,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2741,15 +2419,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2759,21 +2435,17 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-teams-api
@@ -2789,14 +2461,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2806,15 +2475,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2824,28 +2491,23 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-topics-api
   name: Red Hat Topics API
-  description: >-
-    Operations for retrieving curated topics that group related recommendations by technology area or
-    risk category.
+  description: Operations for retrieving curated topics that group related recommendations by technology
+    area or risk category.
   tags:
   - Topics
   properties:
@@ -2856,14 +2518,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2873,15 +2532,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2891,27 +2548,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-users-api
   name: Red Hat Users API
-  description: >-
-    Operations for managing user accounts, credentials, and profile attributes within a realm.
+  description: Operations for managing user accounts, credentials, and profile attributes within a realm.
   tags:
   - Users
   properties:
@@ -2922,14 +2574,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -2939,15 +2588,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -2957,27 +2604,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-versions-api
   name: Red Hat Versions API
-  description: >-
-    Operations for listing available OpenShift versions for cluster provisioning and upgrades.
+  description: Operations for listing available OpenShift versions for cluster provisioning and upgrades.
   tags:
   - Versions
   properties:
@@ -2988,14 +2630,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -3005,15 +2644,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -3023,27 +2660,22 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-workflow-job-templates-api
   name: Red Hat Workflow Job Templates API
-  description: >-
-    Operations for managing workflow job templates that chain multiple job templates into orchestrated
+  description: Operations for managing workflow job templates that chain multiple job templates into orchestrated
     automation workflows.
   tags:
   - Workflow Job Templates
@@ -3055,14 +2687,11 @@ apis:
   - type: Authentication
     url: https://docs.openshift.com/container-platform/latest/authentication/index.html
   - type: GettingStarted
-    url: >-
-      https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
+    url: https://docs.openshift.com/container-platform/latest/getting_started/openshift-overview.html
   - type: ChangeLog
-    url: >-
-      https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
+    url: https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
+    url: https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html/managing_clusters/assembly-managing-clusters
   - type: GettingStarted
     url: https://access.redhat.com/articles/6114701
   - type: GitHubRepository
@@ -3072,15 +2701,13 @@ apis:
   - type: APIReference
     url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html
   - type: Authentication
-    url: >-
-      https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
+    url: https://docs.ansible.com/automation-controller/latest/html/controllerapi/authentication.html
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6
   - type: Documentation
     url: https://docs.redhat.com/en/documentation/red_hat_quay/
   - type: APIReference
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_quay/latest/html-single/red_hat_quay_api_guide/index
   - type: GitHubRepository
     url: https://github.com/quay/quay
   - type: Documentation
@@ -3090,201 +2717,205 @@ apis:
   - type: Authentication
     url: https://access.redhat.com/articles/3626371
   - type: GettingStarted
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
+    url: https://docs.redhat.com/en/documentation/red_hat_insights/1-latest/html/using_the_red_hat_insights_api/making-api-calls
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+    url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   - type: GettingStarted
     url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0
   - type: GitHubRepository
     url: https://github.com/keycloak/keycloak
   - type: Documentation
-    url: >-
-      https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
+    url: https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 common:
-  - type: AgenticAccess
-    url: agentic-access/red-hat-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/red-hat-vulnerability-disclosure.yml
-  - type: TrustCenter
-    url: security/red-hat-trust-center.yml
-  - type: DomainSecurity
-    url: security/red-hat-domain-security.yml
-  - type: Authentication
-    url: authentication/red-hat-authentication.yml
-  - type: Packages
-    url: packages/red-hat-packages.yml
-  - type: WellKnown
-    url: well-known/red-hat-well-known.yml
-  - type: SecurityTxt
-    url: well-known/red-hat-security.txt
-  - type: MCPServer
-    url: mcp/red-hat-mcp.yml
-  - type: LLMsTxt
-    url: llms/red-hat-llms.txt
-  - type: Conformance
-    url: conformance/red-hat-conformance.yml
-  - type: ErrorCatalog
-    url: errors/red-hat-problem-types.yml
-  - type: Lifecycle
-    url: lifecycle/red-hat-lifecycle.yml
-  - type: Conventions
-    url: conventions/red-hat-conventions.yml
-  - type: ChangeLog
-    url: changelog/red-hat-changelog.yml
-  - type: CLI
-    url: cli/red-hat-cli.yml
-  - type: Components
-    url: components/red-hat-components.yml
-  - type: DataModel
-    url: data-model/red-hat-data-model.yml
-  - type: Sandbox
-    url: sandbox/red-hat-sandbox.yml
-  - type: Overlay
-    url: overlays/red-hat-openshift-cluster-manager-overlay.yaml
-  - type: Overlay
-    url: overlays/red-hat-ansible-automation-platform-overlay.yaml
-  - type: Overlay
-    url: overlays/red-hat-keycloak-admin-overlay.yaml
-  - type: Overlay
-    url: overlays/red-hat-insights-overlay.yaml
-  - type: Overlay
-    url: overlays/red-hat-quay-overlay.yaml
-  - type: Overlay
-    url: overlays/red-hat-satellite-overlay.yaml
-  - name: Agent Skills
-    url: https://www.redhat.com/en/blog/empower-your-ai-tools-new-agent-skills-red-hat-enterprise-linux
-    type: AgentSkills
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/red-hat/overview
-  - type: Arazzo
-    url: arazzo/red-hat-aap-build-inventory-and-template-workflow.yml
-    name: Red Hat Ansible Automation Platform Build Inventory and Template
-  - type: Arazzo
-    url: arazzo/red-hat-aap-launch-monitor-cancel-job-workflow.yml
-    name: Red Hat Ansible Automation Platform Launch, Monitor, and Cancel Job
-  - type: Arazzo
-    url: arazzo/red-hat-aap-provision-and-run-job-workflow.yml
-    name: Red Hat Ansible Automation Platform Provision and Run Job
-  - type: Arazzo
-    url: arazzo/red-hat-insights-inspect-system-workflow.yml
-    name: Red Hat Insights Inspect a System
-  - type: Arazzo
-    url: arazzo/red-hat-insights-rule-affected-systems-workflow.yml
-    name: Red Hat Insights Triage a Rule's Affected Systems
-  - type: Arazzo
-    url: arazzo/red-hat-keycloak-provision-role-and-user-workflow.yml
-    name: Red Hat Keycloak Provision Realm Role and User
-  - type: Arazzo
-    url: arazzo/red-hat-keycloak-upsert-user-workflow.yml
-    name: Red Hat Keycloak Upsert a Realm User
-  - type: Arazzo
-    url: arazzo/red-hat-openshift-configure-cluster-identity-workflow.yml
-    name: Red Hat OpenShift Configure Cluster Identity Provider
-  - type: Arazzo
-    url: arazzo/red-hat-openshift-provision-cluster-workflow.yml
-    name: Red Hat OpenShift Provision Cluster and Add Machine Pool
-  - type: Arazzo
-    url: arazzo/red-hat-quay-audit-repository-tags-workflow.yml
-    name: Red Hat Quay Audit Repository Tags
-  - type: Arazzo
-    url: arazzo/red-hat-quay-create-repo-tag-and-scan-workflow.yml
-    name: Red Hat Quay Create Repository, Tag Image, and Scan
-  - type: Arazzo
-    url: arazzo/red-hat-quay-provision-org-robot-repo-workflow.yml
-    name: Red Hat Quay Provision Organization Robot and Repository
-  - type: Arazzo
-    url: arazzo/red-hat-satellite-create-content-view-workflow.yml
-    name: Red Hat Satellite Create Content View
-  - type: Arazzo
-    url: arazzo/red-hat-satellite-host-errata-remediation-workflow.yml
-    name: Red Hat Satellite Host Errata Remediation
-  - type: JSONLD
-    url: json-ld/red-hat-context.jsonld
-  - type: JSONSchema
-    url: json-schema/red-hat-openshift-cluster-schema.json
-  - type: JSONSchema
-    url: json-schema/red-hat-ansible-job-schema.json
-  - type: JSONSchema
-    url: json-schema/red-hat-insights-advisory-schema.json
-  - type: JSONSchema
-    url: json-schema/red-hat-quay-repository-schema.json
-  - type: Features
-    url: https://www.redhat.com/en/technologies
-  - type: UseCases
-    url: https://www.redhat.com/en/solutions
-  - type: Integrations
-    url: https://catalog.redhat.com
-  - type: Portal
-    url: https://developers.redhat.com
-  - type: GettingStarted
-    url: https://developers.redhat.com/get-started
-  - type: Documentation
-    url: https://docs.redhat.com/en/products
-  - type: Blog
-    url: https://developers.redhat.com/blog
-  - type: Support
-    url: https://access.redhat.com/support
-  - type: StatusPage
-    url: https://status.redhat.com
-  - type: TermsOfService
-    url: https://www.redhat.com/en/about/terms-use
-  - type: PrivacyPolicy
-    url: https://www.redhat.com/en/about/privacy-policy
-  - type: Authentication
-    url: https://access.redhat.com/articles/3626371
-  - type: Console
-    url: https://console.redhat.com
-  - type: Website
-    url: https://www.redhat.com
-  - type: Signup
-    url: https://developers.redhat.com/register
-  - type: Login
-    url: https://sso.redhat.com
-  - type: GitHubOrganization
-    url: https://github.com/redhatofficial
-  - type: SDKs
-    url: https://github.com/openshift/client-go
-  - type: CLI
-    url: https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html
-  - type: GitHubRepository
-    url: https://github.com/redhat-developer
-  - type: Community
-    url: https://access.redhat.com/discussions
-  - type: StackOverflow
-    url: https://developers.redhat.com/stack-overflow
-  - type: YouTube
-    url: https://developers.redhat.com/videos
-  - type: Security
-    url: https://access.redhat.com/security/vulnerabilities
-  - type: API Catalog
-    url: https://developers.redhat.com/api-catalog
-  - type: KnowledgeCenter
-    url: https://access.redhat.com/knowledgebase
-  - type: Training
-    url: https://www.redhat.com/en/services/training-and-certification
-  - type: Events
-    url: https://www.redhat.com/en/events
-  - type: X
-    url: https://twitter.com/RedHat
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/red-hat
-  - type: Feed
-    url: https://developers.redhat.com/blog/feed
-  - type: Security Data
-    url: https://access.redhat.com/security/data
-  - type: Ecosystem Catalog
-    url: https://catalog.redhat.com
-  - type: Product Lifecycle
-    url: https://access.redhat.com/product-life-cycles
-  - type: Customer Portal
-    url: https://access.redhat.com
+- type: AgenticAccess
+  url: agentic-access/red-hat-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/red-hat-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/red-hat-trust-center.yml
+- type: DomainSecurity
+  url: security/red-hat-domain-security.yml
+- type: Authentication
+  url: authentication/red-hat-authentication.yml
+- type: Packages
+  url: packages/red-hat-packages.yml
+- type: WellKnown
+  url: well-known/red-hat-well-known.yml
+- type: SecurityTxt
+  url: well-known/red-hat-security.txt
+- type: MCPServer
+  url: mcp/red-hat-mcp.yml
+- type: LLMsTxt
+  url: llms/red-hat-llms.txt
+- type: Conformance
+  url: conformance/red-hat-conformance.yml
+- type: ErrorCatalog
+  url: errors/red-hat-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/red-hat-lifecycle.yml
+- type: Conventions
+  url: conventions/red-hat-conventions.yml
+- type: ChangeLog
+  url: changelog/red-hat-changelog.yml
+- type: CLI
+  url: cli/red-hat-cli.yml
+- type: Components
+  url: components/red-hat-components.yml
+- type: DataModel
+  url: data-model/red-hat-data-model.yml
+- type: Sandbox
+  url: sandbox/red-hat-sandbox.yml
+- type: Overlay
+  url: overlays/red-hat-openshift-cluster-manager-overlay.yaml
+- type: Overlay
+  url: overlays/red-hat-ansible-automation-platform-overlay.yaml
+- type: Overlay
+  url: overlays/red-hat-keycloak-admin-overlay.yaml
+- type: Overlay
+  url: overlays/red-hat-insights-overlay.yaml
+- type: Overlay
+  url: overlays/red-hat-quay-overlay.yaml
+- type: Overlay
+  url: overlays/red-hat-satellite-overlay.yaml
+- name: Agent Skills
+  url: https://www.redhat.com/en/blog/empower-your-ai-tools-new-agent-skills-red-hat-enterprise-linux
+  type: AgentSkills
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/red-hat/overview
+- type: Arazzo
+  url: arazzo/red-hat-aap-build-inventory-and-template-workflow.yml
+  name: Red Hat Ansible Automation Platform Build Inventory and Template
+- type: Arazzo
+  url: arazzo/red-hat-aap-launch-monitor-cancel-job-workflow.yml
+  name: Red Hat Ansible Automation Platform Launch, Monitor, and Cancel Job
+- type: Arazzo
+  url: arazzo/red-hat-aap-provision-and-run-job-workflow.yml
+  name: Red Hat Ansible Automation Platform Provision and Run Job
+- type: Arazzo
+  url: arazzo/red-hat-insights-inspect-system-workflow.yml
+  name: Red Hat Insights Inspect a System
+- type: Arazzo
+  url: arazzo/red-hat-insights-rule-affected-systems-workflow.yml
+  name: Red Hat Insights Triage a Rule's Affected Systems
+- type: Arazzo
+  url: arazzo/red-hat-keycloak-provision-role-and-user-workflow.yml
+  name: Red Hat Keycloak Provision Realm Role and User
+- type: Arazzo
+  url: arazzo/red-hat-keycloak-upsert-user-workflow.yml
+  name: Red Hat Keycloak Upsert a Realm User
+- type: Arazzo
+  url: arazzo/red-hat-openshift-configure-cluster-identity-workflow.yml
+  name: Red Hat OpenShift Configure Cluster Identity Provider
+- type: Arazzo
+  url: arazzo/red-hat-openshift-provision-cluster-workflow.yml
+  name: Red Hat OpenShift Provision Cluster and Add Machine Pool
+- type: Arazzo
+  url: arazzo/red-hat-quay-audit-repository-tags-workflow.yml
+  name: Red Hat Quay Audit Repository Tags
+- type: Arazzo
+  url: arazzo/red-hat-quay-create-repo-tag-and-scan-workflow.yml
+  name: Red Hat Quay Create Repository, Tag Image, and Scan
+- type: Arazzo
+  url: arazzo/red-hat-quay-provision-org-robot-repo-workflow.yml
+  name: Red Hat Quay Provision Organization Robot and Repository
+- type: Arazzo
+  url: arazzo/red-hat-satellite-create-content-view-workflow.yml
+  name: Red Hat Satellite Create Content View
+- type: Arazzo
+  url: arazzo/red-hat-satellite-host-errata-remediation-workflow.yml
+  name: Red Hat Satellite Host Errata Remediation
+- type: JSONLD
+  url: json-ld/red-hat-context.jsonld
+- type: JSONSchema
+  url: json-schema/red-hat-openshift-cluster-schema.json
+- type: JSONSchema
+  url: json-schema/red-hat-ansible-job-schema.json
+- type: JSONSchema
+  url: json-schema/red-hat-insights-advisory-schema.json
+- type: JSONSchema
+  url: json-schema/red-hat-quay-repository-schema.json
+- type: Features
+  url: https://www.redhat.com/en/technologies
+- type: UseCases
+  url: https://www.redhat.com/en/solutions
+- type: Integrations
+  url: https://catalog.redhat.com
+- type: Portal
+  url: https://developers.redhat.com
+- type: GettingStarted
+  url: https://developers.redhat.com/get-started
+- type: Documentation
+  url: https://docs.redhat.com/en/products
+- type: Blog
+  url: https://developers.redhat.com/blog
+- type: Support
+  url: https://access.redhat.com/support
+- type: StatusPage
+  url: https://status.redhat.com
+- type: TermsOfService
+  url: https://www.redhat.com/en/about/terms-use
+- type: PrivacyPolicy
+  url: https://www.redhat.com/en/about/privacy-policy
+- type: Authentication
+  url: https://access.redhat.com/articles/3626371
+- type: Console
+  url: https://console.redhat.com
+- type: Website
+  url: https://www.redhat.com
+- type: Signup
+  url: https://developers.redhat.com/register
+- type: Login
+  url: https://sso.redhat.com
+- type: GitHubOrganization
+  url: https://github.com/redhatofficial
+- type: SDKs
+  url: https://github.com/openshift/client-go
+- type: CLI
+  url: https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html
+- type: GitHubRepository
+  url: https://github.com/redhat-developer
+- type: Community
+  url: https://access.redhat.com/discussions
+- type: StackOverflow
+  url: https://developers.redhat.com/stack-overflow
+- type: YouTube
+  url: https://developers.redhat.com/videos
+- type: Security
+  url: https://access.redhat.com/security/vulnerabilities
+- type: API Catalog
+  url: https://developers.redhat.com/api-catalog
+- type: KnowledgeCenter
+  url: https://access.redhat.com/knowledgebase
+- type: Training
+  url: https://www.redhat.com/en/services/training-and-certification
+- type: Events
+  url: https://www.redhat.com/en/events
+- type: X
+  url: https://twitter.com/RedHat
+- type: LinkedIn
+  url: https://www.linkedin.com/company/red-hat
+- type: Feed
+  url: https://developers.redhat.com/blog/feed
+- type: Security Data
+  url: https://access.redhat.com/security/data
+- type: Ecosystem Catalog
+  url: https://catalog.redhat.com
+- type: Product Lifecycle
+  url: https://access.redhat.com/product-life-cycles
+- type: Customer Portal
+  url: https://access.redhat.com
+- type: API Documentation
+  url: https://console.redhat.com/docs/api
+- type: Hybrid Cloud Console
+  url: https://console.redhat.com
+- type: Pricing
+  url: https://www.redhat.com/en/store
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-merged-from:
+- redhat
