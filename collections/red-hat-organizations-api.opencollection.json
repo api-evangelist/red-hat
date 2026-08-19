@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Organizations API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/organizations/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of organizations that provide multi-tenancy boundaries for access control and resource management."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/organization/:orgname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path",
+                "description": "The name of the organization."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific organization, including its member count and settings."
+        },
+        {
+          "info": {
+            "name": "Red Hat List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/organizations",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A scoped search filter expression."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of organizations in Satellite that provide multi-tenancy isolation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

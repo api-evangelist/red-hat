@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Jobs API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/jobs/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query",
+                "description": "The field to use for ordering results. Prefix with a dash for descending order (e.g., -created)."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of job executions. Jobs represent individual runs of job templates against inventories."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/jobs/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific job execution, including its status, timing, and associated template information."
+        },
+        {
+          "info": {
+            "name": "Red Hat Cancel a Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/api/v2/jobs/:id/cancel/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique numeric identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Cancels a running job. Only jobs that are currently pending or running can be cancelled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

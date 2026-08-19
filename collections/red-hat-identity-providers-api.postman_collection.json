@@ -1,0 +1,727 @@
+{
+  "item": [
+    {
+      "id": "54cca191-22ba-4710-9e73-db9b7edcabef",
+      "name": "Identity Providers",
+      "description": {
+        "content": "Operations for managing external identity providers for federated authentication such as SAML and OIDC.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "529bc497-d5d4-4327-be8c-03a87ed1864a",
+          "name": "Red Hat List Identity Providers",
+          "request": {
+            "name": "Red Hat List Identity Providers",
+            "description": {
+              "content": "Retrieves the list of external identity providers configured for the realm, including SAML, OIDC, and social providers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "realms",
+                ":realm",
+                "identity-provider",
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "realm",
+                  "description": "(Required) The name of the Keycloak realm."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17334292-2184-4e3e-a22d-76537dca96d7",
+              "name": "Successfully retrieved identity providers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "realms",
+                    ":realm",
+                    "identity-provider",
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "realm",
+                      "description": "(Required) The name of the Keycloak realm."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"alias\": \"example_value\",\n    \"displayName\": \"example_value\",\n    \"providerId\": \"saml\",\n    \"enabled\": true,\n    \"config\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddd941f5-5e31-490f-b97d-cbac80390143",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "realms",
+                    ":realm",
+                    "identity-provider",
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "realm",
+                      "description": "(Required) The name of the Keycloak realm."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4184daa9-ce5b-4f62-8d66-e61884bbace9",
+          "name": "Red Hat List Identity Providers",
+          "request": {
+            "name": "Red Hat List Identity Providers",
+            "description": {
+              "content": "Retrieves the list of identity providers configured for a specific cluster. Identity providers define how users authenticate to the OpenShift cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "clusters_mgmt",
+                "v1",
+                "clusters",
+                ":cluster_id",
+                "identity_providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cluster_id",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "735844d3-79ee-4103-855b-808fcb0d0f56",
+              "name": "Successfully retrieved identity providers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"page\": 10,\n  \"size\": 10,\n  \"total\": 10,\n  \"items\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"github\",\n      \"mapping_method\": \"add\",\n      \"github\": {},\n      \"ldap\": {},\n      \"openid\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "008df058-3bc7-4d32-b914-d0b4733b6d65",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e3456dd-a2d8-41d8-a9b6-36045e6da30d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d639c5cc-faae-4138-bf19-cf40cb5d6a8b",
+          "name": "Red Hat Create an Identity Provider",
+          "request": {
+            "name": "Red Hat Create an Identity Provider",
+            "description": {
+              "content": "Configures a new identity provider for a cluster, enabling user authentication through the specified provider type such as LDAP, GitHub, Google, or OpenID Connect.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "clusters_mgmt",
+                "v1",
+                "clusters",
+                ":cluster_id",
+                "identity_providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cluster_id",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"mapping_method\": \"<string>\",\n  \"github\": {\n    \"client_id\": \"<string>\",\n    \"organizations\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"<uri>\",\n    \"bind_dn\": \"<string>\",\n    \"insecure\": \"<boolean>\"\n  },\n  \"openid\": {\n    \"client_id\": \"<string>\",\n    \"issuer\": \"<uri>\",\n    \"claims\": {\n      \"email\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cffd6008-f53a-4154-8537-db1c73487196",
+              "name": "Identity provider created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"github\",\n  \"mapping_method\": \"add\",\n  \"github\": {\n    \"client_id\": \"500123\",\n    \"organizations\": [\n      \"example_value\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"https://www.example.com\",\n    \"bind_dn\": \"example_value\",\n    \"insecure\": true\n  },\n  \"openid\": {\n    \"client_id\": \"500123\",\n    \"issuer\": \"https://www.example.com\",\n    \"claims\": {\n      \"email\": [\n        {}\n      ],\n      \"name\": [\n        {}\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"github\",\n  \"mapping_method\": \"add\",\n  \"github\": {\n    \"client_id\": \"500123\",\n    \"organizations\": [\n      \"example_value\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"https://www.example.com\",\n    \"bind_dn\": \"example_value\",\n    \"insecure\": true\n  },\n  \"openid\": {\n    \"client_id\": \"500123\",\n    \"issuer\": \"https://www.example.com\",\n    \"claims\": {\n      \"email\": [\n        {}\n      ],\n      \"name\": [\n        {}\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b4ea326-bd99-48aa-ade1-1f0e5866e747",
+              "name": "The request body is malformed or contains invalid values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"github\",\n  \"mapping_method\": \"add\",\n  \"github\": {\n    \"client_id\": \"500123\",\n    \"organizations\": [\n      \"example_value\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"https://www.example.com\",\n    \"bind_dn\": \"example_value\",\n    \"insecure\": true\n  },\n  \"openid\": {\n    \"client_id\": \"500123\",\n    \"issuer\": \"https://www.example.com\",\n    \"claims\": {\n      \"email\": [\n        {}\n      ],\n      \"name\": [\n        {}\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94beadc6-2e01-4e04-bdb5-9c680aa3c7e3",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"github\",\n  \"mapping_method\": \"add\",\n  \"github\": {\n    \"client_id\": \"500123\",\n    \"organizations\": [\n      \"example_value\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"https://www.example.com\",\n    \"bind_dn\": \"example_value\",\n    \"insecure\": true\n  },\n  \"openid\": {\n    \"client_id\": \"500123\",\n    \"issuer\": \"https://www.example.com\",\n    \"claims\": {\n      \"email\": [\n        {}\n      ],\n      \"name\": [\n        {}\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0b6b094-478a-4a44-804f-77fdfa7969c8",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"github\",\n  \"mapping_method\": \"add\",\n  \"github\": {\n    \"client_id\": \"500123\",\n    \"organizations\": [\n      \"example_value\"\n    ]\n  },\n  \"ldap\": {\n    \"url\": \"https://www.example.com\",\n    \"bind_dn\": \"example_value\",\n    \"insecure\": true\n  },\n  \"openid\": {\n    \"client_id\": \"500123\",\n    \"issuer\": \"https://www.example.com\",\n    \"claims\": {\n      \"email\": [\n        {}\n      ],\n      \"name\": [\n        {}\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9713f2a2-b3fe-4f78-8495-7414d51b66a3",
+    "name": "Red Hat Ansible Automation Platform Add-Ons Identity Providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

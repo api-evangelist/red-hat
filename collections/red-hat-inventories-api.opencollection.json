@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Inventories API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Inventories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/inventories/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search term to filter results by name or description."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of inventories. Inventories contain the hosts and groups that automation jobs run against."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create an Inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/api/v2/inventories/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new inventory within the specified organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

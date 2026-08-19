@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Systems API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Systems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/insights/v1/system/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip before returning."
+              },
+              {
+                "name": "display_name",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter systems by display name."
+              },
+              {
+                "name": "sort",
+                "value": "display_name",
+                "type": "query",
+                "description": "The field to sort results by. Prefix with a dash for descending order."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of RHEL systems registered with Red Hat Insights, including their stale status and last check-in time."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a System",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/insights/v1/system/:system_id/",
+            "params": [
+              {
+                "name": "system_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (UUID) of the system."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific registered system, including its display name, last check-in time, and total number of active recommendations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

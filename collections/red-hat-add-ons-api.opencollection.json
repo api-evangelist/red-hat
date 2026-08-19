@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Add-Ons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Add-ons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/addons",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of available add-ons that can be installed on OpenShift clusters to extend functionality."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

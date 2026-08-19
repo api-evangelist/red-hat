@@ -1,0 +1,430 @@
+{
+  "item": [
+    {
+      "id": "f0ece2d4-59b2-4972-b4cf-aa899e16b0d8",
+      "name": "Systems",
+      "description": {
+        "content": "Operations for retrieving registered systems and their Insights status.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b640262f-ab6b-4fd1-b78b-085b86be8b5c",
+          "name": "Red Hat List Systems",
+          "request": {
+            "name": "Red Hat List Systems",
+            "description": {
+              "content": "Retrieves a paginated list of RHEL systems registered with Red Hat Insights, including their stale status and last check-in time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "v1",
+                "system",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The maximum number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of results to skip before returning."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name",
+                  "value": "<string>",
+                  "description": "Filter systems by display name."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "The field to sort results by. Prefix with a dash for descending order."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd5bfc99-c13a-4492-8d74-46ed69da6cb8",
+              "name": "Successfully retrieved systems",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "system",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "display_name",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "display_name"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 10\n  },\n  \"links\": {\n    \"first\": \"https://www.example.com\",\n    \"last\": \"https://www.example.com\",\n    \"next\": \"https://www.example.com\",\n    \"previous\": \"https://www.example.com\"\n  },\n  \"data\": [\n    {\n      \"system_uuid\": \"500123\",\n      \"display_name\": \"example_value\",\n      \"last_seen\": \"2026-01-15T10:30:00Z\",\n      \"stale_at\": \"2026-01-15T10:30:00Z\",\n      \"hits\": 10,\n      \"critical_hits\": 10,\n      \"important_hits\": 10,\n      \"moderate_hits\": 10,\n      \"low_hits\": 10,\n      \"rhel_version\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3d512eb-70c9-4ade-9fec-1e6906a79c4b",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "system",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "display_name",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "display_name"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cc904a5-9bcc-4c60-8922-821cf2ba505f",
+          "name": "Red Hat Get a System",
+          "request": {
+            "name": "Red Hat Get a System",
+            "description": {
+              "content": "Retrieves the details of a specific registered system, including its display name, last check-in time, and total number of active recommendations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "v1",
+                "system",
+                ":system_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "system_id",
+                  "description": "(Required) The unique identifier (UUID) of the system."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8deb9d24-7eef-41a5-820e-ac9d901ab05f",
+              "name": "Successfully retrieved system details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "system",
+                    ":system_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "system_id",
+                      "description": "(Required) The unique identifier (UUID) of the system."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"system_uuid\": \"500123\",\n  \"display_name\": \"example_value\",\n  \"last_seen\": \"2026-01-15T10:30:00Z\",\n  \"stale_at\": \"2026-01-15T10:30:00Z\",\n  \"hits\": 10,\n  \"critical_hits\": 10,\n  \"important_hits\": 10,\n  \"moderate_hits\": 10,\n  \"low_hits\": 10,\n  \"rhel_version\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb1ea2e4-d3b7-44ba-850d-4d5641698fde",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "system",
+                    ":system_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "system_id",
+                      "description": "(Required) The unique identifier (UUID) of the system."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "74ced8e5-853a-4195-90e6-ea007c2b6cb2",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "system",
+                    ":system_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "system_id",
+                      "description": "(Required) The unique identifier (UUID) of the system."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "df9c74ac-29f2-4176-8f3a-e8c9f7887103",
+    "name": "Red Hat Ansible Automation Platform Add-Ons Systems API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

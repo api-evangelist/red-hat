@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Cloud Providers API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cloud Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Cloud Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/cloud_providers",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of cloud providers available for deploying OpenShift clusters, including AWS, Google Cloud, and Microsoft Azure."
+        },
+        {
+          "info": {
+            "name": "Red Hat List Cloud Provider Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/cloud_providers/:cloud_provider_id/regions",
+            "params": [
+              {
+                "name": "cloud_provider_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the cloud provider."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of regions available for a specific cloud provider where OpenShift clusters can be deployed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

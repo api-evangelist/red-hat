@@ -1,0 +1,228 @@
+{
+  "item": [
+    {
+      "id": "1470be0f-3aea-424b-b069-0456e993b7a1",
+      "name": "Environments",
+      "description": {
+        "content": "Operations for managing lifecycle environments that define the promotion path for content from development to production.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a74d623-d28c-4545-a1d5-1aefaf9d96ea",
+          "name": "Red Hat List Lifecycle Environments",
+          "request": {
+            "name": "Red Hat List Lifecycle Environments",
+            "description": {
+              "content": "Retrieves the list of lifecycle environments for an organization, defining the promotion path for content views from development through to production.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "organizations",
+                ":organization_id",
+                "environments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "organization_id",
+                  "description": "(Required) The organization identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7ef9819-5041-4f94-b573-60bf81b3f2d1",
+              "name": "Successfully retrieved lifecycle environments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "organizations",
+                    ":organization_id",
+                    "environments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "organization_id",
+                      "description": "(Required) The organization identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"prior\": {\n        \"id\": \"abc123\",\n        \"name\": \"Example Title\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84476a92-e9aa-48db-95d3-ab87f9e8ed5f",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "organizations",
+                    ":organization_id",
+                    "environments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "organization_id",
+                      "description": "(Required) The organization identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "16d9513e-0639-4bc4-b927-bcefd54e08c0",
+    "name": "Red Hat Ansible Automation Platform Add-Ons Environments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Identity Providers API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Identity Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/admin/realms/:realm/identity-provider/instances",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of external identity providers configured for the realm, including SAML, OIDC, and social providers."
+        },
+        {
+          "info": {
+            "name": "Red Hat List Identity Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of identity providers configured for a specific cluster. Identity providers define how users authenticate to the OpenShift cluster."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create an Identity Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/clusters/:cluster_id/identity_providers",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configures a new identity provider for a cluster, enabling user authentication through the specified provider type such as LDAP, GitHub, Google, or OpenID Connect."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,373 @@
+{
+  "item": [
+    {
+      "id": "0057def6-f665-43c4-bcdf-83bcc86e6308",
+      "name": "Content Views",
+      "description": {
+        "content": "Operations for managing content views that define curated snapshots of software repositories for controlled content delivery.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5bd2e37-8b0b-402f-a73b-d1c8c56701f1",
+          "name": "Red Hat List Content Views",
+          "request": {
+            "name": "Red Hat List Content Views",
+            "description": {
+              "content": "Retrieves the list of content views that define curated snapshots of software repositories used for controlled content delivery to hosts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<integer>",
+                  "description": "Filter by organization identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by content view name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24d97cdc-ae77-4c97-91cb-b2742ec861a4",
+              "name": "Successfully retrieved content views",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Example Title"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"composite\": true,\n      \"organization_id\": \"500123\",\n      \"repository_ids\": [\n        {}\n      ],\n      \"last_published\": \"2026-01-15T10:30:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1213b892-70b0-4a91-a2df-d74fcbf84439",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Example Title"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99369de3-4033-48a1-90da-953e0d6e90b2",
+          "name": "Red Hat Create a Content View",
+          "request": {
+            "name": "Red Hat Create a Content View",
+            "description": {
+              "content": "Creates a new content view that can include selected repositories and filters for curating content delivery.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"organization_id\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"repository_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60b13dfa-3e3a-4d31-a730-d142e70ee7b5",
+              "name": "Content view created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"organization_id\": \"500123\",\n  \"repository_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "218184d5-c3e7-4628-95b0-8b252f8702ac",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"organization_id\": \"500123\",\n  \"repository_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d9dcb46e-a0be-4a51-ac89-5f49054a58c9",
+    "name": "Red Hat Ansible Automation Platform Add-Ons Content Views API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

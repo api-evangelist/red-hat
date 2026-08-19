@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Content Views API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content Views",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Content Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/katello/api/v2/content_views",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              },
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by organization identifier."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by content view name."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of content views that define curated snapshots of software repositories used for controlled content delivery to hosts."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/katello/api/v2/content_views",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new content view that can include selected repositories and filters for curating content delivery."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

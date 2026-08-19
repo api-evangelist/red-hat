@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Rules API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Advisor Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/insights/v1/rule/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip before returning."
+              },
+              {
+                "name": "category",
+                "value": "1",
+                "type": "query",
+                "description": "Filter rules by category."
+              },
+              {
+                "name": "impact",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter rules by impact level."
+              },
+              {
+                "name": "likelihood",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter rules by likelihood level."
+              },
+              {
+                "name": "has_playbook",
+                "value": "true",
+                "type": "query",
+                "description": "Filter to rules that have remediation playbooks."
+              },
+              {
+                "name": "sort",
+                "value": "example_value",
+                "type": "query",
+                "description": "The field to sort results by."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of Advisor rules that detect configuration issues, security risks, and performance problems on RHEL systems."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get an Advisor Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/insights/v1/rule/:rule_id/",
+            "params": [
+              {
+                "name": "rule_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the rule."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific Advisor rule, including its description, resolution steps, affected system count, and whether an Ansible remediation playbook is available."
+        },
+        {
+          "info": {
+            "name": "Red Hat List Systems Affected by a Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/insights/v1/rule/:rule_id/systems/",
+            "params": [
+              {
+                "name": "rule_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the rule."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip before returning."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of systems that are affected by a specific Advisor rule and where the recommendation is currently active."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

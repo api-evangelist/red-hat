@@ -1,0 +1,989 @@
+{
+  "item": [
+    {
+      "id": "83dc9583-c15f-415e-9148-1ba36fc3625c",
+      "name": "Repositories",
+      "description": {
+        "content": "Operations for managing container image repositories, including creation, listing, and deletion.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4cde8eda-a7ec-4021-81e9-aa83aaeab1bb",
+          "name": "Red Hat List Repositories",
+          "request": {
+            "name": "Red Hat List Repositories",
+            "description": {
+              "content": "Retrieves a paginated list of repositories visible to the authenticated user, optionally filtered by namespace, popularity, or last modified date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repository"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "Filter repositories by namespace (organization or user)."
+                },
+                {
+                  "disabled": false,
+                  "key": "starred",
+                  "value": "<boolean>",
+                  "description": "Filter to only starred repositories."
+                },
+                {
+                  "disabled": false,
+                  "key": "public",
+                  "value": "<boolean>",
+                  "description": "Include public repositories."
+                },
+                {
+                  "disabled": false,
+                  "key": "last_modified",
+                  "value": "<boolean>",
+                  "description": "Filter by last modified status."
+                },
+                {
+                  "disabled": false,
+                  "key": "popularity",
+                  "value": "<boolean>",
+                  "description": "Filter by popularity."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page",
+                  "value": "<string>",
+                  "description": "The pagination token for the next page of results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a7af8ee-b40d-455c-b178-ec9a278f3f20",
+              "name": "Successfully retrieved repositories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "namespace",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "starred",
+                      "value": "true"
+                    },
+                    {
+                      "key": "public",
+                      "value": "true"
+                    },
+                    {
+                      "key": "last_modified",
+                      "value": "true"
+                    },
+                    {
+                      "key": "popularity",
+                      "value": "true"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"repositories\": [\n    {\n      \"namespace\": \"example_value\",\n      \"name\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"is_public\": true,\n      \"kind\": \"image\",\n      \"tag_count\": 10,\n      \"status_token\": \"example_value\"\n    }\n  ],\n  \"next_page\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "666dd5a5-e8fc-4fc5-8137-4512ff5add64",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "namespace",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "starred",
+                      "value": "true"
+                    },
+                    {
+                      "key": "public",
+                      "value": "true"
+                    },
+                    {
+                      "key": "last_modified",
+                      "value": "true"
+                    },
+                    {
+                      "key": "popularity",
+                      "value": "true"
+                    },
+                    {
+                      "key": "next_page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "644a2cfe-2ada-44c3-90d6-d462500ecfa9",
+          "name": "Red Hat Create a Repository",
+          "request": {
+            "name": "Red Hat Create a Repository",
+            "description": {
+              "content": "Creates a new container image repository in the specified namespace with the given visibility and optional description.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repository"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repository\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a85b5bcf-8ca6-4a25-bb23-cd0d035c5d86",
+              "name": "Repository created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository\": \"example_value\",\n  \"namespace\": \"example_value\",\n  \"visibility\": \"public\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2c368659-bd5d-4a5d-9331-8a6d9c09582f",
+              "name": "The request body is malformed or contains invalid values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository\": \"example_value\",\n  \"namespace\": \"example_value\",\n  \"visibility\": \"public\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9a9f8263-67c2-4950-90e3-e3e59f4ee236",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repository\": \"example_value\",\n  \"namespace\": \"example_value\",\n  \"visibility\": \"public\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f8d0c67-4e9f-4bf0-8f1d-e247e8bd2d30",
+          "name": "Red Hat Get a Repository",
+          "request": {
+            "name": "Red Hat Get a Repository",
+            "description": {
+              "content": "Retrieves the details of a specific repository including its tags, description, and visibility settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repository",
+                ":repository"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repository",
+                  "description": "(Required) The full repository path in the format namespace/repository_name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd1f9912-356c-4e82-bf41-47989e4807d4",
+              "name": "Successfully retrieved repository details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository",
+                    ":repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repository",
+                      "description": "(Required) The full repository path in the format namespace/repository_name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"namespace\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"is_public\": true,\n  \"kind\": \"image\",\n  \"tag_count\": 10,\n  \"status_token\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d3d1de6-46c8-4e34-a233-2b3c68a2d952",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository",
+                    ":repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repository",
+                      "description": "(Required) The full repository path in the format namespace/repository_name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "549a4247-f2d2-4c71-8f91-d8c2c785c075",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository",
+                    ":repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repository",
+                      "description": "(Required) The full repository path in the format namespace/repository_name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eab34576-6eb8-41c7-8007-7b09ae19e221",
+          "name": "Red Hat Delete a Repository",
+          "request": {
+            "name": "Red Hat Delete a Repository",
+            "description": {
+              "content": "Deletes a repository and all associated images, tags, and build history. This action is irreversible.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repository",
+                ":repository"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repository",
+                  "description": "(Required) The full repository path in the format namespace/repository_name."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b54f4cf-8097-4029-96eb-c83945de0fec",
+              "name": "Repository deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository",
+                    ":repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repository",
+                      "description": "(Required) The full repository path in the format namespace/repository_name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "037e07e3-2c2e-482c-b5ea-e31d0e76a316",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository",
+                    ":repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repository",
+                      "description": "(Required) The full repository path in the format namespace/repository_name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd965d38-1d2e-4aaf-92f3-766eec767375",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository",
+                    ":repository"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repository",
+                      "description": "(Required) The full repository path in the format namespace/repository_name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3563dbbb-6514-411a-ad45-e9e41b6492ca",
+          "name": "Red Hat List Repositories",
+          "request": {
+            "name": "Red Hat List Repositories",
+            "description": {
+              "content": "Retrieves the list of repositories managed by Satellite, including those synced from Red Hat CDN and custom repositories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "repositories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<integer>",
+                  "description": "Filter by organization."
+                },
+                {
+                  "disabled": false,
+                  "key": "content_type",
+                  "value": "<string>",
+                  "description": "Filter by content type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e093434b-7fc3-4e1a-a7e7-8793c22f1d0f",
+              "name": "Successfully retrieved repositories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "repositories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "yum"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"content_type\": \"example_value\",\n      \"url\": \"https://www.example.com\",\n      \"last_sync\": {\n        \"id\": \"abc123\",\n        \"state\": \"example_value\",\n        \"started_at\": \"2026-01-15T10:30:00Z\",\n        \"ended_at\": \"2026-01-15T10:30:00Z\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "531d4f14-63b2-4e8d-b625-1f99436eece7",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "repositories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "yum"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b106bb8c-c666-4baa-ab11-39871707f0bc",
+    "name": "Red Hat Ansible Automation Platform Add-Ons Repositories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

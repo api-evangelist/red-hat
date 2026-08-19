@@ -1,0 +1,465 @@
+{
+  "item": [
+    {
+      "id": "f4810004-f598-4127-b65e-00abe2a298d8",
+      "name": "Clients",
+      "description": {
+        "content": "Operations for managing client applications registered in a realm for authentication and authorization.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f0d8f92-da9d-4121-ae7b-d14c401ce7bf",
+          "name": "Red Hat List Clients",
+          "request": {
+            "name": "Red Hat List Clients",
+            "description": {
+              "content": "Retrieves the list of client applications registered in the realm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "realms",
+                ":realm",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<string>",
+                  "description": "Filter by the client identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "first",
+                  "value": "<integer>",
+                  "description": "Pagination offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "max",
+                  "value": "<integer>",
+                  "description": "Maximum number of results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "realm",
+                  "description": "(Required) The name of the Keycloak realm."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd14fe5a-9709-4f8f-ab86-3dadc534649e",
+              "name": "Successfully retrieved clients",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "realms",
+                    ":realm",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "first",
+                      "value": "10"
+                    },
+                    {
+                      "key": "max",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "realm",
+                      "description": "(Required) The name of the Keycloak realm."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"abc123\",\n    \"clientId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"enabled\": true,\n    \"protocol\": \"openid-connect\",\n    \"publicClient\": true,\n    \"rootUrl\": \"https://www.example.com\",\n    \"redirectUris\": [\n      \"example_value\"\n    ],\n    \"webOrigins\": [\n      \"example_value\"\n    ],\n    \"serviceAccountsEnabled\": true,\n    \"authorizationServicesEnabled\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "964afc37-4665-4c0c-97d3-47f94268fc74",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "realms",
+                    ":realm",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "first",
+                      "value": "10"
+                    },
+                    {
+                      "key": "max",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "realm",
+                      "description": "(Required) The name of the Keycloak realm."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85eb0e7c-3be5-49a1-9b46-beba510edc62",
+          "name": "Red Hat Create a Client",
+          "request": {
+            "name": "Red Hat Create a Client",
+            "description": {
+              "content": "Registers a new client application in the realm with the specified protocol and configuration settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "realms",
+                ":realm",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "realm",
+                  "description": "(Required) The name of the Keycloak realm."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"clientId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"protocol\": \"<string>\",\n  \"publicClient\": \"<boolean>\",\n  \"rootUrl\": \"<uri>\",\n  \"redirectUris\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"webOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceAccountsEnabled\": \"<boolean>\",\n  \"authorizationServicesEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57e803f6-691a-48d8-a62f-41542c1e5ec3",
+              "name": "Client created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "realms",
+                    ":realm",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "realm",
+                      "description": "(Required) The name of the Keycloak realm."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"clientId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"enabled\": true,\n  \"protocol\": \"openid-connect\",\n  \"publicClient\": true,\n  \"rootUrl\": \"https://www.example.com\",\n  \"redirectUris\": [\n    \"example_value\"\n  ],\n  \"webOrigins\": [\n    \"example_value\"\n  ],\n  \"serviceAccountsEnabled\": true,\n  \"authorizationServicesEnabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9183a9d-3499-4300-8596-c84fd47ee908",
+              "name": "The request body is malformed or contains invalid values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "realms",
+                    ":realm",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "realm",
+                      "description": "(Required) The name of the Keycloak realm."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"clientId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"enabled\": true,\n  \"protocol\": \"openid-connect\",\n  \"publicClient\": true,\n  \"rootUrl\": \"https://www.example.com\",\n  \"redirectUris\": [\n    \"example_value\"\n  ],\n  \"webOrigins\": [\n    \"example_value\"\n  ],\n  \"serviceAccountsEnabled\": true,\n  \"authorizationServicesEnabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fef4aab1-f745-4426-8ab9-6a5476f39b3a",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "realms",
+                    ":realm",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "realm",
+                      "description": "(Required) The name of the Keycloak realm."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"clientId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"enabled\": true,\n  \"protocol\": \"openid-connect\",\n  \"publicClient\": true,\n  \"rootUrl\": \"https://www.example.com\",\n  \"redirectUris\": [\n    \"example_value\"\n  ],\n  \"webOrigins\": [\n    \"example_value\"\n  ],\n  \"serviceAccountsEnabled\": true,\n  \"authorizationServicesEnabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3990489b-c803-4392-a616-84f530304185",
+    "name": "Red Hat Ansible Automation Platform Add-Ons Clients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

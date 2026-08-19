@@ -1,0 +1,167 @@
+{
+  "item": [
+    {
+      "id": "48ff47a6-bcda-464b-9c34-9bfefe776f56",
+      "name": "Topics",
+      "description": {
+        "content": "Operations for retrieving curated topics that group related recommendations by technology area or risk category.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5af29bf-842d-43be-b4a1-f22635100687",
+          "name": "Red Hat List Topics",
+          "request": {
+            "name": "Red Hat List Topics",
+            "description": {
+              "content": "Retrieves the list of curated Advisor topics that group related rules and recommendations by technology area, risk category, or common concern.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "v1",
+                "topic",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "436c5fe9-4911-49b2-9628-4b2760e417f0",
+              "name": "Successfully retrieved topics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "topic",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"slug\": \"example_value\",\n    \"description\": \"A sample description.\",\n    \"tag\": \"example_value\",\n    \"featured\": true,\n    \"impacted_systems_count\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96a7e13f-d55b-4997-88cb-88a87d64eb4b",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "topic",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4e6cb91a-1797-417d-86c9-6df437e47e39",
+    "name": "Red Hat Ansible Automation Platform Add-Ons Topics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

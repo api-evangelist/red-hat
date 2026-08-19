@@ -1,0 +1,614 @@
+{
+  "item": [
+    {
+      "id": "76a2b12d-4818-4ba3-add1-96129e7c5db2",
+      "name": "Machine Pools",
+      "description": {
+        "content": "Operations for managing machine pools that define groups of compute nodes within a cluster.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e7ce808-9f18-4300-83ba-c77b82bf7715",
+          "name": "Red Hat List Machine Pools",
+          "request": {
+            "name": "Red Hat List Machine Pools",
+            "description": {
+              "content": "Retrieves the list of machine pools configured for a specific cluster. Machine pools define groups of compute nodes with shared instance type and scaling configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "clusters_mgmt",
+                "v1",
+                "clusters",
+                ":cluster_id",
+                "machine_pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results. Page numbering starts at 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "The maximum number of items to return per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cluster_id",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe23ccec-acad-493f-8da8-b6ed0be155e8",
+              "name": "Successfully retrieved machine pools",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "machine_pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"page\": 10,\n  \"size\": 10,\n  \"total\": 10,\n  \"items\": [\n    {\n      \"id\": \"abc123\",\n      \"instance_type\": \"example_value\",\n      \"replicas\": 10,\n      \"autoscaling\": {},\n      \"availability_zones\": {},\n      \"labels\": \"example_value\",\n      \"taints\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9e840c1-1416-401b-a3a6-a405a54ed551",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "machine_pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4e825f1-3983-48b5-b2ce-e238d90fdf96",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "machine_pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "363d993c-ccb7-4921-9778-8e6da43a8c66",
+          "name": "Red Hat Create a Machine Pool",
+          "request": {
+            "name": "Red Hat Create a Machine Pool",
+            "description": {
+              "content": "Creates a new machine pool for a cluster, defining a group of compute nodes with specified instance type, replica count, and optional autoscaling configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "clusters_mgmt",
+                "v1",
+                "clusters",
+                ":cluster_id",
+                "machine_pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cluster_id",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"instance_type\": \"<string>\",\n  \"replicas\": \"<integer>\",\n  \"autoscaling\": {\n    \"min_replicas\": \"<integer>\",\n    \"max_replicas\": \"<integer>\"\n  },\n  \"availability_zones\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"taints\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"effect\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08db3933-1638-46f3-a491-4bbbd715c8a4",
+              "name": "Machine pool created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "machine_pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"instance_type\": \"example_value\",\n  \"replicas\": 10,\n  \"autoscaling\": {\n    \"min_replicas\": 10,\n    \"max_replicas\": 10\n  },\n  \"availability_zones\": [\n    \"example_value\"\n  ],\n  \"labels\": \"example_value\",\n  \"taints\": [\n    {\n      \"key\": \"example_value\",\n      \"value\": \"example_value\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"instance_type\": \"example_value\",\n  \"replicas\": 10,\n  \"autoscaling\": {\n    \"min_replicas\": 10,\n    \"max_replicas\": 10\n  },\n  \"availability_zones\": [\n    \"example_value\"\n  ],\n  \"labels\": \"example_value\",\n  \"taints\": [\n    {\n      \"key\": \"example_value\",\n      \"value\": \"example_value\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63f4a4dd-76b4-4c1c-b600-56080e5926ca",
+              "name": "The request body is malformed or contains invalid values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "machine_pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"instance_type\": \"example_value\",\n  \"replicas\": 10,\n  \"autoscaling\": {\n    \"min_replicas\": 10,\n    \"max_replicas\": 10\n  },\n  \"availability_zones\": [\n    \"example_value\"\n  ],\n  \"labels\": \"example_value\",\n  \"taints\": [\n    {\n      \"key\": \"example_value\",\n      \"value\": \"example_value\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c358ce17-0d8d-491c-be47-26f262162984",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "machine_pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"instance_type\": \"example_value\",\n  \"replicas\": 10,\n  \"autoscaling\": {\n    \"min_replicas\": 10,\n    \"max_replicas\": 10\n  },\n  \"availability_zones\": [\n    \"example_value\"\n  ],\n  \"labels\": \"example_value\",\n  \"taints\": [\n    {\n      \"key\": \"example_value\",\n      \"value\": \"example_value\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "613eabbb-fdc1-4bb1-bf29-c5ca7a04ddeb",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "clusters",
+                    ":cluster_id",
+                    "machine_pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cluster_id",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"instance_type\": \"example_value\",\n  \"replicas\": 10,\n  \"autoscaling\": {\n    \"min_replicas\": 10,\n    \"max_replicas\": 10\n  },\n  \"availability_zones\": [\n    \"example_value\"\n  ],\n  \"labels\": \"example_value\",\n  \"taints\": [\n    {\n      \"key\": \"example_value\",\n      \"value\": \"example_value\",\n      \"effect\": \"NoSchedule\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2b86bcd-7d03-4728-b93d-c5102fbef832",
+    "name": "Red Hat Ansible Automation Platform Add-Ons Machine Pools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

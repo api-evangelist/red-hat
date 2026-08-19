@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Stats API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Get System Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/insights/v1/stats/systems/"
+          },
+          "docs": "Retrieves aggregate statistics about registered systems, including total system count, stale systems, and systems with active recommendations."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get Rule Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/insights/v1/stats/rules/"
+          },
+          "docs": "Retrieves aggregate statistics about Advisor rules, including total rule count, rules by category, and rules by severity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Manifests API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manifests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Get Manifest Security Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/repository/:repository/manifest/:manifestref/security",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path",
+                "description": "The full repository path in the format namespace/repository_name."
+              },
+              {
+                "name": "manifestref",
+                "value": "example_value",
+                "type": "path",
+                "description": "The manifest digest reference."
+              },
+              {
+                "name": "vulnerabilities",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to include detailed vulnerability information."
+              }
+            ]
+          },
+          "docs": "Retrieves the security scan results for a specific image manifest, including detected vulnerabilities and their severity levels."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

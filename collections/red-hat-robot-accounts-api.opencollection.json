@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Robot Accounts API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Robot Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat Get an Organization Robot Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/organization/:orgname/robots/:robot_shortname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path",
+                "description": "The name of the organization."
+              },
+              {
+                "name": "robot_shortname",
+                "value": "example_value",
+                "type": "path",
+                "description": "The short name of the robot account."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific robot account within an organization, including its token for automated registry access."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create an Organization Robot Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ansible-platform.example.com/organization/:orgname/robots/:robot_shortname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path",
+                "description": "The name of the organization."
+              },
+              {
+                "name": "robot_shortname",
+                "value": "example_value",
+                "type": "path",
+                "description": "The short name for the new robot account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new robot account within an organization for automated access to container repositories."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

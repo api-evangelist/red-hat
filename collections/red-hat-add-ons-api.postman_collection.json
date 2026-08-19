@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "135d07c5-67e1-4b72-a730-75927079a108",
+      "name": "Add-Ons",
+      "description": {
+        "content": "Operations for managing cluster add-ons that extend OpenShift cluster functionality.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd98b016-fa17-4aab-b2c9-eebfa7a3e592",
+          "name": "Red Hat List Add-ons",
+          "request": {
+            "name": "Red Hat List Add-ons",
+            "description": {
+              "content": "Retrieves the list of available add-ons that can be installed on OpenShift clusters to extend functionality.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "clusters_mgmt",
+                "v1",
+                "addons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number for paginated results. Page numbering starts at 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "The maximum number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32896fed-62cc-4ef0-a127-4dc90483442a",
+              "name": "Successfully retrieved add-ons",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "addons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"page\": 10,\n  \"size\": 10,\n  \"total\": 10,\n  \"items\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"enabled\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "357cfd9d-0086-462b-9dda-1898370f8e00",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "clusters_mgmt",
+                    "v1",
+                    "addons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kind\": \"example_value\",\n  \"id\": \"abc123\",\n  \"code\": \"example_value\",\n  \"reason\": \"example_value\",\n  \"href\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "55e743bb-95fa-468e-a843-ac04719758c0",
+    "name": "Red Hat Ansible Automation Platform Add-Ons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

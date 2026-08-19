@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Versions API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Openshift Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/versions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of available OpenShift versions that can be used for provisioning new clusters or upgrading existing clusters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

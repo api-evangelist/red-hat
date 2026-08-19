@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Clients API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/admin/realms/:realm/clients",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              },
+              {
+                "name": "clientId",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by the client identifier."
+              },
+              {
+                "name": "first",
+                "value": "10",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "max",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum number of results."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of client applications registered in the realm."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/admin/realms/:realm/clients",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Keycloak realm."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new client application in the realm with the specified protocol and configuration settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

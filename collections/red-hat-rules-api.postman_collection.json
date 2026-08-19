@@ -1,0 +1,720 @@
+{
+  "item": [
+    {
+      "id": "50f836a3-a1a8-4027-8eb2-0948d3dd9be3",
+      "name": "Rules",
+      "description": {
+        "content": "Operations for listing and retrieving Advisor rules that define the detection logic for system issues.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8323236e-c9ee-4d46-828d-4870ba732ac8",
+          "name": "Red Hat List Advisor Rules",
+          "request": {
+            "name": "Red Hat List Advisor Rules",
+            "description": {
+              "content": "Retrieves a paginated list of Advisor rules that detect configuration issues, security risks, and performance problems on RHEL systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "v1",
+                "rule",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The maximum number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of results to skip before returning."
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<integer>",
+                  "description": "Filter rules by category."
+                },
+                {
+                  "disabled": false,
+                  "key": "impact",
+                  "value": "<string>",
+                  "description": "Filter rules by impact level."
+                },
+                {
+                  "disabled": false,
+                  "key": "likelihood",
+                  "value": "<string>",
+                  "description": "Filter rules by likelihood level."
+                },
+                {
+                  "disabled": false,
+                  "key": "has_playbook",
+                  "value": "<boolean>",
+                  "description": "Filter to rules that have remediation playbooks."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "The field to sort results by."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59a75848-ad71-4c24-a537-1ebef2c699af",
+              "name": "Successfully retrieved rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "rule",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "category",
+                      "value": "1"
+                    },
+                    {
+                      "key": "impact",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "likelihood",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "has_playbook",
+                      "value": "true"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 10\n  },\n  \"links\": {\n    \"first\": \"https://www.example.com\",\n    \"last\": \"https://www.example.com\",\n    \"next\": \"https://www.example.com\",\n    \"previous\": \"https://www.example.com\"\n  },\n  \"data\": [\n    {\n      \"rule_id\": \"500123\",\n      \"description\": \"A sample description.\",\n      \"active\": true,\n      \"category\": {},\n      \"impact\": {},\n      \"likelihood\": 10,\n      \"total_risk\": 10,\n      \"risk_of_change\": 10,\n      \"has_playbook\": true,\n      \"publish_date\": \"2026-01-15T10:30:00Z\",\n      \"systems_affected\": 10,\n      \"resolution_set\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad2da053-3ba3-4032-9e82-46f581286dd2",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "rule",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "category",
+                      "value": "1"
+                    },
+                    {
+                      "key": "impact",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "likelihood",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "has_playbook",
+                      "value": "true"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c63920f5-eefc-4cd6-97d6-a9d16a757351",
+          "name": "Red Hat Get an Advisor Rule",
+          "request": {
+            "name": "Red Hat Get an Advisor Rule",
+            "description": {
+              "content": "Retrieves the details of a specific Advisor rule, including its description, resolution steps, affected system count, and whether an Ansible remediation playbook is available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "v1",
+                "rule",
+                ":rule_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rule_id",
+                  "description": "(Required) The unique identifier of the rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e0c3736-5182-4a98-b5fd-f4c16d2348c3",
+              "name": "Successfully retrieved rule details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "rule",
+                    ":rule_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rule_id",
+                      "description": "(Required) The unique identifier of the rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rule_id\": \"500123\",\n  \"description\": \"A sample description.\",\n  \"active\": true,\n  \"category\": {\n    \"id\": \"abc123\",\n    \"name\": \"Availability\"\n  },\n  \"impact\": {\n    \"name\": \"Example Title\",\n    \"value\": 10\n  },\n  \"likelihood\": 10,\n  \"total_risk\": 10,\n  \"risk_of_change\": 10,\n  \"has_playbook\": true,\n  \"publish_date\": \"2026-01-15T10:30:00Z\",\n  \"systems_affected\": 10,\n  \"resolution_set\": [\n    {\n      \"system_type\": 10,\n      \"resolution\": \"example_value\",\n      \"has_playbook\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9795c31-610d-44f1-b00d-66de1bf8e606",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "rule",
+                    ":rule_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rule_id",
+                      "description": "(Required) The unique identifier of the rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f646ad8c-3bf5-472f-b3af-c5acdfd9f70f",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "rule",
+                    ":rule_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rule_id",
+                      "description": "(Required) The unique identifier of the rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0dfa65ca-7a63-420a-ac37-030d7cde15fa",
+          "name": "Red Hat List Systems Affected by a Rule",
+          "request": {
+            "name": "Red Hat List Systems Affected by a Rule",
+            "description": {
+              "content": "Retrieves the list of systems that are affected by a specific Advisor rule and where the recommendation is currently active.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "v1",
+                "rule",
+                ":rule_id",
+                "systems",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The maximum number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of results to skip before returning."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rule_id",
+                  "description": "(Required) The unique identifier of the rule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7223965-e663-47d6-aeb7-a3b2319ca8d6",
+              "name": "Successfully retrieved affected systems",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "rule",
+                    ":rule_id",
+                    "systems",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rule_id",
+                      "description": "(Required) The unique identifier of the rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"count\": 10\n  },\n  \"links\": {\n    \"first\": \"https://www.example.com\",\n    \"last\": \"https://www.example.com\",\n    \"next\": \"https://www.example.com\",\n    \"previous\": \"https://www.example.com\"\n  },\n  \"data\": [\n    {\n      \"system_uuid\": \"500123\",\n      \"display_name\": \"example_value\",\n      \"last_seen\": \"2026-01-15T10:30:00Z\",\n      \"stale_at\": \"2026-01-15T10:30:00Z\",\n      \"hits\": 10,\n      \"critical_hits\": 10,\n      \"important_hits\": 10,\n      \"moderate_hits\": 10,\n      \"low_hits\": 10,\n      \"rhel_version\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f761d51-2ac4-48cf-a716-3a36d0f04a6a",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "rule",
+                    ":rule_id",
+                    "systems",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rule_id",
+                      "description": "(Required) The unique identifier of the rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76070547-a6a2-4134-81f6-29e120eddfd0",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "v1",
+                    "rule",
+                    ":rule_id",
+                    "systems",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rule_id",
+                      "description": "(Required) The unique identifier of the rule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ansible-platform.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0afb597a-a85a-4640-baa2-af5c2ca84282",
+    "name": "Red Hat Ansible Automation Platform Add-Ons Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

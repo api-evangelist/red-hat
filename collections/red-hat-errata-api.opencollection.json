@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Errata API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Errata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Errata for a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/v2/hosts/:id/errata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of applicable errata for a specific host, including security advisories, bug fixes, and enhancements."
+        },
+        {
+          "info": {
+            "name": "Red Hat List Errata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/katello/api/v2/errata",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of results per page."
+              },
+              {
+                "name": "type",
+                "value": "security",
+                "type": "query",
+                "description": "Filter errata by type."
+              },
+              {
+                "name": "severity",
+                "value": "Critical",
+                "type": "query",
+                "description": "Filter security errata by severity."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of available errata including security advisories, bug fixes, and enhancement updates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

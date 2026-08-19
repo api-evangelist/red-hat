@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Ansible Automation Platform Add-Ons Clusters API",
+    "version": "2.6"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Red Hat List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/clusters",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for paginated results. Page numbering starts at 1."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of OpenShift clusters managed by the authenticated account. Results can be filtered by various criteria and paginated using the page and size parameters."
+        },
+        {
+          "info": {
+            "name": "Red Hat Create a Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/clusters",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provisions a new OpenShift cluster. The request body must include the cluster name, cloud provider, region, and desired node configuration. The cluster creation process is asynchronous and the cluster status will transition through several states before becoming ready."
+        },
+        {
+          "info": {
+            "name": "Red Hat Get a Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific OpenShift cluster by its unique identifier, including its current status, configuration, and metadata."
+        },
+        {
+          "info": {
+            "name": "Red Hat Update a Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing OpenShift cluster. Only the fields provided in the request body will be modified. Some changes may trigger asynchronous operations such as node scaling."
+        },
+        {
+          "info": {
+            "name": "Red Hat Delete a Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ansible-platform.example.com/api/clusters_mgmt/v1/clusters/:cluster_id",
+            "params": [
+              {
+                "name": "cluster_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Initiates the deletion of an OpenShift cluster. The cluster will be deprovisioned asynchronously and all associated resources in the cloud provider will be cleaned up."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
