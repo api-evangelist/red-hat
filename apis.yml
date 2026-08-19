@@ -20,7 +20,7 @@ image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
 url: https://raw.githubusercontent.com/api-evangelist/red-hat/refs/heads/main/apis.yml
 created: '2024-01-15'
 modified: '2026-08-08'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 tags:
 - Cloud
 - Containers
