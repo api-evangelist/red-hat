@@ -28,6 +28,14 @@ tags:
 - Hybrid Cloud
 - Kubernetes
 - Linux
+- Open-Source
+tags_raw:
+- Cloud
+- Containers
+- Enterprise
+- Hybrid Cloud
+- Kubernetes
+- Linux
 - Open Source
 apis:
 - name: Red Hat Subscription Management API
@@ -35,6 +43,11 @@ apis:
   humanUrl: https://access.redhat.com/management/api
   baseUrl: https://api.access.redhat.com/management/v1
   tags:
+  - Entitlements
+  - Licensing
+  - Subscription
+  - System Management
+  tags_raw:
   - Entitlements
   - Licensing
   - Subscriptions
@@ -312,6 +325,11 @@ apis:
   baseUrl: https://console.redhat.com/api/notifications/v1
   tags:
   - Alerts
+  - Integration
+  - Notification
+  - Webhook
+  tags_raw:
+  - Alerts
   - Integrations
   - Notifications
   - Webhooks
@@ -392,6 +410,11 @@ apis:
   - Cloud
   - Configuration
   - Data Sources
+  - Integration
+  tags_raw:
+  - Cloud
+  - Configuration
+  - Data Sources
   - Integrations
   properties:
   - type: Documentation
@@ -408,6 +431,11 @@ apis:
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/integrations/v1
   tags:
+  - Configuration
+  - Integration
+  - Notification
+  - Webhook
+  tags_raw:
   - Configuration
   - Integrations
   - Notifications
@@ -524,6 +552,11 @@ apis:
   tags:
   - Compliance
   - Reporting
+  - Subscription
+  - Usage
+  tags_raw:
+  - Compliance
+  - Reporting
   - Subscriptions
   - Usage
   properties:
@@ -541,6 +574,11 @@ apis:
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/accounts_mgmt/v1
   tags:
+  - Account Management
+  - OpenShift
+  - Organization
+  - Subscription
+  tags_raw:
   - Account Management
   - OpenShift
   - Organizations
@@ -594,6 +632,11 @@ apis:
   tags:
   - Connectors
   - Data Integration
+  - Integration
+  - OpenShift
+  tags_raw:
+  - Connectors
+  - Data Integration
   - Integrations
   - OpenShift
   properties:
@@ -626,6 +669,11 @@ apis:
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/automation-hub/
   tags:
+  - Ansible
+  - Automation
+  - Collection
+  - Content Management
+  tags_raw:
   - Ansible
   - Automation
   - Collections
@@ -723,6 +771,10 @@ apis:
   tags:
   - Incident Management
   - OpenShift
+  - Root Cause Analysis
+  tags_raw:
+  - Incident Management
+  - OpenShift
   - Operations
   - Root Cause Analysis
   properties:
@@ -813,6 +865,8 @@ apis:
   name: Red Hat Add-Ons API
   description: Operations for managing cluster add-ons that extend OpenShift cluster functionality.
   tags:
+  - Addons
+  tags_raw:
   - Add-Ons
   properties:
   - type: OpenAPI
@@ -982,6 +1036,8 @@ apis:
   name: Red Hat Clusters API
   description: Operations for provisioning, managing, and retrieving OpenShift clusters across cloud providers.
   tags:
+  - Cluster
+  tags_raw:
   - Clusters
   properties:
   - type: OpenAPI
@@ -1266,6 +1322,8 @@ apis:
   name: Red Hat Groups API
   description: Operations for managing user groups that enable bulk role and attribute assignment.
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -1608,6 +1666,8 @@ apis:
   description: Operations for launching, monitoring, and managing automation job executions and their
     output.
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -1777,6 +1837,8 @@ apis:
   name: Red Hat Organizations API
   description: Operations for managing organizations that provide multi-tenancy and access control boundaries.
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -1834,6 +1896,8 @@ apis:
   description: Operations for managing projects that represent collections of Ansible playbooks sourced
     from version control.
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -2340,6 +2404,8 @@ apis:
   name: Red Hat Subscriptions API
   description: Operations for managing OpenShift cluster subscriptions and entitlements.
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -2452,6 +2518,8 @@ apis:
   name: Red Hat Teams API
   description: Operations for managing teams within organizations and their repository permissions.
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
@@ -2565,6 +2633,8 @@ apis:
   name: Red Hat Users API
   description: Operations for managing user accounts, credentials, and profile attributes within a realm.
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
