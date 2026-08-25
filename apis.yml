@@ -1,7 +1,7 @@
 aid: red-hat
 name: Red Hat
-description: APIs and developer resources from Red Hat, a leading provider of enterprise open source solutions
-  including Linux, cloud, container, and Kubernetes technologies.
+description: APIs and developer resources from Red Hat, a leading provider of enterprise open source solutions including
+  Linux, cloud, container, and Kubernetes technologies.
 type: Index
 accessModel:
   pricing: enterprise
@@ -19,7 +19,7 @@ accessModel:
 image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
 url: https://raw.githubusercontent.com/api-evangelist/red-hat/refs/heads/main/apis.yml
 created: '2024-01-15'
-modified: '2026-08-08'
+modified: '2026-08-21'
 specificationVersion: '0.23'
 tags:
 - Cloud
@@ -63,8 +63,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Advanced Cluster Management API
-  description: API for managing multiple Kubernetes clusters across hybrid cloud environments, providing
-    cluster lifecycle management, policy-based governance, and application deployment.
+  description: API for managing multiple Kubernetes clusters across hybrid cloud environments, providing cluster
+    lifecycle management, policy-based governance, and application deployment.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15
   baseUrl: https://multicloud-console.example.com/api
@@ -103,8 +103,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat 3scale API Management
-  description: API management platform providing access control, rate limiting, analytics, and developer
-    portal capabilities for managing the full lifecycle of APIs.
+  description: API management platform providing access control, rate limiting, analytics, and developer portal
+    capabilities for managing the full lifecycle of APIs.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://docs.redhat.com/en/documentation/red_hat_3scale_api_management/2.15
   baseUrl: https://3scale-admin.example.com/admin/api
@@ -122,8 +122,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Cost Management API
-  description: API for tracking and analyzing costs associated with Red Hat OpenShift clusters and cloud
-    infrastructure, providing visibility into resource consumption and spend.
+  description: API for tracking and analyzing costs associated with Red Hat OpenShift clusters and cloud infrastructure,
+    providing visibility into resource consumption and spend.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog/api/cost-management
   baseUrl: https://console.redhat.com/api/cost-management/v1
@@ -160,8 +160,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Vulnerability Management API
-  description: API for assessing and monitoring security vulnerabilities across RHEL systems, providing
-    CVE tracking, severity scoring, and remediation guidance.
+  description: API for assessing and monitoring security vulnerabilities across RHEL systems, providing CVE tracking,
+    severity scoring, and remediation guidance.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog/api/vulnerability
   baseUrl: https://console.redhat.com/api/vulnerability/v1
@@ -179,8 +179,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Patch API
-  description: API for managing and applying patches to RHEL systems, providing advisories, package updates,
-    and system patch status through the Hybrid Cloud Console.
+  description: API for managing and applying patches to RHEL systems, providing advisories, package updates, and
+    system patch status through the Hybrid Cloud Console.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/patch/v3
@@ -198,8 +198,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Compliance API
-  description: API for managing security policy compliance assessments on RHEL systems using SCAP profiles,
-    providing compliance scoring, reporting, and policy management.
+  description: API for managing security policy compliance assessments on RHEL systems using SCAP profiles, providing
+    compliance scoring, reporting, and policy management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/compliance/v2
@@ -217,8 +217,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Build of Apicurio Registry API
-  description: REST API for managing schemas and API design artifacts in a schema registry, supporting
-    formats including Avro, JSON Schema, Protobuf, OpenAPI, and AsyncAPI.
+  description: REST API for managing schemas and API design artifacts in a schema registry, supporting formats including
+    Avro, JSON Schema, Protobuf, OpenAPI, and AsyncAPI.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://docs.redhat.com/en/documentation/red_hat_build_of_apicurio_registry/3.0
   baseUrl: https://registry.example.com/apis/registry/v2
@@ -240,8 +240,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Streams for Apache Kafka Bridge API
-  description: HTTP bridge API for producing and consuming messages to Apache Kafka topics without requiring
-    a native Kafka client, deployed as part of Red Hat Streams for Apache Kafka on OpenShift.
+  description: HTTP bridge API for producing and consuming messages to Apache Kafka topics without requiring a native
+    Kafka client, deployed as part of Red Hat Streams for Apache Kafka on OpenShift.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://docs.redhat.com/en/documentation/red_hat_streams_for_apache_kafka/3.1
   baseUrl: https://kafka-bridge.example.com
@@ -263,8 +263,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Ansible Lightspeed API
-  description: AI-powered API that provides generative AI assistance for creating Ansible automation content,
-    helping users generate Ansible Playbooks and task recommendations.
+  description: AI-powered API that provides generative AI assistance for creating Ansible automation content, helping
+    users generate Ansible Playbooks and task recommendations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/ansible-wisdom
@@ -280,8 +280,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Managed Inventory API
-  description: REST API for managing host inventory data within the Hybrid Cloud Console, providing system
-    profile information, tagging, grouping, and host lifecycle management.
+  description: REST API for managing host inventory data within the Hybrid Cloud Console, providing system profile
+    information, tagging, grouping, and host lifecycle management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/inventory/v1
@@ -318,8 +318,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Notifications API
-  description: API for managing notification preferences, integrations, and event routing within the Hybrid
-    Cloud Console, enabling alerts through email, webhook, and third-party services.
+  description: API for managing notification preferences, integrations, and event routing within the Hybrid Cloud
+    Console, enabling alerts through email, webhook, and third-party services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/notifications/v1
@@ -344,8 +344,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Role-Based Access Control API
-  description: API for managing role-based access control policies within the Hybrid Cloud Console, including
-    user groups, roles, permissions, and access policies.
+  description: API for managing role-based access control policies within the Hybrid Cloud Console, including user
+    groups, roles, permissions, and access policies.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/rbac/v1
@@ -363,8 +363,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Advisor API
-  description: Predictive analytics API that provides proactive recommendations for improving the stability,
-    performance, and security of RHEL systems through the Hybrid Cloud Console.
+  description: Predictive analytics API that provides proactive recommendations for improving the stability, performance,
+    and security of RHEL systems through the Hybrid Cloud Console.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/insights/v1
@@ -382,8 +382,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Malware Detection API
-  description: API for detecting potential malware signatures on RHEL systems registered with the Hybrid
-    Cloud Console, providing scanning results and threat analysis.
+  description: API for detecting potential malware signatures on RHEL systems registered with the Hybrid Cloud Console,
+    providing scanning results and threat analysis.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/malware-detection/v1
@@ -401,8 +401,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Sources API
-  description: API for managing source connections and integrations within the Hybrid Cloud Console, enabling
-    connectivity to cloud providers and other external services.
+  description: API for managing source connections and integrations within the Hybrid Cloud Console, enabling connectivity
+    to cloud providers and other external services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/sources/v3.1
@@ -425,8 +425,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Integrations API
-  description: API for configuring third-party integrations and notification endpoints within the Hybrid
-    Cloud Console, supporting webhook, email, and service integrations.
+  description: API for configuring third-party integrations and notification endpoints within the Hybrid Cloud Console,
+    supporting webhook, email, and service integrations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/integrations/v1
@@ -449,8 +449,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Resource Optimization API
-  description: API for analyzing resource utilization and providing optimization recommendations for RHEL
-    systems, helping right-size workloads and reduce waste.
+  description: API for analyzing resource utilization and providing optimization recommendations for RHEL systems,
+    helping right-size workloads and reduce waste.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/ros/v1
@@ -468,8 +468,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Export Service API
-  description: API for exporting data from Hybrid Cloud Console services in JSON or CSV formats, enabling
-    bulk data retrieval for inventory, notifications, and other services.
+  description: API for exporting data from Hybrid Cloud Console services in JSON or CSV formats, enabling bulk data
+    retrieval for inventory, notifications, and other services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/export/v1
@@ -487,8 +487,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Playbook Dispatcher API
-  description: API for dispatching and managing Ansible Playbook execution on hosts connected via Cloud
-    Connector, enabling automated remediation and configuration management.
+  description: API for dispatching and managing Ansible Playbook execution on hosts connected via Cloud Connector,
+    enabling automated remediation and configuration management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/playbook-dispatcher/v1
@@ -506,8 +506,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Content Sources API
-  description: API for managing custom and Red Hat content repositories within the Hybrid Cloud Console,
-    enabling organizations to curate and distribute software packages.
+  description: API for managing custom and Red Hat content repositories within the Hybrid Cloud Console, enabling
+    organizations to curate and distribute software packages.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/content-sources/v1
@@ -525,8 +525,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Tasks API
-  description: API for managing and issuing Red Hat-generated tasks on registered infrastructure, enabling
-    automated system maintenance and configuration operations.
+  description: API for managing and issuing Red Hat-generated tasks on registered infrastructure, enabling automated
+    system maintenance and configuration operations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/tasks/v1
@@ -544,8 +544,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Subscriptions Usage API
-  description: API for monitoring and reporting Red Hat subscription utilization including OpenShift,
-    RHEL, and other product usage metrics for capacity planning and compliance.
+  description: API for monitoring and reporting Red Hat subscription utilization including OpenShift, RHEL, and
+    other product usage metrics for capacity planning and compliance.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/rhsm-subscriptions/v1
@@ -568,8 +568,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Account Management Service API
-  description: API for managing user subscriptions, clusters, and organizations through the OpenShift
-    Cluster Manager, providing account-level operations and resource management.
+  description: API for managing user subscriptions, clusters, and organizations through the OpenShift Cluster Manager,
+    providing account-level operations and resource management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/accounts_mgmt/v1
@@ -590,8 +590,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Authorization Service API
-  description: API for managing access control on resources of OpenShift Cluster Manager services, enabling
-    fine-grained authorization policies and permission management.
+  description: API for managing access control on resources of OpenShift Cluster Manager services, enabling fine-grained
+    authorization policies and permission management.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/authorizations/v1
@@ -607,8 +607,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Service Logs API
-  description: API for receiving and maintaining logs from internal sources related to OpenShift clusters,
-    providing centralized log management and retrieval.
+  description: API for receiving and maintaining logs from internal sources related to OpenShift clusters, providing
+    centralized log management and retrieval.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/service_logs/v1
@@ -624,8 +624,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Connector Management API
-  description: REST API for managing connectors that enable integration between Red Hat services and external
-    systems, supporting connector lifecycle operations.
+  description: REST API for managing connectors that enable integration between Red Hat services and external systems,
+    supporting connector lifecycle operations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/connector_mgmt/v1
@@ -646,8 +646,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Upgrades Information Service API
-  description: API for retrieving upgrade path information and recommendations for OpenShift clusters,
-    helping plan and execute cluster version upgrades safely.
+  description: API for retrieving upgrade path information and recommendations for OpenShift clusters, helping plan
+    and execute cluster version upgrades safely.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/upgrades_info/v1
@@ -663,8 +663,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Automation Hub API
-  description: API for fetching, uploading, organizing, and distributing Ansible Collections through Red
-    Hat Automation Hub, providing access to Red Hat Certified and partner content.
+  description: API for fetching, uploading, organizing, and distributing Ansible Collections through Red Hat Automation
+    Hub, providing access to Red Hat Certified and partner content.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/automation-hub/
@@ -689,8 +689,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Operator Gathering Conditions Service API
-  description: API providing gathering conditions to the Insights Operator, defining what data should
-    be collected from OpenShift clusters for analysis and recommendations.
+  description: API providing gathering conditions to the Insights Operator, defining what data should be collected
+    from OpenShift clusters for analysis and recommendations.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/gathering/v1
@@ -706,8 +706,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Payload Ingress Service API
-  description: API for ingesting payloads and data uploads from registered systems into the Hybrid Cloud
-    Console platform for processing by downstream services.
+  description: API for ingesting payloads and data uploads from registered systems into the Hybrid Cloud Console
+    platform for processing by downstream services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/ingress/v1
@@ -725,8 +725,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Lightspeed Advisor for OpenShift API
-  description: Aggregation API for Insights Advisor that exposes recommendations for single and multiple
-    OpenShift clusters, providing AI-powered operational guidance.
+  description: Aggregation API for Insights Advisor that exposes recommendations for single and multiple OpenShift
+    clusters, providing AI-powered operational guidance.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/insights-results-aggregator/v2
@@ -744,8 +744,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat OCP Vulnerability Dashboard API
-  description: API for tracking and analyzing vulnerabilities affecting OpenShift Container Platform clusters,
-    providing CVE exposure data and remediation status.
+  description: API for tracking and analyzing vulnerabilities affecting OpenShift Container Platform clusters, providing
+    CVE exposure data and remediation status.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/ocp-vulnerability/v1
@@ -763,8 +763,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Web-RCA Service API
-  description: API for the Web Root Cause Analysis service, providing incident tracking, root cause analysis,
-    and post-incident review capabilities for OpenShift managed services.
+  description: API for the Web Root Cause Analysis service, providing incident tracking, root cause analysis, and
+    post-incident review capabilities for OpenShift managed services.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.openshift.com/api/web-rca/v1
@@ -784,8 +784,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Case Management API
-  description: API for managing support cases through the Red Hat Customer Portal, supporting case creation,
-    updates, comments, attachments, and escalation workflows.
+  description: API for managing support cases through the Red Hat Customer Portal, supporting case creation, updates,
+    comments, attachments, and escalation workflows.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://api.access.redhat.com/support/v1
@@ -803,8 +803,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Security Data API
-  description: Public API for querying Red Hat security data including CVE details, CSAF advisories, OVAL
-    data, and vulnerability severity scores across Red Hat products.
+  description: Public API for querying Red Hat security data including CVE details, CSAF advisories, OVAL data,
+    and vulnerability severity scores across Red Hat products.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://docs.redhat.com/en/documentation/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index
   baseUrl: https://access.redhat.com/hydra/rest/securitydata
@@ -822,8 +822,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Edge Management API
-  description: API for fleet edge management capabilities including device provisioning, image management,
-    update orchestration, and fleet-level configuration of RHEL-based edge devices.
+  description: API for fleet edge management capabilities including device provisioning, image management, update
+    orchestration, and fleet-level configuration of RHEL-based edge devices.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://docs.redhat.com/en/documentation/red_hat_edge_manager/1.0/html/architecture/red_hat_edge_manager_architecture
   baseUrl: https://console.redhat.com/api/edge/v1
@@ -843,8 +843,8 @@ apis:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Lightspeed for RHEL Planning API
-  description: API providing RHEL product lifecycle data including release dates, end-of-life schedules,
-    and upgrade path planning information.
+  description: API providing RHEL product lifecycle data including release dates, end-of-life schedules, and upgrade
+    path planning information.
   image: https://www.redhat.com/cms/managed-files/Logo-Red_Hat-A-Standard-RGB.svg
   humanUrl: https://developers.redhat.com/api-catalog
   baseUrl: https://console.redhat.com/api/roadmap/v1
@@ -921,8 +921,7 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-clients-api
   name: Red Hat Clients API
-  description: Operations for managing client applications registered in a realm for authentication and
-    authorization.
+  description: Operations for managing client applications registered in a realm for authentication and authorization.
   tags:
   - Clients
   properties:
@@ -1092,8 +1091,8 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-content-views-api
   name: Red Hat Content Views API
-  description: Operations for managing content views that define curated snapshots of software repositories
-    for controlled content delivery.
+  description: Operations for managing content views that define curated snapshots of software repositories for
+    controlled content delivery.
   tags:
   - Content Views
   properties:
@@ -1149,8 +1148,8 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-credentials-api
   name: Red Hat Credentials API
-  description: Operations for managing credentials used by automation jobs to authenticate with managed
-    hosts and external services.
+  description: Operations for managing credentials used by automation jobs to authenticate with managed hosts and
+    external services.
   tags:
   - Credentials
   properties:
@@ -1206,8 +1205,8 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-environments-api
   name: Red Hat Environments API
-  description: Operations for managing lifecycle environments that define the promotion path for content
-    from development to production.
+  description: Operations for managing lifecycle environments that define the promotion path for content from development
+    to production.
   tags:
   - Environments
   properties:
@@ -1263,8 +1262,8 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-errata-api
   name: Red Hat Errata API
-  description: Operations for listing and managing errata (security advisories, bug fixes, and enhancements)
-    applicable to registered hosts.
+  description: Operations for listing and managing errata (security advisories, bug fixes, and enhancements) applicable
+    to registered hosts.
   tags:
   - Errata
   properties:
@@ -1435,8 +1434,8 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-hosts-api
   name: Red Hat Hosts API
-  description: Operations for managing hosts registered with Satellite, including provisioning, facts,
-    and power management.
+  description: Operations for managing hosts registered with Satellite, including provisioning, facts, and power
+    management.
   tags:
   - Hosts
   properties:
@@ -1492,8 +1491,8 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-identity-providers-api
   name: Red Hat Identity Providers API
-  description: Operations for managing external identity providers for federated authentication such as
-    SAML and OIDC.
+  description: Operations for managing external identity providers for federated authentication such as SAML and
+    OIDC.
   tags:
   - Identity Providers
   properties:
@@ -1549,8 +1548,7 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-inventories-api
   name: Red Hat Inventories API
-  description: Operations for managing inventories that define collections of hosts and groups for automation
-    targeting.
+  description: Operations for managing inventories that define collections of hosts and groups for automation targeting.
   tags:
   - Inventories
   properties:
@@ -1663,8 +1661,7 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-jobs-api
   name: Red Hat Jobs API
-  description: Operations for launching, monitoring, and managing automation job executions and their
-    output.
+  description: Operations for launching, monitoring, and managing automation job executions and their output.
   tags:
   - Job
   tags_raw:
@@ -1778,8 +1775,7 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-manifests-api
   name: Red Hat Manifests API
-  description: Operations for retrieving manifest information and security scan results for container
-    images.
+  description: Operations for retrieving manifest information and security scan results for container images.
   tags:
   - Manifests
   properties:
@@ -1893,8 +1889,8 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-projects-api
   name: Red Hat Projects API
-  description: Operations for managing projects that represent collections of Ansible playbooks sourced
-    from version control.
+  description: Operations for managing projects that represent collections of Ansible playbooks sourced from version
+    control.
   tags:
   - Project
   tags_raw:
@@ -2008,8 +2004,7 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-repositories-api
   name: Red Hat Repositories API
-  description: Operations for managing container image repositories, including creation, listing, and
-    deletion.
+  description: Operations for managing container image repositories, including creation, listing, and deletion.
   tags:
   - Repositories
   properties:
@@ -2233,8 +2228,7 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-rules-api
   name: Red Hat Rules API
-  description: Operations for listing and retrieving Advisor rules that define the detection logic for
-    system issues.
+  description: Operations for listing and retrieving Advisor rules that define the detection logic for system issues.
   tags:
   - Rules
   properties:
@@ -2574,8 +2568,8 @@ apis:
     url: https://github.com/openshift/assisted-service
 - aid: red-hat:red-hat-topics-api
   name: Red Hat Topics API
-  description: Operations for retrieving curated topics that group related recommendations by technology
-    area or risk category.
+  description: Operations for retrieving curated topics that group related recommendations by technology area or
+    risk category.
   tags:
   - Topics
   properties:
@@ -2801,6 +2795,12 @@ apis:
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/ibm/
+  name: Ibm
+  x-relationship: acquisition
+  x-generated-by: ibm-family:2026-08-21
+  x-acquired: 2019
 - type: AgenticAccess
   url: agentic-access/red-hat-agentic-access.yml
 - type: VulnerabilityDisclosure
@@ -2989,3 +2989,6 @@ maintainers:
   email: kin@apievangelist.com
 x-merged-from:
 - redhat
+x-parent: ibm
+x-relationship: acquisition
+x-acquired: 2019
