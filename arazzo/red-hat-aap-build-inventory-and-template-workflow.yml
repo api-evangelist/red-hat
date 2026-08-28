@@ -11,8 +11,14 @@ info:
     criteria, and outputs so the flow is self-describing.
   version: 1.0.0
 sourceDescriptions:
-- name: ansibleAutomationPlatformApi
-  url: ../openapi/red-hat-ansible-automation-platform-openapi.yml
+- name: inventoriesApi
+  url: ../openapi/red-hat-inventories-api-openapi.yml
+  type: openapi
+- name: jobTemplatesApi
+  url: ../openapi/red-hat-job-templates-api-openapi.yml
+  type: openapi
+- name: organizationsApi
+  url: ../openapi/red-hat-organizations-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: build-inventory-and-template

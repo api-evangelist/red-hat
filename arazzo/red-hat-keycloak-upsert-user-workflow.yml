@@ -11,8 +11,8 @@ info:
     request body, documented success criteria, and outputs.
   version: 1.0.0
 sourceDescriptions:
-- name: keycloakAdminApi
-  url: ../openapi/red-hat-keycloak-admin-openapi.yml
+- name: usersApi
+  url: ../openapi/red-hat-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: upsert-user

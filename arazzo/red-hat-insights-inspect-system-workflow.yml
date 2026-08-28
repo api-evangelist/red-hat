@@ -10,8 +10,11 @@ info:
     and outputs so it can be executed directly against the Insights API.
   version: 1.0.0
 sourceDescriptions:
-- name: insightsApi
-  url: ../openapi/red-hat-insights-openapi.yml
+- name: statsApi
+  url: ../openapi/red-hat-stats-api-openapi.yml
+  type: openapi
+- name: systemsApi
+  url: ../openapi/red-hat-systems-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: inspect-system

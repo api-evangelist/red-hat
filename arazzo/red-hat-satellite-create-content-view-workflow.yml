@@ -11,8 +11,14 @@ info:
     documented success criteria, and outputs.
   version: 1.0.0
 sourceDescriptions:
-- name: satelliteApi
-  url: ../openapi/red-hat-satellite-openapi.yml
+- name: contentViewsApi
+  url: ../openapi/red-hat-content-views-api-openapi.yml
+  type: openapi
+- name: organizationsApi
+  url: ../openapi/red-hat-organizations-api-openapi.yml
+  type: openapi
+- name: repositoriesApi
+  url: ../openapi/red-hat-repositories-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-content-view

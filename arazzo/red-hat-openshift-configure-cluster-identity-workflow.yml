@@ -11,8 +11,11 @@ info:
     criteria, and outputs.
   version: 1.0.0
 sourceDescriptions:
-- name: openshiftClusterManagerApi
-  url: ../openapi/red-hat-openshift-cluster-manager-openapi.yml
+- name: clustersApi
+  url: ../openapi/red-hat-clusters-api-openapi.yml
+  type: openapi
+- name: identityProvidersApi
+  url: ../openapi/red-hat-identity-providers-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: configure-cluster-identity

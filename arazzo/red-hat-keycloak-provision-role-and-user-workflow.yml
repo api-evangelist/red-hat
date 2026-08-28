@@ -11,8 +11,14 @@ info:
     API.
   version: 1.0.0
 sourceDescriptions:
-- name: keycloakAdminApi
-  url: ../openapi/red-hat-keycloak-admin-openapi.yml
+- name: realmsApi
+  url: ../openapi/red-hat-realms-api-openapi.yml
+  type: openapi
+- name: rolesApi
+  url: ../openapi/red-hat-roles-api-openapi.yml
+  type: openapi
+- name: usersApi
+  url: ../openapi/red-hat-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-role-and-user

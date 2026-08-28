@@ -11,8 +11,14 @@ info:
     self-describing.
   version: 1.0.0
 sourceDescriptions:
-- name: quayApi
-  url: ../openapi/red-hat-quay-openapi.yml
+- name: manifestsApi
+  url: ../openapi/red-hat-manifests-api-openapi.yml
+  type: openapi
+- name: repositoriesApi
+  url: ../openapi/red-hat-repositories-api-openapi.yml
+  type: openapi
+- name: repositoryApi
+  url: ../openapi/red-hat-repository-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-repo-tag-and-scan

@@ -11,8 +11,11 @@ info:
     documented success criteria, and outputs.
   version: 1.0.0
 sourceDescriptions:
-- name: satelliteApi
-  url: ../openapi/red-hat-satellite-openapi.yml
+- name: errataApi
+  url: ../openapi/red-hat-errata-api-openapi.yml
+  type: openapi
+- name: hostsApi
+  url: ../openapi/red-hat-hosts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: host-errata-remediation

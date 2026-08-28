@@ -11,8 +11,14 @@ info:
     directly against the Quay API.
   version: 1.0.0
 sourceDescriptions:
-- name: quayApi
-  url: ../openapi/red-hat-quay-openapi.yml
+- name: organizationsApi
+  url: ../openapi/red-hat-organizations-api-openapi.yml
+  type: openapi
+- name: repositoriesApi
+  url: ../openapi/red-hat-repositories-api-openapi.yml
+  type: openapi
+- name: robotAccountsApi
+  url: ../openapi/red-hat-robot-accounts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-org-robot-repo

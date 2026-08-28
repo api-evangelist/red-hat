@@ -12,8 +12,17 @@ info:
     self-describing.
   version: 1.0.0
 sourceDescriptions:
-- name: openshiftClusterManagerApi
-  url: ../openapi/red-hat-openshift-cluster-manager-openapi.yml
+- name: cloudProvidersApi
+  url: ../openapi/red-hat-cloud-providers-api-openapi.yml
+  type: openapi
+- name: clustersApi
+  url: ../openapi/red-hat-clusters-api-openapi.yml
+  type: openapi
+- name: machinePoolsApi
+  url: ../openapi/red-hat-machine-pools-api-openapi.yml
+  type: openapi
+- name: versionsApi
+  url: ../openapi/red-hat-versions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-cluster

@@ -11,8 +11,11 @@ info:
     outputs so it can be executed directly against the v2 API.
   version: 1.0.0
 sourceDescriptions:
-- name: ansibleAutomationPlatformApi
-  url: ../openapi/red-hat-ansible-automation-platform-openapi.yml
+- name: jobTemplatesApi
+  url: ../openapi/red-hat-job-templates-api-openapi.yml
+  type: openapi
+- name: jobsApi
+  url: ../openapi/red-hat-jobs-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: launch-monitor-cancel-job
