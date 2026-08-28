@@ -3,6 +3,19 @@ name: Red Hat
 description: APIs and developer resources from Red Hat, a leading provider of enterprise open source solutions including
   Linux, cloud, container, and Kubernetes technologies.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
@@ -2795,6 +2808,13 @@ apis:
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 common:
+- type: CapabilityMap
+  url: capabilities/red-hat-capability-edges.yml
+  name: Red Hat Business Capability Map
+- type: IssueTracker
+  url: https://github.com/stolostron/rhacm-docs/issues
+- type: SecurityPolicy
+  url: https://github.com/stolostron/rhacm-docs/blob/2.17_stage/SECURITY.adoc
 - type: ParentCompany
   url: https://apis.io/providers/ibm/
   name: Ibm

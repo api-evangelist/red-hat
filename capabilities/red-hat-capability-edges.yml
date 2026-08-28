@@ -1,0 +1,163 @@
+slug: red-hat
+provider: Red Hat
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 15
+edges:
+- tag: Clusters
+  spec_file: red-hat-clusters-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: POST /api/clusters_mgmt/v1/clusters createCluster 'Red Hat Create a Cluster'; DELETE .../{cluster_id}
+    deleteCluster
+  reason: Full CRUD lifecycle over Kubernetes/OpenShift clusters is compute/cloud infrastructure provisioning
+    and management.
+- tag: Identity Providers
+  spec_file: red-hat-identity-providers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers createIdentityProvider;
+    schema IdentityProviderRepresentation
+  reason: Configuring identity providers for realms and clusters is federation configuration, squarely
+    Identity & Access Management.
+- tag: Machine Pools
+  spec_file: red-hat-machine-pools-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: '"GET /api/clusters_mgmt/v1/clusters/{cluster_id}/machine_pools listMachinePools", schema
+    "MachinePool"'
+  reason: Managing compute node pools of managed clusters is cloud compute infrastructure management.
+- tag: Users
+  spec_file: red-hat-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET/POST /admin/realms/{realm}/users createUser, updateUser, deleteUser; GET /user/ getLoggedInUser
+  reason: Full CRUD over identity-provider realm user accounts (Keycloak-style admin API) plus current-principal
+    lookup — this is identity and access administration, not HR employee records.
+- tag: Job Templates
+  spec_file: red-hat-job-templates-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.8
+  evidence: POST /api/v2/job_templates/{id}/launch/ launchJobTemplate 'Red Hat Launch a Job Template';
+    'creating and launching job templates'
+  reason: Defining and launching automation jobs against IT infrastructure is day-to-day IT operations
+    automation.
+- tag: Jobs
+  spec_file: red-hat-jobs-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.8
+  evidence: '"GET /api/v2/jobs/ listJobs", "POST /api/v2/jobs/{id}/cancel/ cancelJob" — "programmatic
+    access to the automation controller for managing IT infrastructure automation ... tracking job execution
+    status"'
+  reason: Ansible automation controller job execution and cancellation is day-to-day IT operations automation,
+    not a business-domain job concept.
+- tag: Roles
+  spec_file: red-hat-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: '"GET /admin/realms/{realm}/roles listRealmRoles", "POST /admin/realms/{realm}/roles createRealmRole",
+    schema "Role"'
+  reason: Realm role definition and listing is authorisation model administration within identity & access
+    management.
+- tag: Cloud Providers
+  spec_file: red-hat-cloud-providers-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: GET /api/clusters_mgmt/v1/cloud_providers listCloudProviders; GET .../regions listCloudProviderRegions;
+    schemas CloudRegionList, CloudProviderList
+  reason: Read-only catalogue of cloud providers and regions available for cluster provisioning — cloud
+    infrastructure management, an IT infrastructure concern rather than any business capability.
+- tag: Hosts
+  spec_file: red-hat-hosts-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: GET /api/v2/hosts listHosts; PUT /api/v2/hosts/{id} updateHost; DELETE /api/v2/hosts/{id}
+    deleteHost
+  reason: Lifecycle management of managed server hosts in the automation inventory — compute infrastructure
+    management, not a business-domain capability.
+- tag: Realms
+  spec_file: red-hat-realms-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: '"GET /admin/realms listRealms", "PUT /admin/realms/{realm} updateRealm", schema "Realm"'
+  reason: Keycloak realm administration is identity provider configuration, i.e. identity & access management;
+    thin evidence beyond the admin endpoints.
+- tag: Errata
+  spec_file: red-hat-errata-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: GET /api/v2/hosts/{id}/errata listHostErrata 'Red Hat List Errata for a Host'; GET /katello/api/v2/errata
+    listErrata
+  reason: Errata enumerate security and bugfix advisories applicable to hosts, the basis for patch/vulnerability
+    remediation; alternative reading is generic IT operations, hence moderate confidence.
+- tag: Groups
+  spec_file: red-hat-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /admin/realms/{realm}/groups listGroups; schema Group
+  reason: Keycloak realm group listing is identity/access management directory structure; single read
+    operation limits confidence.
+- tag: Inventories
+  spec_file: red-hat-inventories-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: POST /api/v2/inventories/ createInventory; vendor description 'managing inventories ... for
+    connecting to managed hosts'
+  reason: Ansible inventories are collections of managed IT hosts, not stock/materials — IT operations
+    asset grouping. Explicitly NOT BC-530 Inventory Management.
+- tag: Manifests
+  spec_file: red-hat-manifests-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: '"GET /repository/{repository}/manifest/{manifestref}/security getManifestSecurity Red Hat
+    Get Manifest Security Information", schema "SecurityScanResult"'
+  reason: The single operation returns container image vulnerability scan results, which is vulnerability
+    scanning; some ambiguity as it is registry-scoped rather than a remediation programme.
+- tag: Robot Accounts
+  spec_file: red-hat-robot-accounts-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"PUT /organization/{orgname}/robots/{robot_shortname} createOrgRobot Red Hat Create an Organization
+    Robot Account", schema "RobotAccount"'
+  reason: Creation and retrieval of machine/service accounts used as registry credentials is identity
+    and access credential management.
