@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat Ansible Automation Platform Add-Ons Roles API
-  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
-  version: '2.6'
+  title: Red Hat Build of Keycloak Admin REST Roles API
+  description: The Red Hat Build of Keycloak Admin REST API provides programmatic access to manage identity and access management functions, including realm configuration, user management, client registration, role assignments, identity provider configuration, and session management. It serves as the administrative interface for the Red Hat build of Keycloak identity platform.
+  version: '26.0'
   contact:
     name: Red Hat Support
     url: https://access.redhat.com/support
   termsOfService: https://www.redhat.com/en/about/terms-use
 servers:
-- url: https://ansible-platform.example.com
-  description: Ansible Automation Platform Server
+- url: https://keycloak.example.com
+  description: Keycloak Server
 security:
 - bearerAuth: []
 tags:
@@ -96,6 +96,14 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
   schemas:
     Role:
       type: object
@@ -125,20 +133,12 @@ components:
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
-  parameters:
-    RealmParam:
-      name: realm
-      in: path
-      required: true
-      description: The name of the Keycloak realm.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+      description: Access token obtained via direct access grant or authorization code flow from the Keycloak master realm or configured realm.
 externalDocs:
-  description: Ansible Automation Platform API Documentation
-  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index
+  description: Red Hat Build of Keycloak Admin REST API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api

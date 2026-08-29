@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat Ansible Automation Platform Add-Ons Rules API
-  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
-  version: '2.6'
+  title: Red Hat Insights Rules API
+  description: The Red Hat Insights API provides programmatic access to predictive analytics and remediation services for Red Hat Enterprise Linux systems. Through the Hybrid Cloud Console, it enables proactive identification of security vulnerabilities, configuration issues, performance risks, and compliance gaps across registered RHEL systems, along with automated remediation recommendations.
+  version: '1.0'
   contact:
     name: Red Hat Support
     url: https://access.redhat.com/support
   termsOfService: https://www.redhat.com/en/about/terms-use
 servers:
-- url: https://ansible-platform.example.com
-  description: Ansible Automation Platform Server
+- url: https://console.redhat.com/api
+  description: Red Hat Hybrid Cloud Console Production Server
 security:
 - bearerAuth: []
 tags:
@@ -206,28 +206,25 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    LimitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+    OffsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip before returning.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   schemas:
-    PaginatedRuleList:
-      type: object
-      description: A paginated list of rules.
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-          example: []
-    PaginationMeta:
-      type: object
-      description: Pagination metadata for list responses.
-      properties:
-        count:
-          type: integer
-          description: The total number of results.
-          example: 10
     System:
       type: object
       description: A RHEL system registered with Red Hat Insights for monitoring and recommendations.
@@ -275,6 +272,45 @@ components:
           type: string
           description: The RHEL version running on the system.
           example: example_value
+    PaginationLinks:
+      type: object
+      description: Pagination links for navigating result sets.
+      properties:
+        first:
+          type: string
+          format: uri
+          description: URL to the first page.
+          example: https://www.example.com
+        last:
+          type: string
+          format: uri
+          description: URL to the last page.
+          example: https://www.example.com
+        next:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the next page.
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the previous page.
+          example: https://www.example.com
+    PaginatedRuleList:
+      type: object
+      description: A paginated list of rules.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+          example: []
     PaginatedSystemList:
       type: object
       description: A paginated list of systems.
@@ -288,6 +324,14 @@ components:
           items:
             $ref: '#/components/schemas/System'
           example: []
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses.
+      properties:
+        count:
+          type: integer
+          description: The total number of results.
+          example: 10
     Rule:
       type: object
       description: An Advisor rule that defines detection logic for a specific system issue, along with resolution steps and remediation guidance.
@@ -370,61 +414,17 @@ components:
                 type: boolean
                 description: Whether this resolution has a playbook.
           example: []
-    PaginationLinks:
-      type: object
-      description: Pagination links for navigating result sets.
-      properties:
-        first:
-          type: string
-          format: uri
-          description: URL to the first page.
-          example: https://www.example.com
-        last:
-          type: string
-          format: uri
-          description: URL to the last page.
-          example: https://www.example.com
-        next:
-          type: string
-          format: uri
-          nullable: true
-          description: URL to the next page.
-          example: https://www.example.com
-        previous:
-          type: string
-          format: uri
-          nullable: true
-          description: URL to the previous page.
-          example: https://www.example.com
   responses:
     NotFoundError:
       description: The requested resource was not found.
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
-  parameters:
-    LimitParam:
-      name: limit
-      in: query
-      description: The maximum number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-    OffsetParam:
-      name: offset
-      in: query
-      description: The number of results to skip before returning.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+      description: OAuth 2.0 Bearer token obtained from Red Hat SSO using an offline token from https://access.redhat.com/management/api.
 externalDocs:
-  description: Ansible Automation Platform API Documentation
-  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index
+  description: Red Hat Insights API Documentation
+  url: https://console.redhat.com/docs/api

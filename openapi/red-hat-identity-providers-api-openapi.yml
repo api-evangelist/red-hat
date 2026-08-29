@@ -1,15 +1,17 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat Ansible Automation Platform Add-Ons Identity Providers API
-  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
-  version: '2.6'
+  title: Red Hat Identity Providers API
   contact:
     name: Red Hat Support
     url: https://access.redhat.com/support
   termsOfService: https://www.redhat.com/en/about/terms-use
+  version: '1.0'
+  description: 'Operations tagged Identity Providers across 2 of this provider''s published API definitions: red-hat-keycloak-admin-openapi.yml, red-hat-openshift-cluster-manager-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://ansible-platform.example.com
-  description: Ansible Automation Platform Server
+- url: https://keycloak.example.com
+  description: Keycloak Server
+- url: https://api.openshift.com
+  description: OpenShift Cluster Manager Production Server
 security:
 - bearerAuth: []
 tags:
@@ -49,6 +51,9 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://keycloak.example.com
+      description: Keycloak Server
   /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers:
     get:
       operationId: listIdentityProviders
@@ -169,28 +174,25 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+    servers:
+    - url: https://api.openshift.com
+      description: OpenShift Cluster Manager Production Server
 components:
-  responses:
-    UnauthorizedError_2:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFoundError:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
+  parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
+    ClusterIdParam:
+      name: cluster_id
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
   schemas:
     IdentityProviderRepresentation:
       type: object
@@ -226,6 +228,35 @@ components:
           additionalProperties:
             type: string
           example: example_value
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
     IdentityProvider:
       type: object
       description: Represents an identity provider configured for cluster authentication.
@@ -323,56 +354,33 @@ components:
           items:
             $ref: '#/components/schemas/IdentityProvider'
           example: []
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        kind:
-          type: string
-          description: The error kind identifier.
-          example: example_value
-        id:
-          type: string
-          description: The numeric error identifier.
-          example: abc123
-        href:
-          type: string
-          description: A link to the error documentation.
-          example: example_value
-        code:
-          type: string
-          description: The error code.
-          example: example_value
-        reason:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-      required:
-      - kind
-      - id
-      - code
-      - reason
-  parameters:
-    ClusterIdParam:
-      name: cluster_id
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-    RealmParam:
-      name: realm
-      in: path
-      required: true
-      description: The name of the Keycloak realm.
-      schema:
-        type: string
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError_2:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
-externalDocs:
-  description: Ansible Automation Platform API Documentation
-  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index
+      description: Access token obtained via direct access grant or authorization code flow from the Keycloak master realm or configured realm.
+x-refined-from:
+- red-hat-keycloak-admin-openapi.yml
+- red-hat-openshift-cluster-manager-openapi.yml

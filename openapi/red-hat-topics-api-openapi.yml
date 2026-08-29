@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat Ansible Automation Platform Add-Ons Topics API
-  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
-  version: '2.6'
+  title: Red Hat Insights Topics API
+  description: The Red Hat Insights API provides programmatic access to predictive analytics and remediation services for Red Hat Enterprise Linux systems. Through the Hybrid Cloud Console, it enables proactive identification of security vulnerabilities, configuration issues, performance risks, and compliance gaps across registered RHEL systems, along with automated remediation recommendations.
+  version: '1.0'
   contact:
     name: Red Hat Support
     url: https://access.redhat.com/support
   termsOfService: https://www.redhat.com/en/about/terms-use
 servers:
-- url: https://ansible-platform.example.com
-  description: Ansible Automation Platform Server
+- url: https://console.redhat.com/api
+  description: Red Hat Hybrid Cloud Console Production Server
 security:
 - bearerAuth: []
 tags:
@@ -49,9 +49,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   schemas:
     Topic:
       type: object
@@ -81,12 +78,15 @@ components:
           type: integer
           description: The number of systems impacted by rules in this topic.
           example: 10
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+      description: OAuth 2.0 Bearer token obtained from Red Hat SSO using an offline token from https://access.redhat.com/management/api.
 externalDocs:
-  description: Ansible Automation Platform API Documentation
-  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index
+  description: Red Hat Insights API Documentation
+  url: https://console.redhat.com/docs/api

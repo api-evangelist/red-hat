@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat Ansible Automation Platform Add-Ons API
-  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
-  version: '2.6'
+  title: Red Hat OpenShift Cluster Manager Add Ons API
+  description: The Red Hat OpenShift Cluster Manager API provides programmatic access to provisioning, managing, and monitoring OpenShift clusters across cloud providers through the Red Hat Hybrid Cloud Console. It supports cluster lifecycle operations including creation, scaling, upgrades, and deletion of OpenShift Dedicated and ROSA clusters.
+  version: '1.0'
   contact:
     name: Red Hat Support
     url: https://access.redhat.com/support
   termsOfService: https://www.redhat.com/en/about/terms-use
 servers:
-- url: https://ansible-platform.example.com
-  description: Ansible Automation Platform Server
+- url: https://api.openshift.com
+  description: OpenShift Cluster Manager Production Server
 security:
 - bearerAuth: []
 tags:
@@ -55,6 +55,20 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    SearchParam:
+      name: search
+      in: query
+      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
     SizeParam:
       name: size
       in: query
@@ -64,21 +78,36 @@ components:
         minimum: 1
         maximum: 100
         default: 100
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results. Page numbering starts at 1.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    SearchParam:
-      name: search
-      in: query
-      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
-      schema:
-        type: string
   schemas:
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
     AddonList:
       type: object
       description: A paginated list of available cluster add-ons.
@@ -113,35 +142,6 @@ components:
                 type: boolean
                 description: Whether the add-on is available for installation.
           example: []
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        kind:
-          type: string
-          description: The error kind identifier.
-          example: example_value
-        id:
-          type: string
-          description: The numeric error identifier.
-          example: abc123
-        href:
-          type: string
-          description: A link to the error documentation.
-          example: example_value
-        code:
-          type: string
-          description: The error code.
-          example: example_value
-        reason:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-      required:
-      - kind
-      - id
-      - code
-      - reason
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
@@ -154,7 +154,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
+      description: OAuth 2.0 Bearer token obtained from Red Hat Single Sign-On (SSO). Tokens can be acquired using an offline token from https://sso.redhat.com/auth/realms/redhat-external.
 externalDocs:
-  description: Ansible Automation Platform API Documentation
-  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index
+  description: OpenShift Cluster Manager API Documentation
+  url: https://api.openshift.com/

@@ -1,17 +1,19 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat Ansible Automation Platform Add-Ons Organizations API
-  description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
-  version: '2.6'
+  title: Red Hat Organizations API
   contact:
     name: Red Hat Support
     url: https://access.redhat.com/support
   termsOfService: https://www.redhat.com/en/about/terms-use
+  version: '1.0'
+  description: 'Operations tagged Organizations across 3 of this provider''s published API definitions: red-hat-ansible-automation-platform-openapi.yml, red-hat-quay-openapi.yml, red-hat-satellite-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://ansible-platform.example.com
   description: Ansible Automation Platform Server
-security:
-- bearerAuth: []
+- url: https://quay.io/api/v1
+  description: Quay.io Production API Server
+- url: https://satellite.example.com
+  description: Red Hat Satellite Server
 tags:
 - name: Organizations
   description: Operations for managing organizations that provide multi-tenancy and access control boundaries.
@@ -49,6 +51,11 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://ansible-platform.example.com
+      description: Ansible Automation Platform Server
   /organization/{orgname}:
     get:
       operationId: getOrganization
@@ -82,6 +89,11 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://quay.io/api/v1
+      description: Quay.io Production API Server
   /api/v2/organizations:
     get:
       operationId: listOrganizations
@@ -119,21 +131,67 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - basicAuth: []
+    servers:
+    - url: https://satellite.example.com
+      description: Red Hat Satellite Server
 components:
-  responses:
-    UnauthorizedError_2:
-      description: Authentication credentials are missing or invalid.
-    NotFoundError:
-      description: The requested resource was not found.
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnauthorizedError_3:
-      description: Authentication credentials are missing or invalid.
+  parameters:
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    OrgNameParam:
+      name: orgname
+      in: path
+      required: true
+      description: The name of the organization.
+      schema:
+        type: string
+    SearchParam_2:
+      name: search
+      in: query
+      description: A scoped search filter expression.
+      schema:
+        type: string
+    PerPageParam:
+      name: per_page
+      in: query
+      description: The number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
   schemas:
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
     PaginatedList:
       type: object
       description: A generic paginated list response.
@@ -181,14 +239,6 @@ components:
           type: boolean
           description: Whether the current user is a member of this organization.
           example: true
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        detail:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
     PaginatedOrganizationList:
       type: object
       properties:
@@ -218,58 +268,30 @@ components:
               description:
                 type: string
           example: []
-  parameters:
-    SearchParam_2:
-      name: search
-      in: query
-      description: A scoped search filter expression.
-      schema:
-        type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    SearchParam:
-      name: search
-      in: query
-      description: A search term to filter results by name or description.
-      schema:
-        type: string
-    OrgNameParam:
-      name: orgname
-      in: path
-      required: true
-      description: The name of the organization.
-      schema:
-        type: string
-    PageSizeParam:
-      name: page_size
-      in: query
-      description: The number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
-    PerPageParam:
-      name: per_page
-      in: query
-      description: The number of results per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 20
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError_2:
+      description: Authentication credentials are missing or invalid.
+    UnauthorizedError_3:
+      description: Authentication credentials are missing or invalid.
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
       description: OAuth 2.0 Bearer token for authenticating API requests to the automation controller.
-externalDocs:
-  description: Ansible Automation Platform API Documentation
-  url: https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using a valid Satellite username and password. Alternatively, a personal access token can be used.
+x-refined-from:
+- red-hat-ansible-automation-platform-openapi.yml
+- red-hat-quay-openapi.yml
+- red-hat-satellite-openapi.yml
