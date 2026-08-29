@@ -10,6 +10,22 @@ info:
     inlines its bearer token, parameters, request body, documented success
     criteria, and outputs.
   version: 1.0.0
+  x-realizes-capability-ids:
+  - BC-600.50
+  - BC-620.20
+  x-capability-derivation:
+    method: 'deterministic join: sourceDescriptions -> per-tag OpenAPI -> tag/capability edge. No classification at this step.'
+    min_confidence: 0.7
+    sources:
+    - capability_id: BC-600.50
+      capability_name: IT Infrastructure Management
+      spec: red-hat-clusters-api-openapi.yml
+      confidence: 0.85
+    - capability_id: BC-620.20
+      capability_name: Identity & Access Management
+      spec: red-hat-identity-providers-api-openapi.yml
+      confidence: 0.85
+    model: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities, CC BY 4.0
 sourceDescriptions:
 - name: clustersApi
   url: ../openapi/red-hat-clusters-api-openapi.yml
