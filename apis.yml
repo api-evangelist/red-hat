@@ -878,7 +878,7 @@ apis:
   name: Red Hat Add-Ons API
   description: Operations for managing cluster add-ons that extend OpenShift cluster functionality.
   tags:
-  - Add-Ons
+  - Addons
   tags_raw:
   - Add-Ons
   properties:
