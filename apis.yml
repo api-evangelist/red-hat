@@ -42,8 +42,8 @@ tags:
 - Kubernetes
 - Linux
 - Open-Source
-- Red Hat
 tags_raw:
+- Red Hat
 - Cloud
 - Containers
 - Enterprise
@@ -712,6 +712,11 @@ apis:
   - Data Collection
   - Insights
   - OpenShift
+  - Operator
+  tags_raw:
+  - Data Collection
+  - Insights
+  - OpenShift
   - Operators
   properties:
   - type: Documentation
@@ -1222,6 +1227,8 @@ apis:
   description: Operations for managing lifecycle environments that define the promotion path for content from development
     to production.
   tags:
+  - Environment
+  tags_raw:
   - Environments
   properties:
   - type: OpenAPI
@@ -2585,6 +2592,8 @@ apis:
   description: Operations for retrieving curated topics that group related recommendations by technology area or
     risk category.
   tags:
+  - Topic
+  tags_raw:
   - Topics
   properties:
   - type: OpenAPI
