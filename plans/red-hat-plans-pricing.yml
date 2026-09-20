@@ -1,48 +1,36 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Red Hat
-providerId: red-hat
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
-tags:
-  - Enterprise Software
-  - Linux
-  - Open Source
-  - Subscription
-description: Red Hat sells subscription-based access to enterprise open-source products. The
-  corporate pricing landing page does not publish per-plan numbers; commercial terms are routed
-  through "Talk to a Red Hatter" or Contact Sales. Some product-specific list prices appear on
-  the Red Hat Store and are captured in the per-product repos (RHEL, OpenShift, Satellite, 3scale).
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.redhat.com/en/store
 sources:
-  - https://www.redhat.com/en/about/pricing
-notes: The umbrella red-hat pricing page is contact-sales; concrete list prices live on the Red
-  Hat Store and in the per-product repos.
+- https://www.redhat.com/en/store
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+note: Online store landing page listing three featured products with 'starting at' prices; no billing
+  period stated.
+plan_count: 3
+currency: USD
 plans:
-  - id: red-hat-contact-sales
-    name: Contact Sales
-    type: enterprise
-    description: All Red Hat subscriptions are quoted by sales based on product, sizing, support
-      level, term length, and deployment footprint.
-    entries:
-      - label: Custom subscription
-        name: custom
-        type: subscription
-        metric: contract
-        limit: -1
-        timeFrame: year
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: Production support (Standard or Premium)
-      - name: Multi-year term discounts
-      - name: Volume discounts negotiated with sales
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Red Hat Enterprise Linux Server
+  price_text: Starting at US$383.90
+  price: 383.9
+  currency: USD
+  period: none
+  included_quota: 'SKU: RH00005'
+- name: Red Hat JBoss Enterprise Application Platform
+  price_text: Starting at US$8,800.00
+  price: 8800
+  currency: USD
+  period: none
+  included_quota: 'SKU: MW0196814'
+- name: Red Hat Enterprise Linux Workstation
+  price_text: Starting at US$328.90
+  price: 328.9
+  currency: USD
+  period: none
+  included_quota: 'SKU: RH0958488'

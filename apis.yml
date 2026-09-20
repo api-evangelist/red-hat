@@ -2819,6 +2819,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/openshift/assisted-service
 common:
+- type: Plans
+  url: plans/red-hat-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/red-hat-capability-edges.yml
   name: Red Hat Business Capability Map
