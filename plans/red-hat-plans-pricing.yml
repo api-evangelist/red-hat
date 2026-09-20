@@ -10,6 +10,12 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: business-product
 pricing_basis: tiered-subscription
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-09-20'
+  evidence: Deploy it on physical systems, as a guest on the most widely available hypervisors, or in
+    the cloud. Starting at US$383.90
 published: true
 note: Online store landing page listing three featured products with 'starting at' prices; no billing
   period stated.
