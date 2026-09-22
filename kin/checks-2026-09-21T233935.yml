@@ -2,16 +2,16 @@
 kin_checks:
   slug: red-hat
   schema_version: 0.22.0
-  scored_at: '2026-09-19'
-  run_ts: 2026-09-19T193153
+  scored_at: '2026-09-21'
+  run_ts: 2026-09-21T233935
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 136
-    earned: 56
-    partial: 20
-    missed: 40
+    earned: 58
+    partial: 19
+    missed: 39
     na: 20
   checks:
   - id: description_substantive
@@ -76,8 +76,6 @@ kin_checks:
   - id: console_or_sandbox
     status: missed
     detail: pointer liveness 0.0
-  - id: plans_multiple
-    status: missed
   - id: compliance_published
     status: missed
   - id: reg_oauth_scopes
@@ -138,9 +136,6 @@ kin_checks:
   - id: postman_present
     status: partial
     earned: 0.5
-  - id: plans_present
-    status: partial
-    earned: 2.0
   - id: sign_up_present
     status: partial
     earned: 2.5
