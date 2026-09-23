@@ -137,61 +137,7 @@ paths:
     - url: https://satellite.example.com
       description: Red Hat Satellite Server
 components:
-  parameters:
-    SearchParam:
-      name: search
-      in: query
-      description: A search term to filter results by name or description.
-      schema:
-        type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    PageSizeParam:
-      name: page_size
-      in: query
-      description: The number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
-    OrgNameParam:
-      name: orgname
-      in: path
-      required: true
-      description: The name of the organization.
-      schema:
-        type: string
-    SearchParam_2:
-      name: search
-      in: query
-      description: A scoped search filter expression.
-      schema:
-        type: string
-    PerPageParam:
-      name: per_page
-      in: query
-      description: The number of results per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 20
   schemas:
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        detail:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
     PaginatedList:
       type: object
       description: A generic paginated list response.
@@ -214,6 +160,14 @@ components:
           items:
             type: object
           example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
     Organization:
       type: object
       description: A Quay organization.
@@ -281,6 +235,52 @@ components:
       description: Authentication credentials are missing or invalid.
     UnauthorizedError_3:
       description: Authentication credentials are missing or invalid.
+  parameters:
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    OrgNameParam:
+      name: orgname
+      in: path
+      required: true
+      description: The name of the organization.
+      schema:
+        type: string
+    SearchParam_2:
+      name: search
+      in: query
+      description: A scoped search filter expression.
+      schema:
+        type: string
+    PerPageParam:
+      name: per_page
+      in: query
+      description: The number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
   securitySchemes:
     bearerAuth:
       type: http

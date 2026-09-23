@@ -13,7 +13,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: Add-Ons
+- name: Add Ons
   description: Operations for managing cluster add-ons that extend OpenShift cluster functionality.
 paths:
   /api/clusters_mgmt/v1/addons:
@@ -22,7 +22,7 @@ paths:
       summary: Red Hat List Add-ons
       description: Retrieves the list of available add-ons that can be installed on OpenShift clusters to extend functionality.
       tags:
-      - Add-Ons
+      - Add Ons
       parameters:
       - $ref: '#/components/parameters/PageParam'
       - $ref: '#/components/parameters/SizeParam'
@@ -55,6 +55,15 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    SizeParam:
+      name: size
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
     SearchParam:
       name: search
       in: query
@@ -69,45 +78,7 @@ components:
         type: integer
         minimum: 1
         default: 1
-    SizeParam:
-      name: size
-      in: query
-      description: The maximum number of items to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 100
   schemas:
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        kind:
-          type: string
-          description: The error kind identifier.
-          example: example_value
-        id:
-          type: string
-          description: The numeric error identifier.
-          example: abc123
-        href:
-          type: string
-          description: A link to the error documentation.
-          example: example_value
-        code:
-          type: string
-          description: The error code.
-          example: example_value
-        reason:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-      required:
-      - kind
-      - id
-      - code
-      - reason
     AddonList:
       type: object
       description: A paginated list of available cluster add-ons.
@@ -142,6 +113,35 @@ components:
                 type: boolean
                 description: Whether the add-on is available for installation.
           example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.

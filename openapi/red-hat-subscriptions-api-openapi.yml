@@ -56,60 +56,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    SearchParam:
-      name: search
-      in: query
-      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
-      schema:
-        type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results. Page numbering starts at 1.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    SizeParam:
-      name: size
-      in: query
-      description: The maximum number of items to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 100
   schemas:
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        kind:
-          type: string
-          description: The error kind identifier.
-          example: example_value
-        id:
-          type: string
-          description: The numeric error identifier.
-          example: abc123
-        href:
-          type: string
-          description: A link to the error documentation.
-          example: example_value
-        code:
-          type: string
-          description: The error code.
-          example: example_value
-        reason:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-      required:
-      - kind
-      - id
-      - code
-      - reason
     SubscriptionList:
       type: object
       description: A paginated list of subscriptions.
@@ -149,6 +96,59 @@ components:
                   type:
                     type: string
           example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
+  parameters:
+    SizeParam:
+      name: size
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    SearchParam:
+      name: search
+      in: query
+      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.

@@ -115,7 +115,29 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request is malformed or contains invalid data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
     SearchParam:
       name: search
       in: query
@@ -130,15 +152,6 @@ components:
         type: integer
         minimum: 1
         default: 1
-    PageSizeParam:
-      name: page_size
-      in: query
-      description: The number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
   schemas:
     Error:
       type: object
@@ -220,19 +233,6 @@ components:
           format: date-time
           description: When the inventory was last modified.
           example: '2026-01-15T10:30:00Z'
-  responses:
-    BadRequestError:
-      description: The request is malformed or contains invalid data.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

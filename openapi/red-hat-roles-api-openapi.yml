@@ -96,14 +96,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    RealmParam:
-      name: realm
-      in: path
-      required: true
-      description: The name of the Keycloak realm.
-      schema:
-        type: string
   schemas:
     Role:
       type: object
@@ -130,6 +122,14 @@ components:
           type: boolean
           description: Whether this is a client-level role.
           example: true
+  parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.

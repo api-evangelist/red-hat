@@ -125,82 +125,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    ClusterIdParam:
-      name: cluster_id
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results. Page numbering starts at 1.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    SizeParam:
-      name: size
-      in: query
-      description: The maximum number of items to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 100
   schemas:
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        kind:
-          type: string
-          description: The error kind identifier.
-          example: example_value
-        id:
-          type: string
-          description: The numeric error identifier.
-          example: abc123
-        href:
-          type: string
-          description: A link to the error documentation.
-          example: example_value
-        code:
-          type: string
-          description: The error code.
-          example: example_value
-        reason:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-      required:
-      - kind
-      - id
-      - code
-      - reason
-    MachinePoolList:
-      type: object
-      description: A paginated list of machine pools.
-      properties:
-        kind:
-          type: string
-          example: example_value
-        page:
-          type: integer
-          example: 10
-        size:
-          type: integer
-          example: 10
-        total:
-          type: integer
-          example: 10
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/MachinePool'
-          example: []
     MachinePool:
       type: object
       description: Represents a machine pool within a cluster, defining a group of compute nodes with shared configuration.
@@ -257,9 +182,84 @@ components:
                 - PreferNoSchedule
                 - NoExecute
           example: []
+    MachinePoolList:
+      type: object
+      description: A paginated list of machine pools.
+      properties:
+        kind:
+          type: string
+          example: example_value
+        page:
+          type: integer
+          example: 10
+        size:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachinePool'
+          example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
+  parameters:
+    ClusterIdParam:
+      name: cluster_id
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+    SizeParam:
+      name: size
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   responses:
-    NotFoundError:
-      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
       content:
         application/json:
           schema:
@@ -270,8 +270,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

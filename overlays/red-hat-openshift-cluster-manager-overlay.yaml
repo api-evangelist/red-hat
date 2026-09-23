@@ -3,9 +3,9 @@ info:
   title: API Evangelist enhancements for Red Hat OpenShift Cluster Manager API
   version: 1.0.0
 extends: openapi/red-hat-openshift-cluster-manager-openapi.yml
-generated: '2026-06-20'
-method: generated
-source: openapi/red-hat-openshift-cluster-manager-openapi.yml
+x-generated: '2026-06-20'
+x-method: generated
+x-source: openapi/red-hat-openshift-cluster-manager-openapi.yml
 actions:
 - target: $.info
   update:

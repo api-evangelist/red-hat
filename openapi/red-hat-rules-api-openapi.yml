@@ -206,24 +206,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    LimitParam:
-      name: limit
-      in: query
-      description: The maximum number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-    OffsetParam:
-      name: offset
-      in: query
-      description: The number of results to skip before returning.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
     System:
       type: object
@@ -272,32 +254,6 @@ components:
           type: string
           description: The RHEL version running on the system.
           example: example_value
-    PaginationLinks:
-      type: object
-      description: Pagination links for navigating result sets.
-      properties:
-        first:
-          type: string
-          format: uri
-          description: URL to the first page.
-          example: https://www.example.com
-        last:
-          type: string
-          format: uri
-          description: URL to the last page.
-          example: https://www.example.com
-        next:
-          type: string
-          format: uri
-          nullable: true
-          description: URL to the next page.
-          example: https://www.example.com
-        previous:
-          type: string
-          format: uri
-          nullable: true
-          description: URL to the previous page.
-          example: https://www.example.com
     PaginatedRuleList:
       type: object
       description: A paginated list of rules.
@@ -311,27 +267,6 @@ components:
           items:
             $ref: '#/components/schemas/Rule'
           example: []
-    PaginatedSystemList:
-      type: object
-      description: A paginated list of systems.
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/System'
-          example: []
-    PaginationMeta:
-      type: object
-      description: Pagination metadata for list responses.
-      properties:
-        count:
-          type: integer
-          description: The total number of results.
-          example: 10
     Rule:
       type: object
       description: An Advisor rule that defines detection logic for a specific system issue, along with resolution steps and remediation guidance.
@@ -414,11 +349,76 @@ components:
                 type: boolean
                 description: Whether this resolution has a playbook.
           example: []
+    PaginationLinks:
+      type: object
+      description: Pagination links for navigating result sets.
+      properties:
+        first:
+          type: string
+          format: uri
+          description: URL to the first page.
+          example: https://www.example.com
+        last:
+          type: string
+          format: uri
+          description: URL to the last page.
+          example: https://www.example.com
+        next:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the next page.
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the previous page.
+          example: https://www.example.com
+    PaginatedSystemList:
+      type: object
+      description: A paginated list of systems.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/System'
+          example: []
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses.
+      properties:
+        count:
+          type: integer
+          description: The total number of results.
+          example: 10
+  parameters:
+    LimitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+    OffsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip before returning.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   responses:
-    NotFoundError:
-      description: The requested resource was not found.
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
   securitySchemes:
     bearerAuth:
       type: http

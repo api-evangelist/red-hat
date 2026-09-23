@@ -62,7 +62,8 @@
     "tag 'Organizations' spans 3 source specs (red-hat-ansible-automation-platform-openapi.yml, red-hat-quay-openapi.yml, red-hat-satellite-openapi.yml): per-path servers applied",
     "tag 'Identity Providers' spans 2 source specs (red-hat-keycloak-admin-openapi.yml, red-hat-openshift-cluster-manager-openapi.yml): per-path servers applied",
     "tag 'Users' spans 2 source specs (red-hat-keycloak-admin-openapi.yml, red-hat-quay-openapi.yml): per-path servers applied",
-    "tag 'Repositories' spans 2 source specs (red-hat-quay-openapi.yml, red-hat-satellite-openapi.yml): per-path servers applied"
+    "tag 'Repositories' spans 2 source specs (red-hat-quay-openapi.yml, red-hat-satellite-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "red-hat-add-ons-api-openapi.yml: previously refined output, superseded by openapi/_original/",

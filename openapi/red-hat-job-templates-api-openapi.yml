@@ -350,6 +350,28 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    OrderingParam:
+      name: ordering
+      in: query
+      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
+      schema:
+        type: string
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    IdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique numeric identifier of the resource.
+      schema:
+        type: integer
     SearchParam:
       name: search
       in: query
@@ -364,37 +386,32 @@ components:
         type: integer
         minimum: 1
         default: 1
-    IdParam:
-      name: id
-      in: path
-      required: true
-      description: The unique numeric identifier of the resource.
-      schema:
-        type: integer
-    PageSizeParam:
-      name: page_size
-      in: query
-      description: The number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
-    OrderingParam:
-      name: ordering
-      in: query
-      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
-      schema:
-        type: string
   schemas:
-    Error:
+    PaginatedJobTemplateList:
       type: object
-      description: An error response from the API.
+      description: A paginated list of job templates.
       properties:
-        detail:
+        count:
+          type: integer
+          description: The total number of results.
+          example: 10
+        next:
           type: string
-          description: A human-readable description of the error.
-          example: example_value
+          format: uri
+          nullable: true
+          description: URL to the next page of results.
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the previous page of results.
+          example: https://www.example.com
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobTemplate'
+          example: []
     JobTemplate:
       type: object
       description: A job template defines the parameters for running an Ansible playbook against an inventory of managed hosts.
@@ -481,6 +498,14 @@ components:
           format: date-time
           description: The date and time the template was last modified.
           example: '2026-01-15T10:30:00Z'
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
     Job:
       type: object
       description: A job represents a single execution of a job template, tracking the playbook run status, timing, and output.
@@ -559,34 +584,9 @@ components:
           format: date-time
           description: The date and time the job record was created.
           example: '2026-01-15T10:30:00Z'
-    PaginatedJobTemplateList:
-      type: object
-      description: A paginated list of job templates.
-      properties:
-        count:
-          type: integer
-          description: The total number of results.
-          example: 10
-        next:
-          type: string
-          format: uri
-          nullable: true
-          description: URL to the next page of results.
-          example: https://www.example.com
-        previous:
-          type: string
-          format: uri
-          nullable: true
-          description: URL to the previous page of results.
-          example: https://www.example.com
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobTemplate'
-          example: []
   responses:
-    NotFoundError:
-      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
       content:
         application/json:
           schema:
@@ -597,8 +597,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

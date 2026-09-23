@@ -57,20 +57,6 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    SearchParam:
-      name: search
-      in: query
-      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
-      schema:
-        type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results. Page numbering starts at 1.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
     SizeParam:
       name: size
       in: query
@@ -86,6 +72,27 @@ components:
       description: The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.
       schema:
         type: string
+    SearchParam:
+      name: search
+      in: query
+      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -153,13 +160,6 @@ components:
                 type: string
                 description: The channel group for the version (stable, fast, candidate).
           example: []
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

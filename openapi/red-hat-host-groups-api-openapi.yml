@@ -56,6 +56,9 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   parameters:
     SearchParam:
       name: search
@@ -114,9 +117,6 @@ components:
               operatingsystem_name:
                 type: string
           example: []
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   securitySchemes:
     basicAuth:
       type: http

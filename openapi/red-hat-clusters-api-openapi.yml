@@ -309,20 +309,6 @@ components:
       description: The unique identifier of the cluster.
       schema:
         type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results. Page numbering starts at 1.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    SearchParam:
-      name: search
-      in: query
-      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
-      schema:
-        type: string
     SizeParam:
       name: size
       in: query
@@ -338,36 +324,47 @@ components:
       description: The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.
       schema:
         type: string
+    SearchParam:
+      name: search
+      in: query
+      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   schemas:
-    Error:
+    ClusterList:
       type: object
-      description: An error response from the API.
+      description: A paginated list of clusters.
       properties:
         kind:
           type: string
-          description: The error kind identifier.
+          description: The resource kind.
           example: example_value
-        id:
-          type: string
-          description: The numeric error identifier.
-          example: abc123
-        href:
-          type: string
-          description: A link to the error documentation.
-          example: example_value
-        code:
-          type: string
-          description: The error code.
-          example: example_value
-        reason:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-      required:
-      - kind
-      - id
-      - code
-      - reason
+        page:
+          type: integer
+          description: The current page number.
+          example: 10
+        size:
+          type: integer
+          description: The number of items in this page.
+          example: 10
+        total:
+          type: integer
+          description: The total number of items across all pages.
+          example: 10
+        items:
+          type: array
+          description: The list of clusters.
+          items:
+            $ref: '#/components/schemas/Cluster'
+          example: []
     Cluster:
       type: object
       description: Represents an OpenShift cluster managed through the Cluster Manager.
@@ -480,35 +477,38 @@ components:
           format: date-time
           description: The date and time when the cluster is set to expire, if applicable.
           example: '2026-01-15T10:30:00Z'
-    ClusterList:
+    Error:
       type: object
-      description: A paginated list of clusters.
+      description: An error response from the API.
       properties:
         kind:
           type: string
-          description: The resource kind.
+          description: The error kind identifier.
           example: example_value
-        page:
-          type: integer
-          description: The current page number.
-          example: 10
-        size:
-          type: integer
-          description: The number of items in this page.
-          example: 10
-        total:
-          type: integer
-          description: The total number of items across all pages.
-          example: 10
-        items:
-          type: array
-          description: The list of clusters.
-          items:
-            $ref: '#/components/schemas/Cluster'
-          example: []
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
   responses:
-    NotFoundError:
-      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
       content:
         application/json:
           schema:
@@ -519,8 +519,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

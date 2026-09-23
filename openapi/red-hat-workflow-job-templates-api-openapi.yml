@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Red Hat Ansible Automation Platform Workflow Job Templates API
+  title: Red Hat Ansible Automation Platform Workflow Job Templates…
   description: The Red Hat Ansible Automation Platform API provides programmatic access to the automation controller for managing IT infrastructure automation. It supports creating and launching job templates, managing inventories, tracking job execution status, and configuring credentials for connecting to managed hosts and external services.
   version: '2.6'
   contact:
@@ -50,39 +50,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    SearchParam:
-      name: search
-      in: query
-      description: A search term to filter results by name or description.
-      schema:
-        type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    PageSizeParam:
-      name: page_size
-      in: query
-      description: The number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
   schemas:
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        detail:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
     PaginatedList:
       type: object
       description: A generic paginated list response.
@@ -105,6 +73,14 @@ components:
           items:
             type: object
           example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
@@ -112,6 +88,30 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
   securitySchemes:
     bearerAuth:
       type: http

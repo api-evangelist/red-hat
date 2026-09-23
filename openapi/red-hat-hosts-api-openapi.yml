@@ -209,44 +209,27 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    SearchParam:
-      name: search
-      in: query
-      description: A scoped search filter expression.
-      schema:
-        type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    OrderParam:
-      name: order
-      in: query
-      description: The sort order for results (e.g., name ASC).
-      schema:
-        type: string
-    PerPageParam:
-      name: per_page
-      in: query
-      description: The number of results per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 20
-    IdParam:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: integer
   schemas:
+    PaginatedHostList:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 10
+        subtotal:
+          type: integer
+          example: 10
+        page:
+          type: integer
+          example: 10
+        per_page:
+          type: integer
+          example: 10
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Host'
+          example: []
     Host:
       type: object
       description: A host managed by Red Hat Satellite.
@@ -317,26 +300,43 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-    PaginatedHostList:
-      type: object
-      properties:
-        total:
-          type: integer
-          example: 10
-        subtotal:
-          type: integer
-          example: 10
-        page:
-          type: integer
-          example: 10
-        per_page:
-          type: integer
-          example: 10
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Host'
-          example: []
+  parameters:
+    OrderParam:
+      name: order
+      in: query
+      description: The sort order for results (e.g., name ASC).
+      schema:
+        type: string
+    SearchParam:
+      name: search
+      in: query
+      description: A scoped search filter expression.
+      schema:
+        type: string
+    IdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: integer
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PerPageParam:
+      name: per_page
+      in: query
+      description: The number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.

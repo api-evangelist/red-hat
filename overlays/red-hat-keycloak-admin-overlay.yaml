@@ -3,9 +3,9 @@ info:
   title: API Evangelist enhancements for Red Hat Build of Keycloak Admin REST API
   version: 1.0.0
 extends: openapi/red-hat-keycloak-admin-openapi.yml
-generated: '2026-06-20'
-method: generated
-source: openapi/red-hat-keycloak-admin-openapi.yml
+x-generated: '2026-06-20'
+x-method: generated
+x-source: openapi/red-hat-keycloak-admin-openapi.yml
 actions:
 - target: $.info
   update:

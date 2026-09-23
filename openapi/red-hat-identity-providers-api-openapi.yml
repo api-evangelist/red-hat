@@ -193,6 +193,27 @@ components:
       description: The unique identifier of the cluster.
       schema:
         type: string
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    UnauthorizedError_2:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     IdentityProviderRepresentation:
       type: object
@@ -228,35 +249,27 @@ components:
           additionalProperties:
             type: string
           example: example_value
-    Error:
+    IdentityProviderList:
       type: object
-      description: An error response from the API.
+      description: A paginated list of identity providers.
       properties:
         kind:
           type: string
-          description: The error kind identifier.
           example: example_value
-        id:
-          type: string
-          description: The numeric error identifier.
-          example: abc123
-        href:
-          type: string
-          description: A link to the error documentation.
-          example: example_value
-        code:
-          type: string
-          description: The error code.
-          example: example_value
-        reason:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-      required:
-      - kind
-      - id
-      - code
-      - reason
+        page:
+          type: integer
+          example: 10
+        size:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityProvider'
+          example: []
     IdentityProvider:
       type: object
       description: Represents an identity provider configured for cluster authentication.
@@ -333,48 +346,35 @@ components:
                   items:
                     type: string
           example: '500123'
-    IdentityProviderList:
+    Error:
       type: object
-      description: A paginated list of identity providers.
+      description: An error response from the API.
       properties:
         kind:
           type: string
+          description: The error kind identifier.
           example: example_value
-        page:
-          type: integer
-          example: 10
-        size:
-          type: integer
-          example: 10
-        total:
-          type: integer
-          example: 10
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityProvider'
-          example: []
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    NotFoundError:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnauthorizedError_2:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
   securitySchemes:
     bearerAuth:
       type: http

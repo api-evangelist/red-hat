@@ -68,6 +68,14 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
   schemas:
     Group:
       type: object
@@ -92,14 +100,6 @@ components:
           items:
             $ref: '#/components/schemas/Group'
           example: []
-  parameters:
-    RealmParam:
-      name: realm
-      in: path
-      required: true
-      description: The name of the Keycloak realm.
-      schema:
-        type: string
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.

@@ -131,36 +131,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    PerPageParam:
-      name: per_page
-      in: query
-      description: The number of results per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 20
-    IdParam:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: integer
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    NotFoundError:
-      description: The requested resource was not found.
   schemas:
     PaginatedErrataList:
       type: object
@@ -222,6 +192,36 @@ components:
                 items:
                   type: string
           example: []
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: integer
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PerPageParam:
+      name: per_page
+      in: query
+      description: The number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
   securitySchemes:
     basicAuth:
       type: http

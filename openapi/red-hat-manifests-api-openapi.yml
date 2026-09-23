@@ -64,11 +64,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    NotFoundError:
-      description: The requested resource was not found.
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   schemas:
     SecurityScanResult:
       type: object
@@ -135,6 +130,11 @@ components:
       description: The full repository path in the format namespace/repository_name.
       schema:
         type: string
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   securitySchemes:
     bearerAuth:
       type: http

@@ -195,6 +195,13 @@ components:
           type: integer
           description: The maximum SSO session lifespan in seconds.
           example: 10
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+    NotFoundError:
+      description: The requested resource was not found.
   parameters:
     RealmParam:
       name: realm
@@ -203,13 +210,6 @@ components:
       description: The name of the Keycloak realm.
       schema:
         type: string
-  responses:
-    NotFoundError:
-      description: The requested resource was not found.
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   securitySchemes:
     bearerAuth:
       type: http
