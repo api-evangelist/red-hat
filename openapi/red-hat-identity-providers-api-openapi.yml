@@ -56,7 +56,7 @@ paths:
       description: Keycloak Server
   /api/clusters_mgmt/v1/clusters/{cluster_id}/identity_providers:
     get:
-      operationId: listIdentityProviders
+      operationId: getApiClustersMgmtV1ClustersByClusterIdIdentityProviders
       summary: Red Hat List Identity Providers
       description: Retrieves the list of identity providers configured for a specific cluster. Identity providers define how users authenticate to the OpenShift cluster.
       tags:
@@ -94,6 +94,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      x-operation-id-source: normalized
+      x-operation-id-original: listIdentityProviders
     post:
       operationId: createIdentityProvider
       summary: Red Hat Create an Identity Provider
@@ -193,27 +195,6 @@ components:
       description: The unique identifier of the cluster.
       schema:
         type: string
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    UnauthorizedError_2:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFoundError:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     IdentityProviderRepresentation:
       type: object
@@ -270,6 +251,35 @@ components:
           items:
             $ref: '#/components/schemas/IdentityProvider'
           example: []
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
     IdentityProvider:
       type: object
       description: Represents an identity provider configured for cluster authentication.
@@ -346,35 +356,27 @@ components:
                   items:
                     type: string
           example: '500123'
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        kind:
-          type: string
-          description: The error kind identifier.
-          example: example_value
-        id:
-          type: string
-          description: The numeric error identifier.
-          example: abc123
-        href:
-          type: string
-          description: A link to the error documentation.
-          example: example_value
-        code:
-          type: string
-          description: The error code.
-          example: example_value
-        reason:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-      required:
-      - kind
-      - id
-      - code
-      - reason
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    UnauthorizedError_2:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

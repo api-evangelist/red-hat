@@ -125,6 +125,13 @@ components:
       - id
       - code
       - reason
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     SizeParam:
       name: size
@@ -149,13 +156,6 @@ components:
         type: integer
         minimum: 1
         default: 1
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -4,17 +4,24 @@ description: APIs and developer resources from Red Hat, a leading provider of en
   Linux, cloud, container, and Kubernetes technologies.
 type: Index
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - apicurio/apicurio-registry
+    - keycloak/keycloak
+    - openshift-online/ocm-api-model
+    - openshift/assisted-service
+    - quay/quay
   open_source: unknown
   commercial: true
-  callable_host: false
-  label: Delivery model not determined — needs a product licence on record
+  callable_host: true
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: enterprise
@@ -42,7 +49,7 @@ tags:
 - Hybrid Cloud
 - Kubernetes
 - Linux
-- Open-Source
+- Open Source
 tags_raw:
 - Red Hat
 - Cloud
@@ -52,6 +59,7 @@ tags_raw:
 - Kubernetes
 - Linux
 - Open Source
+- Open-Source
 apis:
 - name: Red Hat Subscription Management API
   description: API for managing Red Hat subscriptions, entitlements, and system registrations.

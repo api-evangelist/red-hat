@@ -201,7 +201,7 @@ paths:
       description: Quay.io Production API Server
   /katello/api/v2/repositories:
     get:
-      operationId: listRepositories
+      operationId: getKatelloApiV2Repositories
       summary: Red Hat List Repositories
       description: Retrieves the list of repositories managed by Satellite, including those synced from Red Hat CDN and custom repositories.
       tags:
@@ -261,11 +261,64 @@ paths:
         dispatcher: FALLBACK
       security:
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: listRepositories
     servers:
     - url: https://satellite.example.com
       description: Red Hat Satellite Server
 components:
+  parameters:
+    RepositoryParam:
+      name: repository
+      in: path
+      required: true
+      description: The full repository path in the format namespace/repository_name.
+      schema:
+        type: string
+    NextPageParam:
+      name: next_page
+      in: query
+      description: The pagination token for the next page of results.
+      schema:
+        type: string
+    PerPageParam:
+      name: per_page
+      in: query
+      description: The number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+    NotFoundError:
+      description: The requested resource was not found.
   schemas:
+    RepositoryList:
+      type: object
+      description: A paginated list of repositories.
+      properties:
+        repositories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Repository'
+          example: []
+        next_page:
+          type: string
+          description: The pagination token for the next page.
+          example: example_value
     Repository:
       type: object
       description: A container image repository in the Quay registry.
@@ -300,19 +353,6 @@ components:
         status_token:
           type: string
           description: The status token for repository notifications.
-          example: example_value
-    RepositoryList:
-      type: object
-      description: A paginated list of repositories.
-      properties:
-        repositories:
-          type: array
-          items:
-            $ref: '#/components/schemas/Repository'
-          example: []
-        next_page:
-          type: string
-          description: The pagination token for the next page.
           example: example_value
     PaginatedRepositoryList:
       type: object
@@ -359,44 +399,6 @@ components:
                     type: string
                     format: date-time
           example: []
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-    NotFoundError:
-      description: The requested resource was not found.
-  parameters:
-    RepositoryParam:
-      name: repository
-      in: path
-      required: true
-      description: The full repository path in the format namespace/repository_name.
-      schema:
-        type: string
-    NextPageParam:
-      name: next_page
-      in: query
-      description: The pagination token for the next page of results.
-      schema:
-        type: string
-    PerPageParam:
-      name: per_page
-      in: query
-      description: The number of results per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 20
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   securitySchemes:
     bearerAuth:
       type: http

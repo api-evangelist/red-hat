@@ -43,6 +43,11 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   parameters:
     RealmParam:
       name: realm
@@ -51,11 +56,6 @@ components:
       description: The name of the Keycloak realm.
       schema:
         type: string
-  responses:
-    NotFoundError:
-      description: The requested resource was not found.
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   securitySchemes:
     bearerAuth:
       type: http

@@ -198,10 +198,10 @@ components:
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
     NotFoundError:
       description: The requested resource was not found.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
   parameters:
     RealmParam:
       name: realm

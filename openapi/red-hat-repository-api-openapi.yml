@@ -141,13 +141,21 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    RepositoryParam:
+      name: repository
+      in: path
+      required: true
+      description: The full repository path in the format namespace/repository_name.
+      schema:
+        type: string
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
     NotFoundError:
       description: The requested resource was not found.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
   schemas:
     TagList:
       type: object
@@ -180,14 +188,6 @@ components:
         has_additional:
           type: boolean
           example: true
-  parameters:
-    RepositoryParam:
-      name: repository
-      in: path
-      required: true
-      description: The full repository path in the format namespace/repository_name.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

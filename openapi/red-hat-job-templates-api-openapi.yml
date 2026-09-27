@@ -350,21 +350,6 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    OrderingParam:
-      name: ordering
-      in: query
-      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
-      schema:
-        type: string
-    PageSizeParam:
-      name: page_size
-      in: query
-      description: The number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
     IdParam:
       name: id
       in: path
@@ -378,6 +363,12 @@ components:
       description: A search term to filter results by name or description.
       schema:
         type: string
+    OrderingParam:
+      name: ordering
+      in: query
+      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
+      schema:
+        type: string
     PageParam:
       name: page
       in: query
@@ -386,32 +377,43 @@ components:
         type: integer
         minimum: 1
         default: 1
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request is malformed or contains invalid data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    PaginatedJobTemplateList:
+    Error:
       type: object
-      description: A paginated list of job templates.
+      description: An error response from the API.
       properties:
-        count:
-          type: integer
-          description: The total number of results.
-          example: 10
-        next:
+        detail:
           type: string
-          format: uri
-          nullable: true
-          description: URL to the next page of results.
-          example: https://www.example.com
-        previous:
-          type: string
-          format: uri
-          nullable: true
-          description: URL to the previous page of results.
-          example: https://www.example.com
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobTemplate'
-          example: []
+          description: A human-readable description of the error.
+          example: example_value
     JobTemplate:
       type: object
       description: A job template defines the parameters for running an Ansible playbook against an inventory of managed hosts.
@@ -498,14 +500,31 @@ components:
           format: date-time
           description: The date and time the template was last modified.
           example: '2026-01-15T10:30:00Z'
-    Error:
+    PaginatedJobTemplateList:
       type: object
-      description: An error response from the API.
+      description: A paginated list of job templates.
       properties:
-        detail:
+        count:
+          type: integer
+          description: The total number of results.
+          example: 10
+        next:
           type: string
-          description: A human-readable description of the error.
-          example: example_value
+          format: uri
+          nullable: true
+          description: URL to the next page of results.
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the previous page of results.
+          example: https://www.example.com
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobTemplate'
+          example: []
     Job:
       type: object
       description: A job represents a single execution of a job template, tracking the playbook run status, timing, and output.
@@ -584,25 +603,6 @@ components:
           format: date-time
           description: The date and time the job record was created.
           example: '2026-01-15T10:30:00Z'
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequestError:
-      description: The request is malformed or contains invalid data.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFoundError:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

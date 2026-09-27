@@ -71,11 +71,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   parameters:
     OrgNameParam:
       name: orgname
@@ -84,6 +79,11 @@ components:
       description: The name of the organization.
       schema:
         type: string
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
   securitySchemes:
     bearerAuth:
       type: http

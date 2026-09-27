@@ -115,74 +115,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequestError:
-      description: The request is malformed or contains invalid data.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    PageSizeParam:
-      name: page_size
-      in: query
-      description: The number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
-    SearchParam:
-      name: search
-      in: query
-      description: A search term to filter results by name or description.
-      schema:
-        type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   schemas:
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        detail:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-    PaginatedInventoryList:
-      type: object
-      description: A paginated list of inventories.
-      properties:
-        count:
-          type: integer
-          example: 10
-        next:
-          type: string
-          format: uri
-          nullable: true
-          example: https://www.example.com
-        previous:
-          type: string
-          format: uri
-          nullable: true
-          example: https://www.example.com
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Inventory'
-          example: []
     Inventory:
       type: object
       description: An inventory defines a collection of hosts and groups that automation jobs target for execution.
@@ -233,6 +166,73 @@ components:
           format: date-time
           description: When the inventory was last modified.
           example: '2026-01-15T10:30:00Z'
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+    PaginatedInventoryList:
+      type: object
+      description: A paginated list of inventories.
+      properties:
+        count:
+          type: integer
+          example: 10
+        next:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Inventory'
+          example: []
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request is malformed or contains invalid data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
   securitySchemes:
     bearerAuth:
       type: http

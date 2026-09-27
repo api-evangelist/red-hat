@@ -57,6 +57,12 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    OrderParam:
+      name: order
+      in: query
+      description: The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.
+      schema:
+        type: string
     SizeParam:
       name: size
       in: query
@@ -66,12 +72,6 @@ components:
         minimum: 1
         maximum: 100
         default: 100
-    OrderParam:
-      name: order
-      in: query
-      description: The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.
-      schema:
-        type: string
     SearchParam:
       name: search
       in: query

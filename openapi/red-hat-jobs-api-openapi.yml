@@ -124,21 +124,6 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    OrderingParam:
-      name: ordering
-      in: query
-      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
-      schema:
-        type: string
-    PageSizeParam:
-      name: page_size
-      in: query
-      description: The number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
     IdParam:
       name: id
       in: path
@@ -160,6 +145,34 @@ components:
         type: integer
         minimum: 1
         default: 1
+    OrderingParam:
+      name: ordering
+      in: query
+      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
+      schema:
+        type: string
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     PaginatedJobList:
       type: object
@@ -269,19 +282,6 @@ components:
           format: date-time
           description: The date and time the job record was created.
           example: '2026-01-15T10:30:00Z'
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFoundError:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
