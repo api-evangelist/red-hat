@@ -123,79 +123,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    IdParam:
-      name: id
-      in: path
-      required: true
-      description: The unique numeric identifier of the resource.
-      schema:
-        type: integer
-    SearchParam:
-      name: search
-      in: query
-      description: A search term to filter results by name or description.
-      schema:
-        type: string
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    OrderingParam:
-      name: ordering
-      in: query
-      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
-      schema:
-        type: string
-    PageSizeParam:
-      name: page_size
-      in: query
-      description: The number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFoundError:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    PaginatedJobList:
-      type: object
-      description: A paginated list of jobs.
-      properties:
-        count:
-          type: integer
-          example: 10
-        next:
-          type: string
-          format: uri
-          nullable: true
-          example: https://www.example.com
-        previous:
-          type: string
-          format: uri
-          nullable: true
-          example: https://www.example.com
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-          example: []
     Error:
       type: object
       description: An error response from the API.
@@ -282,6 +210,78 @@ components:
           format: date-time
           description: The date and time the job record was created.
           example: '2026-01-15T10:30:00Z'
+    PaginatedJobList:
+      type: object
+      description: A paginated list of jobs.
+      properties:
+        count:
+          type: integer
+          example: 10
+        next:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          example: https://www.example.com
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+          example: []
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique numeric identifier of the resource.
+      schema:
+        type: integer
+    PageSizeParam:
+      name: page_size
+      in: query
+      description: The number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+    OrderingParam:
+      name: ordering
+      in: query
+      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
+      schema:
+        type: string
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

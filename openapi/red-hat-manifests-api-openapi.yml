@@ -69,14 +69,6 @@ components:
       description: The requested resource was not found.
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
-  parameters:
-    RepositoryParam:
-      name: repository
-      in: path
-      required: true
-      description: The full repository path in the format namespace/repository_name.
-      schema:
-        type: string
   schemas:
     SecurityScanResult:
       type: object
@@ -135,6 +127,14 @@ components:
                               format: uri
                               description: A link to vulnerability details.
           example: example_value
+  parameters:
+    RepositoryParam:
+      name: repository
+      in: path
+      required: true
+      description: The full repository path in the format namespace/repository_name.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -51,6 +51,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
     PaginatedList:
       type: object
       description: A generic paginated list response.
@@ -73,28 +81,7 @@ components:
           items:
             type: object
           example: []
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        detail:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
-    SearchParam:
-      name: search
-      in: query
-      description: A search term to filter results by name or description.
-      schema:
-        type: string
     PageSizeParam:
       name: page_size
       in: query
@@ -112,6 +99,19 @@ components:
         type: integer
         minimum: 1
         default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

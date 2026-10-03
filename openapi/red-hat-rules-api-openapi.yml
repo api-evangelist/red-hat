@@ -207,14 +207,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    PaginationMeta:
-      type: object
-      description: Pagination metadata for list responses.
-      properties:
-        count:
-          type: integer
-          description: The total number of results.
-          example: 10
     PaginationLinks:
       type: object
       description: Pagination links for navigating result sets.
@@ -323,19 +315,6 @@ components:
                 type: boolean
                 description: Whether this resolution has a playbook.
           example: []
-    PaginatedRuleList:
-      type: object
-      description: A paginated list of rules.
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-          example: []
     PaginatedSystemList:
       type: object
       description: A paginated list of systems.
@@ -349,6 +328,27 @@ components:
           items:
             $ref: '#/components/schemas/System'
           example: []
+    PaginatedRuleList:
+      type: object
+      description: A paginated list of rules.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+          example: []
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses.
+      properties:
+        count:
+          type: integer
+          description: The total number of results.
+          example: 10
     System:
       type: object
       description: A RHEL system registered with Red Hat Insights for monitoring and recommendations.
@@ -396,11 +396,6 @@ components:
           type: string
           description: The RHEL version running on the system.
           example: example_value
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    NotFoundError:
-      description: The requested resource was not found.
   parameters:
     LimitParam:
       name: limit
@@ -419,6 +414,11 @@ components:
         type: integer
         minimum: 0
         default: 0
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
   securitySchemes:
     bearerAuth:
       type: http

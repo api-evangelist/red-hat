@@ -96,6 +96,9 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   schemas:
     Role:
       type: object
@@ -130,9 +133,6 @@ components:
       description: The name of the Keycloak realm.
       schema:
         type: string
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   securitySchemes:
     bearerAuth:
       type: http

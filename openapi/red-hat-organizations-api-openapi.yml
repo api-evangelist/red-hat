@@ -140,6 +140,14 @@ paths:
       description: Red Hat Satellite Server
 components:
   schemas:
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
     PaginatedList:
       type: object
       description: A generic paginated list response.
@@ -162,14 +170,6 @@ components:
           items:
             type: object
           example: []
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        detail:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
     Organization:
       type: object
       description: A Quay organization.
@@ -224,26 +224,7 @@ components:
               description:
                 type: string
           example: []
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFoundError:
-      description: The requested resource was not found.
-    UnauthorizedError_2:
-      description: Authentication credentials are missing or invalid.
-    UnauthorizedError_3:
-      description: Authentication credentials are missing or invalid.
   parameters:
-    SearchParam:
-      name: search
-      in: query
-      description: A search term to filter results by name or description.
-      schema:
-        type: string
     PageSizeParam:
       name: page_size
       in: query
@@ -261,17 +242,17 @@ components:
         type: integer
         minimum: 1
         default: 1
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
     OrgNameParam:
       name: orgname
       in: path
       required: true
       description: The name of the organization.
-      schema:
-        type: string
-    SearchParam_2:
-      name: search
-      in: query
-      description: A scoped search filter expression.
       schema:
         type: string
     PerPageParam:
@@ -283,6 +264,25 @@ components:
         minimum: 1
         maximum: 1000
         default: 20
+    SearchParam_2:
+      name: search
+      in: query
+      description: A scoped search filter expression.
+      schema:
+        type: string
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError_2:
+      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError_3:
+      description: Authentication credentials are missing or invalid.
   securitySchemes:
     bearerAuth:
       type: http

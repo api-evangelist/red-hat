@@ -98,6 +98,35 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        kind:
+          type: string
+          description: The error kind identifier.
+          example: example_value
+        id:
+          type: string
+          description: The numeric error identifier.
+          example: abc123
+        href:
+          type: string
+          description: A link to the error documentation.
+          example: example_value
+        code:
+          type: string
+          description: The error code.
+          example: example_value
+        reason:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+      required:
+      - kind
+      - id
+      - code
+      - reason
     CloudProviderList:
       type: object
       description: A paginated list of cloud providers.
@@ -163,36 +192,15 @@ components:
                 type: boolean
                 description: Whether the region is enabled for cluster creation.
           example: []
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        kind:
-          type: string
-          description: The error kind identifier.
-          example: example_value
-        id:
-          type: string
-          description: The numeric error identifier.
-          example: abc123
-        href:
-          type: string
-          description: A link to the error documentation.
-          example: example_value
-        code:
-          type: string
-          description: The error code.
-          example: example_value
-        reason:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
-      required:
-      - kind
-      - id
-      - code
-      - reason
   parameters:
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
     SizeParam:
       name: size
       in: query
@@ -202,14 +210,6 @@ components:
         minimum: 1
         maximum: 100
         default: 100
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results. Page numbering starts at 1.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   responses:
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.

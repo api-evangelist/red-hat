@@ -49,6 +49,9 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   schemas:
     Topic:
       type: object
@@ -78,9 +81,6 @@ components:
           type: integer
           description: The number of systems impacted by rules in this topic.
           example: 10
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   securitySchemes:
     bearerAuth:
       type: http

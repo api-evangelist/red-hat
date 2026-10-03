@@ -300,13 +300,6 @@ paths:
     - url: https://quay.io/api/v1
       description: Quay.io Production API Server
 components:
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-    NotFoundError:
-      description: The requested resource was not found.
   parameters:
     UserIdParam:
       name: user_id
@@ -323,6 +316,13 @@ components:
       description: The name of the Keycloak realm.
       schema:
         type: string
+  responses:
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
   schemas:
     User:
       type: object

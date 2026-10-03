@@ -44,10 +44,10 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    NotFoundError:
-      description: The requested resource was not found.
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
   parameters:
     RealmParam:
       name: realm

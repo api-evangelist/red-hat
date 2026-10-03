@@ -118,6 +118,9 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   parameters:
     PerPageParam:
       name: per_page
@@ -177,9 +180,6 @@ components:
                 type: string
                 format: date-time
           example: []
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   securitySchemes:
     basicAuth:
       type: http

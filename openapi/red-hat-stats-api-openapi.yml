@@ -71,6 +71,9 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   schemas:
     RuleStats:
       type: object
@@ -108,9 +111,6 @@ components:
           type: integer
           description: Systems with at least one active recommendation.
           example: 10
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   securitySchemes:
     bearerAuth:
       type: http

@@ -121,10 +121,10 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
   parameters:
     RealmParam:
       name: realm
