@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-version-list-schema.json",
+  "title": "VersionList",
+  "description": "A paginated list of available OpenShift versions.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-versions-api-openapi.yml#/components/schemas/VersionList",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The version identifier."
+          },
+          "raw_id": {
+            "type": "string",
+            "description": "The raw version string."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether this version is available for new clusters."
+          },
+          "default": {
+            "type": "boolean",
+            "description": "Whether this is the default version for new clusters."
+          },
+          "channel_group": {
+            "type": "string",
+            "description": "The channel group for the version (stable, fast, candidate)."
+          }
+        }
+      }
+    }
+  }
+}

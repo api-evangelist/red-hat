@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-security-scan-result-schema.json",
+  "title": "SecurityScanResult",
+  "description": "Security scan results for a container image manifest, including detected vulnerabilities.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-manifests-api-openapi.yml#/components/schemas/SecurityScanResult",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The scan status.",
+      "enum": [
+        "queued",
+        "scanned",
+        "unsupported",
+        "failed"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "description": "The scan result data.",
+      "properties": {
+        "Layer": {
+          "type": "object",
+          "properties": {
+            "Features": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "The package name."
+                  },
+                  "Version": {
+                    "type": "string",
+                    "description": "The installed version."
+                  },
+                  "Vulnerabilities": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Name": {
+                          "type": "string",
+                          "description": "The vulnerability CVE identifier."
+                        },
+                        "Severity": {
+                          "type": "string",
+                          "description": "The severity level.",
+                          "enum": [
+                            "Negligible",
+                            "Low",
+                            "Medium",
+                            "High",
+                            "Critical",
+                            "Unknown"
+                          ]
+                        },
+                        "FixedBy": {
+                          "type": "string",
+                          "description": "The version that fixes the vulnerability."
+                        },
+                        "Link": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "A link to vulnerability details."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

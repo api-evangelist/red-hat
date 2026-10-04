@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-repository-schema.json",
+  "title": "Repository",
+  "description": "A container image repository in the Quay registry.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-repositories-api-openapi.yml#/components/schemas/Repository",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "description": "The namespace the repository belongs to."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the repository."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the repository."
+    },
+    "is_public": {
+      "type": "boolean",
+      "description": "Whether the repository is publicly accessible."
+    },
+    "kind": {
+      "type": "string",
+      "description": "The type of repository.",
+      "enum": [
+        "image",
+        "application"
+      ]
+    },
+    "tag_count": {
+      "type": "integer",
+      "description": "The number of tags in the repository."
+    },
+    "status_token": {
+      "type": "string",
+      "description": "The status token for repository notifications."
+    }
+  }
+}

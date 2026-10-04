@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-client-schema.json",
+  "title": "Client",
+  "description": "A client application registered in a Keycloak realm for authentication.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-clients-api-openapi.yml#/components/schemas/Client",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the client."
+    },
+    "clientId": {
+      "type": "string",
+      "description": "The client identifier used in authentication flows."
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the client."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the client."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the client is enabled."
+    },
+    "protocol": {
+      "type": "string",
+      "description": "The authentication protocol.",
+      "enum": [
+        "openid-connect",
+        "saml"
+      ]
+    },
+    "publicClient": {
+      "type": "boolean",
+      "description": "Whether the client is public (no client secret)."
+    },
+    "rootUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The root URL of the client application."
+    },
+    "redirectUris": {
+      "type": "array",
+      "description": "Allowed redirect URIs after authentication.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "webOrigins": {
+      "type": "array",
+      "description": "Allowed web origins for CORS.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "serviceAccountsEnabled": {
+      "type": "boolean",
+      "description": "Whether service accounts are enabled."
+    },
+    "authorizationServicesEnabled": {
+      "type": "boolean",
+      "description": "Whether authorization services are enabled."
+    }
+  }
+}

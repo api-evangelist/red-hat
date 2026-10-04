@@ -206,7 +206,93 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   schemas:
+    System:
+      type: object
+      description: A RHEL system registered with Red Hat Insights for monitoring and recommendations.
+      properties:
+        system_uuid:
+          type: string
+          format: uuid
+          description: The unique identifier of the system.
+          example: '500123'
+        display_name:
+          type: string
+          description: The display name of the system.
+          example: example_value
+        last_seen:
+          type: string
+          format: date-time
+          description: The last time the system checked in with Insights.
+          example: '2026-01-15T10:30:00Z'
+        stale_at:
+          type: string
+          format: date-time
+          description: The date when the system will be considered stale.
+          example: '2026-01-15T10:30:00Z'
+        hits:
+          type: integer
+          description: The number of active Advisor recommendations.
+          example: 10
+        critical_hits:
+          type: integer
+          description: The number of critical severity recommendations.
+          example: 10
+        important_hits:
+          type: integer
+          description: The number of important severity recommendations.
+          example: 10
+        moderate_hits:
+          type: integer
+          description: The number of moderate severity recommendations.
+          example: 10
+        low_hits:
+          type: integer
+          description: The number of low severity recommendations.
+          example: 10
+        rhel_version:
+          type: string
+          description: The RHEL version running on the system.
+          example: example_value
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses.
+      properties:
+        count:
+          type: integer
+          description: The total number of results.
+          example: 10
+    PaginatedRuleList:
+      type: object
+      description: A paginated list of rules.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+          example: []
+    PaginatedSystemList:
+      type: object
+      description: A paginated list of systems.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/System'
+          example: []
     PaginationLinks:
       type: object
       description: Pagination links for navigating result sets.
@@ -315,88 +401,15 @@ components:
                 type: boolean
                 description: Whether this resolution has a playbook.
           example: []
-    PaginatedSystemList:
-      type: object
-      description: A paginated list of systems.
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/System'
-          example: []
-    PaginatedRuleList:
-      type: object
-      description: A paginated list of rules.
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-          example: []
-    PaginationMeta:
-      type: object
-      description: Pagination metadata for list responses.
-      properties:
-        count:
-          type: integer
-          description: The total number of results.
-          example: 10
-    System:
-      type: object
-      description: A RHEL system registered with Red Hat Insights for monitoring and recommendations.
-      properties:
-        system_uuid:
-          type: string
-          format: uuid
-          description: The unique identifier of the system.
-          example: '500123'
-        display_name:
-          type: string
-          description: The display name of the system.
-          example: example_value
-        last_seen:
-          type: string
-          format: date-time
-          description: The last time the system checked in with Insights.
-          example: '2026-01-15T10:30:00Z'
-        stale_at:
-          type: string
-          format: date-time
-          description: The date when the system will be considered stale.
-          example: '2026-01-15T10:30:00Z'
-        hits:
-          type: integer
-          description: The number of active Advisor recommendations.
-          example: 10
-        critical_hits:
-          type: integer
-          description: The number of critical severity recommendations.
-          example: 10
-        important_hits:
-          type: integer
-          description: The number of important severity recommendations.
-          example: 10
-        moderate_hits:
-          type: integer
-          description: The number of moderate severity recommendations.
-          example: 10
-        low_hits:
-          type: integer
-          description: The number of low severity recommendations.
-          example: 10
-        rhel_version:
-          type: string
-          description: The RHEL version running on the system.
-          example: example_value
   parameters:
+    OffsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip before returning.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     LimitParam:
       name: limit
       in: query
@@ -406,19 +419,6 @@ components:
         minimum: 1
         maximum: 100
         default: 10
-    OffsetParam:
-      name: offset
-      in: query
-      description: The number of results to skip before returning.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    NotFoundError:
-      description: The requested resource was not found.
   securitySchemes:
     bearerAuth:
       type: http

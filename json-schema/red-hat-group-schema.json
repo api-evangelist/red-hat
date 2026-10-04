@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-group-schema.json",
+  "title": "Group",
+  "description": "A group that enables bulk role and attribute assignment to users.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-groups-api-openapi.yml#/components/schemas/Group",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the group."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the group."
+    },
+    "path": {
+      "type": "string",
+      "description": "The full path of the group in the hierarchy."
+    },
+    "subGroups": {
+      "type": "array",
+      "description": "Child groups.",
+      "items": {
+        "$ref": "#/$defs/Group"
+      }
+    }
+  },
+  "$defs": {
+    "Group": {
+      "type": "object",
+      "description": "A group that enables bulk role and attribute assignment to users.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The unique identifier of the group."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the group."
+        },
+        "path": {
+          "type": "string",
+          "description": "The full path of the group in the hierarchy."
+        },
+        "subGroups": {
+          "type": "array",
+          "description": "Child groups.",
+          "items": {
+            "$ref": "#/$defs/Group"
+          }
+        }
+      }
+    }
+  }
+}

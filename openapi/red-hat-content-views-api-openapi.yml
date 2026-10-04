@@ -118,9 +118,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   parameters:
     PerPageParam:
       name: per_page
@@ -139,6 +136,9 @@ components:
         type: integer
         minimum: 1
         default: 1
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   schemas:
     PaginatedContentViewList:
       type: object

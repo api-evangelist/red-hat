@@ -109,6 +109,13 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   schemas:
     RobotAccount:
       type: object
@@ -131,13 +138,6 @@ components:
           format: date-time
           description: When the robot account was created.
           example: '2026-01-15T10:30:00Z'
-  responses:
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    NotFoundError:
-      description: The requested resource was not found.
   parameters:
     OrgNameParam:
       name: orgname

@@ -1,0 +1,415 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/red-hat-add-ons-api-openapi.yml
+- openapi/red-hat-clients-api-openapi.yml
+- openapi/red-hat-cloud-providers-api-openapi.yml
+- openapi/red-hat-clusters-api-openapi.yml
+- openapi/red-hat-content-views-api-openapi.yml
+vocabulary:
+  name: Red Hat Domain Vocabulary
+  description: 'Terms declared by Red Hat''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-03'
+  terms:
+  - term: Add Ons
+    definition: Operations for managing cluster add-ons that extend OpenShift cluster functionality.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-add-ons-api-openapi.yml
+  - term: Clients
+    definition: Operations for managing client applications registered in a realm for authentication and authorization.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-clients-api-openapi.yml
+  - term: Cloud Providers
+    definition: Operations for listing available cloud providers and their regions for cluster deployment.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-cloud-providers-api-openapi.yml
+  - term: Clusters
+    definition: Operations for provisioning, managing, and retrieving OpenShift clusters across cloud providers.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-clusters-api-openapi.yml
+  - term: Content Views
+    definition: Operations for managing content views that define curated snapshots of software repositories for controlled content delivery.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-content-views-api-openapi.yml
+  - term: Credentials
+    definition: Operations for managing credentials used by automation jobs to authenticate with managed hosts and external services.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-credentials-api-openapi.yml
+  - term: Environments
+    definition: Operations for managing lifecycle environments that define the promotion path for content from development to production.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-environments-api-openapi.yml
+  - term: Errata
+    definition: Operations for listing and managing errata (security advisories, bug fixes, and enhancements) applicable to registered hosts.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-errata-api-openapi.yml
+  - term: Groups
+    definition: Operations for managing user groups that enable bulk role and attribute assignment.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-groups-api-openapi.yml
+  - term: Host Groups
+    definition: Operations for managing host groups that provide shared configuration templates for provisioning and management.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-host-groups-api-openapi.yml
+  - term: Hosts
+    definition: Operations for managing hosts registered with Satellite, including provisioning, facts, and power management.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-hosts-api-openapi.yml
+  - term: Identity Providers
+    definition: Operations for managing external identity providers for federated authentication such as SAML and OIDC.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-identity-providers-api-openapi.yml
+  - term: Inventories
+    definition: Operations for managing inventories that define collections of hosts and groups for automation targeting.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-inventories-api-openapi.yml
+  - term: Job Templates
+    definition: Operations for managing job templates that define parameterized playbook runs against inventories of managed hosts.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-job-templates-api-openapi.yml
+  - term: Jobs
+    definition: Operations for launching, monitoring, and managing automation job executions and their output.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-jobs-api-openapi.yml
+  - term: Machine Pools
+    definition: Operations for managing machine pools that define groups of compute nodes within a cluster.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-machine-pools-api-openapi.yml
+  - term: Manifests
+    definition: Operations for retrieving manifest information and security scan results for container images.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-manifests-api-openapi.yml
+  - term: Organizations
+    definition: Operations for managing organizations that provide multi-tenancy and access control boundaries.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-organizations-api-openapi.yml
+  - term: Projects
+    definition: Operations for managing projects that represent collections of Ansible playbooks sourced from version control.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-projects-api-openapi.yml
+  - term: Realms
+    definition: Operations for managing Keycloak realms that serve as tenants for isolating identity configurations.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-realms-api-openapi.yml
+  - term: Repositories
+    definition: Operations for managing container image repositories, including creation, listing, and deletion.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-repositories-api-openapi.yml
+  - term: Robot Accounts
+    definition: Operations for managing robot accounts that provide automated access to repositories.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-robot-accounts-api-openapi.yml
+  - term: Roles
+    definition: Operations for managing realm-level and client-level roles for authorization.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-roles-api-openapi.yml
+  - term: Rules
+    definition: Operations for listing and retrieving Advisor rules that define the detection logic for system issues.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-rules-api-openapi.yml
+  - term: Sessions
+    definition: Operations for viewing and managing active user sessions across a realm.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-sessions-api-openapi.yml
+  - term: Stats
+    definition: Operations for retrieving aggregate statistics about system health and recommendation coverage.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-stats-api-openapi.yml
+  - term: Subscriptions
+    definition: Operations for managing OpenShift cluster subscriptions and entitlements.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-subscriptions-api-openapi.yml
+  - term: Systems
+    definition: Operations for retrieving registered systems and their Insights status.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-systems-api-openapi.yml
+  - term: Teams
+    definition: Operations for managing teams within organizations and their repository permissions.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-teams-api-openapi.yml
+  - term: Topics
+    definition: Operations for retrieving curated topics that group related recommendations by technology area or risk category.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-topics-api-openapi.yml
+  - term: Users
+    definition: Operations for managing user accounts, credentials, and profile attributes within a realm.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-users-api-openapi.yml
+  - term: Versions
+    definition: Operations for listing available OpenShift versions for cluster provisioning and upgrades.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-versions-api-openapi.yml
+  - term: Workflow Job Templates
+    definition: Operations for managing workflow job templates that chain multiple job templates into orchestrated automation workflows.
+    tags:
+    - Resource Group
+    source: openapi/red-hat-workflow-job-templates-api-openapi.yml
+  - term: Error
+    definition: An error response from the API.
+    tags:
+    - Object
+    source: openapi/red-hat-add-ons-api-openapi.yml#/components/schemas/Error
+  - term: AddonList
+    definition: A paginated list of available cluster add-ons.
+    tags:
+    - Object
+    source: openapi/red-hat-add-ons-api-openapi.yml#/components/schemas/AddonList
+  - term: Client
+    definition: A client application registered in a Keycloak realm for authentication.
+    tags:
+    - Object
+    source: openapi/red-hat-clients-api-openapi.yml#/components/schemas/Client
+  - term: CloudProviderList
+    definition: A paginated list of cloud providers.
+    tags:
+    - Object
+    source: openapi/red-hat-cloud-providers-api-openapi.yml#/components/schemas/CloudProviderList
+  - term: CloudRegionList
+    definition: A paginated list of cloud regions.
+    tags:
+    - Object
+    source: openapi/red-hat-cloud-providers-api-openapi.yml#/components/schemas/CloudRegionList
+  - term: Cluster
+    definition: Represents an OpenShift cluster managed through the Cluster Manager.
+    tags:
+    - Object
+    source: openapi/red-hat-clusters-api-openapi.yml#/components/schemas/Cluster
+  - term: ClusterList
+    definition: A paginated list of clusters.
+    tags:
+    - Object
+    source: openapi/red-hat-clusters-api-openapi.yml#/components/schemas/ClusterList
+  - term: PaginatedContentViewList
+    definition: 'Object declared by the contract with fields: total, subtotal, page, per_page, results.'
+    tags:
+    - Object
+    source: openapi/red-hat-content-views-api-openapi.yml#/components/schemas/PaginatedContentViewList
+  - term: PaginatedCredentialList
+    definition: A paginated list of credentials.
+    tags:
+    - Object
+    source: openapi/red-hat-credentials-api-openapi.yml#/components/schemas/PaginatedCredentialList
+  - term: PaginatedEnvironmentList
+    definition: 'Object declared by the contract with fields: total, subtotal, page, per_page, results.'
+    tags:
+    - Object
+    source: openapi/red-hat-environments-api-openapi.yml#/components/schemas/PaginatedEnvironmentList
+  - term: PaginatedErrataList
+    definition: 'Object declared by the contract with fields: total, subtotal, page, per_page, results.'
+    tags:
+    - Object
+    source: openapi/red-hat-errata-api-openapi.yml#/components/schemas/PaginatedErrataList
+  - term: Group
+    definition: A group that enables bulk role and attribute assignment to users.
+    tags:
+    - Object
+    source: openapi/red-hat-groups-api-openapi.yml#/components/schemas/Group
+  - term: PaginatedHostGroupList
+    definition: 'Object declared by the contract with fields: total, subtotal, page, per_page, results.'
+    tags:
+    - Object
+    source: openapi/red-hat-host-groups-api-openapi.yml#/components/schemas/PaginatedHostGroupList
+  - term: PaginatedHostList
+    definition: 'Object declared by the contract with fields: total, subtotal, page, per_page, results.'
+    tags:
+    - Object
+    source: openapi/red-hat-hosts-api-openapi.yml#/components/schemas/PaginatedHostList
+  - term: Host
+    definition: A host managed by Red Hat Satellite.
+    tags:
+    - Object
+    source: openapi/red-hat-hosts-api-openapi.yml#/components/schemas/Host
+  - term: IdentityProviderRepresentation
+    definition: An external identity provider configured for federated authentication.
+    tags:
+    - Object
+    source: openapi/red-hat-identity-providers-api-openapi.yml#/components/schemas/IdentityProviderRepresentation
+  - term: IdentityProvider
+    definition: Represents an identity provider configured for cluster authentication.
+    tags:
+    - Object
+    source: openapi/red-hat-identity-providers-api-openapi.yml#/components/schemas/IdentityProvider
+  - term: IdentityProviderList
+    definition: A paginated list of identity providers.
+    tags:
+    - Object
+    source: openapi/red-hat-identity-providers-api-openapi.yml#/components/schemas/IdentityProviderList
+  - term: Inventory
+    definition: An inventory defines a collection of hosts and groups that automation jobs target for execution.
+    tags:
+    - Object
+    source: openapi/red-hat-inventories-api-openapi.yml#/components/schemas/Inventory
+  - term: PaginatedInventoryList
+    definition: A paginated list of inventories.
+    tags:
+    - Object
+    source: openapi/red-hat-inventories-api-openapi.yml#/components/schemas/PaginatedInventoryList
+  - term: JobTemplate
+    definition: A job template defines the parameters for running an Ansible playbook against an inventory of managed hosts.
+    tags:
+    - Object
+    source: openapi/red-hat-job-templates-api-openapi.yml#/components/schemas/JobTemplate
+  - term: Job
+    definition: A job represents a single execution of a job template, tracking the playbook run status, timing, and output.
+    tags:
+    - Object
+    source: openapi/red-hat-job-templates-api-openapi.yml#/components/schemas/Job
+  - term: PaginatedJobTemplateList
+    definition: A paginated list of job templates.
+    tags:
+    - Object
+    source: openapi/red-hat-job-templates-api-openapi.yml#/components/schemas/PaginatedJobTemplateList
+  - term: PaginatedJobList
+    definition: A paginated list of jobs.
+    tags:
+    - Object
+    source: openapi/red-hat-jobs-api-openapi.yml#/components/schemas/PaginatedJobList
+  - term: MachinePool
+    definition: Represents a machine pool within a cluster, defining a group of compute nodes with shared configuration.
+    tags:
+    - Object
+    source: openapi/red-hat-machine-pools-api-openapi.yml#/components/schemas/MachinePool
+  - term: MachinePoolList
+    definition: A paginated list of machine pools.
+    tags:
+    - Object
+    source: openapi/red-hat-machine-pools-api-openapi.yml#/components/schemas/MachinePoolList
+  - term: SecurityScanResult
+    definition: Security scan results for a container image manifest, including detected vulnerabilities.
+    tags:
+    - Object
+    source: openapi/red-hat-manifests-api-openapi.yml#/components/schemas/SecurityScanResult
+  - term: PaginatedList
+    definition: A generic paginated list response.
+    tags:
+    - Object
+    source: openapi/red-hat-organizations-api-openapi.yml#/components/schemas/PaginatedList
+  - term: Organization
+    definition: A Quay organization.
+    tags:
+    - Object
+    source: openapi/red-hat-organizations-api-openapi.yml#/components/schemas/Organization
+  - term: PaginatedOrganizationList
+    definition: 'Object declared by the contract with fields: total, subtotal, page, per_page, results.'
+    tags:
+    - Object
+    source: openapi/red-hat-organizations-api-openapi.yml#/components/schemas/PaginatedOrganizationList
+  - term: PaginatedProjectList
+    definition: A paginated list of projects.
+    tags:
+    - Object
+    source: openapi/red-hat-projects-api-openapi.yml#/components/schemas/PaginatedProjectList
+  - term: Realm
+    definition: A Keycloak realm representing an isolated tenant for identity management.
+    tags:
+    - Object
+    source: openapi/red-hat-realms-api-openapi.yml#/components/schemas/Realm
+  - term: RepositoryList
+    definition: A paginated list of repositories.
+    tags:
+    - Object
+    source: openapi/red-hat-repositories-api-openapi.yml#/components/schemas/RepositoryList
+  - term: Repository
+    definition: A container image repository in the Quay registry.
+    tags:
+    - Object
+    source: openapi/red-hat-repositories-api-openapi.yml#/components/schemas/Repository
+  - term: PaginatedRepositoryList
+    definition: 'Object declared by the contract with fields: total, subtotal, page, per_page, results.'
+    tags:
+    - Object
+    source: openapi/red-hat-repositories-api-openapi.yml#/components/schemas/PaginatedRepositoryList
+  - term: TagList
+    definition: A paginated list of image tags.
+    tags:
+    - Object
+    source: openapi/red-hat-repository-api-openapi.yml#/components/schemas/TagList
+  - term: RobotAccount
+    definition: A robot account for automated registry access.
+    tags:
+    - Object
+    source: openapi/red-hat-robot-accounts-api-openapi.yml#/components/schemas/RobotAccount
+  - term: Role
+    definition: A role that can be assigned to users or groups for authorization.
+    tags:
+    - Object
+    source: openapi/red-hat-roles-api-openapi.yml#/components/schemas/Role
+  - term: PaginationLinks
+    definition: Pagination links for navigating result sets.
+    tags:
+    - Object
+    source: openapi/red-hat-rules-api-openapi.yml#/components/schemas/PaginationLinks
+  - term: Rule
+    definition: An Advisor rule that defines detection logic for a specific system issue, along with resolution steps and remediation guidance.
+    tags:
+    - Object
+    source: openapi/red-hat-rules-api-openapi.yml#/components/schemas/Rule
+  - term: PaginatedSystemList
+    definition: A paginated list of systems.
+    tags:
+    - Object
+    source: openapi/red-hat-rules-api-openapi.yml#/components/schemas/PaginatedSystemList
+  - term: PaginatedRuleList
+    definition: A paginated list of rules.
+    tags:
+    - Object
+    source: openapi/red-hat-rules-api-openapi.yml#/components/schemas/PaginatedRuleList
+  - term: PaginationMeta
+    definition: Pagination metadata for list responses.
+    tags:
+    - Object
+    source: openapi/red-hat-rules-api-openapi.yml#/components/schemas/PaginationMeta
+  - term: System
+    definition: A RHEL system registered with Red Hat Insights for monitoring and recommendations.
+    tags:
+    - Object
+    source: openapi/red-hat-rules-api-openapi.yml#/components/schemas/System
+  - term: RuleStats
+    definition: Aggregate statistics about Advisor rules.
+    tags:
+    - Object
+    source: openapi/red-hat-stats-api-openapi.yml#/components/schemas/RuleStats
+  - term: SystemStats
+    definition: Aggregate statistics about registered systems.
+    tags:
+    - Object
+    source: openapi/red-hat-stats-api-openapi.yml#/components/schemas/SystemStats
+  - term: SubscriptionList
+    definition: A paginated list of subscriptions.
+    tags:
+    - Object
+    source: openapi/red-hat-subscriptions-api-openapi.yml#/components/schemas/SubscriptionList

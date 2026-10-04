@@ -5,6 +5,8 @@ source: >-
   https://developers.redhat.com/developer-sandbox/FAQ,
   https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-developer-sandbox-trial
 description: >-
+
+docs: >-
   Red Hat's sandbox surface is a free, no-commitment trial environment rather
   than a payments-style test-mode with magic values. The Developer Sandbox gives
   a private, time-boxed slice of a shared multi-tenant OpenShift cluster

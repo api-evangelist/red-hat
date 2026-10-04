@@ -63,9 +63,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
   schemas:
     PaginatedEnvironmentList:
       type: object
@@ -103,6 +100,9 @@ components:
                   name:
                     type: string
           example: []
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   parameters:
     PerPageParam:
       name: per_page

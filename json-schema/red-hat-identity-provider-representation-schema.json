@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-identity-provider-representation-schema.json",
+  "title": "IdentityProviderRepresentation",
+  "description": "An external identity provider configured for federated authentication.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-identity-providers-api-openapi.yml#/components/schemas/IdentityProviderRepresentation",
+  "type": "object",
+  "properties": {
+    "alias": {
+      "type": "string",
+      "description": "The unique alias for the identity provider."
+    },
+    "displayName": {
+      "type": "string",
+      "description": "The display name of the identity provider."
+    },
+    "providerId": {
+      "type": "string",
+      "description": "The provider type identifier.",
+      "enum": [
+        "saml",
+        "oidc",
+        "google",
+        "github",
+        "facebook",
+        "microsoft",
+        "linkedin"
+      ]
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the identity provider is enabled."
+    },
+    "config": {
+      "type": "object",
+      "description": "Provider-specific configuration.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

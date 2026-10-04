@@ -1,4 +1,4 @@
-generated: '2026-07-11'
+generated: '2026-10-03'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -10,23 +10,33 @@ hosts:
 - host: www.redhat.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Oct 10 23:59:59 2026 GMT
+  cert_expires: Mar 10 23:59:59 2027 GMT
   hsts: true
   hsts_max_age: 31536000
-- host: console.redhat.com
+- host: api.openshift.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Feb 13 23:59:59 2027 GMT
-  hsts: true
-  hsts_max_age: 31536000
+  cert_expires: Dec  9 07:30:47 2026 GMT
+  hsts: false
 domains:
 - domain: redhat.com
   dnssec: false
   caa:
-  - 0 iodef "mailto:it-cert-admin@redhat.com"
-  - 0 issue "amazontrust.com"
   - 0 issue "letsencrypt.org"
   - 0 issue "digicert.com"
+  - 0 iodef "mailto:it-cert-admin@redhat.com"
+  - 0 issue "amazontrust.com"
   spf: true
   dmarc: true
   dmarc_policy: quarantine
+- domain: openshift.com
+  dnssec: false
+  caa:
+  - 0 issue "comodoca.com"
+  - 0 issue "digicert.com; cansignhttpexchanges=yes"
+  - 0 issue "letsencrypt.org"
+  - 0 issue "pki.goog; cansignhttpexchanges=yes"
+  - 0 issue "ssl.com"
+  - 0 issuewild "comodoca.com"
+  spf: true
+  dmarc: false

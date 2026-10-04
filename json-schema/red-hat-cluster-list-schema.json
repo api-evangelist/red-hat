@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-cluster-list-schema.json",
+  "title": "ClusterList",
+  "description": "A paginated list of clusters.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-clusters-api-openapi.yml#/components/schemas/ClusterList",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "description": "The resource kind."
+    },
+    "page": {
+      "type": "integer",
+      "description": "The current page number."
+    },
+    "size": {
+      "type": "integer",
+      "description": "The number of items in this page."
+    },
+    "total": {
+      "type": "integer",
+      "description": "The total number of items across all pages."
+    },
+    "items": {
+      "type": "array",
+      "description": "The list of clusters.",
+      "items": {
+        "$ref": "#/$defs/Cluster"
+      }
+    }
+  },
+  "$defs": {
+    "Cluster": {
+      "type": "object",
+      "description": "Represents an OpenShift cluster managed through the Cluster Manager.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the cluster."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the cluster."
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The display name of the cluster."
+        },
+        "state": {
+          "type": "string",
+          "description": "The current state of the cluster.",
+          "enum": [
+            "error",
+            "hibernating",
+            "installing",
+            "pending",
+            "powering_down",
+            "ready",
+            "resuming",
+            "uninstalling",
+            "unknown",
+            "validating",
+            "waiting"
+          ]
+        },
+        "cloud_provider": {
+          "type": "object",
+          "description": "The cloud provider where the cluster is deployed.",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The cloud provider identifier (e.g., aws, gcp, azure)."
+            }
+          }
+        },
+        "region": {
+          "type": "object",
+          "description": "The cloud region where the cluster is deployed.",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The region identifier."
+            }
+          }
+        },
+        "multi_az": {
+          "type": "boolean",
+          "description": "Whether the cluster spans multiple availability zones for high availability."
+        },
+        "nodes": {
+          "type": "object",
+          "description": "Node configuration for the cluster.",
+          "properties": {
+            "compute": {
+              "type": "integer",
+              "description": "The number of compute nodes."
+            },
+            "compute_machine_type": {
+              "type": "object",
+              "description": "The instance type for compute nodes.",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The machine type identifier."
+                }
+              }
+            }
+          }
+        },
+        "api": {
+          "type": "object",
+          "description": "API server endpoint configuration.",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "description": "The URL of the cluster API server."
+            },
+            "listening": {
+              "type": "string",
+              "description": "The listening mode for the API server, either external or internal.",
+              "enum": [
+                "external",
+                "internal"
+              ]
+            }
+          }
+        },
+        "console": {
+          "type": "object",
+          "description": "Web console configuration.",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "description": "The URL of the OpenShift web console."
+            }
+          }
+        },
+        "version": {
+          "type": "object",
+          "description": "The OpenShift version of the cluster.",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The OpenShift version identifier."
+            },
+            "raw_id": {
+              "type": "string",
+              "description": "The raw OpenShift version string."
+            }
+          }
+        },
+        "creation_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the cluster was created."
+        },
+        "expiration_timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time when the cluster is set to expire, if applicable."
+        }
+      }
+    }
+  }
+}

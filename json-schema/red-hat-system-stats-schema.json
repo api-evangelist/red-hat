@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-system-stats-schema.json",
+  "title": "SystemStats",
+  "description": "Aggregate statistics about registered systems.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-stats-api-openapi.yml#/components/schemas/SystemStats",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "The total number of registered systems."
+    },
+    "stale": {
+      "type": "integer",
+      "description": "The number of stale systems."
+    },
+    "with_hits": {
+      "type": "integer",
+      "description": "Systems with at least one active recommendation."
+    }
+  }
+}

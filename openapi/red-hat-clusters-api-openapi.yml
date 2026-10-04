@@ -301,7 +301,89 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: The page number for paginated results. Page numbering starts at 1.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    ClusterIdParam:
+      name: cluster_id
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+    SearchParam:
+      name: search
+      in: query
+      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
+      schema:
+        type: string
+    SizeParam:
+      name: size
+      in: query
+      description: The maximum number of items to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 100
+    OrderParam:
+      name: order
+      in: query
+      description: The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.
+      schema:
+        type: string
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    ClusterList:
+      type: object
+      description: A paginated list of clusters.
+      properties:
+        kind:
+          type: string
+          description: The resource kind.
+          example: example_value
+        page:
+          type: integer
+          description: The current page number.
+          example: 10
+        size:
+          type: integer
+          description: The number of items in this page.
+          example: 10
+        total:
+          type: integer
+          description: The total number of items across all pages.
+          example: 10
+        items:
+          type: array
+          description: The list of clusters.
+          items:
+            $ref: '#/components/schemas/Cluster'
+          example: []
     Error:
       type: object
       description: An error response from the API.
@@ -443,88 +525,6 @@ components:
           format: date-time
           description: The date and time when the cluster is set to expire, if applicable.
           example: '2026-01-15T10:30:00Z'
-    ClusterList:
-      type: object
-      description: A paginated list of clusters.
-      properties:
-        kind:
-          type: string
-          description: The resource kind.
-          example: example_value
-        page:
-          type: integer
-          description: The current page number.
-          example: 10
-        size:
-          type: integer
-          description: The number of items in this page.
-          example: 10
-        total:
-          type: integer
-          description: The total number of items across all pages.
-          example: 10
-        items:
-          type: array
-          description: The list of clusters.
-          items:
-            $ref: '#/components/schemas/Cluster'
-          example: []
-  responses:
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFoundError:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    PageParam:
-      name: page
-      in: query
-      description: The page number for paginated results. Page numbering starts at 1.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    ClusterIdParam:
-      name: cluster_id
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-    OrderParam:
-      name: order
-      in: query
-      description: The ordering criteria for results. Specify a field name followed by asc or desc for the sort direction.
-      schema:
-        type: string
-    SizeParam:
-      name: size
-      in: query
-      description: The maximum number of items to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 100
-    SearchParam:
-      name: search
-      in: query
-      description: A search filter expression to narrow results. Supports field comparisons using operators such as =, <>, LIKE, IN.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

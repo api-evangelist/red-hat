@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-paginated-errata-list-schema.json",
+  "title": "PaginatedErrataList",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-errata-api-openapi.yml#/components/schemas/PaginatedErrataList",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "subtotal": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "per_page": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "errata_id": {
+            "type": "string",
+            "description": "The advisory identifier (e.g., RHSA-2024:1234)."
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "security",
+              "bugfix",
+              "enhancement"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "Critical",
+              "Important",
+              "Moderate",
+              "Low",
+              "N/A"
+            ]
+          },
+          "issued": {
+            "type": "string",
+            "format": "date"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date"
+          },
+          "hosts_available_count": {
+            "type": "integer"
+          },
+          "hosts_applicable_count": {
+            "type": "integer"
+          },
+          "cves": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "packages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -72,10 +72,10 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
     BadRequestError:
       description: The request body is malformed or contains invalid values.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   parameters:
     OrgNameParam:
       name: orgname

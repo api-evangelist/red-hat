@@ -1,5 +1,24 @@
 generated: '2026-06-20'
+idempotency:
+  coverage: none
 method: searched
+entries:
+  - version: '4.22'
+    date: '2026-09-15'
+    highlights: ["New observability features"]
+    source: https://developers.redhat.com/blog "New observability features in Red Hat OpenShift 4.22"
+  - version: '3.4'
+    date: '2026-08-10'
+    highlights: ["Service Mesh 3.4 release"]
+    source: https://developers.redhat.com/blog "Introducing Red Hat OpenShift Service Mesh 3.4"
+  - version: '2.7'
+    date: '2026-07-20'
+    highlights: ["Visual execution, platform updates"]
+    source: https://developers.redhat.com/blog "What's new in Ansible Automation Platform 2.7"
+  - version: '10'
+    date: '2026-06-30'
+    highlights: ["bootc image mode"]
+    source: https://developers.redhat.com/blog "Installing Red Hat Enterprise Linux 10 bootc image (bootc)"
 source: >-
   https://docs.openshift.com/container-platform/latest/release_notes/ocp-4-release-notes.html,
   https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform,

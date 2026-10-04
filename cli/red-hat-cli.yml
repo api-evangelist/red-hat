@@ -1,5 +1,9 @@
 generated: '2026-06-20'
+idempotency:
+  coverage: none
 method: searched
+install: []
+commands: []
 source: >-
   https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html-single/cli_tools/index,
   https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index,

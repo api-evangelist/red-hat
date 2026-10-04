@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-subscription-list-schema.json",
+  "title": "SubscriptionList",
+  "description": "A paginated list of subscriptions.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-subscriptions-api-openapi.yml#/components/schemas/SubscriptionList",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The subscription identifier."
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "The associated cluster identifier."
+          },
+          "status": {
+            "type": "string",
+            "description": "The subscription status."
+          },
+          "plan": {
+            "type": "object",
+            "description": "The subscription plan details.",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

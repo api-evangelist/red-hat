@@ -301,6 +301,13 @@ paths:
       description: Quay.io Production API Server
 components:
   parameters:
+    RealmParam:
+      name: realm
+      in: path
+      required: true
+      description: The name of the Keycloak realm.
+      schema:
+        type: string
     UserIdParam:
       name: user_id
       in: path
@@ -309,20 +316,13 @@ components:
       schema:
         type: string
         format: uuid
-    RealmParam:
-      name: realm
-      in: path
-      required: true
-      description: The name of the Keycloak realm.
-      schema:
-        type: string
   responses:
+    NotFoundError:
+      description: The requested resource was not found.
     BadRequestError:
       description: The request body is malformed or contains invalid values.
     UnauthorizedError:
       description: Authentication credentials are missing or invalid.
-    NotFoundError:
-      description: The requested resource was not found.
   schemas:
     User:
       type: object

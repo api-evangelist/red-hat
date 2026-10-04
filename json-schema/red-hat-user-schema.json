@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-user-schema.json",
+  "title": "User",
+  "description": "A user account within a Keycloak realm.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-users-api-openapi.yml#/components/schemas/User",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier of the user."
+    },
+    "username": {
+      "type": "string",
+      "description": "The username."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "The user's first name."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "The user's last name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The user's email address."
+    },
+    "emailVerified": {
+      "type": "boolean",
+      "description": "Whether the email has been verified."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the user account is enabled."
+    },
+    "createdTimestamp": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The creation timestamp in milliseconds."
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Custom user attributes.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "credentials": {
+      "type": "array",
+      "description": "User credentials configuration.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The credential type."
+          },
+          "value": {
+            "type": "string",
+            "description": "The credential value."
+          },
+          "temporary": {
+            "type": "boolean",
+            "description": "Whether the credential is temporary."
+          }
+        }
+      }
+    },
+    "requiredActions": {
+      "type": "array",
+      "description": "Actions required on next login.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

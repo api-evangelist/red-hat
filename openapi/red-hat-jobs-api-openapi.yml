@@ -123,15 +123,20 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: An error response from the API.
-      properties:
-        detail:
-          type: string
-          description: A human-readable description of the error.
-          example: example_value
     Job:
       type: object
       description: A job represents a single execution of a job template, tracking the playbook run status, timing, and output.
@@ -210,6 +215,14 @@ components:
           format: date-time
           description: The date and time the job record was created.
           example: '2026-01-15T10:30:00Z'
+    Error:
+      type: object
+      description: An error response from the API.
+      properties:
+        detail:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
     PaginatedJobList:
       type: object
       description: A paginated list of jobs.
@@ -233,13 +246,18 @@ components:
             $ref: '#/components/schemas/Job'
           example: []
   parameters:
-    IdParam:
-      name: id
-      in: path
-      required: true
-      description: The unique numeric identifier of the resource.
+    OrderingParam:
+      name: ordering
+      in: query
+      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
       schema:
-        type: integer
+        type: string
+    SearchParam:
+      name: search
+      in: query
+      description: A search term to filter results by name or description.
+      schema:
+        type: string
     PageSizeParam:
       name: page_size
       in: query
@@ -249,6 +267,13 @@ components:
         minimum: 1
         maximum: 200
         default: 25
+    IdParam:
+      name: id
+      in: path
+      required: true
+      description: The unique numeric identifier of the resource.
+      schema:
+        type: integer
     PageParam:
       name: page
       in: query
@@ -257,31 +282,6 @@ components:
         type: integer
         minimum: 1
         default: 1
-    SearchParam:
-      name: search
-      in: query
-      description: A search term to filter results by name or description.
-      schema:
-        type: string
-    OrderingParam:
-      name: ordering
-      in: query
-      description: The field to use for ordering results. Prefix with a dash for descending order (e.g., -created).
-      schema:
-        type: string
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFoundError:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

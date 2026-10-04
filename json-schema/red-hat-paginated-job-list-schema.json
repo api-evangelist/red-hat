@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-paginated-job-list-schema.json",
+  "title": "PaginatedJobList",
+  "description": "A paginated list of jobs.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-jobs-api-openapi.yml#/components/schemas/PaginatedJobList",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "previous": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Job"
+      }
+    }
+  },
+  "$defs": {
+    "Job": {
+      "type": "object",
+      "description": "A job represents a single execution of a job template, tracking the playbook run status, timing, and output.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The unique identifier of the job."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the job."
+        },
+        "status": {
+          "type": "string",
+          "description": "The current execution status of the job.",
+          "enum": [
+            "new",
+            "pending",
+            "waiting",
+            "running",
+            "successful",
+            "failed",
+            "error",
+            "canceled"
+          ]
+        },
+        "failed": {
+          "type": "boolean",
+          "description": "Whether the job execution failed."
+        },
+        "started": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the job execution started."
+        },
+        "finished": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the job execution finished."
+        },
+        "elapsed": {
+          "type": "number",
+          "format": "float",
+          "description": "The elapsed time in seconds for job execution."
+        },
+        "job_template": {
+          "type": "integer",
+          "description": "The ID of the job template that was executed."
+        },
+        "inventory": {
+          "type": "integer",
+          "description": "The ID of the inventory used for this job."
+        },
+        "project": {
+          "type": "integer",
+          "description": "The ID of the project used for this job."
+        },
+        "playbook": {
+          "type": "string",
+          "description": "The playbook that was executed."
+        },
+        "launch_type": {
+          "type": "string",
+          "description": "How the job was launched.",
+          "enum": [
+            "manual",
+            "relaunch",
+            "callback",
+            "scheduled",
+            "dependency",
+            "workflow",
+            "sync",
+            "scm"
+          ]
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time the job record was created."
+        }
+      }
+    }
+  }
+}

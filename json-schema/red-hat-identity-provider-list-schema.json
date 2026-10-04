@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-identity-provider-list-schema.json",
+  "title": "IdentityProviderList",
+  "description": "A paginated list of identity providers.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-identity-providers-api-openapi.yml#/components/schemas/IdentityProviderList",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/IdentityProvider"
+      }
+    }
+  },
+  "$defs": {
+    "IdentityProvider": {
+      "type": "object",
+      "description": "Represents an identity provider configured for cluster authentication.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the identity provider."
+        },
+        "name": {
+          "type": "string",
+          "description": "The display name of the identity provider."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of identity provider.",
+          "enum": [
+            "github",
+            "gitlab",
+            "google",
+            "htpasswd",
+            "ldap",
+            "openid"
+          ]
+        },
+        "mapping_method": {
+          "type": "string",
+          "description": "The method used to map identities to users.",
+          "enum": [
+            "add",
+            "claim",
+            "generate",
+            "lookup"
+          ]
+        },
+        "github": {
+          "type": "object",
+          "description": "GitHub-specific identity provider configuration.",
+          "properties": {
+            "client_id": {
+              "type": "string"
+            },
+            "organizations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "ldap": {
+          "type": "object",
+          "description": "LDAP-specific identity provider configuration.",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "bind_dn": {
+              "type": "string"
+            },
+            "insecure": {
+              "type": "boolean"
+            }
+          }
+        },
+        "openid": {
+          "type": "object",
+          "description": "OpenID Connect identity provider configuration.",
+          "properties": {
+            "client_id": {
+              "type": "string"
+            },
+            "issuer": {
+              "type": "string",
+              "format": "uri"
+            },
+            "claims": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "name": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

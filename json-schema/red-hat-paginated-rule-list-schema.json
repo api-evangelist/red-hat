@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-paginated-rule-list-schema.json",
+  "title": "PaginatedRuleList",
+  "description": "A paginated list of rules.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-rules-api-openapi.yml#/components/schemas/PaginatedRuleList",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/PaginationMeta"
+    },
+    "links": {
+      "$ref": "#/$defs/PaginationLinks"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Rule"
+      }
+    }
+  },
+  "$defs": {
+    "PaginationLinks": {
+      "type": "object",
+      "description": "Pagination links for navigating result sets.",
+      "properties": {
+        "first": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the first page."
+        },
+        "last": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the last page."
+        },
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "description": "URL to the next page."
+        },
+        "previous": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "description": "URL to the previous page."
+        }
+      }
+    },
+    "PaginationMeta": {
+      "type": "object",
+      "description": "Pagination metadata for list responses.",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "The total number of results."
+        }
+      }
+    },
+    "Rule": {
+      "type": "object",
+      "description": "An Advisor rule that defines detection logic for a specific system issue, along with resolution steps and remediation guidance.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "The unique identifier of the rule."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of what the rule detects."
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Whether the rule is currently active."
+        },
+        "category": {
+          "type": "object",
+          "description": "The category the rule belongs to.",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The category identifier."
+            },
+            "name": {
+              "type": "string",
+              "description": "The category name.",
+              "enum": [
+                "Availability",
+                "Security",
+                "Stability",
+                "Performance"
+              ]
+            }
+          }
+        },
+        "impact": {
+          "type": "object",
+          "description": "The impact level of the rule.",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "value": {
+              "type": "integer"
+            }
+          }
+        },
+        "likelihood": {
+          "type": "integer",
+          "description": "The likelihood value (1-4)."
+        },
+        "total_risk": {
+          "type": "integer",
+          "description": "The calculated total risk score."
+        },
+        "risk_of_change": {
+          "type": "integer",
+          "description": "The risk associated with applying the remediation."
+        },
+        "has_playbook": {
+          "type": "boolean",
+          "description": "Whether an Ansible remediation playbook is available."
+        },
+        "publish_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the rule was published."
+        },
+        "systems_affected": {
+          "type": "integer",
+          "description": "The number of systems currently affected by this rule."
+        },
+        "resolution_set": {
+          "type": "array",
+          "description": "Available resolution options for the rule.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system_type": {
+                "type": "integer",
+                "description": "The system type identifier."
+              },
+              "resolution": {
+                "type": "string",
+                "description": "The resolution description in markdown format."
+              },
+              "has_playbook": {
+                "type": "boolean",
+                "description": "Whether this resolution has a playbook."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
