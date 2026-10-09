@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-robot-account-schema.json",
+  "title": "RobotAccount",
+  "description": "A robot account for automated registry access.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-robot-accounts-api-openapi.yml#/components/schemas/RobotAccount",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The fully qualified name of the robot account."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the robot account."
+    },
+    "token": {
+      "type": "string",
+      "description": "The authentication token for the robot account."
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the robot account was created."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+generated: '2026-10-03'
+method: derived
+source: openapi/red-hat-clusters-api-openapi.yml
+overlayVersion: 1.0.0
+actions:
+  - op: add
+    path: /info/x-extension
+    value: "Derived overlay for Red Hat Clusters API"

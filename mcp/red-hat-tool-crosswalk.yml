@@ -1,0 +1,7 @@
+generated: '2026-10-03'
+method: derived
+source: mcp/red-hat-mcp.yml
+crosswalk:
+  - tool: none
+    confidence: low
+note: No remote MCP server; stdio transport only, no REST tools to map.

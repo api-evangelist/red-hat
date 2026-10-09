@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-paginated-system-list-schema.json",
+  "title": "PaginatedSystemList",
+  "description": "A paginated list of systems.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-rules-api-openapi.yml#/components/schemas/PaginatedSystemList",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/PaginationMeta"
+    },
+    "links": {
+      "$ref": "#/$defs/PaginationLinks"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/System"
+      }
+    }
+  },
+  "$defs": {
+    "PaginationLinks": {
+      "type": "object",
+      "description": "Pagination links for navigating result sets.",
+      "properties": {
+        "first": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the first page."
+        },
+        "last": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the last page."
+        },
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "description": "URL to the next page."
+        },
+        "previous": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "description": "URL to the previous page."
+        }
+      }
+    },
+    "PaginationMeta": {
+      "type": "object",
+      "description": "Pagination metadata for list responses.",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "The total number of results."
+        }
+      }
+    },
+    "System": {
+      "type": "object",
+      "description": "A RHEL system registered with Red Hat Insights for monitoring and recommendations.",
+      "properties": {
+        "system_uuid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The unique identifier of the system."
+        },
+        "display_name": {
+          "type": "string",
+          "description": "The display name of the system."
+        },
+        "last_seen": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last time the system checked in with Insights."
+        },
+        "stale_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date when the system will be considered stale."
+        },
+        "hits": {
+          "type": "integer",
+          "description": "The number of active Advisor recommendations."
+        },
+        "critical_hits": {
+          "type": "integer",
+          "description": "The number of critical severity recommendations."
+        },
+        "important_hits": {
+          "type": "integer",
+          "description": "The number of important severity recommendations."
+        },
+        "moderate_hits": {
+          "type": "integer",
+          "description": "The number of moderate severity recommendations."
+        },
+        "low_hits": {
+          "type": "integer",
+          "description": "The number of low severity recommendations."
+        },
+        "rhel_version": {
+          "type": "string",
+          "description": "The RHEL version running on the system."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-paginated-host-list-schema.json",
+  "title": "PaginatedHostList",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-hosts-api-openapi.yml#/components/schemas/PaginatedHostList",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "subtotal": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "per_page": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Host"
+      }
+    }
+  },
+  "$defs": {
+    "Host": {
+      "type": "object",
+      "description": "A host managed by Red Hat Satellite.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The unique identifier of the host."
+        },
+        "name": {
+          "type": "string",
+          "description": "The fully qualified domain name of the host."
+        },
+        "ip": {
+          "type": "string",
+          "description": "The IP address of the host."
+        },
+        "mac": {
+          "type": "string",
+          "description": "The MAC address of the primary interface."
+        },
+        "operatingsystem_name": {
+          "type": "string",
+          "description": "The operating system name and version."
+        },
+        "environment_name": {
+          "type": "string",
+          "description": "The Puppet environment name."
+        },
+        "hostgroup_name": {
+          "type": "string",
+          "description": "The host group name."
+        },
+        "organization_name": {
+          "type": "string",
+          "description": "The organization name."
+        },
+        "location_name": {
+          "type": "string",
+          "description": "The location name."
+        },
+        "global_status": {
+          "type": "integer",
+          "description": "The global host status (0=OK, 1=Warning, 2=Error)."
+        },
+        "content_facet_attributes": {
+          "type": "object",
+          "description": "Content-related attributes of the host.",
+          "properties": {
+            "content_view_name": {
+              "type": "string"
+            },
+            "lifecycle_environment_name": {
+              "type": "string"
+            },
+            "errata_counts": {
+              "type": "object",
+              "properties": {
+                "security": {
+                  "type": "integer"
+                },
+                "bugfix": {
+                  "type": "integer"
+                },
+                "enhancement": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

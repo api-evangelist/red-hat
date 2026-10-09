@@ -2,6 +2,7 @@
 generated: '2026-09-20'
 method: searched
 source: https://www.redhat.com/en/store
+name: Red Hat API Plans
 sources:
 - https://www.redhat.com/en/store
 provenance:

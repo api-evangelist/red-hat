@@ -119,54 +119,12 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFoundError:
+      description: The requested resource was not found.
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
   schemas:
-    PaginationLinks:
-      type: object
-      description: Pagination links for navigating result sets.
-      properties:
-        first:
-          type: string
-          format: uri
-          description: URL to the first page.
-          example: https://www.example.com
-        last:
-          type: string
-          format: uri
-          description: URL to the last page.
-          example: https://www.example.com
-        next:
-          type: string
-          format: uri
-          nullable: true
-          description: URL to the next page.
-          example: https://www.example.com
-        previous:
-          type: string
-          format: uri
-          nullable: true
-          description: URL to the previous page.
-          example: https://www.example.com
-    PaginatedSystemList:
-      type: object
-      description: A paginated list of systems.
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginationMeta'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/System'
-          example: []
-    PaginationMeta:
-      type: object
-      description: Pagination metadata for list responses.
-      properties:
-        count:
-          type: integer
-          description: The total number of results.
-          example: 10
     System:
       type: object
       description: A RHEL system registered with Red Hat Insights for monitoring and recommendations.
@@ -214,7 +172,70 @@ components:
           type: string
           description: The RHEL version running on the system.
           example: example_value
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses.
+      properties:
+        count:
+          type: integer
+          description: The total number of results.
+          example: 10
+    PaginatedSystemList:
+      type: object
+      description: A paginated list of systems.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/System'
+          example: []
+    PaginationLinks:
+      type: object
+      description: Pagination links for navigating result sets.
+      properties:
+        first:
+          type: string
+          format: uri
+          description: URL to the first page.
+          example: https://www.example.com
+        last:
+          type: string
+          format: uri
+          description: URL to the last page.
+          example: https://www.example.com
+        next:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the next page.
+          example: https://www.example.com
+        previous:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the previous page.
+          example: https://www.example.com
   parameters:
+    OffsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip before returning.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    SystemIdParam:
+      name: system_id
+      in: path
+      required: true
+      description: The unique identifier (UUID) of the system.
+      schema:
+        type: string
+        format: uuid
     LimitParam:
       name: limit
       in: query
@@ -224,27 +245,6 @@ components:
         minimum: 1
         maximum: 100
         default: 10
-    SystemIdParam:
-      name: system_id
-      in: path
-      required: true
-      description: The unique identifier (UUID) of the system.
-      schema:
-        type: string
-        format: uuid
-    OffsetParam:
-      name: offset
-      in: query
-      description: The number of results to skip before returning.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    NotFoundError:
-      description: The requested resource was not found.
   securitySchemes:
     bearerAuth:
       type: http

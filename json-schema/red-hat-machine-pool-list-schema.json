@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-machine-pool-list-schema.json",
+  "title": "MachinePoolList",
+  "description": "A paginated list of machine pools.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-machine-pools-api-openapi.yml#/components/schemas/MachinePoolList",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MachinePool"
+      }
+    }
+  },
+  "$defs": {
+    "MachinePool": {
+      "type": "object",
+      "description": "Represents a machine pool within a cluster, defining a group of compute nodes with shared configuration.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the machine pool."
+        },
+        "instance_type": {
+          "type": "string",
+          "description": "The cloud provider instance type for nodes in this pool."
+        },
+        "replicas": {
+          "type": "integer",
+          "description": "The fixed number of nodes in this machine pool."
+        },
+        "autoscaling": {
+          "type": "object",
+          "description": "Autoscaling configuration for the machine pool.",
+          "properties": {
+            "min_replicas": {
+              "type": "integer",
+              "description": "The minimum number of nodes when autoscaling is enabled."
+            },
+            "max_replicas": {
+              "type": "integer",
+              "description": "The maximum number of nodes when autoscaling is enabled."
+            }
+          }
+        },
+        "availability_zones": {
+          "type": "array",
+          "description": "The availability zones where nodes will be placed.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "labels": {
+          "type": "object",
+          "description": "Kubernetes labels applied to nodes in this pool.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "taints": {
+          "type": "array",
+          "description": "Kubernetes taints applied to nodes in this pool.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "effect": {
+                "type": "string",
+                "enum": [
+                  "NoSchedule",
+                  "PreferNoSchedule",
+                  "NoExecute"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/red-hat/main/json-schema/red-hat-rule-stats-schema.json",
+  "title": "RuleStats",
+  "description": "Aggregate statistics about Advisor rules.",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/red-hat-stats-api-openapi.yml#/components/schemas/RuleStats",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "The total number of active rules."
+    },
+    "by_category": {
+      "type": "object",
+      "description": "Rule counts by category.",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "by_severity": {
+      "type": "object",
+      "description": "Rule counts by total risk severity.",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    }
+  }
+}

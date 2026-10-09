@@ -2,7 +2,7 @@ overlay: 1.0.0
 info:
   title: API Evangelist enhancements for Red Hat Insights API
   version: 1.0.0
-extends: openapi/red-hat-insights-openapi.yml
+extends: ../openapi/_original/red-hat-insights-openapi.yml
 x-generated: '2026-06-20'
 x-method: generated
 x-source: openapi/red-hat-insights-openapi.yml

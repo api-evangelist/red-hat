@@ -1,55 +1,50 @@
 # Red Hat
+> Red Hat is an open hybrid cloud technology leader, delivering a consistent, comprehensive foundation for transformative IT and artificial intelligence (AI) applications in the enterprise. As a trusted adviser to the Fortune 500, Red Hat offers cloud, developer, Linux, automation, and application platform technologies, as well as award-winning services.
 
-> APIs and developer resources from Red Hat, a leading provider of enterprise open source solutions spanning Linux (RHEL), Kubernetes/containers (OpenShift), automation (Ansible), identity (Keycloak), and the Hybrid Cloud Console (console.redhat.com). This is an API Evangelist catalog profile; it links Red Hat's own documentation and the machine-readable artifacts curated in this repository. Generated from apis.yml — no fabricated endpoints.
 
-## APIs
+## Core Products & Platforms
+- [Red Hat Enterprise Linux (RHEL)](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux): The world's leading enterprise Linux platform, certified on hundreds of clouds and with thousands of hardware and software vendors.
+- [Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift): An enterprise-ready Kubernetes container platform with full-stack automated operations to manage hybrid cloud, multicloud, and edge deployments.
+- [Red Hat Ansible Automation Platform](https://www.redhat.com/en/technologies/management/ansible): An enterprise framework for building and operating IT automation at scale.
+- [Red Hat AI Enterprise](https://www.redhat.com/en/products/ai/enterprise): Red Hat AI Enterprise is an integrated AI platform for deploying, managing, and scaling AI inference, agentic AI workflows, and AI-powered applications on any infrastructure.
 
-- [Red Hat OpenShift Cluster Manager API](https://api.openshift.com/): Provision, manage, and monitor OpenShift clusters across clouds.
-- [Red Hat OpenShift API](https://docs.openshift.com/container-platform/latest/rest_api/index.html): Manage OpenShift clusters, applications, and resources.
-- [Red Hat Ansible Automation Platform API](https://docs.ansible.com/automation-controller/latest/html/controllerapi/api_ref.html): Automate infrastructure, deployment, and configuration via the automation controller.
-- [Red Hat build of Keycloak Admin REST API](https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api): Manage realms, users, clients, roles, and identity federation.
-- [Red Hat Quay API](https://docs.redhat.com/en/documentation/red_hat_quay/): Container registry — repositories, tags, robot accounts, image scanning.
-- [Red Hat Insights API](https://console.redhat.com/docs/api): Predictive analytics and remediation across RHEL fleets.
-- [Red Hat Satellite API](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index): Content, provisioning, and patch management for Linux estates.
-- [Red Hat Security Data API](https://docs.redhat.com/en/documentation/red_hat_security_data_api/1.0/html-single/red_hat_security_data_api/index): CVE, CSAF, and OVAL security data.
-- [Red Hat API Catalog](https://developers.redhat.com/api-catalog): The full catalog of Hybrid Cloud Console service APIs (cost management, image builder, vulnerability, compliance, RBAC, notifications, and more).
+## Learning and Education
+- [AI](https://www.redhat.com/en/topics/ai): Artificial Intelligence in IT and the cloud.
+- [Cloud Computing](https://www.redhat.com/en/topics/cloud-computing): Hybrid cloud, multi-cloud, private and public cloud strategies.
+- [Edge Computing](https://www.redhat.com/en/topics/edge-computing): Extending enterprise operations to edge locations.
+- [DevOps](https://www.redhat.com/en/topics/devops): Cultural shifts and tools to accelerate software delivery.
+- [Application Modernization](https://www.redhat.com/en/topics/cloud-native-apps): Transitioning legacy applications to microservices and cloud-native architectures.
 
-## Specs (machine-readable, this repository)
 
-- [OpenShift Cluster Manager OpenAPI](openapi/red-hat-openshift-cluster-manager-openapi.yml)
-- [Ansible Automation Platform OpenAPI](openapi/red-hat-ansible-automation-platform-openapi.yml)
-- [Keycloak Admin OpenAPI](openapi/red-hat-keycloak-admin-openapi.yml)
-- [Insights OpenAPI](openapi/red-hat-insights-openapi.yml)
-- [Quay OpenAPI](openapi/red-hat-quay-openapi.yml)
-- [Satellite OpenAPI](openapi/red-hat-satellite-openapi.yml)
-- [Kafka Bridge AsyncAPI](asyncapi/red-hat-kafka-bridge-asyncapi.yml)
-- [Notifications Webhooks AsyncAPI](asyncapi/red-hat-notifications-webhooks-asyncapi.yml)
+## Documentation and Resources
+- [Customer Portal](https://access.redhat.com/): Customer support, knowledgebase, and support cases.
+- [Red Hat Documentation](https://docs.redhat.com/): Product documentation and learning materials.
+- [Red Hat Developer](https://developers.redhat.com/): Tutorials, code samples, and tools for developers.
+- [Red Hat Blog](https://www.redhat.com/en/blog): Latest news and technical insights from Red Hat experts.
 
-## Artifacts (this repository)
 
-- [Authentication profile](authentication/red-hat-authentication.yml)
-- [API conventions](conventions/red-hat-conventions.yml)
-- [Error catalog](errors/red-hat-problem-types.yml)
-- [Data model](data-model/red-hat-data-model.yml)
-- [Lifecycle & versioning](lifecycle/red-hat-lifecycle.yml)
-- [Conformance](conformance/red-hat-conformance.yml)
-- [Packages & SDKs](packages/red-hat-packages.yml)
-- [CLI surface](cli/red-hat-cli.yml)
-- [UI components (PatternFly)](components/red-hat-components.yml)
-- [MCP servers](mcp/red-hat-mcp.yml)
-- [Sandbox / trial environments](sandbox/red-hat-sandbox.yml)
-- [Domain security](security/red-hat-domain-security.yml)
-- [Trust center & certifications](security/red-hat-trust-center.yml)
-- [Vulnerability disclosure](security/red-hat-vulnerability-disclosure.yml)
-- [Arazzo workflows](arazzo/)
+## Training and Certifications
+- [Training and Certification](https://www.redhat.com/en/services/training-and-certification): Access hands-on training to stay ahead of technology trends, and gain the knowledge you need to get certified.
+- [All courses and exams](https://www.redhat.com/en/services/training/all-courses-exams): Choose from our hands-on learning offerings to master Red Hat products and stay abreast of emerging technologies.
+- [Red Hat Learning Subscription](https://www.redhat.com/en/services/training/learning-subscription): Choose the right tier of Red Hat Learning Subscription to help your team increase productivity, embrace new skills, and boost your training investment.
 
-## Docs
 
-- [Red Hat Developer](https://developers.redhat.com)
-- [Get started](https://developers.redhat.com/get-started)
-- [Product documentation](https://docs.redhat.com/en/products)
-- [Hybrid Cloud Console](https://console.redhat.com)
-- [Authentication (offline tokens)](https://access.redhat.com/articles/3626371)
-- [Product life cycles](https://access.redhat.com/product-life-cycles)
-- [Status](https://status.redhat.com)
-- [Security](https://access.redhat.com/security/vulnerabilities)
+## For Partners
+- [Red Hat Partner Connect](https://connect.redhat.com/en): Red Hat Partner Connect gives partners the resources they need to help customers pursue solutions in AI, virtualization, and other key technology areas.
+
+
+## Localized Homepages
+- [English Homepage](https://www.redhat.com/en): Red Hat's English homepage.
+- [French Homepage](https://www.redhat.com/fr): Red Hat's French homepage.
+- [German Homepage](https://www.redhat.com/de): Red Hat's German homepage.
+- [Italian Homepage](https://www.redhat.com/it): Red Hat's Italian homepage.
+- [Japanese Homepage](https://www.redhat.com/ja): Red Hat's Japanese homepage.
+- [Korean Homepage](https://www.redhat.com/ko): Red Hat's Korean homepage.
+- [Brazilian Portuguese Homepage](https://www.redhat.com/pt-br): Red Hat's Brazilian Portuguese homepage.
+- [Spanish Homepage](https://www.redhat.com/es): Red Hat's Spanish homepage.
+- [Chinese for China Homepage](https://www.redhat.com/zh-cn): Red Hat's Chinese homepage.
+- [Chinese for Taiwan Homepage](https://www.redhat.com/zh-tw): Red Hat's Chinese for Taiwan homepage.
+
+
+## Testing
+- [Red Hat Testing](https://www.redhat.com/en/do-llms-read-txt): Learn more about whether large language models actually read and follow links from the LLMS.txt document

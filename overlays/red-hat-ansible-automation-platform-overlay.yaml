@@ -2,7 +2,7 @@ overlay: 1.0.0
 info:
   title: API Evangelist enhancements for Red Hat Ansible Automation Platform API
   version: 1.0.0
-extends: openapi/red-hat-ansible-automation-platform-openapi.yml
+extends: ../openapi/_original/red-hat-ansible-automation-platform-openapi.yml
 x-generated: '2026-06-20'
 x-method: generated
 x-source: openapi/red-hat-ansible-automation-platform-openapi.yml

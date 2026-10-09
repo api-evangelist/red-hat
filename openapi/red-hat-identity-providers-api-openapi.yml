@@ -180,27 +180,6 @@ paths:
     - url: https://api.openshift.com
       description: OpenShift Cluster Manager Production Server
 components:
-  responses:
-    UnauthorizedError:
-      description: Authentication credentials are missing or invalid.
-    BadRequestError:
-      description: The request body is malformed or contains invalid values.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnauthorizedError_2:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFoundError:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     RealmParam:
       name: realm
@@ -216,6 +195,27 @@ components:
       description: The unique identifier of the cluster.
       schema:
         type: string
+  responses:
+    UnauthorizedError:
+      description: Authentication credentials are missing or invalid.
+    NotFoundError:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequestError:
+      description: The request body is malformed or contains invalid values.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnauthorizedError_2:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     IdentityProviderRepresentation:
       type: object
@@ -280,6 +280,27 @@ components:
       - id
       - code
       - reason
+    IdentityProviderList:
+      type: object
+      description: A paginated list of identity providers.
+      properties:
+        kind:
+          type: string
+          example: example_value
+        page:
+          type: integer
+          example: 10
+        size:
+          type: integer
+          example: 10
+        total:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityProvider'
+          example: []
     IdentityProvider:
       type: object
       description: Represents an identity provider configured for cluster authentication.
@@ -356,27 +377,6 @@ components:
                   items:
                     type: string
           example: '500123'
-    IdentityProviderList:
-      type: object
-      description: A paginated list of identity providers.
-      properties:
-        kind:
-          type: string
-          example: example_value
-        page:
-          type: integer
-          example: 10
-        size:
-          type: integer
-          example: 10
-        total:
-          type: integer
-          example: 10
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityProvider'
-          example: []
   securitySchemes:
     bearerAuth:
       type: http
