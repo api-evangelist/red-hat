@@ -49,7 +49,7 @@ workflows:
     description: >-
       List organizations and capture the id of the first organization to scope
       the content view to.
-    operationId: listOrganizations
+    operationId: getApiV2Organizations
     parameters:
     - name: Authorization
       in: header
@@ -76,7 +76,7 @@ workflows:
     description: >-
       List the repositories available in the resolved organization and capture
       the id of the first repository to include in the content view.
-    operationId: listRepositories
+    operationId: getKatelloApiV2Repositories
     parameters:
     - name: organization_id
       in: query

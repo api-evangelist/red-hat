@@ -70,7 +70,7 @@ workflows:
     description: >-
       List organizations and capture the id of the first one to own the new
       inventory.
-    operationId: listOrganizations
+    operationId: getApiV2Organizations
     parameters:
     - name: Authorization
       in: header
