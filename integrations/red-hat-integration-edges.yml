@@ -1,8 +1,12 @@
 generated: '2026-10-13'
 method: searched
 checked:
+- https://github.com/marketplace?type=actions
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
+- https://marketplace.atlassian.com/
+- https://marketplace.visualstudio.com/vscode
+- https://plugins.jetbrains.com/
 marketplace_apps: []
 edges:
 - partner_name: OpenTelemetry
@@ -28,6 +32,85 @@ edges:
     detected: '2026-10-13'
   detected_by: sweep-observability.py
   detected: '2026-10-13'
+- partner_name: GitHub Marketplace (actions)
+  partner: github-actions
+  partner_match: aggregator
+  type: marketplace
+  marketplace: github-actions
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://github.com/marketplace/actions/buildah-build
+  listing_count: 9
+  apps:
+  - Buildah Build
+  - Push To Registry
+  - Podman Login
+  - Source to Image Build
+  - OpenShift Tools Installer
+  publisher_name: Red Hat GitHub Actions
+  badges:
+  - Verified creator
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Atlassian Marketplace
+  partner: atlassian
+  partner_match: aggregator
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.atlassian.com/vendors/42370/red-hat
+  listing_count: 1
+  apps:
+  - Jenkins/Hudson build status gadget
+  publisher_name: Red Hat
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: JetBrains Marketplace
+  partner: jetbrains
+  partner_match: aggregator
+  type: marketplace
+  marketplace: jetbrains
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://plugins.jetbrains.com/vendor/Red-Hat
+  listing_count: 5
+  apps:
+  - LSP4IJ
+  - Quarkus Tools
+  - Telemetry by Red Hat
+  - Red Hat Dependency Analytics
+  - Kubernetes by Red Hat
+  publisher_name: Red Hat
+  badges:
+  - Verified vendor
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_match: aggregator
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.visualstudio.com/publishers/redhat
+  listing_count: 29
+  apps:
+  - Language Support for Java(TM) by Red Hat
+  - YAML
+  - XML
+  - Red Hat Dependency Analytics
+  - Red Hat Commons
+  publisher_name: Red Hat
+  badges:
+  - Verified publisher
+  - Verified domain
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
