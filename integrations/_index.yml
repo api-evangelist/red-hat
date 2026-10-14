@@ -75,3 +75,28 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: red-hat-crowdstrike-own
+  label: CrowdStrike (own)
+  partner: crowdstrike
+  partner_name: CrowdStrike (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.crowdstrike.com/listings/red-hat-falcon-ansible-collection/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-splunk-own
+  label: Splunk (own)
+  partner: splunk
+  partner_name: Splunk (own)
+  category: addon
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://splunkbase.splunk.com/app/7868/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

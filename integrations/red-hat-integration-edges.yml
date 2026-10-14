@@ -1,12 +1,14 @@
 generated: '2026-10-13'
 method: searched
 checked:
+- crowdstrike/integrations/crowdstrike-integration-edges.yml
 - https://github.com/marketplace?type=actions
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
 - https://marketplace.atlassian.com/
 - https://marketplace.visualstudio.com/vscode
 - https://plugins.jetbrains.com/
+- splunk/integrations/splunk-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: OpenTelemetry
@@ -111,6 +113,41 @@ edges:
   - Verified domain
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
+- partner_name: CrowdStrike (own)
+  partner: crowdstrike
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.crowdstrike.com/listings/red-hat-falcon-ansible-collection/
+  mirror_of: crowdstrike/integrations/crowdstrike-integration-edges.yml
+  apps:
+  - Red Hat Falcon Ansible Collection
+  - Red Hat Falcon OpenShift Operator
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+- partner_name: Splunk (own)
+  partner: splunk
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://splunkbase.splunk.com/app/7868/
+  mirror_of: splunk/integrations/splunk-integration-edges.yml
+  apps:
+  - Red Hat Event Driven Ansible Add-on For Splunk
+  - Red Hat Advanced Cluster Security - Splunk Technology Add-on
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: addon
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
