@@ -262,3 +262,37 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: red-hat-fedramp
+  label: FedRAMP
+  partner_name: FedRAMP
+  category: FedRAMP In Process
+  type: contract
+  channel: regulator-register
+  evidence: https://marketplace.fedramp.gov/products/FR2102031769
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
+    standard: FedRAMP
+    spec_file: null
+    role: fedramp-in-process
+    registered_name: Red Hat
+    register_id: FR2102031769
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    domain_source: website
+    designations:
+    - In Process
+    packages:
+    - Red Hat OpenShift Service on AWS (ROSA)
+    service_models:
+    - PaaS
+    paths:
+    - Agency
+    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
+      models, paths and leveraging agencies are context, never counted. The register lists current designations
+      only (revoked / expired are removed), so lapsed is always false
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null

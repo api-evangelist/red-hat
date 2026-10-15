@@ -11,9 +11,12 @@ checked:
 - https://github.com/mlcommons
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
+- https://govramp.org/program-participants
 - https://marketplace.atlassian.com/
 - https://marketplace.visualstudio.com/vscode
 - https://plugins.jetbrains.com/
+- https://raw.githubusercontent.com/18F/fedramp-data/4b73d9247fd6360759960e4690e3ce4ca858e0fa/data/data.json
+- https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/suppliers
 - splunk/integrations/splunk-integration-edges.yml
 marketplace_apps: []
 edges:
@@ -338,6 +341,40 @@ edges:
     detected_by: sweep-mlops.py
     detected: '2026-10-15'
   detected_by: sweep-mlops.py
+  first_seen: '2026-10-15'
+- partner_name: FedRAMP
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://marketplace.fedramp.gov/products/FR2102031769
+  category: FedRAMP In Process
+  contract_reference:
+    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
+    standard: FedRAMP
+    spec_file: null
+    role: fedramp-in-process
+    registered_name: Red Hat
+    register_id: FR2102031769
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    domain_source: website
+    designations:
+    - In Process
+    packages:
+    - Red Hat OpenShift Service on AWS (ROSA)
+    service_models:
+    - PaaS
+    paths:
+    - Agency
+    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
+      models, paths and leveraging agencies are context, never counted. The register lists current designations
+      only (revoked / expired are removed), so lapsed is always false
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+  detected_by: sweep-gov-cloud.py
   first_seen: '2026-10-15'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
