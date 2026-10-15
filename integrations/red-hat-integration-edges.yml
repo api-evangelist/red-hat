@@ -5,7 +5,10 @@ checked:
 - https://focus.finops.org/data-generators/
 - https://github.com/cncf/k8s-conformance
 - https://github.com/cncf/landscape
+- https://github.com/kubeflow/website
+- https://github.com/lfai/landscape
 - https://github.com/marketplace?type=actions
+- https://github.com/mlcommons
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
 - https://marketplace.atlassian.com/
@@ -263,6 +266,78 @@ edges:
     detected_by: sweep-cloud-native.py
     detected: '2026-10-15'
   detected_by: sweep-cloud-native.py
+  first_seen: '2026-10-15'
+- partner_name: MLCommons MLPerf
+  partner: mlcommons
+  partner_match: register
+  type: register
+  direction: partner-built
+  category: ML benchmark results
+  evidence: https://github.com/mlcommons/inference_results_v6.1/tree/main/closed/RedHat
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: MLCommons MLPerf results (github.com/mlcommons/<family>_results_v<round>, closed/ + open/ submitter
+      directories)
+    spec_file: null
+    standard: MLPerf (MLCommons)
+    role: mlperf-submitter
+    registered_name: Red Hat
+    register_directories:
+    - RedHat
+    - RedHat-Supermicro
+    - RedHat_Intel
+    - RedHat_Supermicro
+    - Red_Hat
+    - Supermicro-RedHat
+    - Supermicro_RedHat
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    identity_source: wikidata Q485593 'Red Hat' P856 https://www.redhat.com/
+    identity_note: 'MLPerf publishes names only: domain from Wikidata P856 (labelled lookup, Kin 2026-10-15 decision
+      1), then partner_link (domain + name check)'
+    certified_products:
+    - product: MLPerf Inference (closed division)
+      newest_round: v6.1
+      lapsed: false
+    - product: MLPerf Training (closed division)
+      newest_round: v4.0
+      lapsed: true
+    open_division_only: []
+    current_window: each family's newest 2 rounds
+    signal_note: certified_products = one entry per benchmark FAMILY with a closed-division (peer-reviewed, reference-rules)
+      result, lapsed outside the current window; open-division families, rounds and result counts are context, never
+      read
+    detected_by: sweep-mlops.py
+    detected: '2026-10-15'
+  detected_by: sweep-mlops.py
+  first_seen: '2026-10-15'
+- partner_name: Kubeflow (packaged distributions)
+  partner: kubeflow
+  partner_match: register
+  type: register
+  direction: partner-built
+  category: Kubeflow distribution
+  evidence: https://github.com/kubeflow/website/blob/5a1733043558312e4a2237f64144208a0278e0de/content/en/docs/started/installing-kubeflow/index.md
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: Kubeflow packaged distributions (github.com/kubeflow/website content/en/docs/started/installing-kubeflow/index.md
+      @5a17330435)
+    spec_file: null
+    standard: Kubeflow
+    role: kubeflow-distribution
+    registered_name: Red Hat
+    distribution: null
+    target_platform: OpenShift
+    website: https://www.redhat.com/en/products/ai/openshift-ai
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    signal_note: 'participation only: Kubeflow ''does not endorse or certify'' distributions; the version and platform
+      are context'
+    detected_by: sweep-mlops.py
+    detected: '2026-10-15'
+  detected_by: sweep-mlops.py
   first_seen: '2026-10-15'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
