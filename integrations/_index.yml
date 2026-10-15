@@ -100,3 +100,91 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: red-hat-cncf-cloud-native-landscape
+  label: CNCF (Cloud Native Landscape)
+  partner: cncf
+  partner_name: CNCF (Cloud Native Landscape)
+  category: Cloud native landscape
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/cncf/landscape/blob/3a7d378b1824b82e729a453bb03fa6f1e37557e1/landscape.yml
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @3a7d378b18)
+    spec_file: null
+    standard: Cloud Native (CNCF)
+    role: cncf-member (Platinum)
+    registered_name: Red Hat
+    registered_names:
+    - Clair
+    - Red Hat
+    - Red Hat Build of Microshift
+    website: https://www.redhat.com/en
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    member_tier: Platinum
+    joined: '2016-01-01'
+    end_user: false
+    cncf_projects: []
+    landscape_categories:
+    - Platform / Certified Kubernetes - Distribution
+    - Provisioning / Security & Compliance
+    landscape_entries: 2
+    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
+      categories, tier and projects are CONTEXT, never read (breadth is not credit)'
+    detected_by: sweep-cloud-native.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-cncf-certified-kubernetes
+  label: CNCF Certified Kubernetes
+  partner: cncf
+  partner_name: CNCF Certified Kubernetes
+  category: Certified Kubernetes
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/cncf/k8s-conformance/tree/85d26a419e7df96137e66817b61cb22a616ce1e9/v1.36/openshift
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CNCF Certified Kubernetes (github.com/cncf/k8s-conformance @85d26a419e)
+    spec_file: null
+    standard: Kubernetes conformance
+    role: certified-kubernetes
+    registered_name: Red Hat
+    website: https://www.openshift.com
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    certified_products:
+    - product: distribution
+      newest_version: v1.36
+      lapsed: false
+    - product: hosted
+      newest_version: v1.35
+      lapsed: false
+    versions_certified:
+    - v1.24
+    - v1.25
+    - v1.26
+    - v1.27
+    - v1.28
+    - v1.29
+    - v1.30
+    - v1.31
+    - v1.32
+    - v1.33
+    - v1.34
+    - v1.35
+    - v1.36
+    products:
+    - OpenShift Container Platform by Red Hat
+    - Red Hat OpenShift Dedicated
+    - Red Hat build of MicroShift
+    current_window: v1.34+ (newest 4 minors in the register)
+    signal_note: certified_products = one entry per product TYPE (distribution/hosted/installer), lapsed when its
+      newest certified minor is outside the current window; products and versions are context, never read
+    detected_by: sweep-cloud-native.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
