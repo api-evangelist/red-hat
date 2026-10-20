@@ -100,6 +100,68 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: red-hat-openssf-open-source-security-foundation
+  label: OpenSSF (Open Source Security Foundation)
+  partner_name: OpenSSF (Open Source Security Foundation)
+  category: Open source security foundation membership
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/ossf/ossf-landscape/blob/0c5085851606608158f3adb796e5c22265ee174d/landscape.yml
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: OpenSSF Landscape (github.com/ossf/ossf-landscape landscape.yml @0c50858516), OpenSSF Members
+    standard: OpenSSF
+    spec_file: null
+    role: openssf-member (Premier)
+    registered_name: Red Hat LLC
+    website: https://redhat.com/
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    member_tier: Premier
+    in_market_tags:
+    - 'hand-review: Red Hat Trusted Software Supply Chain (Trusted Artifact Signer = Sigstore, Trusted Profile Analyzer
+      = SBOM)'
+    signal_note: 'participation only: foundation membership is standard-participant evidence, never depth; the tier
+      is context. Members outside the market''s business are held (out-of-market)'
+    detected_by: sweep-software-supply-chain.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-fedramp
+  label: FedRAMP
+  partner_name: FedRAMP
+  category: FedRAMP In Process
+  type: contract
+  channel: regulator-register
+  evidence: https://marketplace.fedramp.gov/products/FR2102031769
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
+    standard: FedRAMP
+    spec_file: null
+    role: fedramp-in-process
+    registered_name: Red Hat
+    register_id: FR2102031769
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    domain_source: website
+    designations:
+    - In Process
+    packages:
+    - Red Hat OpenShift Service on AWS (ROSA)
+    service_models:
+    - PaaS
+    paths:
+    - Agency
+    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
+      models, paths and leveraging agencies are context, never counted. The register lists current designations
+      only (revoked / expired are removed), so lapsed is always false
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
 - slug: red-hat-cncf-cloud-native-landscape
   label: CNCF (Cloud Native Landscape)
   partner: cncf
@@ -107,11 +169,11 @@
   category: Cloud native landscape
   type: register
   channel: standard-directory
-  evidence: https://github.com/cncf/landscape/blob/3a7d378b1824b82e729a453bb03fa6f1e37557e1/landscape.yml
+  evidence: https://github.com/cncf/landscape/blob/42dd4cd91dad8ec8558ac02467a43f0805b9957a/landscape.yml
   source: edge
   relationship: standard-participant
   contract_reference:
-    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @3a7d378b18)
+    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @42dd4cd91d)
     spec_file: null
     standard: Cloud Native (CNCF)
     role: cncf-member (Platinum)
@@ -134,7 +196,7 @@
     signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
       categories, tier and projects are CONTEXT, never read (breadth is not credit)'
     detected_by: sweep-cloud-native.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
 - slug: red-hat-cncf-certified-kubernetes
@@ -144,11 +206,11 @@
   category: Certified Kubernetes
   type: register
   channel: standard-directory
-  evidence: https://github.com/cncf/k8s-conformance/tree/85d26a419e7df96137e66817b61cb22a616ce1e9/v1.36/openshift
+  evidence: https://github.com/cncf/k8s-conformance/tree/621a55d41c23eab137118626e941b72fb8d32f89/v1.36/openshift
   source: edge
   relationship: standard-participant
   contract_reference:
-    register: CNCF Certified Kubernetes (github.com/cncf/k8s-conformance @85d26a419e)
+    register: CNCF Certified Kubernetes (github.com/cncf/k8s-conformance @621a55d41c)
     spec_file: null
     standard: Kubernetes conformance
     role: certified-kubernetes
@@ -185,7 +247,7 @@
     signal_note: certified_products = one entry per product TYPE (distribution/hosted/installer), lapsed when its
       newest certified minor is outside the current window; products and versions are context, never read
     detected_by: sweep-cloud-native.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
 - slug: red-hat-mlcommons-mlperf
@@ -231,7 +293,7 @@
       result, lapsed outside the current window; open-division families, rounds and result counts are context, never
       read
     detected_by: sweep-mlops.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
 - slug: red-hat-kubeflow-packaged-distributions
@@ -241,12 +303,12 @@
   category: Kubeflow distribution
   type: register
   channel: standard-directory
-  evidence: https://github.com/kubeflow/website/blob/5a1733043558312e4a2237f64144208a0278e0de/content/en/docs/started/installing-kubeflow/index.md
+  evidence: https://github.com/kubeflow/website/blob/8b227734a579c06a1234546ca9d1415dbfc29c60/content/en/docs/started/installing-kubeflow/index.md
   source: edge
   relationship: standard-participant
   contract_reference:
     register: Kubeflow packaged distributions (github.com/kubeflow/website content/en/docs/started/installing-kubeflow/index.md
-      @5a17330435)
+      @8b227734a5)
     spec_file: null
     standard: Kubeflow
     role: kubeflow-distribution
@@ -259,68 +321,6 @@
     signal_note: 'participation only: Kubeflow ''does not endorse or certify'' distributions; the version and platform
       are context'
     detected_by: sweep-mlops.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: red-hat-fedramp
-  label: FedRAMP
-  partner_name: FedRAMP
-  category: FedRAMP In Process
-  type: contract
-  channel: regulator-register
-  evidence: https://marketplace.fedramp.gov/products/FR2102031769
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
-    standard: FedRAMP
-    spec_file: null
-    role: fedramp-in-process
-    registered_name: Red Hat
-    register_id: FR2102031769
-    matched_domain: redhat.com
-    matched_by: domain+name-among-holders
-    domain_source: website
-    designations:
-    - In Process
-    packages:
-    - Red Hat OpenShift Service on AWS (ROSA)
-    service_models:
-    - PaaS
-    paths:
-    - Agency
-    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
-      models, paths and leveraging agencies are context, never counted. The register lists current designations
-      only (revoked / expired are removed), so lapsed is always false
-    detected_by: sweep-gov-cloud.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: red-hat-openssf-open-source-security-foundation
-  label: OpenSSF (Open Source Security Foundation)
-  partner_name: OpenSSF (Open Source Security Foundation)
-  category: Open source security foundation membership
-  type: register
-  channel: standard-directory
-  evidence: https://github.com/ossf/ossf-landscape/blob/0c5085851606608158f3adb796e5c22265ee174d/landscape.yml
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: OpenSSF Landscape (github.com/ossf/ossf-landscape landscape.yml @0c50858516), OpenSSF Members
-    standard: OpenSSF
-    spec_file: null
-    role: openssf-member (Premier)
-    registered_name: Red Hat LLC
-    website: https://redhat.com/
-    matched_domain: redhat.com
-    matched_by: domain+name-among-holders
-    member_tier: Premier
-    in_market_tags:
-    - 'hand-review: Red Hat Trusted Software Supply Chain (Trusted Artifact Signer = Sigstore, Trusted Profile Analyzer
-      = SBOM)'
-    signal_note: 'participation only: foundation membership is standard-participant evidence, never depth; the tier
-      is context. Members outside the market''s business are held (out-of-market)'
-    detected_by: sweep-software-supply-chain.py
-    detected: '2026-10-18'
+    detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
