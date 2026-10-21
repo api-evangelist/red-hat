@@ -24,6 +24,7 @@ checked:
 - splunk/integrations/splunk-integration-edges.yml
 - docker-hub/integrations/docker-hub-integration-edges.yml
 - eclipse/integrations/eclipse-integration-edges.yml
+- terraform/integrations/terraform-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: OpenTelemetry
@@ -476,6 +477,25 @@ edges:
   category: IDE / developer extension marketplace listing
   badges:
   - Verified namespace
+- partner_name: Terraform (terraform-registry)
+  partner: terraform
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: terraform-registry
+  evidence: https://registry.terraform.io/providers/terraform-redhat/rhcs
+  mirror_of: terraform/integrations/terraform-integration-edges.yml
+  apps:
+  - terraform-redhat/rhcs
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (Terraform partner tier)
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/

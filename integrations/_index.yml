@@ -350,3 +350,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: red-hat-terraform-terraform-registry
+  label: Terraform (terraform-registry)
+  partner: terraform
+  partner_name: Terraform (terraform-registry)
+  category: infrastructure-as-code provider registry listing
+  type: marketplace
+  marketplace: terraform-registry
+  channel: partner-built
+  evidence: https://registry.terraform.io/providers/terraform-redhat/rhcs
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
