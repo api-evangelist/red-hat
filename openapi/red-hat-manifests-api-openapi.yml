@@ -1,5 +1,11 @@
 openapi: 3.2.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (split from an AE-authored, documentation-derived spec in openapi/_original/)
+  x-sources:
+  - https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index
   title: Red Hat Quay Manifests API
   description: The Red Hat Quay API provides programmatic access to the Quay container registry for managing container images, repositories, organizations, and security scanning results. It supports operations for image tagging, repository management, team permissions, robot accounts, and vulnerability scanning of container images.
   version: '1.0'

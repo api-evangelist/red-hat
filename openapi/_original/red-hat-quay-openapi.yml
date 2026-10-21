@@ -1,5 +1,11 @@
 openapi: 3.1.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (authored from the vendor documentation as a summary; the vendor does publish a full machine-readable contract at https://quay.io/api/v1/discovery (Swagger 2.0), not yet adopted here)
+  x-sources:
+  - https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index
   title: Red Hat Quay API
   description: >-
     The Red Hat Quay API provides programmatic access to the Quay container

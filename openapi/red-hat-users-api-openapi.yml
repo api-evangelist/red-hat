@@ -1,5 +1,12 @@
 openapi: 3.2.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (merged from 2 AE-authored, documentation-derived specs in openapi/_original/)
+  x-sources:
+  - https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
+  - https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/red_hat_quay_api_guide/index
   title: Red Hat Users API
   contact:
     name: Red Hat Support

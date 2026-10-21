@@ -1,5 +1,11 @@
 openapi: 3.1.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (authored from the vendor documentation as a summary; the vendor does publish a full machine-readable contract at https://console.redhat.com/api/insights/v1/openapi.json, not yet adopted here)
+  x-sources:
+  - https://console.redhat.com/docs/api
   title: Red Hat Insights API
   description: >-
     The Red Hat Insights API provides programmatic access to predictive analytics

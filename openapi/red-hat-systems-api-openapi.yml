@@ -1,5 +1,11 @@
 openapi: 3.2.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (split from an AE-authored, documentation-derived spec in openapi/_original/)
+  x-sources:
+  - https://console.redhat.com/docs/api
   title: Red Hat Insights Systems API
   description: The Red Hat Insights API provides programmatic access to predictive analytics and remediation services for Red Hat Enterprise Linux systems. Through the Hybrid Cloud Console, it enables proactive identification of security vulnerabilities, configuration issues, performance risks, and compliance gaps across registered RHEL systems, along with automated remediation recommendations.
   version: '1.0'

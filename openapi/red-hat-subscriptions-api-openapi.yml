@@ -1,5 +1,11 @@
 openapi: 3.2.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (split from an AE-authored, documentation-derived spec in openapi/_original/)
+  x-sources:
+  - https://api.openshift.com/
   title: Red Hat OpenShift Cluster Manager Subscriptions API
   description: The Red Hat OpenShift Cluster Manager API provides programmatic access to provisioning, managing, and monitoring OpenShift clusters across cloud providers through the Red Hat Hybrid Cloud Console. It supports cluster lifecycle operations including creation, scaling, upgrades, and deletion of OpenShift Dedicated and ROSA clusters.
   version: '1.0'
