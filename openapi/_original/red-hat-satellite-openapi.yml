@@ -1,5 +1,11 @@
 openapi: 3.1.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (authored from the vendor documentation; the vendor publishes no official OpenAPI for this surface)
+  x-sources:
+  - https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   title: Red Hat Satellite API
   description: >-
     The Red Hat Satellite API provides programmatic access to managing Satellite

@@ -1,5 +1,11 @@
 openapi: 3.2.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (split from an AE-authored, documentation-derived spec in openapi/_original/)
+  x-sources:
+  - https://docs.redhat.com/en/documentation/red_hat_build_of_keycloak/26.0/html/server_developer_guide/admin_rest_api
   title: Red Hat Build of Keycloak Admin REST Realms API
   description: The Red Hat Build of Keycloak Admin REST API provides programmatic access to manage identity and access management functions, including realm configuration, user management, client registration, role assignments, identity provider configuration, and session management. It serves as the administrative interface for the Red Hat build of Keycloak identity platform.
   version: '26.0'

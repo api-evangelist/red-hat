@@ -1,5 +1,11 @@
 openapi: 3.2.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (split from an AE-authored, documentation-derived spec in openapi/_original/)
+  x-sources:
+  - https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   title: Red Hat Satellite Hosts API
   description: The Red Hat Satellite API provides programmatic access to managing Satellite infrastructure, including content management, host provisioning, patch management, and configuration across large-scale Linux environments. It covers both the Foreman API for host and infrastructure management and the Katello API for content and subscription management.
   version: '6.16'

@@ -1,5 +1,11 @@
 openapi: 3.1.0
 info:
+  x-generated-from: documentation
+  x-provenance: generated
+  x-authored-by: API Evangelist
+  x-derived-by: API Evangelist (authored from the vendor documentation; the vendor publishes no official OpenAPI for this surface)
+  x-sources:
+  - https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html-single/automation_execution_api_overview/index
   title: Red Hat Ansible Automation Platform API
   description: >-
     The Red Hat Ansible Automation Platform API provides programmatic access to
