@@ -46,6 +46,7 @@ checked:
 - https://csrc.nist.gov/projects/cryptographic-module-validation-program/modules-in-process/modules-in-process-list
 - https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search/all
 - https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search?SearchMode=Advanced&Standard=140-2&CertificateStatus=Historical&ValidationYear=0
+- artifact-hub/integrations/artifact-hub-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: OpenTelemetry
@@ -628,169 +629,6 @@ edges:
     detected: '2026-10-22'
   detected_by: sweep-vulnerability-disclosure-cna.py
   first_seen: '2026-10-22'
-- partner_name: CrowdStrike (own)
-  partner: crowdstrike
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.crowdstrike.com/listings/red-hat-falcon-ansible-collection/
-  mirror_of: crowdstrike/integrations/crowdstrike-integration-edges.yml
-  apps:
-  - Red Hat Falcon Ansible Collection
-  - Red Hat Falcon OpenShift Operator
-  listing_count: 2
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-- partner_name: Splunk (own)
-  partner: splunk
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://splunkbase.splunk.com/app/7868/
-  mirror_of: splunk/integrations/splunk-integration-edges.yml
-  apps:
-  - Red Hat Event Driven Ansible Add-on For Splunk
-  - Red Hat Advanced Cluster Security - Splunk Technology Add-on
-  listing_count: 2
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: addon
-- partner_name: Docker Hub (docker-verified-publisher)
-  partner: docker-hub
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: docker-verified-publisher
-  evidence: https://hub.docker.com/u/redhat
-  mirror_of: docker-hub/integrations/docker-hub-integration-edges.yml
-  apps:
-  - redhat/ubi8
-  - redhat/ubi8-minimal
-  - redhat/ubi9
-  - redhat/ubi9-minimal
-  - redhat/ubi9-micro
-  - redhat/ubi8-init
-  - redhat/ubi9-init
-  - redhat/ubi8-micro
-  - redhat/ubi10-init
-  - redhat/instructlab
-  - redhat/granite-7b-lab-gguf
-  - redhat/granite-3-2b-instruct
-  - redhat/granite-3-1b-a400m-instruct
-  - redhat/granite-3-3b-a800m-instruct
-  - redhat/granite-3-8b-instruct
-  listing_count: 1
-  detected: '2026-10-20'
-  detected_by: mirror-platform-listings.py
-  category: Docker Verified Publisher
-  badges:
-  - Docker Verified Publisher
-- partner_name: Eclipse Foundation (open-vsx)
-  partner: eclipse
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: open-vsx
-  evidence: https://open-vsx.org/namespace/redhat
-  mirror_of: eclipse/integrations/eclipse-integration-edges.yml
-  apps:
-  - Language Support for Java(TM) by Red Hat
-  - YAML
-  - XML
-  - Ansible
-  - Red Hat Dependency Analytics
-  - Quarkus
-  - Tools for MicroProfile
-  - OpenShift Toolkit
-  - Red Hat Authentication
-  - Dev Spaces Local/Remote Support - SSH
-  - Debug Adapter for Apache Camel by Red Hat
-  - Community Server Connectors
-  - Runtime Server Protocol UI
-  - Language Support for Apache Camel by Red Hat
-  - Red Hat Commons
-  listing_count: 1
-  detected: '2026-10-20'
-  detected_by: mirror-platform-listings.py
-  category: IDE / developer extension marketplace listing
-  badges:
-  - Verified namespace
-- partner_name: Terraform (terraform-registry)
-  partner: terraform
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: terraform-registry
-  evidence: https://registry.terraform.io/providers/terraform-redhat/rhcs
-  mirror_of: terraform/integrations/terraform-integration-edges.yml
-  apps:
-  - terraform-redhat/rhcs
-  listing_count: 1
-  detected: '2026-10-21'
-  detected_by: mirror-platform-listings.py
-  category: infrastructure-as-code provider registry listing
-  badges:
-  - Verified publisher (Terraform partner tier)
-- partner_name: Miro (own)
-  partner: miro
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://miro.com/marketplace/bpmn-tool/
-  mirror_of: miro/integrations/miro-integration-edges.yml
-  apps:
-  - BPMN Tool
-  listing_count: 1
-  detected: '2026-10-22'
-  detected_by: mirror-platform-listings.py
-  category: Miro app
-- partner_name: Backstage (own)
-  partner: backstage
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/3scale.yaml
-  mirror_of: backstage/integrations/backstage-integration-edges.yml
-  apps:
-  - APIs with 3scale
-  - Advanced Cluster Security
-  - 'Analytics Module: Matomo Analytics'
-  - Application Topology for Kubernetes
-  - Argo CD
-  - Authentication and Authorization with Keycloak
-  - Azure Container Registry
-  - Container Image Registry for JFrog Artifactory
-  - Container Image Registry for Quay
-  - Devfile Selector Field Extension
-  listing_count: 1
-  detected: '2026-10-22'
-  detected_by: mirror-platform-listings.py
-  category: Scaffolder
 - partner_name: APIs.guru OpenAPI Directory
   partner: apis-guru
   partner_match: register
@@ -7047,6 +6885,203 @@ edges:
     - Red Hat, LLC
   detected_by: sweep-nist-cmvp-fips-140-modules.py
   first_seen: '2026-10-22'
+- partner_name: CrowdStrike (own)
+  partner: crowdstrike
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.crowdstrike.com/listings/red-hat-falcon-ansible-collection/
+  mirror_of: crowdstrike/integrations/crowdstrike-integration-edges.yml
+  apps:
+  - Red Hat Falcon Ansible Collection
+  - Red Hat Falcon OpenShift Operator
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+- partner_name: Splunk (own)
+  partner: splunk
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://splunkbase.splunk.com/app/7868/
+  mirror_of: splunk/integrations/splunk-integration-edges.yml
+  apps:
+  - Red Hat Event Driven Ansible Add-on For Splunk
+  - Red Hat Advanced Cluster Security - Splunk Technology Add-on
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: addon
+- partner_name: Docker Hub (docker-verified-publisher)
+  partner: docker-hub
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: docker-verified-publisher
+  evidence: https://hub.docker.com/u/redhat
+  mirror_of: docker-hub/integrations/docker-hub-integration-edges.yml
+  apps:
+  - redhat/ubi8
+  - redhat/ubi8-minimal
+  - redhat/ubi9
+  - redhat/ubi9-minimal
+  - redhat/ubi9-micro
+  - redhat/ubi8-init
+  - redhat/ubi9-init
+  - redhat/ubi8-micro
+  - redhat/ubi10-init
+  - redhat/instructlab
+  - redhat/granite-7b-lab-gguf
+  - redhat/granite-3-2b-instruct
+  - redhat/granite-3-1b-a400m-instruct
+  - redhat/granite-3-3b-a800m-instruct
+  - redhat/granite-3-8b-instruct
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Docker Verified Publisher
+  badges:
+  - Docker Verified Publisher
+- partner_name: Eclipse Foundation (open-vsx)
+  partner: eclipse
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: open-vsx
+  evidence: https://open-vsx.org/namespace/redhat
+  mirror_of: eclipse/integrations/eclipse-integration-edges.yml
+  apps:
+  - Language Support for Java(TM) by Red Hat
+  - YAML
+  - XML
+  - Ansible
+  - Red Hat Dependency Analytics
+  - Quarkus
+  - Tools for MicroProfile
+  - OpenShift Toolkit
+  - Red Hat Authentication
+  - Dev Spaces Local/Remote Support - SSH
+  - Debug Adapter for Apache Camel by Red Hat
+  - Community Server Connectors
+  - Runtime Server Protocol UI
+  - Language Support for Apache Camel by Red Hat
+  - Red Hat Commons
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: IDE / developer extension marketplace listing
+  badges:
+  - Verified namespace
+- partner_name: Terraform (terraform-registry)
+  partner: terraform
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: terraform-registry
+  evidence: https://registry.terraform.io/providers/terraform-redhat/rhcs
+  mirror_of: terraform/integrations/terraform-integration-edges.yml
+  apps:
+  - terraform-redhat/rhcs
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (Terraform partner tier)
+- partner_name: Miro (own)
+  partner: miro
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://miro.com/marketplace/bpmn-tool/
+  mirror_of: miro/integrations/miro-integration-edges.yml
+  apps:
+  - BPMN Tool
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Miro app
+- partner_name: Backstage (own)
+  partner: backstage
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/3scale.yaml
+  mirror_of: backstage/integrations/backstage-integration-edges.yml
+  apps:
+  - APIs with 3scale
+  - Advanced Cluster Security
+  - 'Analytics Module: Matomo Analytics'
+  - Application Topology for Kubernetes
+  - Argo CD
+  - Authentication and Authorization with Keycloak
+  - Azure Container Registry
+  - Container Image Registry for JFrog Artifactory
+  - Container Image Registry for Quay
+  - Devfile Selector Field Extension
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Scaffolder
+- partner_name: Artifact Hub (artifact-hub)
+  partner: artifact-hub
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: artifact-hub
+  evidence: https://artifacthub.io/packages/search?repo=redhat-pipelines
+  mirror_of: artifact-hub/integrations/artifact-hub-integration-edges.yml
+  apps:
+  - OpenShift Virtualization Windows UEFI installer
+  - git
+  - buildah
+  - buildah-ns
+  - go crane image
+  - go ko image
+  - s2i-dotnet
+  - s2i-go
+  - s2i-java
+  - s2i-nodejs
+  - s2i-perl
+  - s2i-php
+  - s2i-python
+  - s2i-ruby
+  - skopeo-copy
+  - CLI
+  listing_count: 3
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Artifact Hub listing (Tekton pipeline)
+  badges:
+  - 'Verified publisher (Artifact Hub verified publisher: repository ownership proven)'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
