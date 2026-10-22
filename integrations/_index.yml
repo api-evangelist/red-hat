@@ -530,3 +530,80 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: red-hat-cve-program-cve-numbering-authorities
+  label: CVE Program (CVE Numbering Authorities)
+  partner_name: CVE Program (CVE Numbering Authorities)
+  category: Vulnerability disclosure (CVE Numbering Authority)
+  type: register
+  channel: standard-directory
+  evidence: https://www.cve.org/PartnerInformation/ListofPartners/partner/redhat
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CVE Program CNA list (github.com/CVEProject/cve-website CNAsList.json @ 239d3d9b68e0)
+    standard: CVE Program CNA Operational Rules (CVE Numbering Authority)
+    spec_file: null
+    role: cve-numbering-authority
+    registered_name: Red Hat, Inc.
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    cna_id: CNA-2005-0006
+    cna_short_name: redhat
+    cna_types:
+    - Vendor
+    - Open Source
+    cna_roles:
+    - CNA
+    - CNA-LR
+    - Root
+    scope: <strong>Root Scope:</strong> The Red Hat Root’s scope includes the open source community. Any open source
+      organizations that prefer Red Hat as their Root; organizations are free to choose another Root if it suits
+      them better.<br/><strong>CNA-LR Scope:</strong> Vulnerabilities in software developed by a CNA within the
+      Red Hat Root hierarchy.<br/><strong>CNA Scope:</strong> Vulnerabilities in open s
+    top_level_root: MITRE Corporation
+    root: n/a
+    security_advisories:
+    - https://access.redhat.com/security/security-updates/#/security-advisories
+    disclosure_policy:
+    - https://access.redhat.com/articles/red_hat_cna_vulnerability_disclosure_policy
+    country: USA
+    signal_note: listing as a CVE Numbering Authority = participation (a public commitment to assign CVE IDs and
+      publish advisories for its scope); never a count of CVEs
+    detected_by: sweep-vulnerability-disclosure-cna.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-first-forum-of-incident-response-and-security-teams
+  label: FIRST (Forum of Incident Response and Security Teams)
+  partner_name: FIRST (Forum of Incident Response and Security Teams)
+  category: Incident response / PSIRT (FIRST member team)
+  type: register
+  channel: standard-directory
+  evidence: https://www.first.org/members/teams/rh-isirt
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: FIRST member teams (api.first.org/data/v1/teams, public JSON API)
+    standard: FIRST (Forum of Incident Response and Security Teams) membership
+    spec_file: null
+    role: first-member-team
+    registered_name: Red Hat
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
+    teams:
+    - id: rh-isirt
+      team: RH-ISIRT
+      team_type: null
+      member_since: March 1, 2012
+      country: US
+    - id: red_hat_product_security
+      team: Red Hat Product Security
+      team_type: null
+      member_since: February 20, 2019
+      country: US
+    signal_note: FIRST full membership of an incident-response / product-security team = participation; team_type
+      names CSIRT / PSIRT / SOC; never a count
+    detected_by: sweep-vulnerability-disclosure-cna.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
