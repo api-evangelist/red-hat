@@ -299,70 +299,6 @@
     detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
-- slug: red-hat-crowdstrike-own
-  label: CrowdStrike (own)
-  partner: crowdstrike
-  partner_name: CrowdStrike (own)
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.crowdstrike.com/listings/red-hat-falcon-ansible-collection/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: red-hat-splunk-own
-  label: Splunk (own)
-  partner: splunk
-  partner_name: Splunk (own)
-  category: addon
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://splunkbase.splunk.com/app/7868/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: red-hat-docker-hub-docker-verified-publisher
-  label: Docker Hub (docker-verified-publisher)
-  partner: docker-hub
-  partner_name: Docker Hub (docker-verified-publisher)
-  category: Docker Verified Publisher
-  type: marketplace
-  marketplace: docker-verified-publisher
-  channel: partner-built
-  evidence: https://hub.docker.com/u/redhat
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: red-hat-eclipse-foundation-open-vsx
-  label: Eclipse Foundation (open-vsx)
-  partner: eclipse
-  partner_name: Eclipse Foundation (open-vsx)
-  category: IDE / developer extension marketplace listing
-  type: marketplace
-  marketplace: open-vsx
-  channel: partner-built
-  evidence: https://open-vsx.org/namespace/redhat
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: red-hat-terraform-terraform-registry
-  label: Terraform (terraform-registry)
-  partner: terraform
-  partner_name: Terraform (terraform-registry)
-  category: infrastructure-as-code provider registry listing
-  type: marketplace
-  marketplace: terraform-registry
-  channel: partner-built
-  evidence: https://registry.terraform.io/providers/terraform-redhat/rhcs
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: red-hat-uk-g-cloud-14-digital-marketplace
   label: UK G-Cloud 14 (Digital Marketplace)
   partner_name: UK G-Cloud 14 (Digital Marketplace)
@@ -517,19 +453,6 @@
     identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
   status: not-a-workflow
   arazzo: null
-- slug: red-hat-miro-own
-  label: Miro (own)
-  partner: miro
-  partner_name: Miro (own)
-  category: Miro app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://miro.com/marketplace/bpmn-tool/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: red-hat-cve-program-cve-numbering-authorities
   label: CVE Program (CVE Numbering Authorities)
   partner_name: CVE Program (CVE Numbering Authorities)
@@ -605,5 +528,95 @@
       names CSIRT / PSIRT / SOC; never a count
     detected_by: sweep-vulnerability-disclosure-cna.py
     detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-crowdstrike-own
+  label: CrowdStrike (own)
+  partner: crowdstrike
+  partner_name: CrowdStrike (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.crowdstrike.com/listings/red-hat-falcon-ansible-collection/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-splunk-own
+  label: Splunk (own)
+  partner: splunk
+  partner_name: Splunk (own)
+  category: addon
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://splunkbase.splunk.com/app/7868/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-docker-hub-docker-verified-publisher
+  label: Docker Hub (docker-verified-publisher)
+  partner: docker-hub
+  partner_name: Docker Hub (docker-verified-publisher)
+  category: Docker Verified Publisher
+  type: marketplace
+  marketplace: docker-verified-publisher
+  channel: partner-built
+  evidence: https://hub.docker.com/u/redhat
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-eclipse-foundation-open-vsx
+  label: Eclipse Foundation (open-vsx)
+  partner: eclipse
+  partner_name: Eclipse Foundation (open-vsx)
+  category: IDE / developer extension marketplace listing
+  type: marketplace
+  marketplace: open-vsx
+  channel: partner-built
+  evidence: https://open-vsx.org/namespace/redhat
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-terraform-terraform-registry
+  label: Terraform (terraform-registry)
+  partner: terraform
+  partner_name: Terraform (terraform-registry)
+  category: infrastructure-as-code provider registry listing
+  type: marketplace
+  marketplace: terraform-registry
+  channel: partner-built
+  evidence: https://registry.terraform.io/providers/terraform-redhat/rhcs
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-miro-own
+  label: Miro (own)
+  partner: miro
+  partner_name: Miro (own)
+  category: Miro app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://miro.com/marketplace/bpmn-tool/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: red-hat-backstage-own
+  label: Backstage (own)
+  partner: backstage
+  partner_name: Backstage (own)
+  category: Scaffolder
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/3scale.yaml
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
