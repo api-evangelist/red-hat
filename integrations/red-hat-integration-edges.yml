@@ -530,7 +530,7 @@ edges:
   first_seen: '2026-10-21'
 - partner_name: Common Criteria Portal (CCRA certified products)
   partner: null
-  partner_match: register-name
+  partner_match: register
   type: register
   channel: standard-directory
   relationship: standard-participant
@@ -544,8 +544,8 @@ edges:
     spec_file: null
     role: cc-certified-manufacturer
     registered_name: Red Hat, Inc.
-    matched_domain: null
-    matched_by: register-name
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
     certified_products:
     - product: Key Management Systems
       product_type: Key Management Systems
@@ -582,15 +582,13 @@ edges:
       product counts are context, never counted'
     detected_by: sweep-common-criteria-certified-products.py
     detected: '2026-10-21'
-    register_name_note: register-name 'redhat' = red-hat; wikidata P856 redhat.com agrees or unheld
-    identity_source: register-name
-    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
-      P856 not contradicting (Kin 2026-10-20 decision 2)
+    identity: wikidata Q485593 'Red Hat' P856 https://www.redhat.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
   detected_by: sweep-common-criteria-certified-products.py
   first_seen: '2026-10-21'
 - partner_name: NIAP Product Compliant List (US CCEVS)
   partner: null
-  partner_match: register-name
+  partner_match: register
   type: register
   channel: standard-directory
   relationship: standard-participant
@@ -604,8 +602,8 @@ edges:
     spec_file: null
     role: niap-pcl-vendor
     registered_name: Red Hat, Inc.
-    matched_domain: null
-    matched_by: register-name
+    matched_domain: redhat.com
+    matched_by: domain+name-among-holders
     signal_note: 'certified_products = one entry per NIAP technology type with a Certified (current) or Archived
       (lapsed: true) PCL product, Protection Profiles named; products In Progress are listing only (in_evaluation),
       never certified; product counts are context, never counted'
@@ -655,10 +653,8 @@ edges:
       - PP_OS_V4.3
     in_evaluation:
     - Operating System
-    register_name_note: register-name 'redhat' = red-hat; wikidata P856 redhat.com agrees or unheld
-    identity_source: register-name
-    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
-      P856 not contradicting (Kin 2026-10-20 decision 2)
+    identity: wikidata Q485593 'Red Hat' P856 https://www.redhat.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
   detected_by: sweep-common-criteria-certified-products.py
   first_seen: '2026-10-21'
 source:
