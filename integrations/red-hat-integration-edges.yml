@@ -29,6 +29,9 @@ checked:
 - https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-14/suppliers
 - https://www.crowncommercial.gov.uk/agreements
 - https://www.ncsc.gov.uk/cyberessentials/search
+- https://www.commoncriteriaportal.org/products/certified_products-archived.csv
+- https://www.commoncriteriaportal.org/products/certified_products.csv
+- https://www.niap-ccevs.org/Product/PCL.cfm
 marketplace_apps: []
 edges:
 - partner_name: OpenTelemetry
@@ -524,6 +527,139 @@ edges:
     detected_by: sweep-uk-g-cloud-suppliers.py
     detected: '2026-10-21'
   detected_by: sweep-uk-g-cloud-suppliers.py
+  first_seen: '2026-10-21'
+- partner_name: Common Criteria Portal (CCRA certified products)
+  partner: null
+  partner_match: register-name
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.commoncriteriaportal.org/products/
+  category: Common Criteria (ISO/IEC 15408) product certification
+  contract_reference:
+    register: Common Criteria Portal certified products + archived certificates (commoncriteriaportal.org/products/certified_products.csv,
+      certified_products-archived.csv)
+    standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
+    spec_file: null
+    role: cc-certified-manufacturer
+    registered_name: Red Hat, Inc.
+    matched_domain: null
+    matched_by: register-name
+    certified_products:
+    - product: Key Management Systems
+      product_type: Key Management Systems
+      standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
+      lapsed: true
+      partner_tier: EAL4+,ALC_FLR.2
+      protection_profiles:
+      - PP_CIMC_SL1_V1.0
+      schemes:
+      - US
+    - product: Operating Systems
+      product_type: Operating Systems
+      standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
+      lapsed: false
+      protection_profiles:
+      - PKG_SSH_V1.0
+      - PKG_TLS_V1.1
+      - PP_OS_V4.3
+      schemes:
+      - US
+    - product: Other Devices and Systems
+      product_type: Other Devices and Systems
+      standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
+      lapsed: false
+      partner_tier: EAL2+,ALC_FLR.3
+      protection_profiles:
+      - CPP_FDE_EE_V2.0E
+      - PP_CA_V2.1
+      schemes:
+      - IT
+      - US
+    signal_note: 'certified_products = one entry per Common Criteria product CATEGORY held (highest EAL for that
+      category in partner_tier; a category held only among archived certificates is lapsed: true); certificate and
+      product counts are context, never counted'
+    detected_by: sweep-common-criteria-certified-products.py
+    detected: '2026-10-21'
+    register_name_note: register-name 'redhat' = red-hat; wikidata P856 redhat.com agrees or unheld
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  detected_by: sweep-common-criteria-certified-products.py
+  first_seen: '2026-10-21'
+- partner_name: NIAP Product Compliant List (US CCEVS)
+  partner: null
+  partner_match: register-name
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.niap-ccevs.org/Product/PCL.cfm
+  category: NIAP Protection Profile conformance (US Common Criteria scheme)
+  contract_reference:
+    register: NIAP Product Compliant List (niap-ccevs.org/Product/PCL.cfm; public JSON /api/project/product/pcl_products_all/)
+    standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology Security
+      Evaluation (CCRA)
+    spec_file: null
+    role: niap-pcl-vendor
+    registered_name: Red Hat, Inc.
+    matched_domain: null
+    matched_by: register-name
+    signal_note: 'certified_products = one entry per NIAP technology type with a Certified (current) or Archived
+      (lapsed: true) PCL product, Protection Profiles named; products In Progress are listing only (in_evaluation),
+      never certified; product counts are context, never counted'
+    detected_by: sweep-common-criteria-certified-products.py
+    detected: '2026-10-21'
+    certified_products:
+    - product: Certificate Authority
+      product_type: Certificate Authority
+      lapsed: false
+      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology
+        Security Evaluation (CCRA)
+      protection_profiles:
+      - PP_CA_V2.1
+    - product: Miscellaneous
+      product_type: Miscellaneous
+      lapsed: true
+      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology
+        Security Evaluation (CCRA)
+      protection_profiles:
+      - none
+    - product: Network Encryption
+      product_type: Network Encryption
+      lapsed: true
+      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology
+        Security Evaluation (CCRA)
+      protection_profiles:
+      - PKG_SSH_V1.0
+      - PKG_TLS_V1.1
+      - PP_OS_V4.3
+    - product: Operating System
+      product_type: Operating System
+      lapsed: false
+      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology
+        Security Evaluation (CCRA)
+      protection_profiles:
+      - PKG_SSH_V1.0
+      - PKG_TLS_V1.1
+      - PP_OS_V4.3
+    - product: Remote Access
+      product_type: Remote Access
+      lapsed: true
+      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology
+        Security Evaluation (CCRA)
+      protection_profiles:
+      - PKG_SSH_V1.0
+      - PKG_TLS_V1.1
+      - PP_OS_V4.3
+    in_evaluation:
+    - Operating System
+    register_name_note: register-name 'redhat' = red-hat; wikidata P856 redhat.com agrees or unheld
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  detected_by: sweep-common-criteria-certified-products.py
   first_seen: '2026-10-21'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
