@@ -47,6 +47,7 @@ checked:
 - https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search/all
 - https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search?SearchMode=Advanced&Standard=140-2&CertificateStatus=Historical&ValidationYear=0
 - artifact-hub/integrations/artifact-hub-integration-edges.yml
+- https://dir.texas.gov/resource-library-item/tx-ramp-certified-cloud-products
 marketplace_apps: []
 edges:
 - partner_name: OpenTelemetry
@@ -7082,6 +7083,50 @@ edges:
   category: Artifact Hub listing (Tekton pipeline)
   badges:
   - 'Verified publisher (Artifact Hub verified publisher: repository ownership proven)'
+- partner_name: TX-RAMP
+  partner: null
+  partner_match: register
+  partner_tier: Provisional
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://dir.texas.gov/resource-library-item/tx-ramp-certified-cloud-products
+  category: Texas state cloud security certification (TX-RAMP)
+  contract_reference:
+    register: TX-RAMP Certified Cloud Products (Texas DIR)
+    standard: TX-RAMP
+    spec_file: null
+    role: tx-ramp-certified
+    register_file: https://dir.texas.gov/sites/default/files/2026-10/Copy%20of%20TX-RAMP%20Certified%20Cloud%20Products_1.xlsx
+    registrations:
+    - certification_id: TX1082284
+      product: Red Hat OpenShift Service on AWS (ROSA)
+      registered_vendor: Red Hat
+      certification_level: Provisional
+      cloud_categories:
+      - PaaS
+      certification_path: Certification Due to Existing Other RAMP-Certification
+      expires: null
+      lapsed: false
+      matched_domain: redhat.com
+      matched_by: domain+name-among-holders
+    identity: wikidata Q485593 'Red Hat' P856 https://www.redhat.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+    signal_note: 'certified_products = one entry per cloud category (SaaS / PaaS / IaaS) the vendor holds a TX-RAMP
+      certification in, never per product; products are context, never counted. certification_level = the highest
+      level in that category; lapsed: true when every product in the category is past its expiry date. partner_tier
+      = the highest CURRENT level'
+    certified_products:
+    - product: PaaS
+      product_type: PaaS
+      standard: TX-RAMP
+      certification_level: Provisional
+      lapsed: false
+    detected_by: sweep-tx-ramp-certified-cloud.py
+    detected: '2026-10-22'
+  detected_by: sweep-tx-ramp-certified-cloud.py
+  first_seen: '2026-10-22'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
